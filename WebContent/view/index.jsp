@@ -19,6 +19,6 @@
 	</script>
 </head>
 <body>
-	
+	<h1>여기는 메인페이지</h1>
 </body>
 </html>
