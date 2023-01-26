@@ -2,11 +2,21 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
   <display-name>firstproject</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <servlet>
+  	<!-- 정확하게 이름과 java file 경로를 지정해줘야한다 -->
+  	<servlet-name>ControllerUsingURI</servlet-name>
+  	<!-- 이부분이 실제 존재하는 클래스의 경로 패키지명.클래스명 -->
+  	<servlet-class>mvc.controller.ControllerUsingURI</servlet-class>
+  	<init-param>
+		<param-name>configFile</param-name> <!-- 파라미터 이름 -->
+		<param-value>/WEB-INF/commandHandlerURI.properties</param-value> <!-- 파라미터의 값에 넣어줄 경로 -->  	
+  	</init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ControllerUsingURI</servlet-name>
+  	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
 </web-app>
