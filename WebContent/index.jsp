@@ -17,10 +17,19 @@
 	<script>
 		$(function(){
 			$('#loginSubmit').click(function(){
-				$.ajax({
-					type:"post",
-					url:"<%=request.getContextPath()%>/helper/main.do"
-				});
+				let userid = $('#user_id').val();
+				let userpwd = $('#user_pwd').val();
+				
+				if(userid==""||userid==null) {
+					alert('아이디를 입력해주세요');
+					$('#user_id').focus();
+				} else if(userpwd==""||userpwd==null) {
+					alert('비밀번호 입력해주세요');
+					$('#user_pwd').focus();
+				}
+				
+				<%-- $.post('<%=request.getContextPath()%>/helper/index.do'),
+					{user_id:"userid", user_pwd:"userpwd"} --%>
 			});
 		});
 	
@@ -45,6 +54,7 @@
                     <div class="section text-center">
                       <h4 class="mb-4 pb-3">로그인</h4>
                       <div class="form-group">
+                      	<form action="<%=request.getContextPath()%>/helper/index.do" method='post'>
                         <input type="text" name="user_id" class="form-style" placeholder="Your id" id="user_id" autocomplete="off">
                         <i class="input-icon uil uil-at"></i>
                       </div>  
@@ -52,7 +62,7 @@
                         <input type="password" name="user_pwd" class="form-style" placeholder="Your Password" id="user_pwd" autocomplete="off">
                         <i class="input-icon uil uil-lock-alt"></i>
                       </div>
-                      <a href="javascript:void(0);" class="btn mt-4" id='loginSubmit'>submit</a>
+                      <input type='submit' class="btn mt-4" id='loginSubmit' name='loginSubmit' value='submit'/></form>
                                     <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Forgot your password?</a></p>
                         </div>
                       </div>
@@ -62,7 +72,23 @@
                     <div class="section text-center">
                       <h4 class="mb-4 pb-3">회원가입</h4>
                       <div class="form-group">
-                        <input type="text" name="logname" class="form-style" placeholder="Your Full Name" id="logname" autocomplete="off">
+                        <input type="text" name="user_id" class="form-style" placeholder="아이디" id="user_id" autocomplete="off">
+                        <i class="input-icon uil uil-user"></i>
+                      </div>  
+                      <div class="form-group mt-2">
+                        <input type="text" name="user_name" class="form-style" placeholder="이름" id="user_name" autocomplete="off">
+                        <i class="input-icon uil uil-user"></i>
+                      </div>  
+                      <div class="form-group mt-2">
+                        <input type="password" name="user_pwd" class="form-style" placeholder="비밀번호" id="user_pwd" autocomplete="off">
+                        <i class="input-icon uil uil-user"></i>
+                      </div> 
+                      <div class="form-group mt-2">
+                        <input type="password" name="user_repwd" class="form-style" placeholder="비밀번호확인" id="user_repwd" autocomplete="off">
+                        <i class="input-icon uil uil-user"></i>
+                      </div> 
+                      <div class="form-group mt-2">
+                        <input type="text" name="user_hp" class="form-style" placeholder="휴대폰번호" id="user_hp" autocomplete="off">
                         <i class="input-icon uil uil-user"></i>
                       </div>  
                       <div class="form-group mt-2">
