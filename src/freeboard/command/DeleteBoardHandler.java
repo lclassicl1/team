@@ -63,6 +63,6 @@ public class DeleteBoardHandler implements CommandHandler {
 		
 		
 		
-		return "/view/freeboard/freeBoardDeleteSuccess.jsp";
+		return "/view/free/freeBoardDeleteSuccess.jsp";
 	}
 }
