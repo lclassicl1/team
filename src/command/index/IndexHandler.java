@@ -1,4 +1,4 @@
-package index.command;
+package command.index;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
