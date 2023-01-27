@@ -18,6 +18,7 @@
 			<p>글번호 : ${board.free_no}</p>
 			<p>제목: ${board.free_title}</p>
 			<p>내용: ${board.free_content}</p>
+			<p>카테고리: ${board.free_category}</p>
 			<p>작성일 : ${board.free_createdate}</p>
 			<p>수정일 : ${board.free_updatedate}</p>
 
