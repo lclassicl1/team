@@ -33,7 +33,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 	<tr>
 		<th>카테고리</th>
 		<td>
-		   	<select name='free_category'>
+		   	<select name='categorySearch'>
 			    <option value='' selected>-- 선택 --</option>
 			    <option value='자유'>자유</option>
 			    <option value='질문'>질문</option>
