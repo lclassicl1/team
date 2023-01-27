@@ -5,6 +5,10 @@
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   
+   <listener>
+	<listener-class>jdbc.DBCPInitListener</listener-class>
+  </listener>
+  
   <context-param>
   	<param-name>poolConfig</param-name>
   	<param-value>
@@ -18,6 +22,7 @@
   	poolName=gosu
   	</param-value>
   </context-param>
+  
   
   <servlet>
   	<!-- 정확하게 이름과 java file 경로를 지정해줘야한다 -->
