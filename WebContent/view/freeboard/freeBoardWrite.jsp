@@ -17,7 +17,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 <a href="<%=request.getContextPath()%>/freeboard/list.do">글 목록으로</a>
 
 	
-	
+
 <form name="write" id="write" method="post" 
 		action="<%=request.getContextPath()%>/freeboard/write.do">
 	<table border="1">
