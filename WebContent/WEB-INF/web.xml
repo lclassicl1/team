@@ -13,13 +13,13 @@
   	<param-name>poolConfig</param-name>
   	<param-value>
   	jdbcdriver=com.mysql.jdbc.Driver
-  	jdbcUrl=jdbc:mysql://localhost:3306/gosu?useUnicode=true&amp;characterEncoding=utf8
-  	dbUser=gosu123
-  	dbPass=asdf123
+  	jdbcUrl=jdbc:mysql://localhost:3306/board?useUnicode=true&amp;characterEncoding=utf8
+  	dbUser=projectPrac
+  	dbPass=qwe3776
   	validationQuery=select 1
   	minIdle=3
   	maxTotal=30
-  	poolName=gosu
+  	poolName=board
   	</param-value>
   </context-param>
   
