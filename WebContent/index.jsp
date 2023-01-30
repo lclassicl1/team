@@ -52,7 +52,7 @@
             <div class="card-3d-wrap mx-auto">
               <div class="card-3d-wrapper">
                 <div class="card-front">
-                  <div class="center-wrap">
+                  <div class="center-wrap">  
                     <div class="section text-center">
                       <h4 class="mb-4 pb-3">로그인</h4>
                       	<form action="<%=request.getContextPath()%>/login.do" method='post'>
@@ -67,7 +67,7 @@
                       <input type='submit' class="btn mt-4" id='loginSubmit' name='loginSubmit' value='submit'/></form>
                                     <p class="mb-0 mt-4 text-center"><a href="<%=request.getContextPath()%>/foundPwd.do" class="link">Forgot your password?</a></p>
                         </div>
-                      </div>
+                      </div> 
                     </div>
                 <div class="card-back">
                   <div class="center-wrap">
