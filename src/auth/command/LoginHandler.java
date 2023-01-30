@@ -14,7 +14,7 @@ import mvc.command.CommandHandler;
 
 public class LoginHandler implements CommandHandler {
 
-	private static final String FORM_VIEW = "/view/loginboard/loginForm.jsp";
+	private static final String FORM_VIEW = "/index.jsp";
 	private LoginService loginService = new LoginService();
 	
 	@Override
@@ -29,14 +29,14 @@ public class LoginHandler implements CommandHandler {
 		}
 	}
 	
-private String processForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
+	private String processForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
 		return FORM_VIEW;
 	}
 
-private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
-	String loginId = trim(req.getParameter("loginId"));
-	String loginPwd = trim(req.getParameter("loginPwd"));
+	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
+	String loginId = trim(req.getParameter("user_id"));
+	String loginPwd = trim(req.getParameter("user_pwd"));
 	
 	Map<String,Boolean> errors = new HashMap<>();
 	req.setAttribute("errors", errors);
