@@ -7,7 +7,7 @@ public class CommentList {
 	private int comm_no;
 	private String comm_content;
 	private Date comm_credate;
-	private String user_name;
+	private String user_id;
 	private String isshow;
 	private int comm_volt;
 	private int free_no;
@@ -16,12 +16,12 @@ public class CommentList {
 	
 	
 	
-	public CommentList(int comm_no, String comm_content, Date comm_credate, String user_name, String isshow,
+	public CommentList(int comm_no, String comm_content, Date comm_credate, String user_id, String isshow,
 			int comm_volt, int free_no) {
 		this.comm_no = comm_no;
 		this.comm_content = comm_content;
 		this.comm_credate = comm_credate;
-		this.user_name = user_name;
+		this.user_id = user_id;
 		this.isshow = isshow;
 		this.comm_volt = comm_volt;
 		this.free_no = free_no;
@@ -52,8 +52,8 @@ public class CommentList {
 
 
 
-	public String getUser_name() {
-		return user_name;
+	public String getUser_id() {
+		return user_id;
 	}
 
 
@@ -87,7 +87,7 @@ public class CommentList {
 	@Override
 	public String toString() {
 		return "CommentList [comm_no=" + comm_no + ", comm_content=" + comm_content + ", comm_credate=" + comm_credate
-				+ ", user_name=" + user_name + ", isshow=" + isshow + ", comm_volt=" + comm_volt + ", free_no="
+				+ ", user_Id=" + user_id + ", isshow=" + isshow + ", comm_volt=" + comm_volt + ", free_no="
 				+ free_no + "]";
 	}
 	

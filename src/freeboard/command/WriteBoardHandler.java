@@ -4,7 +4,9 @@ import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import auth.model.User;
 import comment.service.WriteCommentService;
 import freeboard.service.WriteBoardService;
 import mvc.command.CommandHandler;
@@ -49,8 +51,13 @@ public class WriteBoardHandler implements CommandHandler {
 		String categorySearch = request.getParameter("categorySearch");
 		System.out.println("free_category="+categorySearch);
 		
-		int cnt = writeBoardService.writetBoard(title, content, categorySearch);
+		User user = (User)request.getSession(false).getAttribute("authUser");
+		String writeId = user.getUserId();
+		HttpSession ssesion=request.getSession();
+		ssesion.setAttribute("userInfo", user);//로그인한 유저 정보
 		
+		int cnt = writeBoardService.writetBoard(title, content, categorySearch, writeId);
+		 
 		//insert 되었다는 변수
 		request.setAttribute("cnt",cnt);
 		

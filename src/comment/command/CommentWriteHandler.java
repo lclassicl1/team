@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import auth.model.User;
 import comment.service.WriteCommentService;
 import freeboard.service.WriteBoardService;
 import mvc.command.CommandHandler;
@@ -51,8 +52,11 @@ public class CommentWriteHandler implements CommandHandler {
 		int free_no = Integer.parseInt(free_noVal);
 		String comm_content = request.getParameter("comm_content");
 	
+		User user = (User)request.getSession().getAttribute("authUser");
+		String userid = user.getUserId();
 		
-		int cnt = writeCommentService.writeComment(free_no, comm_content);
+		
+		int cnt = writeCommentService.writeComment(free_no, comm_content,userid);
 		
 		//insert 되었다는 변수
 		request.setAttribute("cnt",cnt);

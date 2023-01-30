@@ -38,48 +38,10 @@ public class ReadCommentHandler implements CommandHandler {
 		 request.setAttribute("comment",comment);
 		 
 		 
-		 //댓글 입력
-		 System.out.println("코멘트no"+no);
-		 String content = request.getParameter("content");
-		 int commentResult = writeCommentService.writeComment(no,content);
-		 request.setAttribute("commentResult", commentResult);
-		 
-		 
-		 //조회수 증가
-
+		 System.out.println("123123123123");
 		return FORM_VIEW;
 			
 	}
 	
-	/*
-	private String processSubmit(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("processSubmit 메서드 진입 - Post");
-		
-		String no 
-			= request.getParameter("no");
-		 FreeBoard freeBoard = readBoardService.getBoardDetail(no);
-		 System.out.println("freeBoard ="+freeBoard);
-		 request.setAttribute("freeBoard", freeBoard);
 	
-	
-	 
-		 
-		 // 댓글 상세 보기 코드
-		 Comment comment = listCommentService.getCommentList(no);
-		 System.out.println("comment="+comment);
-		 request.setAttribute("comment",comment);
-		
-		
-		
-		
-		//댓글 입력
-		 no 
-			= request.getParameter("no");
-		 System.out.println("코멘트no"+no);
-		 String content = request.getParameter("content");
-		 int commentResult = writeCommentService.writeComment(content, no);
-		 request.setAttribute("commentResult", commentResult);
-		 return FORM_VIEW;
-	}
-	*/
 }
