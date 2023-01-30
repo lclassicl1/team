@@ -20,7 +20,7 @@ public class CommentDAO {
 			PreparedStatement stmt = null;
 			ResultSet rs = null;
 			
-			String sql="select comm_no,comm_content,comm_credate,user_name,isshow,comm_volt,free_no" + 
+			String sql="select comm_no,comm_content,comm_credate,user_id,isshow,comm_volt,free_no" + 
 					" from free_comment" + 
 					" where free_no=? and isshow='Y'";
 		
@@ -58,7 +58,7 @@ public class CommentDAO {
 			PreparedStatement stmt = null;
 			ResultSet rs = null;
 			
-			String sql="select comm_no,comm_content,comm_credate,user_name,isshow,comm_volt,free_no" + 
+			String sql="select comm_no,comm_content,comm_credate,user_id,isshow,comm_volt,free_no" + 
 					" from free_comment" + 
 					" where comm_no=?";
 		
@@ -90,11 +90,11 @@ public class CommentDAO {
 			}
 		}
 	//댓글 쓰기
-	public int insertComment(int free_no, String comm_content) {
+	public int insertComment(int free_no, String comm_content, String userid) {
 		PreparedStatement stmt = null;
 		
-		String sql="INSERT INTO FREE_COMMENT (comm_content,comm_credate,user_name,isshow,comm_volt,free_no)" + 
-				" VALUES (?,now(),'이름15','Y',0,?)";
+		String sql="INSERT INTO FREE_COMMENT (comm_content,comm_credate,user_id,isshow,comm_volt,free_no)" + 
+				" VALUES (?,now(),?,'Y',0,?)";
 		
 		int cnt = 0;
 			Connection conn = null;
@@ -105,7 +105,8 @@ public class CommentDAO {
 			
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, comm_content);
-			stmt.setInt(2, free_no);
+			stmt.setString(2, userid);
+			stmt.setInt(3, free_no);
 			cnt = stmt.executeUpdate();
 			
 			conn.commit();

@@ -33,13 +33,13 @@
 <h3>댓글</h3> 댓글 작성 성공:<c:out value="${commentResult}"></c:out>
 <table border="1">
 	<tr>
-		<th>작성자</th>
+		<th>아이디</th>
 		<th>내용</th>
 		<th>등록일</th>
 	</tr>
 <c:forEach var="comment" items="${comment.commentList}">
 	<tr>
-		<td>${comment.user_name}</td>
+		<td>${comment.user_id}</td>
 		<td>${comment.comm_content}</td>
 		<td>${comment.comm_credate}</td>
 		<td><a href="<%=request.getContextPath()%>/freeboard/commentdelete.do?free_no=${freeBoard.list[0].free_no}&comm_no=${comment.comm_no}"><button>삭제</button></a></td>

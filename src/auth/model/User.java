@@ -82,5 +82,16 @@ public class User {
 	public String getUserBirth() {
 		return userBirth;
 	}
+
+	@Override
+	public String toString() {
+		return "User [userNo=" + userNo + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
+				+ ", userHp=" + userHp + ", userRegdate=" + userRegdate + ", userAddress=" + userAddress
+				+ ", userGrade=" + userGrade + ", userEmail=" + userEmail + ", userGender=" + userGender
+				+ ", userSkill=" + userSkill + ", userSchool=" + userSchool + ", userBirth=" + userBirth + "]";
+	}
+	
+	
+	
 	
 }
