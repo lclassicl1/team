@@ -151,11 +151,11 @@ public class FreeBoardDAO {
 	
 	
 	// 게시글 작성
-	public int insertBoard(String title, String content, String categorySearch) {
+	public int insertBoard(String title, String content, String categorySearch, String writeId) {
 		PreparedStatement stmt = null;
 		
-		String sql="INSERT INTO FREEBOARD (free_title,free_content,free_credate,free_update,free_readcnt,user_name,isshow,free_category,user_no)" + 
-				" VALUES (?,?,now(),now(),0,'이름11','Y',?,11)";
+		String sql="INSERT INTO FREEBOARD (free_title,free_content,free_credate,free_update,free_readcnt,user_id,isshow,free_category,user_no)" + 
+				" VALUES (?,?,now(),now(),0,?,'Y',?,11)";
 		
 		Connection conn = null;
 		int cnt = 0;
@@ -167,7 +167,8 @@ public class FreeBoardDAO {
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, title);
 			stmt.setString(2, content);
-			stmt.setString(3, categorySearch);
+			stmt.setString(3, writeId);
+			stmt.setString(4, categorySearch);
 			cnt = stmt.executeUpdate();
 			
 			conn.commit();
