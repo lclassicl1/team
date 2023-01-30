@@ -31,7 +31,7 @@ public class LoginHandler implements CommandHandler {
 	
 	private String processForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
-		return FORM_VIEW;
+		return FORM_VIEW;  
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
