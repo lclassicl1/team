@@ -9,14 +9,14 @@ public class FreeBoardList {
 	private Date free_credate;
 	private Date free_update;
 	private int free_readcnt;
-	private String user_name;
+	private String user_id;
 	private String isshow;
 	private String free_category;
 	private int user_no;
 	
 	
 	public FreeBoardList(int free_no, String free_title, String free_content, Date free_credate,
-			Date free_update, int free_readcnt, String user_name, String isshow, String free_category,
+			Date free_update, int free_readcnt, String user_id, String isshow, String free_category,
 			int user_no) {
 		this.free_no = free_no;
 		this.free_title = free_title;
@@ -24,7 +24,7 @@ public class FreeBoardList {
 		this.free_credate = free_credate;
 		this.free_update = free_update;
 		this.free_readcnt = free_readcnt;
-		this.user_name = user_name;
+		this.user_id = user_id;
 		this.isshow = isshow;
 		this.free_category = free_category;
 		this.user_no = user_no;
@@ -55,8 +55,8 @@ public class FreeBoardList {
 		return free_readcnt;
 	}
 
-	public String getUser_name() {
-		return user_name;
+	public String getUser_id() {
+		return user_id;
 	}
 
 	public String getIsshow() {
@@ -76,7 +76,7 @@ public class FreeBoardList {
 	public String toString() {
 		return "FreeBoardList [free_no=" + free_no + ", free_title=" + free_title + ", free_content=" + free_content
 				+ ", free_createdate=" + free_credate + ", free_updatedate=" + free_update + ", free_readcnt="
-				+ free_readcnt + ", user_name=" + user_name + ", isshow=" + isshow + ", free_category=" + free_category
+				+ free_readcnt + ", user_name=" + user_id + ", isshow=" + isshow + ", free_category=" + free_category
 				+ ", user_no=" + user_no + "]";
 	}
 	

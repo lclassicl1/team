@@ -10,6 +10,8 @@ import com.mysql.fabric.Response;
 import auth.model.User;
 import mvc.command.CommandHandler;
 
+
+//마이페이지 보여주는 핸들러
 public class MypageHandler implements CommandHandler {
 
 	@Override
@@ -19,7 +21,6 @@ public class MypageHandler implements CommandHandler {
 		HttpSession ssesion=req.getSession();
 		ssesion.setAttribute("userInfo", user);//로그인한 유저 정보
 		
-		System.out.println(user);
 		
 		res.sendRedirect(req.getContextPath()+"/view/mypage/mypage.jsp");
 		return null;

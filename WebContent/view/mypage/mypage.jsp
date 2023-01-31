@@ -14,16 +14,12 @@
 	<style></style>
 	<script>
 		$(function(){
-			
 		});
 	</script>
 </head>
 <body>
-
-${userInfo}
-
 	<h2>마이페이지</h2>
-	<table>
+	<table border="1">
 		<tr>
 			<th>아이디</th>
 			<td>${userInfo.userId}</td>
@@ -48,8 +44,8 @@ ${userInfo}
 			<th>성별</th>
 			<td>${userInfo.userGender}</td>
 		</tr>
-			<tr>
-			<th>자격중</th>
+		<tr>
+			<th>자격증</th>
 			<td>${userInfo.userSkill}</td>
 		</tr>
 			<tr>
@@ -61,5 +57,6 @@ ${userInfo}
 			<td>${userInfo.userBirth}</td>
 		</tr>
 	</table>
+<a href="<%=request.getContextPath()%>/mypageUpdate.do?userId=${userInfo.userId}"><button>정보 수정하기</button></a>
 </body>
 </html>

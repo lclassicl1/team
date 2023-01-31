@@ -65,7 +65,7 @@ public class FreeBoardDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
-		String sql="SELECT free_no,free_title,free_content,free_credate,free_update,free_readcnt,user_name,isshow,free_category,user_no"+ 
+		String sql="SELECT free_no,free_title,free_content,free_credate,free_update,free_readcnt,user_id,isshow,free_category,user_no"+ 
 				" FROM FREEBOARD"+ 
 				" WHERE free_no=?";
 		
@@ -110,7 +110,7 @@ public class FreeBoardDAO {
 			PreparedStatement stmt = null;
 			ResultSet rs = null;
 			
-			String sql="SELECT free_no,free_title,free_content,free_credate,free_update,free_readcnt,user_name,isshow,free_category,user_no"+ 
+			String sql="SELECT free_no,free_title,free_content,free_credate,free_update,free_readcnt,user_id,isshow,free_category,user_no"+ 
 					" FROM FREEBOARD"+ 
 					" WHERE free_category=?";
 			

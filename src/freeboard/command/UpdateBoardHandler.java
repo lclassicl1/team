@@ -11,6 +11,8 @@ import freeboard.service.ReadBoardService;
 import freeboard.service.UpdateBoardService;
 import mvc.command.CommandHandler;
 
+
+//자유게시판 수정 컨트롤러
 public class UpdateBoardHandler implements CommandHandler {
 
 	UpdateBoardService updateBoardService = new UpdateBoardService();
@@ -33,6 +35,7 @@ public class UpdateBoardHandler implements CommandHandler {
 		return null;
 	}
 	
+	// 자유게시판 게시글 수정화면 보여주는 메서드
 	private String processForm(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("UTF-8");
 		String noVal = request.getParameter("no");
@@ -48,7 +51,7 @@ public class UpdateBoardHandler implements CommandHandler {
 	}
 
 
-	
+	// 자유게시판 게시글 수정하는 메서드
 	private String processSubmit(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("UTF-8");
 		String no = request.getParameter("no");
@@ -62,7 +65,7 @@ public class UpdateBoardHandler implements CommandHandler {
 		int updateresult = updateBoardService.update(no, title, content, free_category);
 		
 		
-		//insert 되었다는 변수
+		//수정 완료 되었을 경우 1, 실패시 0
 		request.setAttribute("result",updateresult);
 		
 		

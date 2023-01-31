@@ -18,10 +18,8 @@ public class SearchBoardHandler implements CommandHandler {
 		System.out.println("SearchBoardHandler-==========진입");
 		String categorySearch = request.getParameter("categorySearch");
 		
-		System.out.println("categorySearch========="+categorySearch);
 		
 		FreeBoard freeBoard = searchBoardService.search(categorySearch);
-		System.out.println("freeBoard="+freeBoard);
 		request.setAttribute("freeBoard", freeBoard);
 		
 		
