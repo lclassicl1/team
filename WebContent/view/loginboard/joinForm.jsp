@@ -81,7 +81,7 @@ ${errors }
 						<label for="birth">생년월일</label><br>
 					</th>
 					<td>
-						<input type = "date"name="userBirth">
+						<input type = "date"name="userBirth" >
 						<c:if test="${errors.userBirth}">생년월일을 입력하세요.</c:if>
 					</td>
 				</tr>

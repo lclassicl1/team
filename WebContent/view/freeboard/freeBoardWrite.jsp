@@ -44,9 +44,6 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 		<td colspan="2" style="text-align:center;"><input type="submit" value="글쓰기"/></td>
 	</tr>
 	</table>
-	
-
-
 </form>
 </body>
 </html>

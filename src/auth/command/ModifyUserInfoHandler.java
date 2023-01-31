@@ -23,7 +23,7 @@ public class ModifyUserInfoHandler implements CommandHandler {
 		}else if(req.getMethod().equalsIgnoreCase("POST")) {
 			return processSubmit(req,res);
 		}else {
-			res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);;
+			res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 			return null;
 		}
 	}

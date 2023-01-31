@@ -76,7 +76,7 @@ public class User {
 		if(userSchool.equals("null")) {
 			return "없음";
 		}else {
-			return userSkill;
+			return userSchool;
 		}
 	}
 	public String getUserBirth() {

@@ -30,12 +30,12 @@
 <thead>
 	<tr>
 		<th>글 번호</th>
+		<th>작성자</th>
 		<th>제목</th>
 	<!-- 	<th>내용</th> -->
 		<th>작성일</th>
 		<th>수정일</th>
 		<th>조회수</th>
-		<th>유저명</th>
 		<th>카테고리</th>
 	</tr>
 </thead>
@@ -43,11 +43,11 @@
 				<c:forEach var="freeBoard" items="${freeBoard.list}">
 			<tr>
 					<td><c:out value="${freeBoard.free_no}"/></td>
+					<td><c:out value="${freeBoard.user_id}"/></td>
 					<td><a href="<%=request.getContextPath()%>/freeboard/read.do?no=${freeBoard.free_no}"><c:out value="${freeBoard.free_title}"/></a></td>
 					<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${freeBoard.free_createdate}"/></td>
 					<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${freeBoard.free_updatedate}"/></td>
 					<td><c:out value="${freeBoard.free_readcnt}"/></td>
-					<td><c:out value="${freeBoard.user_name}"/></td>
 					<td><c:out value="${freeBoard.free_category}"/></td>
 			</tr>
 				</c:forEach>

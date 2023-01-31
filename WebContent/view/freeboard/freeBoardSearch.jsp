@@ -48,7 +48,7 @@
 					<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${freeBoard.free_createdate}"/></td>
 					<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${freeBoard.free_updatedate}"/></td>
 					<td><c:out value="${freeBoard.free_readcnt}"/></td>
-					<td><c:out value="${freeBoard.user_name}"/></td>
+					<td><c:out value="${freeBoard.user_id}"/></td>
 					<td><c:out value="${freeBoard.free_category}"/></td>
 			</tr>
 </c:forEach>

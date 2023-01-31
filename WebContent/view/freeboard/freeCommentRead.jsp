@@ -25,23 +25,11 @@
 <a href="<%=request.getContextPath()%>/freeboard/update.do?no=${board.free_no}"><button>글 수정하기</button></a>
 <a href="<%=request.getContextPath()%>/freeboard/delete.do?no=${board.free_no}"><button>글 삭제하기</button></a>
 	</c:forEach>
-
 <hr>
 <hr>
-<%-- <c:forEach var="item" items="${commentList }">
-<form name="delete_update" id="delete_update" method="post" action="<%=request.getContextPath()%>/freeboard/commentupdate.do">
-<% <input type="text" name="comm_no" value="${item.comm_no}" hidden/> 
-<input type="text" name="free_no" value="${freeBoard.list[0].free_no}" hidden/>
-<!-- </form> -->
-</c:forEach> --%>
-
-<%-- <h3>댓글</h3> 댓글 작성 성공:<c:out value="${commentResult}"></c:out> --%>
 <form name="write" id="write" method="post"
 		action="<%=request.getContextPath()%>/freeboard/commentupdate.do?free_no=${freeBoard.list[0].free_no}&comm_no=${commentList.comm_no}">
-		
-		<%-- <input type="text" name="free_no" value="${freeBoard.list[0].free_no}" hidden/> --%>
-		${commentList.comm_no}
-	
+		<%-- ${commentList.comm_no} --%>
 	<table border="1">
 	<tr>
 		<th>댓글 내용</th>
@@ -52,6 +40,5 @@
 	</tr>
 	</table>
 </form>
-<%-- </c:forEach> --%>
 </body>
 </html>

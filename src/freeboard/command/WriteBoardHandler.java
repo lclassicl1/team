@@ -45,7 +45,6 @@ public class WriteBoardHandler implements CommandHandler {
 	
 	private String processSubmit(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
 		
-		request.setCharacterEncoding("UTF-8");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String categorySearch = request.getParameter("categorySearch");
