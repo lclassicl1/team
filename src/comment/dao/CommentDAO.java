@@ -15,14 +15,14 @@ import jdbc.conn.ConnectionProvider;
 
 public class CommentDAO {
 	
-	// 게시글 번호에 맞는 댓글 조회
+		// 게시글 번호에 맞는 댓글 조회
 		public List<CommentList> selectAllComment(int no) {
 			PreparedStatement stmt = null;
 			ResultSet rs = null;
 			
-			String sql="select comm_no,comm_content,comm_credate,user_id,isshow,comm_volt,free_no" + 
+			String sql="select comm_no,comm_content,comm_credate,user_id,isshow,comm_volt,article_no" + 
 					" from free_comment" + 
-					" where free_no=? and isshow='Y'";
+					" where article_no=? and isshow='Y'";
 		
 			Connection conn = null;
 			List<CommentList> commentList = new ArrayList<>();
@@ -54,11 +54,12 @@ public class CommentDAO {
 			return commentList;
 		}
 	
+		
 		public CommentList selectComment(int no) {
 			PreparedStatement stmt = null;
 			ResultSet rs = null;
 			
-			String sql="select comm_no,comm_content,comm_credate,user_id,isshow,comm_volt,free_no" + 
+			String sql="select comm_no,comm_content,comm_credate,user_id,isshow,comm_volt,article_no" + 
 					" from free_comment" + 
 					" where comm_no=?";
 		
@@ -90,11 +91,11 @@ public class CommentDAO {
 			}
 		}
 	//댓글 쓰기
-	public int insertComment(int free_no, String comm_content, String userid) {
+	public int insertComment(int article_no, String comm_content, String userid) {
 		PreparedStatement stmt = null;
 		
-		String sql="INSERT INTO FREE_COMMENT (comm_content,comm_credate,user_id,isshow,comm_volt,free_no)" + 
-				" VALUES (?,now(),?,'Y',0,?)";
+		String sql="INSERT INTO FREE_COMMENT (comm_content,user_id,article_no)" + 
+				" VALUES (?,?,?)";
 		
 		int cnt = 0;
 			Connection conn = null;
@@ -106,7 +107,7 @@ public class CommentDAO {
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, comm_content);
 			stmt.setString(2, userid);
-			stmt.setInt(3, free_no);
+			stmt.setInt(3, article_no);
 			cnt = stmt.executeUpdate();
 			
 			conn.commit();
@@ -186,41 +187,6 @@ public class CommentDAO {
 	
 		return result;
 	} 
-	/*
-	//글 삭제하기
-		public int deleteComment(String comm_no) {
-			System.out.println("dao-comment delete 진입");
-			PreparedStatement stmt = null;
-			int result = -1;
-			
-			String sql="Delete from free_comment" +
-					" where comm_no=?";
-			
-			
-				Connection conn = null;
-			try {
-				conn=ConnectionProvider.getConnection();
-				
-				conn.setAutoCommit(false);
-				
-				stmt = conn.prepareStatement(sql);
-				stmt.setString(1, comm_no);
-				result = stmt.executeUpdate();
-				
-				conn.commit();
-			}catch(SQLException e) {
-				e.printStackTrace();
-				
-			}finally {
-				
-				JdbcUtil.close(stmt);
-				JdbcUtil.close(conn);
-			}
-		
-			return result;
-		} 
-	*/
-	
 }
 
 

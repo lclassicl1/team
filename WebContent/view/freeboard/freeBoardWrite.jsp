@@ -10,6 +10,12 @@
 <script 
 src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 </script>
+<style>
+	textarea{width:500px; height:200px; 
+		resize:none;
+	 	resize: vertical;
+	}
+</style>
 </head>
 
 <body>
@@ -27,7 +33,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 	</tr>
 	<tr>
 		<th>내용</th>
-			<td><textarea name="content" id="content" ></textarea></td>
+			<td><textarea name="content" id="content" width:500px; height:200px; style="resize: none;"></textarea></td>
 	</tr>
 	<tr>
 	<tr>
@@ -37,7 +43,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 			    <option value='' selected>-- 선택 --</option>
 			    <option value='자유'>자유</option>
 			    <option value='질문'>질문</option>
-			    <option value='TIP'>TIP</option>
+			    <option value='팁'>팁</option>
   			</select>
 		</td>
 	<tr>
