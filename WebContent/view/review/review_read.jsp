@@ -59,28 +59,11 @@ request.setAttribute("rowSize", rowSize);//1페이지당게시글수 --%>
  	 	<c:if test="${authUSER.memberid==reviewData.review.review_writer.review_writer_id}">
 	 	 	<a href="/review/modify.do?no=${reviewData.review.review_number}&pageNo=${pgNo}&rowSize=${rowSize}">글수정</a>
 	 	 	<a href="/review/deleter.do?no=${reviewData.review.review_number}">글삭제</a>
+	 	 	<a href="/review/comment/writer.do?no=${reviewData.review.review_number}">댓글 작성 - 추가예정</a>
 	 	 	<%-- <a href="/article/deleteArticle.do?no=${reviewData.review.number}">글삭제(delete용)</a> --%>
  	 	</c:if>
  	 </td>
  	</tr> 	
- 	<form type ="button" action=""></form><!-- 댓글관련 -->
- </table>
- 	<hr/>
- <table  border="1"><!-- 댓글수정 -->
-	
- <th>
- <fmt:formatDate type="both" value="${reviewData.review.review_credate}" />에 작성된 ${reviewData.review.review_writer.review_writer_name} 님의 댓글입니다.
- </th>
- <tr/>
- <th><u:pre value="${reviewData.content.review_content}"/></th>
- </tr>
- 	
- 	<tr>          
-	<c:if test="${authUSER.memberid==reviewData.review.review_writer.review_writer_id}">
-	<a href="/review/modify.do?no=${reviewData.review.review_number}&pageNo=${pgNo}&rowSize=${rowSize}">수정</a>
-	<a href="/review/deleter.do?no=${reviewData.review.review_number}">삭제</a>
-	</c:if>
-	 </tr>
  </table>
 </body>
 </html>
