@@ -49,10 +49,11 @@ public class ModifyHelpHandler implements CommandHandler {
 				res.sendError(HttpServletResponse.SC_FORBIDDEN);
 				return null;
 			}
-			
-			ModifyRequest modReq = new ModifyRequest(user.getUserNo(),help.getHelpNo(),help.getHelpTitle()
-					,help.getHelpContent(),help.getCategory());
-			req.setAttribute("modReq", modReq);
+			System.out.println(help);
+			req.setAttribute("help", help);
+//			ModifyRequest modReq = new ModifyRequest(user.getUserNo(),help.getHelpNo(),help.getHelpTitle()
+//					,help.getHelpContent(),help.getCategory());
+		//	req.setAttribute("modReq", modReq);
 			return FORM_VIEW;
 		}catch(HelperNotFoundException e) {
 			e.printStackTrace();
@@ -74,7 +75,7 @@ public class ModifyHelpHandler implements CommandHandler {
 		ModifyRequest modReq = new ModifyRequest(user.getUserNo(),no,title
 				  							,content,category);
 		
-		req.setAttribute("modReq", modReq);
+		//req.setAttribute("modReq", modReq);
 		Map<String,Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
 		

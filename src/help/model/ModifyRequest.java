@@ -5,13 +5,13 @@ import java.util.Map;
 public class ModifyRequest {
 
 	private int userNo;
-	private int helpNo;
+	private int articleNo;
 	private String modTitle;
 	private String modContent;
 	private String modCategory;
-	public ModifyRequest(int userNo, int helpNo, String modTitle, String modContent, String modCategory) {
+	public ModifyRequest(int userNo, int articleNo, String modTitle, String modContent, String modCategory) {
 		this.userNo = userNo;
-		this.helpNo = helpNo;
+		this.articleNo = articleNo;
 		this.modTitle = modTitle;
 		this.modContent = modContent;
 		this.modCategory = modCategory;
@@ -19,8 +19,8 @@ public class ModifyRequest {
 	public int getUserNo() {
 		return userNo;
 	}
-	public int getHelpNo() {
-		return helpNo;
+	public int getArticleNo() {
+		return articleNo;
 	}
 	public String getModTitle() {
 		return modTitle;

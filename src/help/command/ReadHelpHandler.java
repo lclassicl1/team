@@ -28,16 +28,13 @@ public class ReadHelpHandler implements CommandHandler {
 		
 		try {
 			UserInfoHelpInfo userHelp = readHelpService.getHelp(no, true);
-			
 			User user = userHelp.getUser();
 			Help help = userHelp.getHelp();
-			
 			req.setAttribute("user", user);//글쓴이의 유저정보 
 			req.setAttribute("help", help);//게시판 정보 
 			
 			List<Comment> commentList =listCommentService.getCommentList(no);
 			req.setAttribute("commentList", commentList);
-			
 			return "/view/helpboard/readHelp.jsp";
 		}catch(HelperNotFoundException | HelperContentNotFoundException e) {
 			req.getServletContext().log("no help", e);

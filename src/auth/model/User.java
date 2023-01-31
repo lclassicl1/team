@@ -66,14 +66,14 @@ public class User {
 		return userGender;
 	}
 	public String getUserSkill() {
-		if(userSkill.equals("null")) {
+		if(userSkill==null) {
 			return "없음";
 		}else {
 			return userSkill;
 		}
 	}
 	public String getUserSchool() {
-		if(userSchool.equals("null")) {
+		if(userSchool==null) {
 			return "없음";
 		}else {
 			return userSchool;
