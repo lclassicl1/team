@@ -3,78 +3,94 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-  	<!-- google cdn 방식 jquery-->
+  <!-- google cdn 방식 jquery-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <script src='js/bootstrap.js'></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css'/>
-  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js'/>
-  <link rel='stylesheet' type='text/css' href='<%=request.getContextPath()%>/css/default.css'/>
- 	<title>INDEX</title>
-	<style>	</style>
-	<script>
-		$(function(){
-			$('#loginSubmit').click(function(){
-				let userid = $('#user_id').val();
-				let userpwd = $('#user_pwd').val();
-				
-				if(userid==""||userid==null) {
-					alert('아이디를 입력해주세요');
-					$('#user_id').focus();
-					return false;
-				} else if(userpwd==""||userpwd==null) {
-					alert('비밀번호 입력해주세요');
-					$('#user_pwd').focus();
-					return false;
-				}
-				
-				<%-- $.post('<%=request.getContextPath()%>/helper/index.do'),
-					{user_id:"userid", user_pwd:"userpwd"} --%>
-			});
-		});
-	
-	</script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel='stylesheet' type='text/css' href='<%=request.getContextPath()%>/css/default.css' />
+  <title>INDEX</title>
+  <style>
+body {
+      background-color: rgb(31 41 55);
+      color: rgb(243 244 246);
+} 
+div{
+	text-align: center;
+}
+#indexPic {
+	 width: 550px;
+    height: 550px; 
+    border-radius: 30%;
+    overflow: hidden;
+}
+
+.container {
+	text-align: center;
+}
+
+.input-group-text, .form-control {
+	width:500px;
+	text-align: center;
+}
+  </style>
+  <script>
+  	$(function(){
+  		//아이디/비밀번호 찾기 눌렀을때
+  		$('#forgot').click(function(){
+  			window.open('<%=request.getContextPath()%>/foundPwd.do','_blank','width=500,height=700');
+  			
+  		});
+  		
+  		$('#submitBtn').click(function(){
+  			/* ID Text 유효성검사 */
+  			let idtxt = $('#user_id').val();
+  			if(idtxt=='') {
+  				alert('아이디값을 입력해주세요');
+  				$('#user_id').focus();
+  				return false;
+  			}
+  			/* 비밀번호 Text 유효성검사 */
+  			let pwtxt = $('#user_pwd').val();
+  			if(pwtxt=='') {
+  				alert('비밀번호를 입력해주세요');
+  				$('#user_pwd').focus();
+  				return false;
+  			}
+  			
+  			$('#frm').submit();	
+  		});
+  		
+  		//회원가입 버튼 눌렀을대
+  		$('#registerBtn').click(function(){
+  			location.href='<%=request.getContextPath()%>/register.do';
+  		});
+  	});
+  
+  </script>
 </head>
+
 <body>
-	<a href="<%=request.getContextPath()%>/index.do" class="logo" target="_blank">
-    <img src="https://assets.codepen.io/1462889/fcy.png" alt="main">
-  </a>
-  <div class="section">
-    <div class="container">
-      <div class="row full-height justify-content-center">
-        <div class="col-12 text-center align-self-center py-5">
-          <div class="section pb-5 pt-5 pt-sm-2 text-center">
-            <h6 class="mb-0 pb-3"><span><a href='<%=request.getContextPath()%>/register.do'>회원가입</a></span></h6>
-                  <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
-                  <label for="reg-log"></label>
-            <div class="card-3d-wrap mx-auto">
-              <div class="card-3d-wrapper">
-                <div class="card-front">
-                  <div class="center-wrap">    
-                    <div class="section text-center">
-                      <h4 class="mb-4 pb-3">로그인</h4>
-                      	<form action="<%=request.getContextPath()%>/login.do" method='post'>
-    	                  <div class="form-group">
-                        <input type="text" name="user_id" class="form-style" placeholder="Your id" id="user_id" autocomplete="off">
-                        <i class="input-icon uil uil-at"></i>
-                      </div>  
-                      <div class="form-group mt-2">
-                        <input type="password" name="user_pwd" class="form-style" placeholder="Your Password" id="user_pwd" autocomplete="off">
-                        <i class="input-icon uil uil-lock-alt"></i>
-                      </div>
-                      <input type='submit' class="btn mt-4" id='loginSubmit' name='loginSubmit' value='submit'/></form>
-                                    <p class="mb-0 mt-4 text-center"><a href="<%=request.getContextPath()%>/foundPwd.do" class="link">Forgot your password?</a></p>
-                        </div>
-                      </div> 
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-      </div>
+	<div class="container"><h1>코딩해줘</h1>
+  		<div><img src='http://drive.google.com/uc?export=view&id=1fIjFqg3JtAQzM6lDy7u-u8CDup1Tj24O' id='indexPic' /></div><br>
+  	<form action='<%=request.getContextPath()%>/login.do' method='post' id='frm'>
+  	<div class="input-group-sm mb-3">
+  		<span class="input-group-text" id="basic-addon1">ID</span>
+  		<input type="text" class="form-control" placeholder="아이디" aria-label="Username" aria-describedby="basic-addon1" name='user_id' id='user_id'>
+	</div>
+    <div class="input-group-sm mb-3">
+  		<span class="input-group-text" id="basic-addon1">PW</span>
+  		<input type="password" class="form-control" placeholder="비밀번호" aria-label="UserPassword" aria-describedby="basic-addon1" name='user_pwd' id='user_pwd'>
+	</div>
+	<div>
+		<button type="button" class="btn btn-dark btn-lg" id='submitBtn'>로그인</button>
+		<button type="button" class="btn btn-dark btn-lg" id='registerBtn'>회원가입</button>
+	</div>
+	<div><a href='javascript:void(0);' id='forgot' class="btn btn-dark btn-lg">아이디/비밀번호찾기</a></div>
+  </form>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 </html>
