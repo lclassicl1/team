@@ -58,5 +58,18 @@
 		</tr>
 	</table>
 <a href="<%=request.getContextPath()%>/mypageUpdate.do?userId=${userInfo.userId}"><button>정보 수정하기</button></a>
+<a href="<%=request.getContextPath()%>/mypageUpdate.do?userId=${userInfo.userId}"><button>정보 수정하기</button></a>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

@@ -3,7 +3,8 @@ package freeboard.model;
 import java.util.Date;
 
 public class FreeBoardList {
-	private int free_no;
+	private int article_no;
+	private String article_category;
 	private String free_title;
 	private String free_content;
 	private Date free_credate;
@@ -15,10 +16,11 @@ public class FreeBoardList {
 	private int user_no;
 	
 	
-	public FreeBoardList(int free_no, String free_title, String free_content, Date free_credate,
+	public FreeBoardList(int article_no,String article_category, String free_title, String free_content, Date free_credate,
 			Date free_update, int free_readcnt, String user_id, String isshow, String free_category,
 			int user_no) {
-		this.free_no = free_no;
+		this.article_no = article_no;
+		this.article_category = article_category;
 		this.free_title = free_title;
 		this.free_content = free_content;
 		this.free_credate = free_credate;
@@ -31,8 +33,12 @@ public class FreeBoardList {
 	}
 	
 	
-	public int getFree_no() {
-		return free_no;
+	public int getArticle_no() {
+		return article_no;
+	}
+	
+	public String getArticle_category() {
+		return article_category;
 	}
 
 	public String getFree_title() {
@@ -74,11 +80,14 @@ public class FreeBoardList {
 
 	@Override
 	public String toString() {
-		return "FreeBoardList [free_no=" + free_no + ", free_title=" + free_title + ", free_content=" + free_content
-				+ ", free_createdate=" + free_credate + ", free_updatedate=" + free_update + ", free_readcnt="
-				+ free_readcnt + ", user_name=" + user_id + ", isshow=" + isshow + ", free_category=" + free_category
-				+ ", user_no=" + user_no + "]";
+		return "FreeBoardList [article_no=" + article_no + ", article_category=" + article_category + ", free_title="
+				+ free_title + ", free_content=" + free_content + ", free_credate=" + free_credate + ", free_update="
+				+ free_update + ", free_readcnt=" + free_readcnt + ", user_id=" + user_id + ", isshow=" + isshow
+				+ ", free_category=" + free_category + ", user_no=" + user_no + "]";
 	}
+
+
+	
 	
 	
 	

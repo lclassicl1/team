@@ -23,7 +23,7 @@ public class FreeBoardDAO {
 		String sql="SELECT *" + 
 				" FROM FREEBOARD" + 
 				" WHERE isshow='Y'" + 
-				" ORDER BY free_no DESC";
+				" ORDER BY article_no DESC";
 		
 		List<FreeBoardList> freeBoardList = new ArrayList<FreeBoardList>();
 		Connection conn = null;
@@ -35,16 +35,17 @@ public class FreeBoardDAO {
 			System.out.println("dao1");
 			while(rs.next()) {
 				FreeBoardList list = new FreeBoardList(
-									rs.getInt(1),
-									rs.getString(2),
-									rs.getString(3),
-									rs.getTimestamp(4),
-									rs.getTimestamp(5),
-									rs.getInt(6),
-									rs.getString(7),
-									rs.getString(8),
-									rs.getString(9),
-									rs.getInt(10));
+									rs.getInt("article_no"),
+									rs.getString("article_category"),
+									rs.getString("free_title"),
+									rs.getString("free_content"),
+									rs.getTimestamp("free_credate"),
+									rs.getTimestamp("free_update"),
+									rs.getInt("free_readcnt"),
+									rs.getString("user_id"),
+									rs.getString("isshow"),
+									rs.getString("free_category"),
+									rs.getInt("user_no"));
 				System.out.println("dao2"+list);
 							freeBoardList.add(list);
 							
@@ -65,9 +66,9 @@ public class FreeBoardDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
-		String sql="SELECT free_no,free_title,free_content,free_credate,free_update,free_readcnt,user_id,isshow,free_category,user_no"+ 
+		String sql="SELECT *"+ 
 				" FROM FREEBOARD"+ 
-				" WHERE free_no=?";
+				" WHERE article_no=?";
 		
 		List<FreeBoardList> freeBoardList = new ArrayList<FreeBoardList>();
 		Connection conn = null;
@@ -80,16 +81,17 @@ public class FreeBoardDAO {
 			System.out.println("dao1");
 			while(rs.next()) {
 				FreeBoardList list = new FreeBoardList(
-											rs.getInt(1),
-											rs.getString(2),
-											rs.getString(3),
-											rs.getTimestamp(4),
-											rs.getTimestamp(5),
-											rs.getInt(6),
-											rs.getString(7),
-											rs.getString(8),
-											rs.getString(9),
-											rs.getInt(10));
+										rs.getInt("article_no"),
+										rs.getString("article_category"),
+										rs.getString("free_title"),
+										rs.getString("free_content"),
+										rs.getTimestamp("free_credate"),
+										rs.getTimestamp("free_update"),
+										rs.getInt("free_readcnt"),
+										rs.getString("user_id"),
+										rs.getString("isshow"),
+										rs.getString("free_category"),
+										rs.getInt("user_no"));
 							freeBoardList.add(list);
 							
 }
@@ -110,7 +112,7 @@ public class FreeBoardDAO {
 			PreparedStatement stmt = null;
 			ResultSet rs = null;
 			
-			String sql="SELECT free_no,free_title,free_content,free_credate,free_update,free_readcnt,user_id,isshow,free_category,user_no"+ 
+			String sql="SELECT article_no,free_title,free_content,free_credate,free_update,free_readcnt,user_id,isshow,free_category,user_no"+ 
 					" FROM FREEBOARD"+ 
 					" WHERE free_category=?";
 			
@@ -125,16 +127,17 @@ public class FreeBoardDAO {
 				System.out.println("dao1");
 				while(rs.next()) {
 					FreeBoardList list = new FreeBoardList(
-												rs.getInt(1),
-												rs.getString(2),
-												rs.getString(3),
-												rs.getTimestamp(4),
-												rs.getTimestamp(5),
-												rs.getInt(6),
-												rs.getString(7),
-												rs.getString(8),
-												rs.getString(9),
-												rs.getInt(10));
+												rs.getInt("article_no"),
+												rs.getString("article_category"),
+												rs.getString("free_title"),
+												rs.getString("free_content"),
+												rs.getTimestamp("free_credate"),
+												rs.getTimestamp("free_update"),
+												rs.getInt("free_readcnt"),
+												rs.getString("user_id"),
+												rs.getString("isshow"),
+												rs.getString("free_category"),
+												rs.getInt("user_no"));
 					System.out.println("dao========"+list);
 								freeBoardList.add(list);
 								
@@ -155,7 +158,7 @@ public class FreeBoardDAO {
 		PreparedStatement stmt = null;
 		
 		String sql="INSERT INTO FREEBOARD (free_title,free_content,free_credate,free_update,free_readcnt,user_id,isshow,free_category,user_no)" + 
-				" VALUES (?,?,now(),now(),0,?,'Y',?,11)";
+				" VALUES (?,?,now(),0,?,'Y',?,11)";
 		
 		Connection conn = null;
 		int cnt = 0;
@@ -189,7 +192,7 @@ public class FreeBoardDAO {
 		
 		String sql="UPDATE FREEBOARD" + 
 				" SET free_title=?,free_content=?,free_category=?,free_update=now()" + 
-				" WHERE free_no=?";
+				" WHERE article_no=?";
 		
 		
 		Connection conn = null;
@@ -227,7 +230,7 @@ public class FreeBoardDAO {
 		
 		String sql="update freeboard" + 
 				" set isshow='N'" + 
-				" where free_no=?";
+				" where article_no=?";
 		
 
 		Connection conn = null;
@@ -260,7 +263,7 @@ public class FreeBoardDAO {
 		
 		String sql="update FREEBOARD" + 
 				" SET free_readcnt=free_readcnt+1" + 
-				" WHERE free_no=?";
+				" WHERE article_no=?";
 		
 
 			Connection conn = null;

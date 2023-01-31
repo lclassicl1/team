@@ -42,9 +42,9 @@
 	<tbody>
 				<c:forEach var="freeBoard" items="${freeBoard.list}">
 			<tr>
-					<td><c:out value="${freeBoard.free_no}"/></td>
+					<td><c:out value="${freeBoard.article_no}"/></td>
 					<td><c:out value="${freeBoard.user_id}"/></td>
-					<td><a href="<%=request.getContextPath()%>/freeboard/read.do?no=${freeBoard.free_no}"><c:out value="${freeBoard.free_title}"/></a></td>
+					<td><a href="<%=request.getContextPath()%>/freeboard/read.do?no=${freeBoard.article_no}"><c:out value="${freeBoard.free_title}"/></a></td>
 					<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${freeBoard.free_createdate}"/></td>
 					<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${freeBoard.free_updatedate}"/></td>
 					<td><c:out value="${freeBoard.free_readcnt}"/></td>
