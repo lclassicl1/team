@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import auth.model.User;
+import help.model.Article;
 import help.model.WriterRequest;
 import help.service.WriteHelpService;
 import mvc.command.CommandHandler;
@@ -35,28 +36,30 @@ public class WriteHelpHandler implements CommandHandler {
 		Map<String,Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
 		
-		User user = (User)req.getSession(false).getAttribute("authUser");
-		WriterRequest writerReq = createWriterRequest(req,user);
 		
-		if(writerReq.getTitle() == null||writerReq.getTitle().isEmpty()) {
+		User user = (User)req.getSession(false).getAttribute("authUser");
+		int articleNo = writeHelpService.articleReq(user.getUserNo());
+		WriterRequest writerReq = createWriterRequest(req,articleNo,user);
+		
+		if(writerReq.getHelpTitle() == null||writerReq.getHelpTitle().isEmpty()) {
 			errors.put("titleEmpty",Boolean.TRUE);
 		}
 		
-		if(writerReq.getContent() == null||writerReq.getContent().isEmpty()) {
+		if(writerReq.getHelpContent() == null||writerReq.getHelpContent().isEmpty()) {
 			errors.put("contentEmpty",Boolean.TRUE);
 		}
 		
 		if(!errors.isEmpty()) {
 			return FORM_VIEW;
 		}
-		
 		writeHelpService.write(writerReq);
 		return "/view/helpboard/writeSuccess.jsp";
 	}
-	private WriterRequest createWriterRequest(HttpServletRequest req,User user) {
+	private WriterRequest createWriterRequest(HttpServletRequest req,int articleNo,User user) {
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
 		String category = req.getParameter("category");
-		return new WriterRequest(title,content,category,user.getUserNo(),user.getUserName());
+		String articleCategory = "Help";
+		return new WriterRequest(articleNo,articleCategory,user.getUserNo(),title,content,user.getUserName(),category);
 	}
 }

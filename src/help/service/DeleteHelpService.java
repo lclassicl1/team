@@ -13,20 +13,20 @@ public class DeleteHelpService {
 
 	HelpDAO helpDAO = new HelpDAO();
 	
-	public void delete(int helpNo,int userNo) {
+	public void delete(int articleNo,int userNo) {
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
 			
-			Help help = helpDAO.selectByNo(conn, helpNo);
+			Help help = helpDAO.selectByNo(conn, articleNo);
 			
 			//작성자의 유저 번호와 로그인한 유저번호를 매치 불일치시 에러  
 			if(!(help.getUserNo()==userNo)) {
 				throw new PermissionDeniedException();
 			}
 			
-			helpDAO.isshow(conn, helpNo);
+			helpDAO.isshow(conn, articleNo);
 			conn.commit();
 		}catch(SQLException e) {
 			e.printStackTrace();

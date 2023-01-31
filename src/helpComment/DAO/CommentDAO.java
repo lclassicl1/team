@@ -17,7 +17,7 @@ public class CommentDAO {
 	public List<Comment> select(Connection conn , int no)throws SQLException{
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql ="select * from help_comment where help_no=? and isshow='Y' ";
+		String sql ="select * from help_comment where article_no=? and isshow='Y' ";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

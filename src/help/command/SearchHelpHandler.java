@@ -10,7 +10,7 @@ import mvc.command.CommandHandler;
 
 public class SearchHelpHandler implements CommandHandler {
 	
-	private static final String FORM_VIEW = "/view/helpboard/listhelp.jsp";
+	private static final String FORM_VIEW = "/view/helpboard/listHelp.jsp";
 	private SearchHelpService searchHelpService = new SearchHelpService();
 
 	@Override

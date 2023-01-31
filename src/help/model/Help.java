@@ -4,31 +4,37 @@ import java.util.Date;
 
 public class Help {
 
-	private Integer helpNo;//게시글 번호 
-	private int userNo;//작성자 회원 번호 
-	private String helpTitle;//게시글 제목 
-	private String helpContent;//게시글 내용 
-	private Date createDate;// 게시글 작성시간 
-	private Date update;
-	private String category;//게시글 카테고리  
-	private int readCnt;//게시글 조회수 
-	private String userName;//작성자 이름 
+	private int articleNo;
+	private String articleCategory;
+	private int userNo;
+	private String helpTitle;
+	private String helpContent;
+	private String userName;
+	private Date helpCredate;
+	private Date helpUpdate;
+	private int helpReadCnt;
 	private String isshow;
-	public Help(Integer helpNo, int userNo, String helpTitle, String helpContent, Date createDate,Date update, String category,
-			int readCnt, String userName,String isshow) {
-		this.helpNo = helpNo;
+	private String helpCategory;
+	
+	public Help(int articleNo, String articleCategory, int userNo, String helpTitle, String helpContent,
+			String userName, Date helpCredate, Date helpUpdate, int helpReadCnt, String isshow, String helpCategory) {
+		this.articleNo = articleNo;
+		this.articleCategory = articleCategory;
 		this.userNo = userNo;
 		this.helpTitle = helpTitle;
 		this.helpContent = helpContent;
-		this.createDate = createDate;
-		this.update = update;
-		this.category = category;
-		this.readCnt = readCnt;
 		this.userName = userName;
+		this.helpCredate = helpCredate;
+		this.helpUpdate = helpUpdate;
+		this.helpReadCnt = helpReadCnt;
 		this.isshow = isshow;
+		this.helpCategory = helpCategory;
 	}
-	public Integer getHelpNo() {
-		return helpNo;
+	public int getArticleNo() {
+		return articleNo;
+	}
+	public String getArticleCategory() {
+		return articleCategory;
 	}
 	public int getUserNo() {
 		return userNo;
@@ -36,26 +42,28 @@ public class Help {
 	public String getHelpTitle() {
 		return helpTitle;
 	}
-	public Date getUpdate() {
-		return update;
-	}
 	public String getHelpContent() {
 		return helpContent;
-	}
-	public Date getCreateDate() {
-		return createDate;
-	}
-	public String getCategory() {
-		return category;
-	}
-	public int getReadCnt() {
-		return readCnt;
 	}
 	public String getUserName() {
 		return userName;
 	}
+	public Date getHelpCredate() {
+		return helpCredate;
+	}
+	public Date getHelpUpdate() {
+		return helpUpdate;
+	}
+	public int getHelpReadCnt() {
+		return helpReadCnt;
+	}
 	public String getIsshow() {
 		return isshow;
 	}
+	public String getHelpCategory() {
+		return helpCategory;
+	}
+	
+	
 	
 }

@@ -11,41 +11,55 @@ import java.util.Date;
 import java.util.List;
 
 import Exception.HelperNotFoundException;
+import help.model.Article;
 import help.model.Help;
 import help.model.SearchHelp;
+import help.model.WriterRequest;
 import jdbc.JdbcUtil;
 
 public class HelpDAO {
-	
-	//insert 기능 현재 로그인 정보를 가져와 입력해야함 .
-	public Help insert(Connection conn,Help help)throws SQLException {
+	public int articleReq(Connection conn,int userNo )throws SQLException {
 		PreparedStatement pstmt = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		String sql = "insert into helpBOARD(user_no,help_title,help_content,help_update,help_category,user_name) "+ 
-				"value(?,?,?,?,?,?)";
 		try {
+			String sql = "insert into article(article_category,user_no) " + 
+					"value('help',?)";
+			String sql2 = "select last_insert_id() from article";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, help.getUserNo());//user_no 
-			pstmt.setString(2, help.getHelpTitle());
-			pstmt.setString(3, help.getHelpContent());
-			pstmt.setTimestamp(4, toTimestamp(help.getUpdate()));//update now()
-			pstmt.setString(5, help.getCategory());
-			pstmt.setString(6, help.getUserName());//writerName
-			
-			int insertCount = pstmt.executeUpdate();
-			
-			if(insertCount>0) {
-				stmt=conn.createStatement();
-				String sql2 = "select last_insert_id() from helpboard";
+			pstmt.setInt(1, userNo);
+			int result = pstmt.executeUpdate();
+			int articleNo=0;
+			if(result>0) {
+				stmt = conn.createStatement();
 				rs = stmt.executeQuery(sql2);
 				if(rs.next()) {
-					Integer newNum = rs.getInt(1);
-					return new Help(newNum,help.getUserNo(),help.getHelpTitle(),help.getHelpContent(),help.getCreateDate(),help.getUpdate()
-									,help.getCategory(),help.getReadCnt(),help.getUserName(),help.getIsshow());
+					articleNo = rs.getInt(1);
 				}
 			}
-			return null;
+			return articleNo;
+		}finally {
+			JdbcUtil.close(pstmt);
+		}
+	}
+	//insert 기능 현재 로그인 정보를 가져와 입력해야함 .
+	public void insert(Connection conn,WriterRequest writerReq)throws SQLException {
+		PreparedStatement pstmt = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "insert into helpboard(article_no,article_category,user_no,help_title,help_content,user_name,help_update,help_category) " + 
+				"value(?,?,?,?,?,?,now(),?)";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, writerReq.getArticleNo()); 
+			pstmt.setString(2, writerReq.getArticleCategory());
+			pstmt.setInt(3, writerReq.getUserNo());
+			pstmt.setString(4, writerReq.getHelpTitle());
+			pstmt.setString(5, writerReq.getHelpContent());
+			pstmt.setString(6, writerReq.getUserName());
+			pstmt.setString(7, writerReq.getHelpCategory());
+			
+			pstmt.executeUpdate();
 		}finally {
 			JdbcUtil.close(pstmt);
 		}
@@ -55,7 +69,7 @@ public class HelpDAO {
 		ResultSet rs = null;
 		String sql = "select * from helpboard " +
 						"where isshow='Y' " + 
-						"order by help_no desc limit ?,? " ;
+						"order by article_no desc limit ?,? " ;
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -82,7 +96,7 @@ public class HelpDAO {
 		ResultSet rs = null;
 		String sql = "select * from helpboard " +
 						"where isshow='Y' and help_category like ? and help_title like ? " + 
-						 "order by help_no desc limit ?,? " ;
+						 "order by article_no desc limit ?,? " ;
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -106,22 +120,19 @@ public class HelpDAO {
 		
 	}
 	
-	public Help selectByNo(Connection conn,int helpNo)throws SQLException {
+	public Help selectByNo(Connection conn,int articleNo)throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from helpboard where help_no=?";
+		String sql = "select * from helpboard where article_no=?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, helpNo);
+			pstmt.setInt(1, articleNo);
 			rs = pstmt.executeQuery();
 			Help help = null;
 			
 			if(rs.next()) {
 				help = coverHelp(rs);
-			}
-			if(help == null) {
-				throw new HelperNotFoundException();
 			}
 			return help;
 		}finally {
@@ -130,13 +141,13 @@ public class HelpDAO {
 		}
 	}
 	
-	public void incrementReadCnt(Connection conn,int helpNo) {
+	public void incrementReadCnt(Connection conn,int articleNo) {
 		PreparedStatement pstmt = null;
-		String sql ="update helpboard set help_readcnt = help_readcnt+1 where help_no = ?";
+		String sql ="update helpboard set help_readcnt = help_readcnt+1 where article_no = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, helpNo);
+			pstmt.setInt(1, articleNo);
 			pstmt.executeUpdate();
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -166,7 +177,7 @@ public class HelpDAO {
 	}
 	public void update(Connection conn,String title,String content,String category,int helpNo)throws SQLException {
 		PreparedStatement pstmt = null;
-		String sql = "update helpboard set help_title=?,help_content=?, help_category=? where help_no = ?";
+		String sql = "update helpboard set help_title=?,help_content=?, help_category=? where article_no = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -181,12 +192,12 @@ public class HelpDAO {
 		}
 	}
 
-	public void isshow(Connection conn,int helpNo)throws SQLException {
+	public void isshow(Connection conn,int articleNo)throws SQLException {
 		PreparedStatement pstmt = null;
-		String sql = "update helpboard set isshow='N' where help_no=? ";
+		String sql = "update helpboard set isshow='N' where article_no=? ";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, helpNo);
+			pstmt.setInt(1, articleNo);
 			pstmt.executeUpdate();
 					
 		}finally {
@@ -197,9 +208,10 @@ public class HelpDAO {
 		return new Timestamp(date.getTime());
 	}
 	private Help coverHelp(ResultSet rs) throws SQLException {
-		
-		return new Help(rs.getInt("help_no"),rs.getInt("user_no"), rs.getString("help_title"),rs.getString("help_content")
-						,rs.getTimestamp("help_credate"),rs.getTimestamp("help_update"),rs.getString("help_category"),rs.getInt("help_readcnt")
-						,rs.getString("user_name"),rs.getString("isshow"));
+		return new Help(rs.getInt("article_no"),rs.getString("article_category"),rs.getInt("user_no"),rs.getString("help_title"),rs.getString("help_content"),rs.getString("user_name"),
+						rs.getTimestamp("help_credate"),rs.getTimestamp("help_update"),rs.getInt("help_readcnt"),rs.getString("isshow"),rs.getString("help_category"));
+	}
+	private Article coverArticle(ResultSet rs)throws SQLException{
+		return new Article(rs.getInt("article_no"),rs.getString("article_category"),rs.getInt("user_no"));
 	}
 }
