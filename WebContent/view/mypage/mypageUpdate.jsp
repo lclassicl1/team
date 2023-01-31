@@ -30,6 +30,7 @@
 </head>
 <body>
 	<h2>정보 수정</h2>
+	<a href="<%=request.getContextPath()%>/mypage.do"><button>뒤로가기</button></a>
 	<form action="<%=request.getContextPath()%>/mypageUpdate.do?userId=${userInfo.userId}" method="post">
 		<table>
 			<caption>회원 정보 수정</caption>
@@ -131,8 +132,7 @@
 				</tr>
 				<tr>
 					<td colspan="2" style="text-align:center;">
-						<input type ="submit" value="확인">
-						<input type ="reset" value="취소">
+						<input type ="submit" value="정보 수정">
 					</td>
 				</tr>
 					

@@ -28,4 +28,17 @@ public class ListBoardService {
 			throw new RuntimeException();
 		}
 	}
+	
+	public int freeArticleInsert(Connection conn, int userNo) {
+		
+		int articleNo = 0;
+		try {
+			conn = ConnectionProvider.getConnection();
+			articleNo = freeBoardDAO.freeArticleCreate(conn, userNo);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+		return articleNo;
+	}
 }

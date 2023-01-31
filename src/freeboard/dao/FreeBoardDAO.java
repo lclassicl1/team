@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -254,6 +255,32 @@ public class FreeBoardDAO {
 		}
 	
 		return result;
+	}
+	
+	// 게시글 생성전에 article_no 생성해주는 쿼리문.
+	public int freeArticleCreate(Connection conn,int userNo )throws SQLException {
+		PreparedStatement pstmt = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "insert into article(article_category,user_no) " + 
+					" value('free',?)";
+			String sql2 = "select last_insert_id() from article";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			int result = pstmt.executeUpdate();
+			int articleNo=0;
+			if(result>0) {
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(sql2);
+				if(rs.next()) {
+					articleNo = rs.getInt(1);
+				}
+			}
+			return articleNo;
+		}finally {
+			JdbcUtil.close(pstmt);
+		}
 	}
 	
 	// 조회수 증가

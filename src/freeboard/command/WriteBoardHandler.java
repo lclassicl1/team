@@ -18,7 +18,7 @@ public class WriteBoardHandler implements CommandHandler {
 	
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("UTF-8");
+		System.out.println("WriteBoardHandler 진입");
 		if (request.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(request, response);// 수정폼보여줘
 		} else if (request.getMethod().equalsIgnoreCase("POST")) {
@@ -38,7 +38,8 @@ public class WriteBoardHandler implements CommandHandler {
 	}
 	
 	private String processForm(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
-		request.setCharacterEncoding("UTF-8");
+		
+		
 		return "/view/freeboard/freeBoardWrite.jsp";
 	}
 
