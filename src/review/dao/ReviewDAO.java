@@ -52,7 +52,8 @@ public class ReviewDAO {
 						toDate(rs.getTimestamp("review_credate")),
 						toDate(rs.getTimestamp("review_update")),
 						rs.getInt("review_readcnt"),
-						rs.getString("isshow"));	
+						rs.getString("isshow"));
+							
 	}
 	//Timestamp->Date객체로 변환하기:p648 47라인
 		private Date toDate(Timestamp timestamp) {
@@ -198,7 +199,7 @@ public class ReviewDAO {
 			PreparedStatement stmt = null;  //insert용 
 			Statement stmt2 = null; //select용
 			String sql = "insert into reviewboard(user_name,review_title,review_content,review_readcnt,review_category,user_no) " + 
-					"values(?,?,?,?,?)";
+					"values(?,?,?,?,?,?)";
 			ResultSet rs = null;
 			try {
 				stmt = conn.prepareStatement(sql);
@@ -207,6 +208,7 @@ public class ReviewDAO {
 				stmt.setString(3,review.getReview_title()); //제목
 				stmt.setTimestamp(4, toTimestamp(review.getReview_credate())); //입력일
 				stmt.setTimestamp(5, toTimestamp(review.getReview_update())); //마지막수정일
+				stmt.setInt(6, review.getReview_writer().getReview_writer_no());//글 작성자 번호
 				int cnt = stmt.executeUpdate();
 				System.out.println("insert결과행수"+cnt);
 				

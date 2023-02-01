@@ -1,6 +1,9 @@
 package review.comment.model;
 
+import java.sql.Connection;
 import java.util.Date;
+
+import review.model.Review_Content;
 
 //리뷰 댓글 정보를 담고있는 클래스
 public class Review_comment {
@@ -29,6 +32,11 @@ public class Review_comment {
 		this.review_no = review_no;
 	}
 
+	public Review_Content reviewInsert(Connection conn, Review_comment_Content content) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 
 	public Review_comment(Integer comm_no,Reveiw_conmment_Writer comment_Wrtier, String conmment_content,
 			Date comm_credate, Date comm_update, String isshow) {
@@ -126,7 +134,9 @@ public class Review_comment {
 				+ ", comm_credate=" + comm_credate + ", comm_update=" + comm_update + ", user_id=" + user_id
 				+ ", isshow=" + isshow + ", comm_volt=" + comm_volt + ", review_no=" + review_no + "]";
 	}
-	
+
+
+
 
 	
 	

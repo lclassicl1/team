@@ -43,7 +43,7 @@
  <table border="1">
  	<tr>
  	 <th>작성자명</th>
- 	 <td>${authUSER.User_name}</td>
+ 	 <td>${authUser.userName}</td>
  	</tr>
  	<tr>
  	 <th>제목</th>

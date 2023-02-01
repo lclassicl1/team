@@ -3,6 +3,7 @@ package review.comment.service;
 import java.util.Map;
 
 import review.comment.model.Reveiw_conmment_Writer;
+import review.model.Review_Writer;
 
 //댓글 관련 service클래스
 public class Review_comment_Writer_Request {
@@ -15,8 +16,6 @@ public class Review_comment_Writer_Request {
 		conmment_content = reveiw_conmment_content;
 	}
 	
-	public Review_comment_Writer_Request(String userId, int no, String writer_name, String content) {
-	}
 
 	public Reveiw_conmment_Writer getcomment_Wrtier() {
 		return comment_wrtier;

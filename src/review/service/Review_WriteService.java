@@ -4,12 +4,17 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Date;
 
+import com.mysql.fabric.Response;
+
+import auth.model.User;
 import jdbc.JdbcUtil;
 import jdbc.conn.ConnectionProvider;
+import review.comment.model.Review_comment_Content;
 import review.dao.ReviewDAO;
 import review.dao.Review_ContentDAO;
 import review.model.Review;
 import review.model.Review_Content;
+import review.model.Review_Writer;
 
 //p638
 //글쓰기 기능을 제공하는 서비스클래스
@@ -25,7 +30,7 @@ public class Review_WriteService {
 	//글입력
 	/*파라미터  WriteRequest writeReq:Writer(로그인한유저id,로그인한유저명),입력제목,입력내용*/
 	//리턴타입 Integer : reviewBoard테이블에 입력된 글번호
-	public Integer write(Review_WriteRequest writeReq) {
+	public Integer write(Review_WriteRequest writeReq, Review_Writer writer) {
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
@@ -40,13 +45,18 @@ public class Review_WriteService {
 				throw new RuntimeException("review테이블에 insert 실패");
 			}
 			
+				
+			
 			//p639 30라인
 			Review_Content content = 
 				new Review_Content(savedReview.getReview_number(),
 						writeReq.getContent());
 			
+			
+			
+			
 			//p639 33라인
-			Review_Content savedContent = review_ContentDAO.reviewInsert(conn,content);//Article_content테이블에 insert
+			Review_Content savedContent = review_ContentDAO.reviewInsert(conn,content, writer, savedReview);//Article_content테이블에 insert
 			if(savedContent==null) {
 				throw new RuntimeException("review_ContentDAO테이블에 insert 실패");
 			}
@@ -56,14 +66,15 @@ public class Review_WriteService {
 			return savedReview.getReview_number();
 		}catch (SQLException e) {
 			JdbcUtil.rollback(conn);//p639 41라인
-			throw new RuntimeException();
+			/* throw new RuntimeException(); */
+			System.out.println("error~~~~~~"+e);
 		}catch (RuntimeException e) {
 			JdbcUtil.rollback(conn);
 			throw e;
 		}finally{//p639 44라인
 			JdbcUtil.close(conn);
 		}
-		
+	return null;
 	}//write()끝
 
 	//p639 52라인

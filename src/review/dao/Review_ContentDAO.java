@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import jdbc.JdbcUtil;
+import review.model.Review;
 import review.model.Review_Content;
+import review.model.Review_Writer;
 
 
 //Review_Content테이블의 글 읽기 / 쓰기 / 삭제에 관련된 DB작업실행 클래스 
@@ -92,20 +95,19 @@ public class Review_ContentDAO {
 	}//deleteRevPos
 //-------------------------------------------------------------------------------
 	//내용입력
-	public Review_Content reviewInsert(Connection conn,Review_Content content) {
+	public Review_Content reviewInsert(Connection conn,Review_Content content,Review_Writer writer,Review review) {
 		PreparedStatement stmt = null;
 		String sql = "insert into reviewboard(user_name,review_title,review_content,review_readcnt,review_category,user_no) " + 
 				"values(?,?,?,?,?,?)";
 		try {
 			stmt = conn.prepareStatement(sql);
-			//유저이름
-			//제목
-			//내용
-			//조회수
-			//카테고리
-			//유저번호
-			stmt.setLong(1,content.getReview_number());//글 번호
-			stmt.setString(2,content.getReview_content());//내용
+			stmt.setString(1,writer.getReview_writer_name());//유저이름
+			stmt.setString(2,review.getReview_title());//제목
+			stmt.setString(3,content.getReview_content());//내용
+			stmt.setInt(4, review.getReview_read_cnt());//조회수
+			stmt.setString(5,review.getReview_category());//카테고리
+			stmt.setInt(6, writer.getReview_writer_no());//유저번호
+			
 			int cnt = stmt.executeUpdate();
 			System.out.println("Review_Content테이블에 insert결과행수"+cnt);
 			if(cnt>0) {  //articlecontent테이블에 insert성공
@@ -120,6 +122,8 @@ public class Review_ContentDAO {
 			JdbcUtil.close(stmt);
 		}
 	}
+
+	
 	
 	
 	

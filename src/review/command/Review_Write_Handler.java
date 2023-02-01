@@ -6,11 +6,13 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.Session;
 
 import auth.model.User;
 import mvc.command.CommandHandler;
 import review.model.Review_Writer;
 import review.service.Review_WriteRequest;
+import review.service.Review_WriteService;
 
 //리뷰페이지 쓰기폼 보여주기, 요청, 처리 담당 컨트롤러
 //요청주소   http:/localhost/review/review.do
@@ -19,9 +21,10 @@ import review.service.Review_WriteRequest;
 //AUTH : 인증
 public class Review_Write_Handler implements CommandHandler {
 
-	private static final String FORM_VIEW = "/view/review/review_Write_Form.jsp";
-
+	private Review_WriteService writeService =
+			new Review_WriteService();
 	
+	private static final String FORM_VIEW = "/view/review/review_Write_Form.jsp";	
 	
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -43,6 +46,7 @@ public class Review_Write_Handler implements CommandHandler {
 		private String processForm(HttpServletRequest request, HttpServletResponse response) throws IOException {
 			User authUser = loginedUser(request);
 			request.setAttribute("authUser", authUser);
+			System.out.println("authUser"+authUser);
 			return FORM_VIEW;	
 		}//processForm의 끝.
 		
@@ -64,7 +68,7 @@ public class Review_Write_Handler implements CommandHandler {
 			User authUser = loginedUser(request);
 			
 			if(authUser == null) {
-				return "/veiw/review/review_modifyFailse.jsp";
+				return "/view/review/review_modifyFailse.jsp";
 			}
 			
 			//유효성검사-P641 41라인
@@ -76,11 +80,13 @@ public class Review_Write_Handler implements CommandHandler {
 			
 			if(!errors.isEmpty()) {
 				writeReq.validate(errors);
-				return "/veiw/review/review_modifyFailse.jsp";
+				return "/view/review/review_modifyFailse.jsp";
 			}
-
+			 Review_Writer writerinfo = new Review_Writer(authUser.getUserName(),authUser.getUserId(),authUser.getUserNo());
 			 //차후 링크 수정예정
-			return FORM_VIEW;
+			writeService.write(writeReq, writerinfo);
+			response.sendRedirect("/review/list.do");
+			return null;
 		}//processSubmit의 끝.
 		
 		//p641 53라인 참조

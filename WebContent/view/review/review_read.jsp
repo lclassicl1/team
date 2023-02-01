@@ -140,7 +140,7 @@ request.setAttribute("rowSize", rowSize);//1페이지당게시글수 --%>
 
 <%--댓글 등록-------------------------------------------------------------------------------- --%>	 	
  	 <form name="frmInsReply" id="frmInsReply" 
-       action="<%=request.getContextPath()%>/review/comment/writer.do" method="post">
+       action="<%=request.getContextPath()%>/review/comment/writer.do" method=POST>
  <input type="hidden" name="oriNo" id="oriNo" value="${comm_no}"/>
  <input type="hidden" name="writer" id="writer" value="${session.authUSER.memberid}"/> 
  <table border="1">

@@ -216,10 +216,7 @@ public class Review_comment_DAO {
 			
 		}
 
-		public void reviewReadCount(Connection conn, int no) {
-			// TODO Auto-generated method stub
-			
-		}
+		
 
 	
 	
