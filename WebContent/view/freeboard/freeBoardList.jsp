@@ -21,7 +21,7 @@
 			    <option value='' selected>-- 선택 --</option>
 			    <option value='자유'>자유</option>
 			    <option value='질문'>질문</option>
-			    <option value='TIP'>TIP</option>
+			    <option value='팁'>팁</option>
   	</select>
 			    <input type="submit" value="검색"/>
  </form>

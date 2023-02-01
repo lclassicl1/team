@@ -56,6 +56,7 @@ public class FreeBoardDAO {
 		}finally {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(stmt);
+			JdbcUtil.close(conn);
 		}
 		return freeBoardList;
 	}
@@ -101,6 +102,7 @@ public class FreeBoardDAO {
 		}finally {
 			JdbcUtil.close(stmt);
 			JdbcUtil.close(rs);
+			JdbcUtil.close(conn);
 		}
 		System.out.println("doa3"+freeBoardList);
 		return freeBoardList;
@@ -113,9 +115,9 @@ public class FreeBoardDAO {
 			PreparedStatement stmt = null;
 			ResultSet rs = null;
 			
-			String sql="SELECT article_no,free_title,free_content,free_credate,free_update,free_readcnt,user_id,isshow,free_category,user_no"+ 
+			String sql="SELECT *"+ 
 					" FROM FREEBOARD"+ 
-					" WHERE free_category=?";
+					" WHERE free_category=? and isshow='Y'";
 			
 			List<FreeBoardList> freeBoardList = new ArrayList<FreeBoardList>();
 			Connection conn = null;
@@ -125,11 +127,10 @@ public class FreeBoardDAO {
 				stmt.setString(1, categorySearch);
 				rs = stmt.executeQuery();
 				
-				System.out.println("dao1");
 				while(rs.next()) {
 					FreeBoardList list = new FreeBoardList(
 												rs.getInt("article_no"),
-												rs.getString("article_category"),
+												rs.getString("free_category"),
 												rs.getString("free_title"),
 												rs.getString("free_content"),
 												rs.getTimestamp("free_credate"),
@@ -139,15 +140,14 @@ public class FreeBoardDAO {
 												rs.getString("isshow"),
 												rs.getString("free_category"),
 												rs.getInt("user_no"));
-					System.out.println("dao========"+list);
 								freeBoardList.add(list);
-								
 				}
 			}catch(SQLException e) {
 				e.printStackTrace();
 			}finally {
 				JdbcUtil.close(stmt);
 				JdbcUtil.close(rs);
+				JdbcUtil.close(conn);
 			}
 			System.out.println("doa3"+freeBoardList);
 			return freeBoardList;
@@ -155,11 +155,13 @@ public class FreeBoardDAO {
 	
 	
 	// 게시글 작성
-	public int insertBoard(String title, String content, String categorySearch, String writeId) {
-		PreparedStatement stmt = null;
+	public int insertBoard(int articleNo,String articleCategory,int articleUserNo,
+				String title, String content, String categorySearch, String writeId) {
 		
-		String sql="INSERT INTO FREEBOARD (free_title,free_content,free_credate,free_update,free_readcnt,user_id,isshow,free_category,user_no)" + 
-				" VALUES (?,?,now(),0,?,'Y',?,11)";
+		
+		PreparedStatement stmt = null;
+		String sql="insert into FREEBOARD (article_no,article_category,user_no,free_title,free_content,free_update,user_id,free_category)" + 
+				"values (?,?,?,?,?,now(),?,?)";
 		
 		Connection conn = null;
 		int cnt = 0;
@@ -169,10 +171,13 @@ public class FreeBoardDAO {
 			conn.setAutoCommit(false);
 			
 			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, title);
-			stmt.setString(2, content);
-			stmt.setString(3, writeId);
-			stmt.setString(4, categorySearch);
+			stmt.setInt(1,articleNo);
+			stmt.setString(2, articleCategory);
+			stmt.setInt(3,articleUserNo);
+			stmt.setString(4, title);
+			stmt.setString(5, content);
+			stmt.setString(6, writeId);
+			stmt.setString(7, categorySearch);
 			cnt = stmt.executeUpdate();
 			
 			conn.commit();
@@ -258,27 +263,31 @@ public class FreeBoardDAO {
 	}
 	
 	// 게시글 생성전에 article_no 생성해주는 쿼리문.
-	public int freeArticleCreate(Connection conn,int userNo )throws SQLException {
+	public int freeArticleCreate(Connection conn,int userNo) throws SQLException {
 		PreparedStatement pstmt = null;
 		Statement stmt = null;
 		ResultSet rs = null;
+		String sql = "insert into article (article_category,user_no)" + 
+				" values ('free',?)";
 		try {
-			String sql = "insert into article(article_category,user_no) " + 
-					" value('free',?)";
-			String sql2 = "select last_insert_id() from article";
+			conn.setAutoCommit(false);
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, userNo);
 			int result = pstmt.executeUpdate();
-			int articleNo=0;
+			
+			conn.commit();
+			
+			int articleNo =0;
 			if(result>0) {
+				String sql2 = "select last_insert_id() from article";
 				stmt = conn.createStatement();
 				rs = stmt.executeQuery(sql2);
 				if(rs.next()) {
-					articleNo = rs.getInt(1);
+					articleNo=rs.getInt(1);
+					}
 				}
-			}
-			return articleNo;
-		}finally {
+				return articleNo;
+			}finally {
 			JdbcUtil.close(pstmt);
 		}
 	}
