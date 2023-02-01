@@ -11,38 +11,41 @@ import java.util.Date;
 import java.util.List;
 
 import jdbc.JdbcUtil;
+import review.comment.model.Reveiw_conmment_Writer;
+import review.comment.model.Review_comment;
 import review.model.Review;
-import review.model.Review_Writer;
 
 public class Review_comment_DAO {
 
 	//rev_str : 시작행 인덱스번호. 첫 행은 0부터 시작
 	//rev_size : 1페이지당 출력 게시물 수
-	public List<Review> select(Connection conn,int rev_Strno, int rev_size) 
+	public List<Review_comment> select(Connection conn,int rev_Strno, int rev_size) 
 			throws SQLException{
 		PreparedStatement pstmt = null;
 		String sql = "select comm_no,comm_content,comm_credate,comm_update,user_id,isshow " + 
-				"from review_comment;";
+				"from review_comment;" +
+				"where isshow='Y' "+
+				"order by review_no desc limit ?,?";;
 		
 		ResultSet rs = null;
-		 List<Review> reviewList = new ArrayList<Review>();
+		 List<Review_comment> review_comment_List = new ArrayList<Review_comment>();
 		//try,catch 필요
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1,rev_Strno);
 		pstmt.setInt(2,rev_size);
 		rs = pstmt.executeQuery();
 		while(rs.next()) {
-			Review review = converReivew(rs);
-			reviewList.add(review);
+			Review_comment review_comment = converReivew(rs);
+			review_comment_List.add(review_comment);
 		}
-		return reviewList;
+		return review_comment_List;
 	}
 	
 	//Review객체로 변환하기-p647 36라인
-	private Review converReivew(ResultSet rs) throws SQLException{
+	private Review_comment converReivew(ResultSet rs) throws SQLException{
 		
-		return new Review(rs.getInt("comm_no"),
-				 new Review_Writer(rs.getString("user_name")),
+		return new Review_comment(rs.getInt("comm_no"),
+				 new Reveiw_conmment_Writer(rs.getString("user_name")),
 						toDate(rs.getTimestamp("comm_credate")),
 						toDate(rs.getTimestamp("comm_update")),
 						rs.getString("isshow"));	
@@ -61,8 +64,8 @@ public class Review_comment_DAO {
 	//전체 게시글 수-p646
 		public int selectCount(Connection conn) throws SQLException {
 			PreparedStatement pstmt = null;
-			String sql = "select count(review_no) " + 
-					     "from REVIEWBOARD "+
+			String sql = "select count(comm_no) " + 
+					     "from REVIEW_COMMENT "+
 					     "where isshow='Y'";
 			ResultSet rs = null;
 			try {
@@ -78,17 +81,15 @@ public class Review_comment_DAO {
 			}
 		}
 		
-		
-	
-	//상세조회-p655
-		public Review selectReview(Connection conn,int rev_no) throws SQLException{
+		//상세조회-p655
+		public Review_comment selectReview_comment(Connection conn,int rev_no) throws SQLException{
 			PreparedStatement pstmt = null;
-			String sql = "select review_no,user_name, " + 
-						 "       review_title,review_credate,review_update,review_readcnt,isshow " + 
-						 "from  REVIEWBOARD " + 
-						 "where isshow='Y' and review_no=?";
+			String sql = "select comm_no,user_id, " + 
+						 "       comm_credate,comm_update,isshow " + 
+						 "from  review_comment " + 
+						 "where isshow='Y' and comm_no=?";
 			ResultSet rs = null;
-			Review reivew = null;
+			Review_comment reivew = null;
 			try {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, rev_no);//상세조회할 글 번호
@@ -104,32 +105,16 @@ public class Review_comment_DAO {
 		}//상세조회 selectById()끝
 		
 		
-	//조회수증가
-		public void reviewReadCount(Connection conn, int no) {
-			PreparedStatement stmt = null;
-			String sql = "update reviewboard " + 
-					"set review_readcnt=review_readcnt+1 " + 
-					"where isshow='Y' and review_no=?";
-			try {
-				stmt = conn.prepareStatement(sql);
-				stmt.setInt(1, no);
-				int cnt = stmt.executeUpdate();
-				System.out.println("조회수증가된 행 수="+cnt);
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
 	//글수정
-		public void reviewUpdate(Connection conn,int review_number, String title) {
+		public void reviewUpdate(Connection conn,int review_number, String content) {
 			PreparedStatement stmt = null;
-			String sql = "update reviewboard " + 
-					"set review_title=?, review_update = now() " + 
-					"where isshow='Y' and review_no=?";
+			String sql = "update review_comment " + 
+					"set comm_comtent=?, comm_update = now() " + 
+					"where isshow='Y' and comm_no=?";
 		
 			try {
 				stmt = conn.prepareStatement(sql);
-				stmt.setString(1,title);
+				stmt.setString(1,content);
 				stmt.setInt(2, review_number);
 				int cnt = stmt.executeUpdate();
 				System.out.println("review update된 행 수="+cnt);
@@ -167,9 +152,9 @@ public class Review_comment_DAO {
 	//글삭제-update
 		public int ReviewDeleteUp(Connection conn, int no) {
 			PreparedStatement stmt = null;
-			String sql = "update reviewboard " + 
+			String sql = "update review_comment " + 
 					 "set isshow='N' " + 
-					 "where review_no=?";
+					 "where comm_no=?";
 			int cnt = 0;//삭제(update)된 행 수를 저당할 변수
 			try {
 				stmt = conn.prepareStatement(sql);
@@ -187,33 +172,31 @@ public class Review_comment_DAO {
 		
 		//글쓰기
 		//유저 이름, 제목, 내용, 조회수, 카테고리, 유저 번호
-		public Review insert(Connection conn,Review review) throws SQLException {
+		public Review_comment insert(Connection conn,Review_comment review_comment) throws SQLException {
 			PreparedStatement stmt = null;  //insert용 
 			Statement stmt2 = null; //select용
-			String sql = "insert into reviewboard(user_name,review_title,review_content,review_readcnt,review_category,user_no) " + 
+			String sql = "insert into review_comment(user_name,comm_content,comm_credate,comm_update) " + 
 					"values(?,?,?,?,?)";
 			ResultSet rs = null;
 			try {
 				stmt = conn.prepareStatement(sql);
-				stmt.setString(1,review.getReview_writer().getReview_writer_id()); //작성자 id
-				stmt.setString(2,review.getReview_writer().getReview_writer_name()); //작성자 이름
-				stmt.setString(3,review.getReview_title()); //제목
-				stmt.setTimestamp(4, toTimestamp(review.getReview_credate())); //입력일
-				stmt.setTimestamp(5, toTimestamp(review.getReview_update())); //마지막수정일
+				stmt.setString(1,review_comment.getComm_writer().getReview_comment_writer_id()); //작성자 id
+				stmt.setString(2,review_comment.getComm_writer().getReview_comment_writer_name()); //작성자 이름
+				stmt.setString(3,review_comment.getComm_content());//내용?
+				stmt.setTimestamp(4, toTimestamp(review_comment.getComm_credate())); //입력일
+				stmt.setTimestamp(5, toTimestamp(review_comment.getComm_update())); //마지막수정일
 				int cnt = stmt.executeUpdate();
-				System.out.println("insert결과행수"+cnt);
+				System.out.println("insert댓글 결과행수"+cnt);
 				
 				if(cnt>0) { //입력이 되었다면
 					stmt2 = conn.createStatement();
-					rs = stmt2.executeQuery("select last_insert_id() from reviewboard");
+					rs = stmt2.executeQuery("select last_insert_id() from review_comment");
 					if(rs.next()) {//p635 34라인
 						Integer newNum = rs.getInt(1);
-						return new Review(newNum, 
-								review.getReview_writer(), 
-								review.getReview_title(), 
-								review.getReview_credate(), 
-								review.getReview_update(),
-								0,
+						return new Review_comment(newNum, 
+								review_comment.getComm_writer(), 
+								review_comment.getComm_credate(), 
+								review_comment.getComm_update(),
 								"Y");
 					}
 				}
@@ -232,6 +215,12 @@ public class Review_comment_DAO {
 			return new Timestamp(date.getTime());
 			
 		}
+
+		public void reviewReadCount(Connection conn, int no) {
+			// TODO Auto-generated method stub
+			
+		}
+
 	
 	
 	

@@ -5,15 +5,15 @@ import java.sql.SQLException;
 import java.util.Date;
 
 import jdbc.conn.ConnectionProvider;
-import review.comment.DAO.Review_comment_contentDAO;
+import review.comment.DAO.Review_comment_DAO;
 import review.comment.model.Review_comment;
 
 
 public class Review_comment_WriterService {
 
-	private Review_comment_contentDAO review_commnet_DAO = new Review_comment_contentDAO();
+	private Review_comment_DAO review_commnet_DAO = new Review_comment_DAO();
 	
-	public Integer commentwrite(Review_comment_Request commReq) {
+	public Integer commentwrite(Review_comment_Writer_Request commReq) {
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
@@ -37,7 +37,7 @@ public class Review_comment_WriterService {
 	//글입력시 필요한 data를 세팅 :파라미터에 입력일,마지막수정일 추가
 	/*파라미터  WriteRequest writeReq:Writer(로그인한유저id,로그인한유저명),입력제목,입력내용*/
 	//리턴유형 Article:WriteRequest에 입력일,마지막수정일 추가
-	private Review_comment toReview_Comment(Review_comment_Request commReq) {
+	private Review_comment toReview_Comment(Review_comment_Writer_Request commReq) {
 		Date now = new Date();
 		//입력일은 현재 날짜시간정보 설정
 		//마지막수정일은 입력일과 동일하게 현재 날짜시간정보 설정

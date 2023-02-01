@@ -15,9 +15,13 @@
  </script>
 </head>
 <body>
+<%-- Review_Deleter_Handler컨트롤러를 거쳐왔다면 아래와 같이 Model받았다
+*   int cnt : 삭제(update)된 행 수. 1이면 삭제성공,0이면 삭제실패*/
+		request.setAttribute("cnt", cnt); --%>
+
  <c:if test="${cnt==1}">
 	 <script>
-	  alert("권한이 없습니다. 로그인페이지로 이동합니다");
+	  alert("삭제되었습니다.");
 	 </script>
  </c:if>
  
@@ -28,7 +32,7 @@
   </c:if>
   
   <script>      
-  location.href="<%=request.getContextPath()%>/index.jsp"; //지정url로 이동.
+  location.href="<%=request.getContextPath()%>/review/list.do"; //지정url로 이동.
   </script>
 </body>
 </html>

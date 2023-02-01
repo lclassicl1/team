@@ -11,6 +11,10 @@ public class Reveiw_conmment_Writer {
 		this.review_comment_writer_id = review_comment_writer_id;
 	}
 	
+	public Reveiw_conmment_Writer(String review_comment_writer_name) {
+			 this.review_comment_writer_name = review_comment_writer_name;
+	}
+
 	public String getReview_comment_writer_name() {
 		return review_comment_writer_name;
 	}

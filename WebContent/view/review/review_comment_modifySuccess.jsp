@@ -20,8 +20,6 @@
  ModifyRequest modReq(로그인한userid,글번호,db의작성자명,db의title,db의내용)
 		request.setAttribute("modReq", modReq);
  --%>
- <a href="<%=request.getContextPath()%>/index.jsp">HOME</a>
- <hr/>
  <h3>수정성공!!!(modifySuccess.jsp)</h3>
  	 <%--
  	 <c:set var="변수명" value="변수값"/>--%>

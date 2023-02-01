@@ -17,31 +17,29 @@ public class Review_comment_Write_Handler implements CommandHandler {
 	
 	private static final String FORM_VIEW = "/view/review/review_comment_Write_Form.jsp";
 	
+	
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
 		//폼의 요청방식에 따라 쓰기폼보여줘 요청과  쓰기처리요청을 구분
 		if(request.getMethod().equalsIgnoreCase("GET")) {
-			return processForm(request,response);//쓰기폼 보여주기
+			return processCommentForm(request,response);//쓰기폼 보여주기
 		}else if(request.getMethod().equalsIgnoreCase("POST")) {
-			return processSubmit(request,response);//쓰기처리요청
+			return processCommentSubmit(request,response);//쓰기처리요청
 		}else {
 			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 			return null;
 		}
 	}//process끝
 
-
-
-//쓰기폼으로 이동-p641 31라인 
-//user Class파일 및 loginUser 세션정보 추가필요  
-private String processForm(HttpServletRequest request, HttpServletResponse response) throws IOException {
-	User authUser = loginedUser(request);
-	request.setAttribute("authUser", authUser);
-	return FORM_VIEW;	
-}//processForm의 끝.
-
-
+	
+	//쓰기폼으로 이동-p641 31라인 
+	//user Class파일 및 loginUser 세션정보 추가필요  
+	private String processCommentForm(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		User authUser = loginedUser(request);
+		request.setAttribute("authUser", authUser);
+		return FORM_VIEW; //글 작성에 성공할 경우 댓글 목록, db에 댓글이 올라가도록 설정.	
+	}//processForm의 끝.
+	
 
 //로그인한 유저정보는 세션에서 받자
 //user Class파일 추가 필요
@@ -53,7 +51,7 @@ public User loginedUser(HttpServletRequest request) {
 
 
 //쓰기처리-p641 35라인
-private String processSubmit(HttpServletRequest request, HttpServletResponse response) throws Exception {
+private String processCommentSubmit(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	//로그인한 유저정보는 세션에서 받자
 	//세션정보 추가필요  
 	User authUser = loginedUser(request);
@@ -63,17 +61,21 @@ private String processSubmit(HttpServletRequest request, HttpServletResponse res
 	}
 	
 	//유효성검사-P641 41라인
-	Map<String,Boolean> errors = new HashMap<String,Boolean>();
+	Map<String,Boolean> commentErrors = new HashMap<String,Boolean>();
 	Review_WriteRequest writeReq = createWriteRequest(authUser,request);
-	request.setAttribute("errors",errors);//p641 37라인
-
+	request.setAttribute("commentErrors",commentErrors);//p641 37라인
+	
+	//댓글 이동 및 글 번호 불러오기?
+	/*
+	 * response.sendRedirect("view/review/read.do");
+	 * request.getParameter("review_no");
+	 */
 	
 	
-	if(!errors.isEmpty()) {
-		writeReq.validate(errors);
+	if(!commentErrors.isEmpty()) {
+		writeReq.validate(commentErrors);
 		return "/veiw/review/review_comment_fails.jsp";
 	}
-
 	 //차후 링크 수정예정
 	return FORM_VIEW;
 }//processSubmit의 끝.
