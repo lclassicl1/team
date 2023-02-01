@@ -17,7 +17,9 @@
 		});
 	</script>
 </head>
+
 <body>
+<a href="<%=request.getContextPath()%>/view/loginboard/loginView.jsp">HOME</a>
 	<h2>마이페이지</h2>
 	<table border="1">
 		<tr>

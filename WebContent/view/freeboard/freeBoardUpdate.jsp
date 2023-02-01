@@ -20,11 +20,11 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 	
 	<c:forEach var="board" items="${freeBoard.list}">
 <form name="update" id="update" method="post" 
-		action="<%=request.getContextPath()%>/freeboard/update.do?no=${board.free_no}">
+		action="<%=request.getContextPath()%>/freeboard/update.do?no=${board.article_no}">
 	<table border="1" >
 	<tr>
 		<th>글 번호</th>
-		<td>${board.free_no}</td>
+		<td>${board.article_no}</td>
 	</tr>
 	<tr>
 		<th>수정할 제목</th>
@@ -41,7 +41,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 			    <option value='' selected>-- 선택 --</option>
 			    <option value='자유'>자유</option>
 			    <option value='질문'>질문</option>
-			    <option value='TIP'>TIP</option>
+			    <option value='팁'>팁</option>
   			</select>
 		</td>
 	<tr>

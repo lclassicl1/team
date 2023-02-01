@@ -8,10 +8,15 @@ public class WriteBoardService {
 	
 	FreeBoardDAO freeBoardDAO = new FreeBoardDAO();
 	CommentDAO commentDAO = new CommentDAO();
-	public int writetBoard(String title, String content, String categorySearch,String writeId) {
-
-		 int cnt = freeBoardDAO.insertBoard(title, content, categorySearch,writeId);
-
+	public int writetBoard(int articleNo,
+							String articleCategory,
+							int articleUserNo,
+							String title, 
+							String content, 
+							String categorySearch,
+							String writeId) 
+	{
+		 int cnt = freeBoardDAO.insertBoard(articleNo,articleCategory,articleUserNo,title, content, categorySearch,writeId);
 		return cnt;
 	}
 	

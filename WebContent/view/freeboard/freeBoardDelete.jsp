@@ -20,11 +20,11 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 	
 	<c:forEach var="board" items="${freeBoard.list}">
 <form name="update" id="update" method="post" 
-		action="<%=request.getContextPath()%>/freeboard/delete.do?no=${board.free_no}">
+		action="<%=request.getContextPath()%>/freeboard/delete.do?no=${board.article_no}">
 	<table border="1" >
 	<tr>
 		<th>글 번호</th>
-		<td>${board.free_no}</td>
+		<td>${board.article_no}</td>
 	</tr>
 	<tr>
 		<th>삭제할  글 제목</th>
