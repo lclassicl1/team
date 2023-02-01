@@ -13,11 +13,11 @@
 <table border="1">
 	<tr>
 		<td>번호</td>
-		<td>${trade.tradeNo }</td>
+		<td>${trade.articleNo }</td>
 	</tr>
 	<tr>
 		<td>조회수</td>
-		<td>${trade.readCnt }</td>
+		<td>${trade.tradeReadCnt }</td>
 	</tr>
 	<tr>
 		<td>작성자</td>
@@ -36,7 +36,7 @@
 	<tr>
 		<td>작성시간</td>
 		<td>
-		${trade.createDate }
+		${trade.tradeCredate }
 		</td>
 	</tr>
 	<tr> 
@@ -44,8 +44,8 @@
 		<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo }" />
 			<a href="<%=request.getContextPath()%>/trade/list.do?pageNo=${pageNo}">목록</a>
 		<c:if test="${authUser.userNo == trade.userNo }">
-			<a href="<%=request.getContextPath()%>/trade/modify.do?no=${trade.tradeNo }">게시글 수정</a>
-			<a href="<%=request.getContextPath()%>/trade/delete.do?no=${trade.tradeNo }">게시글 삭제</a>
+			<a href="<%=request.getContextPath()%>/trade/modify.do?no=${trade.articleNo }">게시글 수정</a>
+			<a href="<%=request.getContextPath()%>/trade/delete.do?no=${trade.articleNo }">게시글 삭제</a>
 		</c:if>
 		</td>
 	</tr> 
@@ -88,7 +88,7 @@
 		<th>작성자</th>
 		<th>내용</th>
 		<th>작성시간</th>
-		<th>isshow</th>
+		<th>추천</th>
 	</tr>
 	<c:forEach var="item" items="${commentList }">
 		<tr>
@@ -102,20 +102,21 @@
 			${item.commCreDate }
 		</td>
 		<td>
-			${item.isshow }
+			${item.commVolt }
 		</td>
 		
-		<c:if test="${authUser.userId == item.userId}">
 		<td>
+		<a href="<%=request.getContextPath()%>/trade/comment/volt.do?no=${trade.articleNo }&commNo=${item.commNo}">추천</a>
+		<c:if test="${authUser.userId == item.userId}">
 			<a href="<%=request.getContextPath()%>/trade/comment/modify.do?commNo=${item.commNo}">댓글 수정</a>
 			<a href="<%=request.getContextPath()%>/trade/comment/delete.do?commNo=${item.commNo}">댓글 삭제</a>
-		</td>
 		</c:if>
+		</td>
 		</tr>
 	</c:forEach>
 	<tr>
 	<td colspan="4">
-	<form action="<%=request.getContextPath()%>/trade/comment/write.do?no=${trade.tradeNo }" method="post">
+	<form action="<%=request.getContextPath()%>/trade/comment/write.do?no=${trade.articleNo }" method="post">
 		작성자 :<c:if test="${!empty authUser }">${authUser.userId }</c:if><br>
 		<p>
 			<textarea rows="5" cols="30" name="content"></textarea>

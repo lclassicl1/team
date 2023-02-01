@@ -21,7 +21,6 @@ public class ListHelperService {
 			conn = ConnectionProvider.getConnection();
 			int total = helperDAO.selectCount(conn);
 			List<Helper> helperList = helperDAO.select(conn, (pageNum-1)*size, size);
-			
 			return new HelperPage(total,pageNum,size,helperList);
 		}catch(SQLException e) {
 			e.printStackTrace();

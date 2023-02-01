@@ -3,12 +3,12 @@ package tradecomment.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import tradecomment.service.ConnService;
+import tradecomment.service.VoltService;
 import mvc.command.CommandHandler;
 
-public class ConnTrade implements CommandHandler {
+public class VoltTradeHandler implements CommandHandler {
 
-	ConnService connService = new ConnService();
+	VoltService connService = new VoltService();
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -17,9 +17,9 @@ public class ConnTrade implements CommandHandler {
 		String noVal = req.getParameter("no");
 		int no = Integer.parseInt(noVal);
 		
-		connService.conn(commNo);
+		connService.volt(commNo);
 		
-		return "/tradeboard/read.do?no="+no;
+		return "/trade/read.do?no="+no;
 		
 	}
 

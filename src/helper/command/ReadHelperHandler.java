@@ -37,7 +37,6 @@ public class ReadHelperHandler implements CommandHandler {
 			
 			List<Comment> commentList =listCommentService.getCommentList(no);
 			req.setAttribute("commentList", commentList);
-			
 			return "/view/helperboard/readHelper.jsp";
 		}catch(HelperNotFoundException | HelperContentNotFoundException e) {
 			req.getServletContext().log("no helper", e);

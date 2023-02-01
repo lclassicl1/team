@@ -39,7 +39,7 @@ public class CommentDAO {
 	public Comment selectByNo(Connection conn,int commNo)throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql ="select * from help_comment where comm_no=?";
+		String sql ="select * from help_comment where comm_no=? and isshow='Y' ";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -58,13 +58,14 @@ public class CommentDAO {
 	}
 	public void insert(Connection conn, WriteCommentRequest writeCommReq)throws SQLException {
 		PreparedStatement pstmt = null;
-		String sql = "insert into help_COMMENT(comm_content,user_id,help_no,comm_update) " + 
-				"value(?,?,?,now())";
+		String sql = "insert into help_COMMENT(comm_content,user_id,comm_conn,article_no) " + 
+				"value(?,?,'N',?)";
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, writeCommReq.getContent());
 			pstmt.setString(2, writeCommReq.getLoginId());
-			pstmt.setInt(3, writeCommReq.getHelpNo());
+			pstmt.setInt(3, writeCommReq.getArticleNo());
 			
 			pstmt.executeUpdate();
 		}finally{
@@ -75,7 +76,7 @@ public class CommentDAO {
 	
 	public void modify(Connection conn,ModifyCommRequest modiCommReq)throws SQLException {
 		PreparedStatement pstmt = null;
-		String sql = "update help_comment set comm_content=?,comm_update=now() where comm_no = ?";
+		String sql = "update help_comment set comm_content=? where comm_no = ?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, modiCommReq.getContent());
@@ -114,7 +115,7 @@ public class CommentDAO {
 	}
 	
 	private Comment coverComment(ResultSet rs) throws SQLException {
-		return new Comment(rs.getInt("comm_no"),rs.getString("comm_content"),rs.getTimestamp("comm_credate"),rs.getTimestamp("comm_update"),rs.getString("user_id")
-							,rs.getString("comm_conn"),rs.getString("isshow"),rs.getInt("help_no"));
+		return new Comment(rs.getInt("comm_no"),rs.getString("comm_content"),rs.getTimestamp("comm_credate"),rs.getString("user_id")
+							,rs.getString("comm_conn"),rs.getString("isshow"),rs.getInt("article_no"));
 	}
 }

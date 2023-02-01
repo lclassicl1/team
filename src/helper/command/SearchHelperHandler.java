@@ -23,7 +23,6 @@ public class SearchHelperHandler implements CommandHandler {
 			pageNo = Integer.parseInt(pageNoVal);
 		}
 		
-		System.out.println(category);
 		HelperPage helperPage =searchHelperService.search(pageNo, category, input);
 		req.setAttribute("helperPage", helperPage);
 		

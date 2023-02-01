@@ -5,20 +5,20 @@ import java.util.Map;
 public class ModifyRequest {
 
 	private int userNo;
-	private int tradeNo;
+	private int articleNo;
 	private String modTitle;
 	private String modContent;
-	public ModifyRequest(int userNo, int tradeNo, String modTitle, String modContent) {
+	public ModifyRequest(int userNo, int articleNo, String modTitle, String modContent) {
 		this.userNo = userNo;
-		this.tradeNo = tradeNo;
+		this.articleNo = articleNo;
 		this.modTitle = modTitle;
 		this.modContent = modContent;
 	}
 	public int getUserNo() {
 		return userNo;
 	}
-	public int getTradeNo() {
-		return tradeNo;
+	public int getArticleNo() {
+		return articleNo;
 	}
 	public String getModTitle() {
 		return modTitle;

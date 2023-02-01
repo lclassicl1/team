@@ -19,7 +19,7 @@ public class DeleteTradeHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		String noVal = req.getParameter("no");
-		int tradeNo = Integer.parseInt(noVal);
+		int articleNo = Integer.parseInt(noVal);
 		
 		User user = (User)req.getSession(false).getAttribute("authUser");
 		int userNo = user.getUserNo();
@@ -28,7 +28,7 @@ public class DeleteTradeHandler implements CommandHandler {
 		req.setAttribute("errors", errors);
 		
 		try {
-			deleteTradeService.delete(tradeNo,userNo);
+			deleteTradeService.delete(articleNo,userNo);
 			return "/view/tradeboard/deleteSuccess.jsp";
 		}catch(PermissionDeniedException e) {
 			errors.put("cantDelete",Boolean.TRUE);

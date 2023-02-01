@@ -19,7 +19,7 @@ public class ConnHandler implements CommandHandler {
 		
 		connService.conn(commNo);
 		
-		return "/helperboard/read.do?no="+no;
+		return "/helper/read.do?no="+no;
 		
 	}
 

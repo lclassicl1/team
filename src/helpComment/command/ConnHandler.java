@@ -18,8 +18,8 @@ public class ConnHandler implements CommandHandler {
 		int no = Integer.parseInt(noVal);
 		
 		connService.conn(commNo);
-		
-		return "/helpboard/read.do?no="+no;
+
+		return "/help/read.do?no="+no;
 		
 	}
 

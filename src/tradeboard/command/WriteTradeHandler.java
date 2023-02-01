@@ -36,13 +36,14 @@ public class WriteTradeHandler implements CommandHandler {
 		req.setAttribute("errors", errors);
 		
 		User user = (User)req.getSession(false).getAttribute("authUser");
-		WriterRequest writerReq = createWriterRequest(req,user);
+		int articleNo = writeTradeService.articleReq(user.getUserNo());
+		WriterRequest writerReq = createWriterRequest(req,articleNo,user);
 		
-		if(writerReq.getTitle() == null||writerReq.getTitle().isEmpty()) {
+		if(writerReq.getTradeTitle() == null||writerReq.getTradeTitle().isEmpty()) {
 			errors.put("titleEmpty",Boolean.TRUE);
 		}
 		
-		if(writerReq.getContent() == null||writerReq.getContent().isEmpty()) {
+		if(writerReq.getTradeContent() == null||writerReq.getTradeContent().isEmpty()) {
 			errors.put("contentEmpty",Boolean.TRUE);
 		}
 		
@@ -53,9 +54,10 @@ public class WriteTradeHandler implements CommandHandler {
 		writeTradeService.write(writerReq);
 		return "/view/tradeboard/writeSuccess.jsp";
 	}
-	private WriterRequest createWriterRequest(HttpServletRequest req,User user) {
+	private WriterRequest createWriterRequest(HttpServletRequest req,int articleNo,User user) {
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
-		return new WriterRequest(title,content,user.getUserNo(),user.getUserName());
+		String articleCategory = "Trade";
+		return new WriterRequest(articleNo,articleCategory,user.getUserNo(),title,content,user.getUserName());
 	}
 }
