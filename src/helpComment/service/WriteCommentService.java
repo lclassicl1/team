@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import helpComment.DAO.CommentDAO;
 import helpComment.model.WriteCommentRequest;
+import jdbc.JdbcUtil;
 import jdbc.conn.ConnectionProvider;
 
 public class WriteCommentService {
@@ -21,9 +22,10 @@ public class WriteCommentService {
 			
 			conn.commit();
 		}catch(SQLException e) {
-			
+			e.printStackTrace();
+			JdbcUtil.rollback(conn);
 		}finally {
-			
+			JdbcUtil.close(conn);
 		}
 	}
 }

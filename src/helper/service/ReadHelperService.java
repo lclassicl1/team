@@ -17,14 +17,14 @@ public class ReadHelperService {
 	HelperDAO helperDAO = new HelperDAO();
 	UserDAO userDAO = new UserDAO();
 	
-	public UserInfoHelperInfo getHelper(int helperNo,boolean incrementReadCnt) {
+	public UserInfoHelperInfo getHelper(int articleNo,boolean incrementReadCnt) {
 		Connection conn = null;
 		
 		try {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
 			
-			Helper helper = helperDAO.selectByNo(conn, helperNo);
+			Helper helper = helperDAO.selectByNo(conn, articleNo);
 			
 			if(helper == null) {
 				throw new HelperNotFoundException();
@@ -35,7 +35,7 @@ public class ReadHelperService {
 			
 			
 			if(incrementReadCnt) {
-				helperDAO.incrementReadCnt(conn, helperNo);
+				helperDAO.incrementReadCnt(conn, articleNo);
 			}
 			
 			UserInfoHelperInfo userHelper = new UserInfoHelperInfo(user,helper);

@@ -17,14 +17,14 @@ public class ReadTradeService {
 	TradeDAO tradeDAO = new TradeDAO();
 	UserDAO userDAO = new UserDAO();
 	
-	public UserInfoTradeInfo getTrade(int tradeNo,boolean incrementReadCnt) {
+	public UserInfoTradeInfo getTrade(int articleNo,boolean incrementReadCnt) {
 		Connection conn = null;
 		
 		try {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
 			
-			Trade trade = tradeDAO.selectByNo(conn, tradeNo);
+			Trade trade = tradeDAO.selectByNo(conn, articleNo);
 			
 			if(trade == null) {
 				throw new HelperNotFoundException();
@@ -35,7 +35,7 @@ public class ReadTradeService {
 			
 			
 			if(incrementReadCnt) {
-				tradeDAO.incrementReadCnt(conn, tradeNo);
+				tradeDAO.incrementReadCnt(conn, articleNo);
 			}
 			
 			UserInfoTradeInfo usertrade = new UserInfoTradeInfo(user,trade);

@@ -15,7 +15,6 @@ public class SearchTradeHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		String category = req.getParameter("category");
 		String input = req.getParameter("input");
 		String pageNoVal = req.getParameter("pageNo");
 		int pageNo = 1;
@@ -23,8 +22,7 @@ public class SearchTradeHandler implements CommandHandler {
 			pageNo = Integer.parseInt(pageNoVal);
 		}
 		
-		System.out.println(category);
-		TradePage tradePage =searchTradeService.search(pageNo, category, input);
+		TradePage tradePage =searchTradeService.search(pageNo, input);
 		req.setAttribute("tradePage", tradePage);
 		
 		return FORM_VIEW;

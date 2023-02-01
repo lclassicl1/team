@@ -45,13 +45,13 @@
    <c:forEach var="item" items="${tradePage.tradeList }">
 		 	 <tr>
 		 	  <td>
-		 	  <a href="<%=request.getContextPath()%>/trade/read.do?no=${item.tradeNo}">
+		 	  <a href="<%=request.getContextPath()%>/trade/read.do?no=${item.articleNo}">
 		 	  	${item.tradeTitle}
 		 	  </a>
 		 	  </td>
 		 	  <td>${item.userName}</td>
-		 	  <td>${item.createDate}</td>
-		 	  <td>${item.readCnt}</td>
+		 	  <td>${item.tradeCredate}</td>
+		 	  <td>${item.tradeReadCnt}</td>
 		 	 </tr>
  	 </c:forEach> 
    <%-- 반복문이용하여 출력끝 --%>
