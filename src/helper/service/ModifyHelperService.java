@@ -22,7 +22,7 @@ public class ModifyHelperService {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
 			
-			Helper helper = helperDAO.selectByNo(conn, modReq.getHelperNo());
+			Helper helper = helperDAO.selectByNo(conn, modReq.getArticleNo());
 			if(helper == null) {
 				throw new HelperNotFoundException();
 			}
@@ -30,7 +30,7 @@ public class ModifyHelperService {
 				throw new PermissionDeniedException();
 			}
 			
-			helperDAO.update(conn, modReq.getModTitle(), modReq.getModContent(), modReq.getModCategory(), modReq.getHelperNo());
+			helperDAO.update(conn, modReq.getModTitle(), modReq.getModContent(), modReq.getModCategory(), modReq.getArticleNo());
 			
 			conn.commit();
 		}catch(SQLException e) {

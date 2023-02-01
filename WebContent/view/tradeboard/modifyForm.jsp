@@ -9,18 +9,18 @@
 </head>
 <body>
 게시글 수정 
-<form action="modify.do?no=${modReq.tradeNo }" method="post">
+<form action="modify.do?no=${trade.articleNo }" method="post">
 	<p>
-	번호 : <br>${modReq.tradeNo }
+	번호 : <br>${trade.articleNo }
 	</p>
 	<p>
 	제목 : 
-	<input type="text" name = "title" id="title" value="${modReq.modTitle }">
+	<input type="text" name = "title" id="title" value="${trade.tradeTitle }">
 	<c:if test="${errors.title }">제목을 입력해주세요.</c:if>
 	</p>
 	<p>
 	내용 : 
-	<textarea name ="content" id="content" rows="5" cols="30" >${modReq.modContent }</textarea>
+	<textarea name ="content" id="content" rows="5" cols="30" >${trade.tradeContent }</textarea>
 	<c:if test="${errors.content }">내용을 입력해주세요.</c:if>
 	</p>
 	<input type="submit" value="수정">

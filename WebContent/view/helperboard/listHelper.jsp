@@ -55,14 +55,14 @@
    <c:forEach var="item" items="${helperPage.helperList }">
 		 	 <tr>
 		 	  <td>
-		 	  <a href="<%=request.getContextPath()%>/helper/read.do?no=${item.helperNo}">
+		 	  <a href="<%=request.getContextPath()%>/helper/read.do?no=${item.articleNo}">
 		 	  	${item.helperTitle}
 		 	  </a>
 		 	  </td>
 		 	  <td>${item.userName}</td>
-		 	  <td>${item.createDate}</td>
-		 	  <td>${item.category }</td>
-		 	  <td>${item.readCnt}</td>
+		 	  <td>${item.helperCredate}</td>
+		 	  <td>${item.helperCategory }</td>
+		 	  <td>${item.helperReadCnt}</td>
 		 	 </tr>
  	 </c:forEach> 
    <%-- 반복문이용하여 출력끝 --%>

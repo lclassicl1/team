@@ -49,10 +49,7 @@ public class ModifyTradeHandler implements CommandHandler {
 				res.sendError(HttpServletResponse.SC_FORBIDDEN);
 				return null;
 			}
-			
-			ModifyRequest modReq = new ModifyRequest(user.getUserNo(),trade.getTradeNo(),trade.getTradeTitle()
-					,trade.getTradeContent());
-			req.setAttribute("modReq", modReq);
+			req.setAttribute("trade", trade);
 			return FORM_VIEW;
 		}catch(HelperNotFoundException e) {
 			e.printStackTrace();
@@ -61,7 +58,6 @@ public class ModifyTradeHandler implements CommandHandler {
 		}
 	}
 	
-	//작성자와 로그인 정보를 매칭 안했음 (=jsp 파일에서 수정 버튼 안보이게 )
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		User user = (User)req.getSession().getAttribute("authUser");
 		String noVal = req.getParameter("no");
@@ -73,7 +69,6 @@ public class ModifyTradeHandler implements CommandHandler {
 		ModifyRequest modReq = new ModifyRequest(user.getUserNo(),no,title
 				  							,content);
 		
-		req.setAttribute("modReq", modReq);
 		Map<String,Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
 		

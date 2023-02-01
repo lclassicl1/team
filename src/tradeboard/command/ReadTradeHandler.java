@@ -34,7 +34,6 @@ public class ReadTradeHandler implements CommandHandler {
 			
 			req.setAttribute("user", user);//글쓴이의 유저정보 
 			req.setAttribute("trade", trade);//게시판 정보 
-			
 			List<Comment> commentList =listCommentService.getCommentList(no);
 			req.setAttribute("commentList", commentList);
 			return "/view/tradeboard/readTrade.jsp";

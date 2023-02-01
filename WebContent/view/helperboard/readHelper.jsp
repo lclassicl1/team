@@ -13,11 +13,11 @@
 <table border="1">
 	<tr>
 		<td>번호</td>
-		<td>${helper.helperNo }</td>
+		<td>${helper.articleNo }</td>
 	</tr>
 	<tr>
 		<td>조회수</td>
-		<td>${helper.readCnt }</td>
+		<td>${helper.helperReadCnt }</td>
 	</tr>
 	<tr>
 		<td>작성자</td>
@@ -36,13 +36,13 @@
 	<tr>
 		<td>카테고리</td>
 		<td>
-		${helper.category }
+		${helper.helperCategory }
 		</td>
 	</tr>
 	<tr>
 		<td>작성시간</td>
 		<td>
-		${helper.createDate }
+		${helper.helperCredate }
 		</td>
 	</tr>
 	<tr> 
@@ -50,8 +50,8 @@
 		<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo }" />
 			<a href="<%=request.getContextPath()%>/helper/list.do?pageNo=${pageNo}">목록</a>
 		<c:if test="${authUser.userNo == helper.userNo }">
-			<a href="<%=request.getContextPath()%>/helper/modify.do?no=${helper.helperNo }">게시글 수정</a>
-			<a href="<%=request.getContextPath()%>/helper/delete.do?no=${helper.helperNo }">게시글 삭제</a>
+			<a href="<%=request.getContextPath()%>/helper/modify.do?no=${helper.articleNo }">게시글 수정</a>
+			<a href="<%=request.getContextPath()%>/helper/delete.do?no=${helper.articleNo }">게시글 삭제</a>
 		</c:if>
 		</td>
 	</tr> 
@@ -116,7 +116,7 @@
 		</td>
 		<c:if test="${authUser.userNo == helper.userNo}">
 		<td>
-			<a href="<%=request.getContextPath()%>/helper/comment/conn.do?commNo=${item.commNo}&no=${helper.helperNo}">채택</a>
+			<a href="<%=request.getContextPath()%>/helper/comment/conn.do?commNo=${item.commNo}&no=${helper.articleNo}">채택</a>
 		</td>
 		</c:if>
 		
@@ -130,7 +130,7 @@
 	</c:forEach>
 	<tr>
 	<td colspan="4">
-	<form action="<%=request.getContextPath()%>/helper/comment/write.do?no=${helper.helperNo }" method="post">
+	<form action="<%=request.getContextPath()%>/helper/comment/write.do?no=${helper.articleNo }" method="post">
 		작성자 :<c:if test="${!empty authUser }">${authUser.userId }</c:if><br>
 		<p>
 			<textarea rows="5" cols="30" name="content"></textarea>

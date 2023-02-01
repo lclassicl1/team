@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import Exception.ArticleNullException;
+import auth.model.Article;
 import help.dao.HelpDAO;
-import help.model.Article;
 import help.model.WriterRequest;
 import jdbc.JdbcUtil;
 import jdbc.conn.ConnectionProvider;

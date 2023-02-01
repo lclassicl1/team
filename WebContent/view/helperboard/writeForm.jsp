@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<form action="write.do" method="post">
+	<form action="<%=request.getContextPath() %>/helper/write.do" method="post">
 		<p>
 			제목 : <input type="text" name = "title" id="title">	
 			<c:if test="${errors.titleEmpty}">제목을 입력하세요 </c:if>

@@ -16,7 +16,7 @@ public class SearchTradeService {
 	TradeDAO tradeDAO = new TradeDAO();
 	private int size = 10;
 	
-	public TradePage search(int pageNum, String category, String input){
+	public TradePage search(int pageNum, String input){
 		Connection conn = null;
 		
 		try {

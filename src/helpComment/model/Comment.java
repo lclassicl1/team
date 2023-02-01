@@ -7,21 +7,19 @@ public class Comment {
 	private int commNo;
 	private String commContent;
 	private Date commCreDate;
-	private Date comm_update;
 	private String userId;
 	private String commConn;
 	private String isshow;
-	private int helpNo;
-	public Comment(int commNo, String commContent, Date commCreDate,Date comm_update, String userId, String commConn, String isshow,
-			int helpNo) {
+	private int articleNo;
+	public Comment(int commNo, String commContent, Date commCreDate, String userId, String commConn, String isshow,
+			int articleNo) {
 		this.commNo = commNo;
 		this.commContent = commContent;
 		this.commCreDate = commCreDate;
-		this.comm_update = comm_update;
 		this.userId = userId;
 		this.commConn = commConn;
 		this.isshow = isshow;
-		this.helpNo = helpNo;
+		this.articleNo = articleNo;
 		
 	}
 	public int getCommNo() {
@@ -33,9 +31,6 @@ public class Comment {
 	public Date getCommCreDate() {
 		return commCreDate;
 	}
-	public Date getComm_update() {
-		return comm_update;
-	}
 	public String getUserId() {
 		return userId;
 	}
@@ -45,8 +40,8 @@ public class Comment {
 	public String getIsshow() {
 		return isshow;
 	}
-	public int getHelpNo() {
-		return helpNo;
+	public int getArticleNo() {
+		return articleNo;
 	}
 	
 	

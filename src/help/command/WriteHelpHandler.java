@@ -6,8 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import auth.model.Article;
 import auth.model.User;
-import help.model.Article;
 import help.model.WriterRequest;
 import help.service.WriteHelpService;
 import mvc.command.CommandHandler;

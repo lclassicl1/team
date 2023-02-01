@@ -49,11 +49,7 @@ public class ModifyHelpHandler implements CommandHandler {
 				res.sendError(HttpServletResponse.SC_FORBIDDEN);
 				return null;
 			}
-			System.out.println(help);
 			req.setAttribute("help", help);
-//			ModifyRequest modReq = new ModifyRequest(user.getUserNo(),help.getHelpNo(),help.getHelpTitle()
-//					,help.getHelpContent(),help.getCategory());
-		//	req.setAttribute("modReq", modReq);
 			return FORM_VIEW;
 		}catch(HelperNotFoundException e) {
 			e.printStackTrace();
@@ -62,7 +58,6 @@ public class ModifyHelpHandler implements CommandHandler {
 		}
 	}
 	
-	//작성자와 로그인 정보를 매칭 안했음 (=jsp 파일에서 수정 버튼 안보이게 )
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		User user = (User)req.getSession().getAttribute("authUser");
 		String noVal = req.getParameter("no");
@@ -75,7 +70,6 @@ public class ModifyHelpHandler implements CommandHandler {
 		ModifyRequest modReq = new ModifyRequest(user.getUserNo(),no,title
 				  							,content,category);
 		
-		//req.setAttribute("modReq", modReq);
 		Map<String,Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
 		

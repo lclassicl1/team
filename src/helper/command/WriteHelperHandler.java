@@ -36,13 +36,14 @@ public class WriteHelperHandler implements CommandHandler {
 		req.setAttribute("errors", errors);
 		
 		User user = (User)req.getSession(false).getAttribute("authUser");
-		WriterRequest writerReq = createWriterRequest(req,user);
+		int articleNo = writeHelperService.articleReq(user.getUserNo());
+		WriterRequest writerReq = createWriterRequest(req,articleNo,user);
 		
-		if(writerReq.getTitle() == null||writerReq.getTitle().isEmpty()) {
+		if(writerReq.getHelperTitle() == null||writerReq.getHelperTitle().isEmpty()) {
 			errors.put("titleEmpty",Boolean.TRUE);
 		}
 		
-		if(writerReq.getContent() == null||writerReq.getContent().isEmpty()) {
+		if(writerReq.getHelperContent() == null||writerReq.getHelperContent().isEmpty()) {
 			errors.put("contentEmpty",Boolean.TRUE);
 		}
 		
@@ -53,10 +54,11 @@ public class WriteHelperHandler implements CommandHandler {
 		writeHelperService.write(writerReq);
 		return "/view/helperboard/writeSuccess.jsp";
 	}
-	private WriterRequest createWriterRequest(HttpServletRequest req,User user) {
+	private WriterRequest createWriterRequest(HttpServletRequest req,int articleNo,User user) {
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
 		String category = req.getParameter("category");
-		return new WriterRequest(title,content,category,user.getUserNo(),user.getUserName());
+		String articleCategory = "Helper";
+		return new WriterRequest(articleNo,articleCategory,user.getUserNo(),title,content,user.getUserName(),category);
 	}
 }

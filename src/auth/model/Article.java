@@ -1,4 +1,4 @@
-package help.model;
+package auth.model;
 
 public class Article {
 
