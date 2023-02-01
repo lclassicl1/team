@@ -28,7 +28,7 @@ div{
 }
 
 .container {
-	text-align: center;
+	margin: auto;
 }
 
 .input-group-text, .form-control {
