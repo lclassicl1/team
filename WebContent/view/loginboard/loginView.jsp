@@ -21,11 +21,12 @@ body {
 		${authUser.userName }님 환영합니다.<br> 
 		<a href="<%=request.getContextPath()%>/logout.do">로그아웃하기</a>
 		<a href="<%=request.getContextPath()%>/changePwd.do">비밀번호 변경</a>
-		<a href="<%=request.getContextPath()%>/modifyUserInfo.do">개인정보 수정</a><br>
+		<a href="<%=request.getContextPath()%>/modifyUserInfo.do">개인정보 수정</a>
+		<a href="<%=request.getContextPath()%>/mypage.do">마이페이지</a><br>
+		<a href="<%=request.getContextPath()%>/article/list.do">전체글 조회</a>
 		<a href="<%=request.getContextPath()%>/help/list.do">해주세요 게시글</a>
 		<a href="<%=request.getContextPath()%>/helper/list.do">해줄게요 게시글</a>
 		
-		<a href="<%=request.getContextPath()%>/mypage.do">마이페이지</a>
 		
 		<a href="#">공지사항 게시글</a>
 		<a href="<%=request.getContextPath()%>/trade/list.do">트레이드 게시글</a>
