@@ -1,5 +1,6 @@
 package freeboard.command;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +35,6 @@ public class DeleteBoardHandler implements CommandHandler {
 	}
 	
 	private String processForm(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
-		request.setCharacterEncoding("UTF-8");
 		String noVal = request.getParameter("no");
 		int no = Integer.parseInt(noVal);
 		
@@ -49,7 +49,7 @@ public class DeleteBoardHandler implements CommandHandler {
 
 
 	
-	private String processSubmit(HttpServletRequest request, HttpServletResponse response) {
+	private String processSubmit(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String no = request.getParameter("no");
 		System.out.println("no2222="+no);
 		
@@ -62,7 +62,6 @@ public class DeleteBoardHandler implements CommandHandler {
 		request.setAttribute("deleteresult",deleteresult);
 		
 		
-		
-		return "/view/free/freeBoardDeleteSuccess.jsp";
+		return "/view/freeboard/freeBoardList.jsp";
 	}
 }

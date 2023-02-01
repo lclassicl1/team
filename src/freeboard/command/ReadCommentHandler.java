@@ -38,7 +38,6 @@ public class ReadCommentHandler implements CommandHandler {
 		 request.setAttribute("comment",comment);
 		 
 		 
-		 System.out.println("123123123123");
 		return FORM_VIEW;
 			
 	}

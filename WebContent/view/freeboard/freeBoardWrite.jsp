@@ -24,8 +24,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 
 	
 
-<form name="write" id="write" method="post" 
-		action="<%=request.getContextPath()%>/freeboard/write.do">
+<form method="post" action="<%=request.getContextPath()%>/freeboard/write.do">
 	<table border="1">
 	<tr>
 		<th>제목</th>

@@ -22,7 +22,7 @@
 			    <option value='' selected>-- 선택 --</option>
 			    <option value='자유'>자유</option>
 			    <option value='질문'>질문</option>
-			    <option value='TIP'>TIP</option>
+			    <option value='팁'>팁</option>
   	</select>
   		<input type="submit" value="검색"/>
  </form>
@@ -43,8 +43,8 @@
 	<tbody>
 <c:forEach var="freeBoard" items="${freeBoard.list}">
 			<tr>
-					<td><c:out value="${freeBoard.free_no}"/></td>
-					<td><a href="<%=request.getContextPath()%>/freeboard/read.do?no=${freeBoard.free_no}"><c:out value="${freeBoard.free_title}"/></a></td>
+					<td><c:out value="${freeBoard.article_no}"/></td>
+					<td><a href="<%=request.getContextPath()%>/freeboard/read.do?no=${freeBoard.article_no}"><c:out value="${freeBoard.free_title}"/></a></td>
 					<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${freeBoard.free_createdate}"/></td>
 					<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${freeBoard.free_updatedate}"/></td>
 					<td><c:out value="${freeBoard.free_readcnt}"/></td>
