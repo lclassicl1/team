@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import Exception.HelperNotFoundException;
-import auth.model.Article;
+import article.model.Article;
 import help.model.Help;
 import help.model.SearchHelp;
 import help.model.WriterRequest;
@@ -207,8 +207,5 @@ public class HelpDAO {
 	private Help coverHelp(ResultSet rs) throws SQLException {
 		return new Help(rs.getInt("article_no"),rs.getString("article_category"),rs.getInt("user_no"),rs.getString("help_title"),rs.getString("help_content"),rs.getString("user_name"),
 						rs.getTimestamp("help_credate"),rs.getTimestamp("help_update"),rs.getInt("help_readcnt"),rs.getString("isshow"),rs.getString("help_category"));
-	}
-	private Article coverArticle(ResultSet rs)throws SQLException{
-		return new Article(rs.getInt("article_no"),rs.getString("article_category"),rs.getInt("user_no"));
 	}
 }
