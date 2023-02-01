@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import helpComment.DAO.CommentDAO;
+import jdbc.JdbcUtil;
 import jdbc.conn.ConnectionProvider;
 
 public class ConnService {
@@ -21,8 +22,9 @@ public class ConnService {
 			conn.commit();
 		}catch(SQLException e) {
 			e.printStackTrace();
+			JdbcUtil.rollback(conn);
 		}finally {
-			
+			JdbcUtil.close(conn);
 		}
 	}
 }

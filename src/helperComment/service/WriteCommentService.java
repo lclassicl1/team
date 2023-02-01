@@ -16,9 +16,7 @@ public class WriteCommentService {
 		try {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
-			
 			commentDAO.insert(conn, writeCommReq);
-			
 			conn.commit();
 		}catch(SQLException e) {
 			

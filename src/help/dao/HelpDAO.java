@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import Exception.HelperNotFoundException;
-import help.model.Article;
+import auth.model.Article;
 import help.model.Help;
 import help.model.SearchHelp;
 import help.model.WriterRequest;
@@ -175,7 +175,7 @@ public class HelpDAO {
 			JdbcUtil.close(pstmt);
 		}
 	}
-	public void update(Connection conn,String title,String content,String category,int helpNo)throws SQLException {
+	public void update(Connection conn,String title,String content,String category,int articleNo)throws SQLException {
 		PreparedStatement pstmt = null;
 		String sql = "update helpboard set help_title=?,help_content=?, help_category=? where article_no = ?";
 		
@@ -184,7 +184,7 @@ public class HelpDAO {
 			pstmt.setString(1,title);
 			pstmt.setString(2, content);
 			pstmt.setString(3, category);
-			pstmt.setInt(4, helpNo);
+			pstmt.setInt(4, articleNo);
 			
 			pstmt.executeUpdate();
 		}finally {
@@ -203,9 +203,6 @@ public class HelpDAO {
 		}finally {
 			JdbcUtil.close(pstmt);
 		}
-	}
-	private Timestamp toTimestamp(Date date) {
-		return new Timestamp(date.getTime());
 	}
 	private Help coverHelp(ResultSet rs) throws SQLException {
 		return new Help(rs.getInt("article_no"),rs.getString("article_category"),rs.getInt("user_no"),rs.getString("help_title"),rs.getString("help_content"),rs.getString("user_name"),

@@ -22,7 +22,7 @@ public class ModifyTradeService {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
 			
-			Trade trade = tradeDAO.selectByNo(conn, modReq.getTradeNo());
+			Trade trade = tradeDAO.selectByNo(conn, modReq.getArticleNo());
 			if(trade == null) {
 				throw new HelperNotFoundException();
 			}
@@ -30,7 +30,7 @@ public class ModifyTradeService {
 				throw new PermissionDeniedException();
 			}
 			
-			tradeDAO.update(conn, modReq.getModTitle(), modReq.getModContent(),  modReq.getTradeNo());
+			tradeDAO.update(conn, modReq.getModTitle(), modReq.getModContent(),  modReq.getArticleNo());
 			
 			conn.commit();
 		}catch(SQLException e) {

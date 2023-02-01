@@ -35,7 +35,6 @@ public class ModifyCommentHandler implements CommandHandler {
 			
 			String commNoVal = req.getParameter("commNo");
 			int commNo = Integer.parseInt(commNoVal);
-			
 			User user = (User)req.getSession(false).getAttribute("authUser");
 			Comment comment = modifyCommentService.selectByNo(commNo);
 			
@@ -44,7 +43,6 @@ public class ModifyCommentHandler implements CommandHandler {
 				res.sendError(HttpServletResponse.SC_FORBIDDEN);
 				return null;
 			}
-			
 			req.setAttribute("comment", comment);
 			return FORM_VIEW;
 		}catch(CommentNotFoundException e) {

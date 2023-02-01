@@ -17,7 +17,6 @@ public class ListCommentService {
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
-			
 //			List<Comment> commentList = commentDAO.select(conn, no);
 			return commentDAO.select(conn, no);
 		}catch(SQLException e) {
