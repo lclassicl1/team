@@ -37,7 +37,7 @@ public class Review_comment_Write_Handler implements CommandHandler {
 	private String processCommentForm(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		User authUser = loginedUser(request);
 		request.setAttribute("authUser", authUser);
-		return FORM_VIEW; //글 작성에 성공할 경우 댓글 목록, db에 댓글이 올라가도록 설정.	
+		return "/view/review/review_comment_list.jsp"; //글 작성에 성공할 경우 댓글 목록, db에 댓글이 올라가도록 설정.	
 	}//processForm의 끝.
 	
 

@@ -17,12 +17,12 @@ public class Review_comment_Data {
 		this.content = content;
 	}
 
-	public Review_comment getReview() {
+	public Review_comment getComentReview() {
 		return review;
 	}
 	
 	
-	public Review_comment_Content getContent() {
+	public Review_comment_Content getComentContent() {
 		return content;
 	}
 
@@ -31,6 +31,7 @@ public class Review_comment_Data {
 		return "Review_comment_Data [review=" + review + ", content=" + content + "]";
 	}
 
+	
 	
 
 

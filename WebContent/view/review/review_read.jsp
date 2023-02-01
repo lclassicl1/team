@@ -68,7 +68,6 @@ request.setAttribute("rowSize", rowSize);//1페이지당게시글수 --%>
 
 	 	
 <%-- ---------------------------------------------------------------------------------댓글 목록 --%> 	 	
-
  <table border="1">
   <thead>
    <%-- 게시글이 없는 경우 --%>
@@ -143,7 +142,7 @@ request.setAttribute("rowSize", rowSize);//1페이지당게시글수 --%>
  	 <form name="frmInsReply" id="frmInsReply" 
        action="<%=request.getContextPath()%>/review/comment/writer.do" method="post">
  <input type="hidden" name="oriNo" id="oriNo" value="${comm_no}"/>
- <input type="hidden" name="writer" id="writer" value="${sessionScope.authUSER.memberid}"/> 
+ <input type="hidden" name="writer" id="writer" value="${session.authUSER.memberid}"/> 
  <table border="1">
   <tbody>
   <!-- 로그인했을 때 작성자 이름 들어갈 위치. -->

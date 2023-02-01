@@ -109,8 +109,8 @@ public class Review_comment_Modify_Handler implements CommandHandler {
 				Review_comment_ModifyRequest modReq = 
 						new Review_comment_ModifyRequest(authUser.getUserId(),
 								no,
-								reviewData.getReview().getComm_writer().getReview_comment_writer_name(),
-								reviewData.getContent().getReview_comment_content());
+								reviewData.getComentReview().getComm_writer().getReview_comment_writer_name(),
+								reviewData.getComentContent().getReview_comment_content());
 				
 				//3.Model & 4.View -p670 53라인
 				request.setAttribute("modReq", modReq);
@@ -197,7 +197,7 @@ public class Review_comment_Modify_Handler implements CommandHandler {
 			//로그인한유저정보에서 id를 가져오기
 			String userId = authUser.getUserId();
 			//작성자정보에서 id를 가져오기
-			String writerId = reviewData.getReview().getComm_writer().getReview_comment_writer_id();
+			String writerId = reviewData.getComentReview().getComm_writer().getReview_comment_writer_id();
 			
 			//"로그인한userid".equals("작성자id")
 			return userId.equals(writerId);
