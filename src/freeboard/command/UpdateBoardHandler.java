@@ -1,10 +1,12 @@
 package freeboard.command;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import auth.model.User;
 import freeboard.model.FreeBoard;
 import freeboard.service.ListBoardService;
 import freeboard.service.ReadBoardService;
@@ -36,40 +38,46 @@ public class UpdateBoardHandler implements CommandHandler {
 	}
 	
 	// 자유게시판 게시글 수정화면 보여주는 메서드
-	private String processForm(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
-		request.setCharacterEncoding("UTF-8");
+	private String processForm(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String noVal = request.getParameter("no");
 		int no = Integer.parseInt(noVal);
 		
-		FreeBoard freeBoard 
-	 	= readBoardService.getBoardDetail(no);
+		FreeBoard freeBoard = readBoardService.getBoardDetail(no);
 		System.out.println("freeBoard ="+freeBoard);
 		request.setAttribute("freeBoard", freeBoard);
 		
 		
+		int WriterNo = freeBoard.getList().get(0).getUserNo();
+		System.out.println("boardWriter======"+WriterNo);
+		
+		User user = (User)request.getSession(false).getAttribute("authUser");
+	
+		  if(!canModify(WriterNo,user)) {
+		  response.sendError(HttpServletResponse.SC_FORBIDDEN); 
+		  return null; 
+		 }
 		return "/view/freeboard/freeBoardUpdate.jsp";
 	}
 
-
 	// 자유게시판 게시글 수정하는 메서드
 	private String processSubmit(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
-		request.setCharacterEncoding("UTF-8");
 		String no = request.getParameter("no");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		String free_category = request.getParameter("free_category");
-		System.out.println("no2222="+no);
-		System.out.println("title="+title);
-		System.out.println("content="+content);
-		System.out.println("free_category="+free_category);
-		int updateresult = updateBoardService.update(no, title, content, free_category);
+		String freeCategory = request.getParameter("freeCategory");
+		int updateresult = updateBoardService.update(no, title, content, freeCategory);
 		
-		
+
 		//수정 완료 되었을 경우 1, 실패시 0
 		request.setAttribute("result",updateresult);
 		
 		
-		
 		return "/freeboard/read.do?no="+no;
 	}
+	
+	  private boolean canModify(int WriterNo,User user) { 
+		  int loginNo=user.getUserNo();
+		  return WriterNo == loginNo; 
+		  }
+	 
 }

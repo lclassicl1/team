@@ -12,10 +12,7 @@ import mvc.command.CommandHandler;
 public class ListBoardHandler implements CommandHandler {
 	
 	ListBoardService listWriteService = new ListBoardService();
-
 	private static final String FORM_VIEW="/view/freeboard/freeBoardList.jsp";
-	
-	/* private ListWriteService listWriteService = new ListWriteService(); */
 	
 	@Override
 	public String process(HttpServletRequest request, 

@@ -26,9 +26,9 @@ public class WriteBoardHandler implements CommandHandler {
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("WriteBoardHandler 진입");
 		if (request.getMethod().equalsIgnoreCase("GET")) {
-			return processForm(request, response);// 수정폼보여줘
+			return processForm(request, response);
 		} else if (request.getMethod().equalsIgnoreCase("POST")) {
-			return processSubmit(request, response);// 수정처리요청
+			return processSubmit(request, response);
 		} else {
 			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 			return null;
@@ -49,15 +49,15 @@ public class WriteBoardHandler implements CommandHandler {
 		String categorySearch = request.getParameter("categorySearch");
 		
 		User user = (User)request.getSession(false).getAttribute("authUser");
-		String writeId = user.getUserId();
+		String loginName=user.getUserName();
 		int userNo = user.getUserNo();
 		HttpSession ssesion=request.getSession();
-		ssesion.setAttribute("userInfo", user);//로그인한 유저 정보
+		ssesion.setAttribute("userInfo", user); //로그인한 유저 정보
 		
-		int articleNo = articleBoardService.freeArticleInsert(userNo);
 		String articleCategory = "free";
+		int articleNo = articleBoardService.freeArticleInsert(articleCategory,title,loginName,content,userNo);
 		
-		int cnt = writeBoardService.writetBoard(articleNo,articleCategory,userNo,title, content, categorySearch, writeId);
+		int cnt = writeBoardService.writetBoard(articleNo,userNo,articleCategory,categorySearch);
 		 
 		//insert 되었다는 변수
 		request.setAttribute("cnt",cnt);

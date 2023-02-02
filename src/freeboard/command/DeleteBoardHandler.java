@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import auth.model.User;
 import freeboard.model.FreeBoard;
 import freeboard.service.DeleteBoardService;
 import freeboard.service.ListBoardService;
@@ -34,7 +35,7 @@ public class DeleteBoardHandler implements CommandHandler {
 		return null;
 	}
 	
-	private String processForm(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+	private String processForm(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String noVal = request.getParameter("no");
 		int no = Integer.parseInt(noVal);
 		
@@ -44,11 +45,19 @@ public class DeleteBoardHandler implements CommandHandler {
 		request.setAttribute("freeBoard", freeBoard);
 		
 		
+		int WriterNo = freeBoard.getList().get(0).getUserNo();
+		
+		User user = (User)request.getSession(false).getAttribute("authUser");
+		String loginUserId = user.getUserId();
+		System.out.println("loginUserId===="+loginUserId);
+		
+		if(!canModify(WriterNo,user)) {
+			response.sendError(HttpServletResponse.SC_FORBIDDEN);
+			return null;
+		}
 		return "/view/freeboard/freeBoardDelete.jsp";
 	}
 
-
-	
 	private String processSubmit(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String no = request.getParameter("no");
 		System.out.println("no2222="+no);
@@ -63,5 +72,9 @@ public class DeleteBoardHandler implements CommandHandler {
 		
 		
 		return "/view/freeboard/freeBoardList.jsp";
+	}
+	private boolean canModify(int WriterNo,User user) {
+			int loginUserNo = user.getUserNo();
+			return loginUserNo == WriterNo;
 	}
 }

@@ -15,7 +15,6 @@ public class ListCommentService {
 		
 		CommentList commentList 
 			= commentDAO.selectComment(no);
-		System.out.println("commentList gggg "+commentList);
 
 		return commentList;
 	}

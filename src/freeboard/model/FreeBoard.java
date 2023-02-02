@@ -18,6 +18,13 @@ public class FreeBoard {
 	public List<FreeBoardList> getList() {
 		return list;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "FreeBoard [list=" + list + "]";
+	}
 	
 	
 	

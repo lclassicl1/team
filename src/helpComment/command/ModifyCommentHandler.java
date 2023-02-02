@@ -27,7 +27,6 @@ public class ModifyCommentHandler implements CommandHandler {
 			return null;
 		}
 	}
-
 	private String processForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
 

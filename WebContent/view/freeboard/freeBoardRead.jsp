@@ -15,18 +15,18 @@
 
 
 <c:forEach var="board" items="${freeBoard.list}">
-			<p>글번호 : ${board.article_no}</p>
-			<p>제목: ${board.free_title}</p>
-			<p>내용: ${board.free_content}</p>
-			<p>카테고리: ${board.free_category}</p>
-			<p>작성일 : ${board.free_createdate}</p>
-			<p>수정일 : ${board.free_updatedate}</p>
+			<p>글번호 : ${board.articleNo}</p>
+			<p>글 작성자 : ${board.userName}</p>
+			<p>제목: ${board.articleTitle}</p>
+			<p>내용: ${board.articleContent}</p>
+			<p>카테고리: ${board.freeCategory}</p>
+			<p>작성일 : ${board.articleCredate}</p>
+			<p>수정일 : ${board.articleUpdate}</p>
 
 
-<a href="<%=request.getContextPath()%>/freeboard/update.do?no=${board.article_no}"><button>글 수정하기</button></a>
-<a href="<%=request.getContextPath()%>/freeboard/delete.do?no=${board.article_no}"><button>글 삭제하기</button></a>
+<a href="<%=request.getContextPath()%>/freeboard/update.do?no=${board.articleNo}"><button>글 수정하기</button></a>
+<a href="<%=request.getContextPath()%>/freeboard/delete.do?no=${board.articleNo}"><button>글 삭제하기</button></a>
 	</c:forEach>
-
 <hr>
 <hr>
 
@@ -42,8 +42,10 @@
 		<td>${comment.user_id}</td>
 		<td>${comment.comm_content}</td>
 		<td>${comment.comm_credate}</td>
-		<td><a href="<%=request.getContextPath()%>/freeboard/commentdelete.do?article_no=${freeBoard.list[0].article_no}&comm_no=${comment.comm_no}"><button>삭제</button></a></td>
-		<td><a href="<%=request.getContextPath()%>/freeboard/commentupdate.do?article_no=${freeBoard.list[0].article_no}&comm_no=${comment.comm_no}"><button>수정</button></a></td>
+		 <c:if test="${authUser.userId==comment.user_id}">
+		<td><a href="<%=request.getContextPath()%>/freeboard/commentdelete.do?article_no=${freeBoard.list[0].articleNo}&comm_no=${comment.comm_no}"><button>삭제</button></a></td>
+		<td><a href="<%=request.getContextPath()%>/freeboard/commentupdate.do?article_no=${freeBoard.list[0].articleNo}&comm_no=${comment.comm_no}"><button>수정</button></a></td>
+		</c:if>
 	</tr>
 </c:forEach>
 </table>
@@ -52,7 +54,7 @@
 <form name="write" id="write" method="post"
 		action="<%=request.getContextPath()%>/freeboard/commentwrite.do">
 		
-		<input type="text" name="article_no" value="${freeBoard.list[0].article_no}" hidden/>
+		<input type="text" name="article_no" value="${freeBoard.list[0].articleNo}" hidden/>
 
 	<table border="1">
 	<tr>

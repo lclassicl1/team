@@ -17,9 +17,10 @@ public class SearchBoardHandler implements CommandHandler {
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("SearchBoardHandler-==========진입");
 		String categorySearch = request.getParameter("categorySearch");
+		String input = request.getParameter("input");
 		
 		
-		FreeBoard freeBoard = searchBoardService.search(categorySearch);
+		FreeBoard freeBoard = searchBoardService.search(categorySearch,input);
 		request.setAttribute("freeBoard", freeBoard);
 		
 		
