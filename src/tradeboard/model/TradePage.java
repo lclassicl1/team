@@ -6,11 +6,11 @@ public class TradePage {
 
 	private int total; 
 	private int currentPage;
-	private List<Trade> tradeList;
+	private List<TradeList> tradeList;
 	private int totalPage;
 	private int startPage;
 	private int endPage;
-	public TradePage(int total, int currentPage, int size,List<Trade> tradeList) {
+	public TradePage(int total, int currentPage, int size,List<TradeList> tradeList) {
 		this.total = total;
 		this.currentPage = currentPage;
 		this.tradeList = tradeList;
@@ -48,7 +48,7 @@ public class TradePage {
 	public int getCurrentPage() {
 		return currentPage;
 	}
-	public List<Trade> getTradeList() {
+	public List<TradeList> getTradeList() {
 		return tradeList;
 	}
 	public int getTotalPage() {

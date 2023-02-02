@@ -6,17 +6,13 @@ public class WriterRequest {
 	private int articleNo;
 	private String articleCategory;
 	private int userNo;
-	private String tradeTitle;
-	private String tradeContent;
-	private String userName;
-	public WriterRequest(int articleNo, String articleCategory, int userNo, String tradeTitle, String tradeContent,
-			String userName) {
+	private String tradeCategory;
+	public WriterRequest(int articleNo, String articleCategory, int userNo, 
+			String tradeCategory) {
 		this.articleNo = articleNo;
 		this.articleCategory = articleCategory;
 		this.userNo = userNo;
-		this.tradeTitle = tradeTitle;
-		this.tradeContent = tradeContent;
-		this.userName = userName;
+		this.tradeCategory = tradeCategory;
 	}
 	public int getArticleNo() {
 		return articleNo;
@@ -27,14 +23,8 @@ public class WriterRequest {
 	public int getUserNo() {
 		return userNo;
 	}
-	public String getTradeTitle() {
-		return tradeTitle;
-	}
-	public String getTradeContent() {
-		return tradeContent;
-	}
-	public String getUserName() {
-		return userName;
+	public String getTradeCategory() {
+		return tradeCategory;
 	}
 		
 }

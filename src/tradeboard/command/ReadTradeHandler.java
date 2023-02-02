@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import Exception.HelperContentNotFoundException;
 import Exception.HelperNotFoundException;
-import auth.model.User;
-import tradeboard.model.Trade;
 import tradeboard.model.UserInfoTradeInfo;
 import tradeboard.service.ReadTradeService;
 import tradecomment.model.Comment;
@@ -28,12 +26,9 @@ public class ReadTradeHandler implements CommandHandler {
 		
 		try {
 			UserInfoTradeInfo usertrade = readtradeService.getTrade(no, true);
+
+			req.setAttribute("read", usertrade);
 			
-			User user = usertrade.getUser();
-			Trade trade = usertrade.getTrade();
-			
-			req.setAttribute("user", user);//글쓴이의 유저정보 
-			req.setAttribute("trade", trade);//게시판 정보 
 			List<Comment> commentList =listCommentService.getCommentList(no);
 			req.setAttribute("commentList", commentList);
 			return "/view/tradeboard/readTrade.jsp";

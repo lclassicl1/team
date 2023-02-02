@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import Exception.PermissionDeniedException;
+import article.DAO.ArticleDAO;
 import helper.dao.HelperDAO;
 import helper.model.Helper;
 import jdbc.JdbcUtil;
@@ -12,6 +13,7 @@ import jdbc.conn.ConnectionProvider;
 public class DeleteHelperService {
 
 	HelperDAO helperDAO = new HelperDAO();
+	ArticleDAO articleDAO = new ArticleDAO();
 	
 	public void delete(int articleNo,int userNo) {
 		Connection conn = null;
@@ -26,7 +28,7 @@ public class DeleteHelperService {
 				throw new PermissionDeniedException();
 			}
 			
-			helperDAO.isshow(conn, articleNo);
+			articleDAO.isshow(conn, articleNo);
 			conn.commit();
 		}catch(SQLException e) {
 			e.printStackTrace();

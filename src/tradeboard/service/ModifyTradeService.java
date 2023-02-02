@@ -7,15 +7,17 @@ import Exception.HelperNotFoundException;
 import Exception.PermissionDeniedException;
 import tradeboard.DAO.TradeDAO;
 import tradeboard.model.Trade;
-import tradeboard.model.ModifyRequest;
+import article.DAO.ArticleDAO;
+import article.model.ModifyRequest;
 import jdbc.JdbcUtil;
 import jdbc.conn.ConnectionProvider;
 
 public class ModifyTradeService {
 
 	TradeDAO tradeDAO = new TradeDAO();
+	ArticleDAO articleDAO = new ArticleDAO();
 	
-	public void modify(ModifyRequest modReq) {
+	public void modify(ModifyRequest modReq,String modCategory) {
 		Connection conn = null;
 		
 		try {
@@ -30,7 +32,8 @@ public class ModifyTradeService {
 				throw new PermissionDeniedException();
 			}
 			
-			tradeDAO.update(conn, modReq.getModTitle(), modReq.getModContent(),  modReq.getArticleNo());
+			articleDAO.update(conn, modReq);
+			tradeDAO.update(conn, modReq, modCategory);
 			
 			conn.commit();
 		}catch(SQLException e) {

@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import help.dao.HelpDAO;
-import help.model.Help;
+import help.model.HelpList;
 import help.model.HelpPage;
 import help.model.SearchHelp;
 import jdbc.JdbcUtil;
@@ -26,7 +26,7 @@ public class SearchHelpService {
 			
 			SearchHelp search = new SearchHelp((pageNum-1)*size,size,category,input);
 			
-			List<Help> helpList = helpDAO.search(conn, search);
+			List<HelpList> helpList = helpDAO.search(conn, search);
 			
 			
 			return new HelpPage(total,pageNum,size,helpList);

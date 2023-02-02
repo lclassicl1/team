@@ -13,45 +13,45 @@
 <table border="1">
 	<tr>
 		<td>번호</td>
-		<td>${help.articleNo }</td>
+		<td>${read.article.articleNo }</td>
 	</tr>
 	<tr>
 		<td>조회수</td>
-		<td>${help.helpReadCnt }</td>
+		<td>${read.article.articleReadCnt }</td>
 	</tr>
 	<tr>
 		<td>작성자</td>
-		<td>${help.userName }</td>
+		<td>${read.article.userName }</td>
 	</tr>
 	<tr>
 		<td>제목</td>
-		<td><c:out value="${help.helpTitle }"></c:out></td>
+		<td><c:out value="${read.article.articleTitle }"></c:out></td>
 	</tr>
 	<tr>
 		<td>내용</td>
 		<td>
-		${help.helpContent }
+		${read.article.articleContent }
 		</td>
 	</tr>
 	<tr>
 		<td>카테고리</td>
 		<td>
-		${help.helpCategory }
+		${read.help.helpCategory }
 		</td>
 	</tr>
 	<tr>
 		<td>작성시간</td>
 		<td>
-		${help.helpCredate }
+		${read.article.articleCredate }
 		</td>
 	</tr>
 	<tr> 
 		<td colspan="2">
 		<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo }" />
 			<a href="<%=request.getContextPath()%>/help/list.do?pageNo=${pageNo}">목록</a>
-		<c:if test="${authUser.userNo == help.userNo }">
-			<a href="<%=request.getContextPath()%>/help/modify.do?no=${help.articleNo }">게시글 수정</a>
-			<a href="<%=request.getContextPath()%>/help/delete.do?no=${help.articleNo }">게시글 삭제</a>
+		<c:if test="${authUser.userNo == read.article.userNo }">
+			<a href="<%=request.getContextPath()%>/help/modify.do?no=${read.article.articleNo }">게시글 수정</a>
+			<a href="<%=request.getContextPath()%>/help/delete.do?no=${read.article.articleNo }">게시글 삭제</a>
 		</c:if>
 		</td>
 	</tr> 
@@ -61,31 +61,31 @@
 <table border="1">
 	<tr>
 		<td>이름</td>
-		<td>${user.userName }</td>
+		<td>${read.user.userName }</td>
 	</tr>
 	<tr>
 		<td>전화번호</td>
-		<td>${user.userHp }</td>
+		<td>${read.user.userHp }</td>
 	</tr>
 	<tr>
 		<td>성별</td>
-		<td>${user.userGender }</td>
+		<td>${read.user.userGender }</td>
 	</tr>
 	<tr>
 		<td>주소</td>
-		<td>${user.userAddress }</td>
+		<td>${read.user.userAddress }</td>
 	</tr>
 	<tr>
 		<td>이메일</td>
-		<td>${user.userEmail }</td>
+		<td>${read.user.userEmail }</td>
 	</tr>
 	<tr>
 		<td>자격증</td>
-		<td>${user.userSkill }</td>
+		<td>${read.user.userSkill }</td>
 	</tr>
 	<tr>
 		<td>최종학력</td>
-		<td>${user.userSchool }</td>
+		<td>${read.user.userSchool }</td>
 	</tr>
 </table>
  <!-- 댓글 -->
@@ -114,9 +114,9 @@
 		<td>
 			${item.isshow }
 		</td>
-		<c:if test="${authUser.userNo == help.userNo}">
+		<c:if test="${authUser.userNo == read.article.userNo}">
 		<td>
-			<a href="<%=request.getContextPath()%>/help/comment/conn.do?commNo=${item.commNo}&no=${help.articleNo}">채택</a>
+			<a href="<%=request.getContextPath()%>/help/comment/conn.do?commNo=${item.commNo}&no=${read.article.articleNo}">채택</a>
 		</td>
 		</c:if>
 		
@@ -130,7 +130,7 @@
 	</c:forEach>
 	<tr>
 	<td colspan="4">
-	<form action="<%=request.getContextPath()%>/help/comment/write.do?no=${help.articleNo }" method="post">
+	<form action="<%=request.getContextPath()%>/help/comment/write.do?no=${read.article.articleNo }" method="post">
 		작성자 :<c:if test="${!empty authUser }">${authUser.userId }</c:if><br>
 		<p>
 			<textarea rows="5" cols="30" name="content"></textarea>

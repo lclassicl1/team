@@ -56,13 +56,13 @@
 		 	 <tr>
 		 	  <td>
 		 	  <a href="<%=request.getContextPath()%>/helper/read.do?no=${item.articleNo}">
-		 	  	${item.helperTitle}
+		 	  	${item.articleTitle}
 		 	  </a>
 		 	  </td>
 		 	  <td>${item.userName}</td>
-		 	  <td>${item.helperCredate}</td>
+		 	  <td>${item.articleCredate}</td>
 		 	  <td>${item.helperCategory }</td>
-		 	  <td>${item.helperReadCnt}</td>
+		 	  <td>${item.articleReadCnt}</td>
 		 	 </tr>
  	 </c:forEach> 
    <%-- 반복문이용하여 출력끝 --%>

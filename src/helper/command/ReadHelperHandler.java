@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import Exception.HelperContentNotFoundException;
 import Exception.HelperNotFoundException;
-import auth.model.User;
-import helper.model.Helper;
 import helper.model.UserInfoHelperInfo;
 import helper.service.ReadHelperService;
 import helperComment.model.Comment;
@@ -29,11 +27,7 @@ public class ReadHelperHandler implements CommandHandler {
 		try {
 			UserInfoHelperInfo userHelper = readHelperService.getHelper(no, true);
 			
-			User user = userHelper.getUser();
-			Helper helper = userHelper.getHelper();
-			
-			req.setAttribute("user", user);//글쓴이의 유저정보 
-			req.setAttribute("helper", helper);//게시판 정보 
+			req.setAttribute("read", userHelper);
 			
 			List<Comment> commentList =listCommentService.getCommentList(no);
 			req.setAttribute("commentList", commentList);

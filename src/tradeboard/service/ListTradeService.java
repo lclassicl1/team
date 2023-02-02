@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import tradeboard.DAO.TradeDAO;
-import tradeboard.model.Trade;
+import tradeboard.model.TradeList;
 import tradeboard.model.TradePage;
 import jdbc.JdbcUtil;
 import jdbc.conn.ConnectionProvider;
@@ -20,7 +20,7 @@ public class ListTradeService {
 		try {
 			conn = ConnectionProvider.getConnection();
 			int total = tradeDAO.selectCount(conn);
-			List<Trade> tradeList = tradeDAO.select(conn, (pageNum-1)*size, size);
+			List<TradeList> tradeList = tradeDAO.select(conn, (pageNum-1)*size, size);
 			
 			return new TradePage(total,pageNum,size,tradeList);
 		}catch(SQLException e) {
