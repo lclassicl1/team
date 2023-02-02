@@ -23,7 +23,7 @@
 		</p>
 		<p>
 			카테고리 :	
-			<select name="category">
+			<select name="helperCategory">
 				<option value="java">java</option>
 				<option value="javascript">javascript</option>
 				<option value="c++">c++</option>

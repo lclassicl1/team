@@ -21,6 +21,11 @@
 <a href="<%=request.getContextPath()%>/trade/write.do">게시글 작성하기</a>
  <hr/>
  <form action="<%=request.getContextPath()%>/trade/search.do" method="post">
+ <select name="category">
+ 				<option value="">전체</option>
+				<option value="buy">구매</option>
+				<option value="sell">판매</option>
+			</select>
 검색 :  <input type="text" name="input">
  <input type="submit">
  </form>
@@ -31,6 +36,7 @@
   	 <th>작성자</th>
   	 <th>작성일</th>
   	 <th>조회수</th>
+  	 <th>카테고리</th>
   	</tr>
   </thead>
   <tbody>
@@ -46,12 +52,13 @@
 		 	 <tr>
 		 	  <td>
 		 	  <a href="<%=request.getContextPath()%>/trade/read.do?no=${item.articleNo}">
-		 	  	${item.tradeTitle}
+		 	  	${item.articleTitle}
 		 	  </a>
 		 	  </td>
 		 	  <td>${item.userName}</td>
-		 	  <td>${item.tradeCredate}</td>
-		 	  <td>${item.tradeReadCnt}</td>
+		 	  <td>${item.articleCredate}</td>
+		 	  <td>${item.articleReadCnt}</td>
+		 	  <td>${item.tradeCategory}</td>
 		 	 </tr>
  	 </c:forEach> 
    <%-- 반복문이용하여 출력끝 --%>

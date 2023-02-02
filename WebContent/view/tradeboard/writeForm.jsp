@@ -21,6 +21,13 @@
 			<c:if test="${errors.contentEmpty}">내용을 입력하세요 </c:if>
 			
 		</p>
+		<p>
+			카테고리 :	
+			<select name="tradeCategory">
+				<option value="buy">구매</option>
+				<option value="sell">판매</option>
+			</select>
+		<p>
 		<input type="submit" value="등록">
 	</form>
 </body>

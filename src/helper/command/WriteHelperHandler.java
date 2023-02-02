@@ -6,8 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import article.model.ArticleRequest;
 import auth.model.User;
-import helper.model.WriterRequest;
 import helper.service.WriteHelperService;
 import mvc.command.CommandHandler;
 
@@ -34,16 +34,16 @@ public class WriteHelperHandler implements CommandHandler {
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		Map<String,Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
+		String helperCategory = req.getParameter("helperCategory");
 		
 		User user = (User)req.getSession(false).getAttribute("authUser");
-		int articleNo = writeHelperService.articleReq(user.getUserNo());
-		WriterRequest writerReq = createWriterRequest(req,articleNo,user);
+		ArticleRequest articleReq = createWriterRequest(req,user);
 		
-		if(writerReq.getHelperTitle() == null||writerReq.getHelperTitle().isEmpty()) {
+		if(articleReq.getArticleTitle() == null||articleReq.getArticleTitle().isEmpty()) {
 			errors.put("titleEmpty",Boolean.TRUE);
 		}
 		
-		if(writerReq.getHelperContent() == null||writerReq.getHelperContent().isEmpty()) {
+		if(articleReq.getArticleContent() == null||articleReq.getArticleContent().isEmpty()) {
 			errors.put("contentEmpty",Boolean.TRUE);
 		}
 		
@@ -51,14 +51,13 @@ public class WriteHelperHandler implements CommandHandler {
 			return FORM_VIEW;
 		}
 		
-		writeHelperService.write(writerReq);
+		writeHelperService.writer(articleReq,helperCategory);
 		return "/view/helperboard/writeSuccess.jsp";
 	}
-	private WriterRequest createWriterRequest(HttpServletRequest req,int articleNo,User user) {
+	private ArticleRequest createWriterRequest(HttpServletRequest req,User user) {
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
-		String category = req.getParameter("category");
-		String articleCategory = "Helper";
-		return new WriterRequest(articleNo,articleCategory,user.getUserNo(),title,content,user.getUserName(),category);
+		String articleCategory = "helper";
+		return new ArticleRequest(articleCategory,title,user.getUserName(),content,user.getUserNo());
 	}
 }

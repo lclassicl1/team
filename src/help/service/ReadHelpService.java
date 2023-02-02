@@ -3,8 +3,11 @@ package help.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import Exception.ArticleNullException;
 import Exception.HelperNotFoundException;
 import Exception.UserNotFoundException;
+import article.DAO.ArticleDAO;
+import article.model.Article;
 import auth.DAO.UserDAO;
 import auth.model.User;
 import help.dao.HelpDAO;
@@ -17,6 +20,7 @@ public class ReadHelpService {
 
 	HelpDAO helpDAO = new HelpDAO();
 	UserDAO userDAO = new UserDAO();
+	ArticleDAO articleDAO = new ArticleDAO(); 
 	
 	public UserInfoHelpInfo getHelp(int articleNo,boolean incrementReadCnt) {
 		Connection conn = null;
@@ -25,11 +29,16 @@ public class ReadHelpService {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
 			Help help = helpDAO.selectByNo(conn, articleNo);
+			Article article = articleDAO.selectByNo(conn, articleNo);
 			
 			if(help == null) {
 				throw new HelperNotFoundException();
 			}
+			if(article == null) {
+				throw new ArticleNullException();
+			}
 			int writerUserNo = help.getUserNo();
+			
 			User user = userDAO.selectByNo(conn, writerUserNo);
 			
 			if(user == null) {
@@ -37,9 +46,9 @@ public class ReadHelpService {
 			}
 			
 			if(incrementReadCnt) {
-				helpDAO.incrementReadCnt(conn, articleNo);
+				articleDAO.incrementReadCnt(conn, articleNo);
 			}
-			UserInfoHelpInfo userHelp = new UserInfoHelpInfo(user,help);
+			UserInfoHelpInfo userHelp = new UserInfoHelpInfo(user,article,help);
 			
 			conn.commit();
 			return userHelp;
