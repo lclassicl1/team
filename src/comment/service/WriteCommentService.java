@@ -1,7 +1,6 @@
 package comment.service;
 
 import comment.dao.CommentDAO;
-import freeboard.dao.FreeBoardDAO;
 
 public class WriteCommentService {
 

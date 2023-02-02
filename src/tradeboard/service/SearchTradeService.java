@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import tradeboard.DAO.TradeDAO;
-import tradeboard.model.Trade;
+import tradeboard.model.TradeList;
 import tradeboard.model.TradePage;
 import tradeboard.model.SearchTrade;
 import jdbc.JdbcUtil;
@@ -16,7 +16,7 @@ public class SearchTradeService {
 	TradeDAO tradeDAO = new TradeDAO();
 	private int size = 10;
 	
-	public TradePage search(int pageNum, String input){
+	public TradePage search(int pageNum, String category,String input){
 		Connection conn = null;
 		
 		try {
@@ -24,9 +24,9 @@ public class SearchTradeService {
 			
 			int total = tradeDAO.selectCount(conn);
 			
-			SearchTrade search = new SearchTrade((pageNum-1)*size,size,input);
+			SearchTrade search = new SearchTrade((pageNum-1)*size,size,category,input);
 			
-			List<Trade> tradeList = tradeDAO.search(conn, search);
+			List<TradeList> tradeList = tradeDAO.search(conn, search);
 			
 			
 			return new TradePage(total,pageNum,size,tradeList);

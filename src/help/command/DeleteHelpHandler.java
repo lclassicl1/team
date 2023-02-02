@@ -36,28 +36,7 @@ public class DeleteHelpHandler implements CommandHandler {
 			return null;
 		}
 		
-		
-//		if(req.getMethod().equalsIgnoreCase("GET")) {
-//			return processForm(req,res);
-//		}else if (req.getMethod().equalsIgnoreCase("POST")) {
-//			return processSubmit(req,res);
-//		}else {
-//			res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
-//			return null;
-//		}
+
+
 	}
-	
-//	private String processForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
-//		return BACK_VIEW;
-//	}
-//
-//	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
-//		String noVal = req.getParameter("no");
-//		int no = Integer.parseInt(noVal);
-//		
-//		deletehelpService.delete(no);
-//		return "/view/help/deleteSuccess.jsp";
-//	}
-
-
 }

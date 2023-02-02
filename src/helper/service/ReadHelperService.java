@@ -3,7 +3,11 @@ package helper.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import Exception.ArticleNullException;
 import Exception.HelperNotFoundException;
+import Exception.UserNotFoundException;
+import article.DAO.ArticleDAO;
+import article.model.Article;
 import auth.DAO.UserDAO;
 import auth.model.User;
 import helper.dao.HelperDAO;
@@ -16,6 +20,7 @@ public class ReadHelperService {
 
 	HelperDAO helperDAO = new HelperDAO();
 	UserDAO userDAO = new UserDAO();
+	ArticleDAO articleDAO = new ArticleDAO();
 	
 	public UserInfoHelperInfo getHelper(int articleNo,boolean incrementReadCnt) {
 		Connection conn = null;
@@ -25,23 +30,29 @@ public class ReadHelperService {
 			conn.setAutoCommit(false);
 			
 			Helper helper = helperDAO.selectByNo(conn, articleNo);
+			Article article = articleDAO.selectByNo(conn, articleNo);
 			
 			if(helper == null) {
 				throw new HelperNotFoundException();
+			}
+			if(article == null) {
+				throw new ArticleNullException();
 			}
 			
 			int writerNo = helper.getUserNo();
 			User user = userDAO.selectByNo(conn, writerNo);
 			
-			
-			if(incrementReadCnt) {
-				helperDAO.incrementReadCnt(conn, articleNo);
+			if(user == null) {
+				throw new UserNotFoundException();
 			}
 			
-			UserInfoHelperInfo userHelper = new UserInfoHelperInfo(user,helper);
+			if(incrementReadCnt) {
+				articleDAO.incrementReadCnt(conn, articleNo);
+			}
+			
 			
 			conn.commit();
-			return userHelper;
+			return new UserInfoHelperInfo(user,article,helper);
 		}catch(SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException();

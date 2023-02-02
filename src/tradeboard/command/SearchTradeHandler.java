@@ -21,8 +21,9 @@ public class SearchTradeHandler implements CommandHandler {
 		if(pageNoVal != null) {
 			pageNo = Integer.parseInt(pageNoVal);
 		}
+		String category = req.getParameter("category");
 		
-		TradePage tradePage =searchTradeService.search(pageNo, input);
+		TradePage tradePage =searchTradeService.search(pageNo,category, input);
 		req.setAttribute("tradePage", tradePage);
 		
 		return FORM_VIEW;

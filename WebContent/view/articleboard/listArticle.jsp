@@ -26,9 +26,11 @@
  <table border="1">
   <thead>
   	<tr>
-  	 <th>글 번호</th>
-  	 <th>글 카테고리</th>
+  	 <th>제목</th>
+  	 <th>카테고리</th>
   	 <th>작성자</th>
+  	 <th>조회수</th>
+  	 <th>작성 시간</th>
   	</tr>
   </thead>
   <tbody>
@@ -42,9 +44,14 @@
    <%-- JSTL forEach반복문이용하여 출력시작 --%>
    <c:forEach var="item" items="${articlePage.articleList }">
 		 	 <tr>
-		 	  <td>${item.articleNo}</td>
+		 	  <td>
+		 	  <a href="<%=request.getContextPath()%>/article/read.do?no=${item.articleNo}&category=${item.articleCategory}">
+		 	  	${item.articleTitle}
+		 	  </a></td>
 		 	  <td>${item.articleCategory}</td>
-		 	  <td>${item.userNo }</td>
+		 	  <td>${item.userName }</td>
+		 	  <td>${item.articleReadCnt }</td>
+		 	  <td>${item.articleCredate }</td>
 		 	 </tr>
  	 </c:forEach> 
    <%-- 반복문이용하여 출력끝 --%>

@@ -1,4 +1,4 @@
-package tradeboard.model;
+package article.model;
 
 import java.util.Map;
 

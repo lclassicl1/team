@@ -6,9 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import article.model.Article;
+import article.model.ArticleRequest;
 import auth.model.User;
-import help.model.WriterRequest;
 import help.service.WriteHelpService;
 import mvc.command.CommandHandler;
 
@@ -35,31 +34,31 @@ public class WriteHelpHandler implements CommandHandler {
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		Map<String,Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
-		
+		String helpCategory=req.getParameter("helpCategory");
 		
 		User user = (User)req.getSession(false).getAttribute("authUser");
-		int articleNo = writeHelpService.articleReq(user.getUserNo());
-		WriterRequest writerReq = createWriterRequest(req,articleNo,user);
 		
-		if(writerReq.getHelpTitle() == null||writerReq.getHelpTitle().isEmpty()) {
+		ArticleRequest articleReq = createWriterRequest(req,user);
+		
+		
+		if(articleReq.getArticleTitle() == null||articleReq.getArticleTitle().isEmpty()) {
 			errors.put("titleEmpty",Boolean.TRUE);
 		}
 		
-		if(writerReq.getHelpContent() == null||writerReq.getHelpContent().isEmpty()) {
+		if(articleReq.getArticleContent() == null||articleReq.getArticleContent().isEmpty()) {
 			errors.put("contentEmpty",Boolean.TRUE);
 		}
 		
 		if(!errors.isEmpty()) {
 			return FORM_VIEW;
 		}
-		writeHelpService.write(writerReq);
+		writeHelpService.writer(articleReq,helpCategory);
 		return "/view/helpboard/writeSuccess.jsp";
 	}
-	private WriterRequest createWriterRequest(HttpServletRequest req,int articleNo,User user) {
+	private ArticleRequest createWriterRequest(HttpServletRequest req,User user) {
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
-		String category = req.getParameter("category");
-		String articleCategory = "Help";
-		return new WriterRequest(articleNo,articleCategory,user.getUserNo(),title,content,user.getUserName(),category);
+		String articleCategory = "help";
+		return new ArticleRequest(articleCategory,title,user.getUserName(),content,user.getUserNo());
 	}
 }

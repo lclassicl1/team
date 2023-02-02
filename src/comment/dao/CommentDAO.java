@@ -7,9 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import comment.model.Comment;
 import comment.model.CommentList;
-import freeboard.model.FreeBoardList;
 import jdbc.JdbcUtil;
 import jdbc.conn.ConnectionProvider;
 

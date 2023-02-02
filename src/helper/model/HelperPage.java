@@ -6,11 +6,11 @@ public class HelperPage {
 
 	private int total; 
 	private int currentPage;
-	private List<Helper> helperList;
+	private List<HelperList> helperList;
 	private int totalPage;
 	private int startPage;
 	private int endPage;
-	public HelperPage(int total, int currentPage, int size,List<Helper> helperList) {
+	public HelperPage(int total, int currentPage, int size,List<HelperList> helperList) {
 		this.total = total;
 		this.currentPage = currentPage;
 		this.helperList = helperList;
@@ -48,7 +48,7 @@ public class HelperPage {
 	public int getCurrentPage() {
 		return currentPage;
 	}
-	public List<Helper> getHelperList() {
+	public List<HelperList> getHelperList() {
 		return helperList;
 	}
 	public int getTotalPage() {
