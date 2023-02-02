@@ -5,17 +5,19 @@ import java.sql.SQLException;
 
 import Exception.HelperNotFoundException;
 import Exception.PermissionDeniedException;
+import article.DAO.ArticleDAO;
 import help.dao.HelpDAO;
 import help.model.Help;
-import help.model.ModifyRequest;
+import article.model.ModifyRequest;
 import jdbc.JdbcUtil;
 import jdbc.conn.ConnectionProvider;
 
 public class ModifyHelpService {
 
 	HelpDAO helpDAO = new HelpDAO();
+	ArticleDAO articleDAO = new ArticleDAO();
 	
-	public void modify(ModifyRequest modReq) {
+	public void modify(ModifyRequest modReq,String modCategory) {
 		Connection conn = null;
 		
 		try {
@@ -30,7 +32,8 @@ public class ModifyHelpService {
 				throw new PermissionDeniedException();
 			}
 			
-			helpDAO.update(conn, modReq.getModTitle(), modReq.getModContent(), modReq.getModCategory(), modReq.getArticleNo());
+			articleDAO.update(conn,modReq);
+			helpDAO.update(conn, modReq,modCategory);
 			
 			conn.commit();
 		}catch(SQLException e) {

@@ -1,11 +1,13 @@
-package auth.model;
+package notice.model;
 
-public class Article {
+
+public class Notice {
 
 	private int articleNo;
 	private String articleCategory;
 	private int userNo;
-	public Article(int articleNo, String articleCategory, int userNo) {
+	
+	public Notice(int articleNo, String articleCategory, int userNo) {
 		this.articleNo = articleNo;
 		this.articleCategory = articleCategory;
 		this.userNo = userNo;
@@ -19,6 +21,5 @@ public class Article {
 	public int getUserNo() {
 		return userNo;
 	}
-	
 	
 }

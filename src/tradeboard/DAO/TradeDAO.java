@@ -4,60 +4,31 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import Exception.HelperNotFoundException;
-import help.model.Help;
+import article.model.ModifyRequest;
 import tradeboard.model.Trade;
+import tradeboard.model.TradeList;
 import tradeboard.model.WriterRequest;
 import tradeboard.model.SearchTrade;
 import jdbc.JdbcUtil;
 
 public class TradeDAO {
 	
-	public int articleReq(Connection conn,int userNo )throws SQLException {
-		PreparedStatement pstmt = null;
-		Statement stmt = null;
-		ResultSet rs = null;
-		try {
-			String sql = "insert into article(article_category,user_no) " + 
-					"value('trade',?)";
-			String sql2 = "select last_insert_id() from article";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, userNo);
-			int result = pstmt.executeUpdate();
-			int articleNo=0;
-			if(result>0) {
-				stmt = conn.createStatement();
-				rs = stmt.executeQuery(sql2);
-				if(rs.next()) {
-					articleNo = rs.getInt(1);
-				}
-			}
-			return articleNo;
-		}finally {
-			JdbcUtil.close(pstmt);
-		}
-	}
+	
 	//insert 기능 현재 로그인 정보를 가져와 입력해야함 .
 	public void insert(Connection conn,WriterRequest writerReq)throws SQLException {
 		PreparedStatement pstmt = null;
-		Statement stmt = null;
-		ResultSet rs = null;
-		String sql = "insert into tradeBOARD(article_no,article_category,user_no,trade_title,trade_content,user_name,trade_update) "+ 
-				"value(?,?,?,?,?,?,now())";
+		String sql = "insert into tradeBOARD(article_no,article_category,user_no,trade_category) "+ 
+				"value(?,?,?,?)";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, writerReq.getArticleNo());//user_no
+			pstmt.setInt(1, writerReq.getArticleNo()); 
 			pstmt.setString(2, writerReq.getArticleCategory());
 			pstmt.setInt(3, writerReq.getUserNo());
-			pstmt.setString(4, writerReq.getTradeTitle());
-			pstmt.setString(5, writerReq.getTradeContent());
-			pstmt.setString(6, writerReq.getUserName());
+			pstmt.setString(4, writerReq.getTradeCategory());
 			
 			pstmt.executeUpdate();
 			
@@ -65,23 +36,22 @@ public class TradeDAO {
 			JdbcUtil.close(pstmt);
 		}
 	}
-	public List<Trade> select(Connection conn, int startRow,int size)throws SQLException{
+	public List<TradeList> select(Connection conn, int startRow,int size)throws SQLException{
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from tradeboard " +
-						"where isshow='Y' " + 
-						"order by article_no desc limit ?,? " ;
+		String sql = "SELECT * FROM article a inner JOIN tradeboard t ON a.article_no=t.article_no " +
+				"where a.isshow='Y' order by a.article_no desc limit ?,? " ;
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, size);
 			rs = pstmt.executeQuery();
-			List<Trade> tradeList = new ArrayList<>();
+			List<TradeList> tradeList = new ArrayList<>();
 			while(rs.next()) {
-				Trade trade = covertrade(rs);
-				if(trade != null) {
-					tradeList.add(trade);
+				TradeList tradeList1 = coverTradeList(rs);
+				if(tradeList1 != null) {
+					tradeList.add(tradeList1);
 				}
 			}
 			return tradeList;
@@ -92,24 +62,24 @@ public class TradeDAO {
 		
 	}
 	
-	public List<Trade> search(Connection conn,SearchTrade search)throws SQLException{
+	public List<TradeList> search(Connection conn,SearchTrade search)throws SQLException{
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from tradeboard " +
-						"where isshow='Y' and trade_title like ? " + 
-						 "order by article_no desc limit ?,? " ;
+		String sql = "SELECT * FROM article a inner JOIN tradeboard t ON a.article_no=t.article_no where a.isshow='Y' and t.trade_category like ? and a.article_title like ? " + 
+				 "order by a.article_no desc limit ?,? " ;
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+search.getInput()+"%");
-			pstmt.setInt(2, search.getStartRow());
-			pstmt.setInt(3, search.getSize());
+			pstmt.setString(1, "%"+search.getCategory()+"%");
+			pstmt.setString(2, "%"+search.getInput()+"%");
+			pstmt.setInt(3, search.getStartRow());
+			pstmt.setInt(4, search.getSize());
 			rs = pstmt.executeQuery();
-			List<Trade> tradeList = new ArrayList<>();
+			List<TradeList> tradeList = new ArrayList<>();
 			while(rs.next()) {
-				Trade trade = covertrade(rs);
-				if(trade != null) {
-					tradeList.add(trade);
+				TradeList tradeList1 = coverTradeList(rs);
+				if(tradeList1 != null) {
+					tradeList.add(tradeList1);
 				}
 			}
 			return tradeList;
@@ -132,7 +102,7 @@ public class TradeDAO {
 			Trade trade = null;
 			
 			if(rs.next()) {
-				trade = covertrade(rs);
+				trade = coverTrade(rs);
 			}
 			if(trade == null) {
 				throw new HelperNotFoundException();
@@ -144,26 +114,11 @@ public class TradeDAO {
 		}
 	}
 	
-	public void incrementReadCnt(Connection conn,int articleNo) {
-		PreparedStatement pstmt = null;
-		String sql ="update tradeboard set trade_readcnt = trade_readcnt+1 where article_no = ?";
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, articleNo);
-			pstmt.executeUpdate();
-		}catch(SQLException e){
-			e.printStackTrace();
-			JdbcUtil.rollback(conn);
-		}finally {
-			JdbcUtil.close(pstmt);
-		}
-	}
 	
 	public int selectCount(Connection conn)throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select count(*) from tradeboard where isshow='Y' ";
+		String sql = "select count(*) from article where isshow='Y' and article_category='trade' ";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -178,15 +133,14 @@ public class TradeDAO {
 			JdbcUtil.close(pstmt);
 		}
 	}
-	public void update(Connection conn,String title,String content,int articleNo)throws SQLException {
+	public void update(Connection conn,ModifyRequest modReq,String modCategory)throws SQLException {
 		PreparedStatement pstmt = null;
-		String sql = "update tradeboard set trade_title=?,trade_content=? where article_no = ?";
+		String sql = "update tradeboard set trade_category=? where article_no = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,title);
-			pstmt.setString(2, content);
-			pstmt.setInt(3, articleNo);
+			pstmt.setString(1,modCategory);
+			pstmt.setInt(2, modReq.getArticleNo());
 			
 			pstmt.executeUpdate();
 		}finally {
@@ -194,21 +148,12 @@ public class TradeDAO {
 		}
 	}
 
-	public void isshow(Connection conn,int articleNo)throws SQLException {
-		PreparedStatement pstmt = null;
-		String sql = "update tradeboard set isshow='N' where article_no=? ";
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, articleNo);
-			pstmt.executeUpdate();
-					
-		}finally {
-			JdbcUtil.close(pstmt);
-		}
+	private Trade coverTrade(ResultSet rs) throws SQLException {
+		return new Trade(rs.getInt("article_no"),rs.getString("article_category"),rs.getInt("user_no"),
+						rs.getString("trade_category"));
 	}
-	private Trade covertrade(ResultSet rs) throws SQLException {
-		
-		return new Trade(rs.getInt("article_no"),rs.getString("article_category"),rs.getInt("user_no"),rs.getString("trade_title"),rs.getString("trade_content"),rs.getString("user_name"),
-				rs.getTimestamp("trade_credate"),rs.getTimestamp("trade_update"),rs.getInt("trade_readcnt"),rs.getString("isshow"));
+	private TradeList coverTradeList(ResultSet rs)throws SQLException {
+		return new TradeList(rs.getInt("article_no"),rs.getString("article_category"),rs.getString("article_title"),rs.getString("user_name"),rs.getString("article_content"),rs.getTimestamp("article_credate"),
+					rs.getTimestamp("article_update"),rs.getInt("article_readcnt"),rs.getString("isshow"),rs.getInt("user_no"),rs.getString("trade_category"));
 	}
 }

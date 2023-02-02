@@ -6,8 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import article.model.ArticleRequest;
 import auth.model.User;
-import tradeboard.model.WriterRequest;
 import tradeboard.service.WriteTradeService;
 import mvc.command.CommandHandler;
 
@@ -34,16 +34,17 @@ public class WriteTradeHandler implements CommandHandler {
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		Map<String,Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
+		String tradeCategory = req.getParameter("tradeCategory");
 		
 		User user = (User)req.getSession(false).getAttribute("authUser");
-		int articleNo = writeTradeService.articleReq(user.getUserNo());
-		WriterRequest writerReq = createWriterRequest(req,articleNo,user);
 		
-		if(writerReq.getTradeTitle() == null||writerReq.getTradeTitle().isEmpty()) {
+		ArticleRequest articleReq = createWriterRequest(req,user);
+		
+		if(articleReq.getArticleTitle() == null||articleReq.getArticleTitle().isEmpty()) {
 			errors.put("titleEmpty",Boolean.TRUE);
 		}
 		
-		if(writerReq.getTradeContent() == null||writerReq.getTradeContent().isEmpty()) {
+		if(articleReq.getArticleContent() == null||articleReq.getArticleContent().isEmpty()) {
 			errors.put("contentEmpty",Boolean.TRUE);
 		}
 		
@@ -51,13 +52,13 @@ public class WriteTradeHandler implements CommandHandler {
 			return FORM_VIEW;
 		}
 		
-		writeTradeService.write(writerReq);
+		writeTradeService.writer(articleReq,tradeCategory);
 		return "/view/tradeboard/writeSuccess.jsp";
 	}
-	private WriterRequest createWriterRequest(HttpServletRequest req,int articleNo,User user) {
+	private ArticleRequest createWriterRequest(HttpServletRequest req,User user) {
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
-		String articleCategory = "Trade";
-		return new WriterRequest(articleNo,articleCategory,user.getUserNo(),title,content,user.getUserName());
+		String articleCategory = "trade";
+		return new ArticleRequest(articleCategory,title,user.getUserName(),content,user.getUserNo());
 	}
 }

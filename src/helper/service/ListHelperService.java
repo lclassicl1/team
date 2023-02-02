@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import helper.dao.HelperDAO;
-import helper.model.Helper;
+import helper.model.HelperList;
 import helper.model.HelperPage;
 import jdbc.JdbcUtil;
 import jdbc.conn.ConnectionProvider;
@@ -20,7 +20,7 @@ public class ListHelperService {
 		try {
 			conn = ConnectionProvider.getConnection();
 			int total = helperDAO.selectCount(conn);
-			List<Helper> helperList = helperDAO.select(conn, (pageNum-1)*size, size);
+			List<HelperList> helperList = helperDAO.select(conn, (pageNum-1)*size, size);
 			return new HelperPage(total,pageNum,size,helperList);
 		}catch(SQLException e) {
 			e.printStackTrace();

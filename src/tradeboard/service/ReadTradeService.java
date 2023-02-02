@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import Exception.HelperNotFoundException;
+import article.DAO.ArticleDAO;
+import article.model.Article;
 import auth.DAO.UserDAO;
 import auth.model.User;
 import tradeboard.DAO.TradeDAO;
@@ -16,6 +18,7 @@ public class ReadTradeService {
 
 	TradeDAO tradeDAO = new TradeDAO();
 	UserDAO userDAO = new UserDAO();
+	ArticleDAO articleDAO = new ArticleDAO();
 	
 	public UserInfoTradeInfo getTrade(int articleNo,boolean incrementReadCnt) {
 		Connection conn = null;
@@ -25,6 +28,7 @@ public class ReadTradeService {
 			conn.setAutoCommit(false);
 			
 			Trade trade = tradeDAO.selectByNo(conn, articleNo);
+			Article article = articleDAO.selectByNo(conn, articleNo);
 			
 			if(trade == null) {
 				throw new HelperNotFoundException();
@@ -35,10 +39,10 @@ public class ReadTradeService {
 			
 			
 			if(incrementReadCnt) {
-				tradeDAO.incrementReadCnt(conn, articleNo);
+				articleDAO.incrementReadCnt(conn, articleNo);
 			}
 			
-			UserInfoTradeInfo usertrade = new UserInfoTradeInfo(user,trade);
+			UserInfoTradeInfo usertrade = new UserInfoTradeInfo(user,article,trade);
 			
 			conn.commit();
 			return usertrade;

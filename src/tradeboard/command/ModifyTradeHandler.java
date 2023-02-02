@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import Exception.HelperNotFoundException;
 import Exception.PermissionDeniedException;
 import auth.model.User;
-import tradeboard.model.Trade;
-import tradeboard.model.ModifyRequest;
+import article.model.ModifyRequest;
 import tradeboard.model.UserInfoTradeInfo;
 import tradeboard.service.ModifyTradeService;
 import tradeboard.service.ReadTradeService;
@@ -43,13 +42,12 @@ public class ModifyTradeHandler implements CommandHandler {
 			
 			User user = (User)req.getSession(false).getAttribute("authUser");
 			UserInfoTradeInfo usertrade = readTradeService.getTrade(no, false);
-			Trade trade = usertrade.getTrade();
 			
-			if(!canModify(trade.getUserNo(),user)) {
+			if(!canModify(usertrade.getArticle().getUserNo(),user)) {
 				res.sendError(HttpServletResponse.SC_FORBIDDEN);
 				return null;
 			}
-			req.setAttribute("trade", trade);
+			req.setAttribute("trade", usertrade);
 			return FORM_VIEW;
 		}catch(HelperNotFoundException e) {
 			e.printStackTrace();
@@ -65,6 +63,7 @@ public class ModifyTradeHandler implements CommandHandler {
 		
 		String title = req.getParameter("title").trim();
 		String content = req.getParameter("content").trim();
+		String category = req.getParameter("category");
 		
 		ModifyRequest modReq = new ModifyRequest(user.getUserNo(),no,title
 				  							,content);
@@ -85,7 +84,7 @@ public class ModifyTradeHandler implements CommandHandler {
 		}
 		
 		try {
-			modifyTradeService.modify(modReq);
+			modifyTradeService.modify(modReq,category);
 			return "/view/tradeboard/modifySuccess.jsp"; // 수정 성공 후 출력 페이지 
 		}catch(HelperNotFoundException e) {
 			res.sendError(HttpServletResponse.SC_NOT_FOUND);

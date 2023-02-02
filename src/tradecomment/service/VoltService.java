@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import tradecomment.DAO.CommentDAO;
-import tradecomment.model.Comment;
 import jdbc.JdbcUtil;
 import jdbc.conn.ConnectionProvider;
 

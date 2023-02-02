@@ -8,9 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import Exception.HelperNotFoundException;
 import Exception.PermissionDeniedException;
+import article.model.ModifyRequest;
 import auth.model.User;
-import helper.model.Helper;
-import helper.model.ModifyRequest;
 import helper.model.UserInfoHelperInfo;
 import helper.service.ModifyHelperService;
 import helper.service.ReadHelperService;
@@ -43,13 +42,12 @@ public class ModifyHelperHandler implements CommandHandler {
 			
 			User user = (User)req.getSession(false).getAttribute("authUser");
 			UserInfoHelperInfo userHelper = readHelperService.getHelper(no, false);
-			Helper helper = userHelper.getHelper();
 			
-			if(!canModify(helper.getUserNo(),user)) {
+			if(!canModify(userHelper.getHelper().getUserNo(),user)) {
 				res.sendError(HttpServletResponse.SC_FORBIDDEN);
 				return null;
 			}
-			req.setAttribute("helper", helper);
+			req.setAttribute("helper", userHelper);
 			return FORM_VIEW;
 		}catch(HelperNotFoundException e) {
 			e.printStackTrace();
@@ -69,7 +67,7 @@ public class ModifyHelperHandler implements CommandHandler {
 		String category = req.getParameter("category");
 		
 		ModifyRequest modReq = new ModifyRequest(user.getUserNo(),no,title
-				  							,content,category);
+				  							,content);
 		
 		Map<String,Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
@@ -87,7 +85,7 @@ public class ModifyHelperHandler implements CommandHandler {
 		}
 		
 		try {
-			modifyHelperService.modify(modReq);
+			modifyHelperService.modify(modReq,category);
 			return "/view/helperboard/modifySuccess.jsp"; // 수정 성공 후 출력 페이지 
 		}catch(HelperNotFoundException e) {
 			res.sendError(HttpServletResponse.SC_NOT_FOUND);

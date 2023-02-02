@@ -41,6 +41,7 @@
   	 <th>작성일</th>
   	 <th>카테고리</th>
   	 <th>조회수</th>
+  	 <th>카테고리</th>
   	</tr>
   </thead>
   <tbody>
@@ -56,13 +57,14 @@
 		 	 <tr>
 		 	  <td>
 		 	  <a href="<%=request.getContextPath()%>/help/read.do?no=${item.articleNo}">
-		 	  	${item.helpTitle}
+		 	  	${item.articleTitle}
 		 	  </a>
 		 	  </td>
 		 	  <td>${item.userName}</td>
-		 	  <td>${item.helpCredate}</td>
-		 	  <td>${item.helpCategory }</td>
-		 	  <td>${item.helpReadCnt}</td>
+		 	  <td>${item.articleCredate}</td>
+		 	  <td>${item.articleCategory }</td>
+		 	  <td>${item.articleReadCnt}</td>
+		 	  <td>${item.helpCategory}</td>
 		 	 </tr>
  	 </c:forEach> 
    <%-- 반복문이용하여 출력끝 --%>
