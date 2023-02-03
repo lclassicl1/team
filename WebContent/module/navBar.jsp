@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-  <a class="navbar-brand" href="index.jsp"><img src='<%=request.getContextPath()%>/image/logo.png' id='mainicon'></a>
+  <a class="navbar-brand" href="index.jsp"><img src='<%=request.getContextPath()%>/image/mainlogo.png' id='mainicon'></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -14,9 +14,9 @@
       <li class="nav-item">
         <a class="nav-link" href="#">자유게시판</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">고수님해주세요</a>
-      </li>  
+      <li class="nav-item dropdown">
+        <a href="#" class="nav-link">고수님해주세요</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="#">고수가해줄게요</a>
       </li>  
@@ -26,11 +26,17 @@
       <li class="nav-item">
         <a class="nav-link" href="#">리뷰/후기게시판</a>
       </li> 
+      </ul>
+      <ul class='navbar-nav'>
       <li class="nav-item">
-        <a class="nav-link" href="#"><img src='image/mypageicon.png' alt='myPage' id='myPageicon'/></a>
+        <a class="nav-link text-light" href="#">
+        	<img src='<%=request.getContextPath()%>/image/mypageicon.png' alt='myPage' id='myPageicon'/>
+        </a>
       </li>  
       <li class="nav-item">
-        <a class="nav-link" href="#"><img src='image/logouticon.png' alt='Logout' id='logouticon'/></a>
+        <a class="nav-link text-light" href="#">
+        	<img src='<%=request.getContextPath()%>/image/logouticon.png' alt='Logout' id='logouticon'/>
+        </a>
       </li>  
     </ul>
   </div>  
