@@ -32,7 +32,7 @@ public class WriteNoticeHandler implements CommandHandler {
 		
 		User user = (User)req.getSession(false).getAttribute("authUser");
 		int loginGrade = user.getUserGrade();
-		if(loginGrade!=999) {
+		if(loginGrade != 999) {
 			return "/view/Exception/noticeCant.jsp";
 		}
 		return FORM_VIEW;
