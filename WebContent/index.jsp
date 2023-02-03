@@ -14,6 +14,8 @@
   <link rel='stylesheet' type='text/css' href='<%=request.getContextPath()%>/css/default.css'/>
  	<title>INDEX</title>
 	<style>
+	
+/* 백그라운드 배경색 및 기본 body 속성들 */
 body {
   font-family: Arial, sans-serif;
   color: rgb(243 244 246);
@@ -24,6 +26,7 @@ body {
   
 }
 
+/* 각각 태그들에 대한 속성 */
 form {
   background-color: rgb(0 0 51);
   box-shadow: 0 0 10px #ddd;
@@ -57,13 +60,13 @@ button {
   border: none;
   font-size: 16px;
 }
-
+/* 버튼 디자인 */
 button {
   background-color: cornflowerblue;
   color: #fff;
   cursor: pointer;
 }
-
+/* 버튼 마우스오버에 대한 속성 */
 button:hover {
   background-color: deepskyblue;
 }
