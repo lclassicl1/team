@@ -7,9 +7,9 @@ public class DeleteCommentService {
 	CommentDAO commentDAO = new CommentDAO();
 	
 	
-	public int deleteComment(String comm_no) {
+	public int deleteComment(int commNo) {
 		
-		int result = commentDAO.deleteComment(comm_no);
+		int result = commentDAO.deleteComment(commNo);
 		
 		
 		return result;

@@ -22,8 +22,9 @@
 			    <option value='' selected>-- 선택 --</option>
 			    <option value='자유'>자유</option>
 			    <option value='질문'>질문</option>
-			    <option value='TIP'>TIP</option>
+			    <option value='팁'>팁</option>
   	</select>
+  		<input type="text" name="input"/>
   		<input type="submit" value="검색"/>
  </form>
 <hr>
@@ -43,13 +44,13 @@
 	<tbody>
 <c:forEach var="freeBoard" items="${freeBoard.list}">
 			<tr>
-					<td><c:out value="${freeBoard.free_no}"/></td>
-					<td><a href="<%=request.getContextPath()%>/freeboard/read.do?no=${freeBoard.free_no}"><c:out value="${freeBoard.free_title}"/></a></td>
-					<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${freeBoard.free_createdate}"/></td>
-					<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${freeBoard.free_updatedate}"/></td>
-					<td><c:out value="${freeBoard.free_readcnt}"/></td>
-					<td><c:out value="${freeBoard.user_id}"/></td>
-					<td><c:out value="${freeBoard.free_category}"/></td>
+					<td><c:out value="${freeBoard.articleNo}"/></td>
+					<td><a href="<%=request.getContextPath()%>/freeboard/read.do?no=${freeBoard.articleNo}"><c:out value="${freeBoard.articleTitle}"/></a></td>
+					<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${freeBoard.articleCredate}"/></td>
+					<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${freeBoard.articleUpdate}"/></td>
+					<td><c:out value="${freeBoard.articleReadcnt}"/></td>
+					<td><c:out value="${freeBoard.userName}"/></td>
+					<td><c:out value="${freeBoard.freeCategory}"/></td>
 			</tr>
 </c:forEach>
 	</tbody>

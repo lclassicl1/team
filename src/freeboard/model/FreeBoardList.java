@@ -3,90 +3,79 @@ package freeboard.model;
 import java.util.Date;
 
 public class FreeBoardList {
-	private int article_no;
-	private String article_category;
-	private String free_title;
-	private String free_content;
-	private Date free_credate;
-	private Date free_update;
-	private int free_readcnt;
-	private String user_id;
+	private int articleNo;
+	private String articleCategory;
+	private String articleTitle;
+	private String userName;
+	private String articleContent;
+	private Date articleCredate;
+	private Date articleUpdate;
+	private int articleReadcnt;
 	private String isshow;
-	private String free_category;
-	private int user_no;
+	private int userNo;
+	private String freeCategory;
 	
 	
-	public FreeBoardList(int article_no,String article_category, String free_title, String free_content, Date free_credate,
-			Date free_update, int free_readcnt, String user_id, String isshow, String free_category,
-			int user_no) {
-		this.article_no = article_no;
-		this.article_category = article_category;
-		this.free_title = free_title;
-		this.free_content = free_content;
-		this.free_credate = free_credate;
-		this.free_update = free_update;
-		this.free_readcnt = free_readcnt;
-		this.user_id = user_id;
+	
+	public FreeBoardList(int articleNo, String articleCategory, String articleTitle, String userName,
+			String articleContent, Date articleCredate, Date articleUpdate, int articleReadcnt, String isshow,
+			int userNo, String freeCategory) {
+		this.articleNo = articleNo;
+		this.articleCategory = articleCategory;
+		this.articleTitle = articleTitle;
+		this.userName = userName;
+		this.articleContent = articleContent;
+		this.articleCredate = articleCredate;
+		this.articleUpdate = articleUpdate;
+		this.articleReadcnt = articleReadcnt;
 		this.isshow = isshow;
-		this.free_category = free_category;
-		this.user_no = user_no;
+		this.userNo = userNo;
+		this.freeCategory = freeCategory;
 	}
 	
 	
-	public int getArticle_no() {
-		return article_no;
+	public int getArticleNo() {
+		return articleNo;
 	}
-	
-	public String getArticle_category() {
-		return article_category;
+	public String getArticleCategory() {
+		return articleCategory;
 	}
-
-	public String getFree_title() {
-		return free_title;
+	public String getArticleTitle() {
+		return articleTitle;
 	}
-
-	public String getFree_content() {
-		return free_content;
+	public String getUserName() {
+		return userName;
 	}
-
-	public Date getFree_createdate() {
-		return free_credate;
+	public String getArticleContent() {
+		return articleContent;
 	}
-
-	public Date getFree_updatedate() {
-		return free_update;
+	public Date getArticleCredate() {
+		return articleCredate;
 	}
-
-	public int getFree_readcnt() {
-		return free_readcnt;
+	public Date getArticleUpdate() {
+		return articleUpdate;
 	}
-
-	public String getUser_id() {
-		return user_id;
+	public int getArticleReadcnt() {
+		return articleReadcnt;
 	}
-
 	public String getIsshow() {
 		return isshow;
 	}
-
-	public String getFree_category() {
-		return free_category;
+	public int getUserNo() {
+		return userNo;
 	}
-
-	public int getUser_no() {
-		return user_no;
+	public String getFreeCategory() {
+		return freeCategory;
 	}
 
 
 	@Override
 	public String toString() {
-		return "FreeBoardList [article_no=" + article_no + ", article_category=" + article_category + ", free_title="
-				+ free_title + ", free_content=" + free_content + ", free_credate=" + free_credate + ", free_update="
-				+ free_update + ", free_readcnt=" + free_readcnt + ", user_id=" + user_id + ", isshow=" + isshow
-				+ ", free_category=" + free_category + ", user_no=" + user_no + "]";
+		return "FreeBoardList [articleNo=" + articleNo + ", articleCategory=" + articleCategory + ", articleTitle="
+				+ articleTitle + ", userName=" + userName + ", articleContent=" + articleContent + ", articleCredate="
+				+ articleCredate + ", articleUpdate=" + articleUpdate + ", articleReadcnt=" + articleReadcnt
+				+ ", isshow=" + isshow + ", userNo=" + userNo + ", freeCartegory=" + freeCategory + "]";
 	}
-
-
 	
 	
 	

@@ -10,35 +10,34 @@
 <script 
 src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 </script>
-<style>
-	textarea{width:500px; height:200px; 
-		resize:none;
-	 	resize: vertical;
-	}
-</style>
 </head>
 
 <body>
 <a href="<%=request.getContextPath()%>/index.jsp">HOME</a>
-<a href="<%=request.getContextPath()%>/freeboard/list.do">글 목록으로</a>
+<a href="<%=request.getContextPath()%>/mypageArticle.do">내가 쓴 글 목록으로</a>
+
 
 	
-
-<form method="post" action="<%=request.getContextPath()%>/freeboard/write.do">
-	<table border="1">
+	<c:forEach var="board" items="${freeBoard.list}">
+<form method="post" 
+		action="<%=request.getContextPath()%>/mypageArticleUpdate.do?no=${board.articleNo}">
+	<table border="1" >
 	<tr>
-		<th>제목</th>
+		<th>글 번호</th>
+		<td>${board.articleNo}</td>
+	</tr>
+	<tr>
+		<th>수정할 제목</th>
 			<td><input type="text" name="title" id="title"/></td>
 	</tr>
 	<tr>
-		<th>내용</th>
-			<td><textarea name="content" id="content" width:500px; height:200px; style="resize: none;"></textarea></td>
+		<th>수정할 내용</th>
+			<td><textarea name="content" id="content" ></textarea></td>
 	</tr>
-	<tr>
 	<tr>
 		<th>카테고리</th>
 		<td>
-		   	<select name='categorySearch'>
+		   	<select name='freeCategory'>
 			    <option value='' selected>-- 선택 --</option>
 			    <option value='자유'>자유</option>
 			    <option value='질문'>질문</option>
@@ -46,9 +45,11 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
   			</select>
 		</td>
 	<tr>
-		<td colspan="2" style="text-align:center;"><input type="submit" value="글쓰기"/></td>
+		<td colspan="2" style="text-align:center;"><input type="submit" value="수정하기"/></td>
 	</tr>
 	</table>
 </form>
+	</c:forEach>
+<hr>
 </body>
 </html>

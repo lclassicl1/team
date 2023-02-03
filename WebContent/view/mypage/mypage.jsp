@@ -18,6 +18,7 @@
 	</script>
 </head>
 <body>
+<a href="<%=request.getContextPath()%>/view/loginboard/loginView.jsp">HOME</a>
 	<h2>마이페이지</h2>
 	<table border="1">
 		<tr>
@@ -59,6 +60,7 @@
 	</table>
 <a href="<%=request.getContextPath()%>/mypageUpdate.do?userId=${userInfo.userId}"><button>정보 수정하기</button></a>
 <a href="<%=request.getContextPath()%>/mypageChangePwd.do"><button>비밀번호 변경</button></a>
+<a href="<%=request.getContextPath()%>/mypageArticle.do"><button>내가 쓴 글</button></a>
 </body>
 </html>
 

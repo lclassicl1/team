@@ -6,7 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<style>
+body {
+      background-color: rgb(31 41 55);
+      color: rgb(243 244 246);
+} 
+</style>
 </head>
 <body>
 <c:if test="${authUser.userGrade == 999 }">
