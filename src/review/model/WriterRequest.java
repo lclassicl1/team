@@ -1,14 +1,13 @@
 package review.model;
 
 
-public class Review {
+public class WriterRequest {
 
 	private int articleNo;
 	private String articleCategory;
 	private int userNo;
 	private String reviewCategory;
-	
-	public Review(int articleNo, String articleCategory, int userNo, String reviewCategory) {
+	public WriterRequest(int articleNo, String articleCategory, int userNo, String reviewCategory) {
 		this.articleNo = articleNo;
 		this.articleCategory = articleCategory;
 		this.userNo = userNo;
@@ -26,6 +25,5 @@ public class Review {
 	public String getReviewCategory() {
 		return reviewCategory;
 	}
-	
-	
-	}
+		
+}
