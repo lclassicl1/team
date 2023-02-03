@@ -13,22 +13,58 @@
   <link rel='stylesheet' type='text/css' href='<%=request.getContextPath()%>/css/default.css'/>
 	<title></title>
 	<style>
-	#nav2>a {
-  display: block; /* a태그는 글자성격 = inline */
-  float: left;
-  font-size: 30px;
-  font-weight: 900;
-  line-height: 80px;
-  padding: 0 30px;
+body {
+  font-family: Arial, sans-serif;
+  color: rgb(243 244 246);
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  background-color: rgb(31 41 55);
+  
 }
-#nav2>ul {
-  float: right;
+
+.links {
+  text-align: center;
+  margin-top: 20px;
 }
-#nav2>ul li {
-  float: left;
-  padding: 0 30px;
-  line-height: 80px;
-}</style>
+
+.links a {
+  color: cornflowerblue;
+  font-size: 14px;
+  margin-right: 10px;
+  text-decoration: none;
+}
+nav {
+      background-color: rgb (243 244 246);
+      height: 50px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+ nav li {
+      list-style: none;
+      color: #fff;
+      margin-right: 20px;
+    }
+nav a {
+  color: #fff;
+  display: block;
+  padding: 1em;
+  text-decoration: none;
+}
+
+nav ul {
+	background-color: rgb (243 244 246);
+}
+
+div{
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+</style>
 	<script>
 		$(function(){
 			
@@ -36,16 +72,18 @@
 	</script>
 </head>
 <body>
-	<nav id="nav2">
-    	<a href="#">logo</a>
-    	<ul>
-      		<li><a href="#">공지사항</a></li>
-      		<li><a href="<%=request.getContextPath()%>/freeboard/list.do">자유게시판</a></li>
-      		<li><a href="<%=request.getContextPath()%>/help/list.do">해주세요</a></li>
-      		<li><a href="<%=request.getContextPath()%>/helper/list.do">해줄게요</a></li>
-      		<li><a href="<%=request.getContextPath()%>/trade/list.do">중고거래게시판</a></li>
-      		<li><a href="#">리뷰&후기게시판</a></li>
-    	</ul>
-  </nav>
+  		<nav>
+    		<ul>
+		      <li><a href="">홈으로</a></li>
+		      <li><a href="#">공지사항</a></li>
+		      <li><a href="#">자유게시판</a></li>
+		      <li><a href="#">고수님해주세요</a></li>
+		      <li><a href="#">고수가해줄게요</a></li>
+		      <li><a href="#">트레이드게시판</a></li>
+		      <li><a href="#">마이페이지</a></li>
+		      <li><a href="#">로그아웃</a></li>
+		    </ul>
+  		</nav>
+ 		<div><h1>고수의 세계에 오신걸 환영합니다.</h1></div>
 </body>
 </html>

@@ -14,6 +14,8 @@
   <link rel='stylesheet' type='text/css' href='<%=request.getContextPath()%>/css/default.css'/>
  	<title>INDEX</title>
 	<style>
+	
+/* 백그라운드 배경색 및 기본 body 속성들 */
 body {
   font-family: Arial, sans-serif;
   color: rgb(243 244 246);
@@ -24,8 +26,9 @@ body {
   
 }
 
+/* 각각 태그들에 대한 속성 */
 form {
-  background-color: rgb(0 0 51);
+  background-color: #333;
   box-shadow: 0 0 10px #ddd;
   padding: 20px;
   border-radius: 10px;
@@ -57,13 +60,13 @@ button {
   border: none;
   font-size: 16px;
 }
-
+/* 버튼 디자인 */
 button {
-  background-color: cornflowerblue;
+  background-color: #333;
   color: #fff;
   cursor: pointer;
 }
-
+/* 버튼 마우스오버에 대한 속성 */
 button:hover {
   background-color: deepskyblue;
 }
@@ -134,10 +137,10 @@ button:hover {
         <label for="user_pwd">비밀번호</label>
         <input type="password" id="user_pwd" name="user_pwd">
       </div>
-      <button type="button" id='submitBtn'>Accept</button>
+      <button type="button" id='submitBtn'>로그인</button>
       <div class="links">
-        <a href="javascript:void(0)" id='forgot'>Forgot Password</a>
-        <a href="javascript:void(0)" id='registerBtn'>Sign Up</a>
+        <a href="javascript:void(0)" id='forgot'>아이디/비밀번호찾기</a>
+        <a href="javascript:void(0)" id='registerBtn'>회원가입</a>
       </div>
     </form>
 </body>
