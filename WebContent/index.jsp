@@ -62,7 +62,7 @@ button {
 }
 /* 버튼 디자인 */
 button {
-  background-color: cornflowerblue;
+  background-color: #333;
   color: #fff;
   cursor: pointer;
 }
@@ -137,10 +137,10 @@ button:hover {
         <label for="user_pwd">비밀번호</label>
         <input type="password" id="user_pwd" name="user_pwd">
       </div>
-      <button type="button" id='submitBtn'>Accept</button>
+      <button type="button" id='submitBtn'>로그인</button>
       <div class="links">
-        <a href="javascript:void(0)" id='forgot'>Forgot Password</a>
-        <a href="javascript:void(0)" id='registerBtn'>Sign Up</a>
+        <a href="javascript:void(0)" id='forgot'>아이디/비밀번호찾기</a>
+        <a href="javascript:void(0)" id='registerBtn'>회원가입</a>
       </div>
     </form>
 </body>
