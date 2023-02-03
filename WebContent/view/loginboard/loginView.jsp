@@ -14,7 +14,12 @@ body {
 </style>
 </head>
 <body>
-
+<c:if test="${authUser.userGrade == 999 }">
+관리자 모드<br>
+<a href="<%=request.getContextPath()%>/master/user/list.do">회원 목록 보기</a>
+<a href="<%=request.getContextPath()%>/master/article/list.do">전체글 관리자 모드로 보기</a>
+</c:if>
+<hr>
 
 	<c:if test="${!empty authUser }">
  		로그인에 성공하였습니다. 

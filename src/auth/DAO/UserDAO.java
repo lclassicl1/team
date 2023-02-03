@@ -49,6 +49,24 @@ public class UserDAO {
 			JdbcUtil.close(pstmt);
 		}
 	}
+	public int selectCountUser(Connection conn)throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select count(*) from userinfo ";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				return rs.getInt("count(*)");
+			}
+			return 0;
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
 	public void join(Connection conn , JoinRequest user)throws SQLException {
 		PreparedStatement pstmt = null;
 		String sql = "insert into userinfo(user_id,user_pwd,user_name,user_hp,user_address,user_email,user_gender,user_skill,user_school,user_birth) "+

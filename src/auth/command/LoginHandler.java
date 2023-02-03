@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Exception.BlackUserException;
 import Exception.LoginFailException;
 import Exception.UserNotFoundException;
 import auth.model.User;
@@ -64,6 +65,9 @@ public class LoginHandler implements CommandHandler {
 		errors.put("idPwdNotMatch",Boolean.TRUE);
 		e.printStackTrace();
 		return FORM_VIEW;
+	}catch(BlackUserException e) {
+		res.sendRedirect(req.getContextPath()+"/view/Exception/blackLogin.jsp");
+		return null;
 	}
 }
 
