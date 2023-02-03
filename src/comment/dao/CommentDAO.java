@@ -88,6 +88,7 @@ public class CommentDAO {
 				JdbcUtil.close(conn);
 			}
 		}
+		
 	//댓글 쓰기
 	public int insertComment(int article_no, String comm_content, String userid) {
 		PreparedStatement stmt = null;

@@ -23,5 +23,4 @@ public class ListArticleHandler implements CommandHandler {
 		
 		return "/view/articleboard/listArticle.jsp";
 	}
-
 }

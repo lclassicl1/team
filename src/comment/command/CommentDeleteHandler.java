@@ -22,7 +22,7 @@ public class CommentDeleteHandler implements CommandHandler {
 	
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String articleNo = request.getParameter("article_no");
+		String articleNo = request.getParameter("articleNo");
 		
 		
 		

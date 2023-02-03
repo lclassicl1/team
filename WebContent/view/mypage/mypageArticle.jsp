@@ -20,13 +20,16 @@
 <body>
 <a href="<%=request.getContextPath()%>/mypage.do"><button>뒤로가기</button></a>
 <hr>
-<form name="categorySearch" id="categorySearch" method="get" 
+<form method="get" 
 		action="<%=request.getContextPath()%>/mypageArticleSearch.do">
 		  <select name='categorySearch'>
 			    <option value='' selected>-- 선택 --</option>
-			    <option value='자유'>자유</option>
-			    <option value='질문'>질문</option>
-			    <option value='팁'>팁</option>
+			    <option value='free'> 자유</option>
+			    <option value='help'>해주세요</option>
+			    <option value='helper'>해줄게요</option>
+			    <option value='trade'>거래</option>
+			    <option value='review'>리뷰/후기</option>
+			    <option value='notice'>공지사항</option>
   	</select>
   					<input type="text" name="input"/>
 			    <input type="submit" value="검색"/>
@@ -45,17 +48,34 @@
 			</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="item" items="${freeBoard.list}">
+				<c:forEach var="item" items="${articlePage.articleList}">
 			<tr>
 					<td><c:out value="${item.articleNo}"/></td>
 					<td><c:out value="${item.userName}"/></td>
-					<td><a href="<%=request.getContextPath()%>/mypageArticleRead.do?no=${item.articleNo}"><c:out value="${item.articleTitle}"/></a></td>
+					<td><a href="<%=request.getContextPath()%>/mypageArticleRead.do?no=${item.articleNo}&category=${item.articleCategory}"><c:out value="${item.articleTitle}"/></a></td>
 					<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${item.articleCredate}"/></td>
 					<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${item.articleUpdate}"/></td>
-					<td><c:out value="${item.articleReadcnt}"/></td>
-					<td><c:out value="${item.freeCategory}"/></td>
+					<td><c:out value="${item.articleReadCnt}"/></td>
+					<td><c:out value="${item.articleCategory}"/></td>
 			</tr>
-				</c:forEach>
+		</c:forEach>
+		
+				 <%-- paging출력 부분 --%>
+     <c:if test="${articlePage.hasArticle()}">
+		   <tr>
+		  		<td colspan="5" style="text-align:center;">
+		  	<c:if test="${articlePage.startPage >5 }">
+		  			<a href="<%=request.getContextPath()%>/mypageArticle.do?pageNo=${articlePage.startPage -5}">pre</a>
+		  	</c:if>
+		  		 <c:forEach var="pNo" begin="${articlePage.startPage }" end="${articlePage.endPage}">
+		  			<a href="<%=request.getContextPath()%>/mypageArticle.do?pageNo=${pNo }">${pNo}</a>
+		  	</c:forEach>
+		  	<c:if test="${articlePage.endPage < articlePage.totalPage }">
+		  			<a href="<%=request.getContextPath()%>/mypageArticle.do?pageNo=${articlePage.endPage+5 }">next</a>
+	  		</c:if>
+	    </td>
+	   </tr>
+   </c:if> 
 	</tbody>
 </table>
 </body>

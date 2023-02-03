@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -119,8 +120,8 @@
 						<label for="email">이메일</label><br>
 					</th>
 					<td>
-						<input type ="text" name="userEmailId" required="required" value="${userEmailId }"> @
-						<input type ="text" name="userEmailAddress" id="emailAddress" required="required" value="${userEmailAddress }">
+						<input type ="text" name="userEmailId" required="required" value="${userEmailId}"> @
+						<input type ="text" name="userEmailAddress" id="emailAddress" required="required" value="${userEmailAddress}">
 						<select name="email_dd" id="email_dd"  onchange="selectEmail(this);">
 							<option value="">직접입력</option>
 							<option value="naver.com">naver.com</option>

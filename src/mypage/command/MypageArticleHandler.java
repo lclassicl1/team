@@ -3,6 +3,7 @@ package mypage.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import article.model.ArticlePage;
 import auth.model.User;
 import freeboard.model.FreeBoard;
 import freeboard.service.ListBoardService;
@@ -18,12 +19,15 @@ public class MypageArticleHandler implements CommandHandler {
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
 		User user =(User)req.getSession(false).getAttribute("authUser");
-		String mypageUserName = user.getUserName();
-		System.out.println("mypageUserName=========="+mypageUserName);
-		
-		FreeBoard freeBoard = mypageArticleService.getMyapgeArticle(mypageUserName);
-		System.out.println("freeBoard======"+freeBoard);
-		req.setAttribute("freeBoard", freeBoard);
+		int mypageUserNo = user.getUserNo();
+		int pageNum=1;
+	
+		String pageNoVal = req.getParameter("pageNo");
+		if(pageNoVal!=null) {
+			pageNum = Integer.parseInt(pageNoVal);
+		}
+		ArticlePage articlePage = mypageArticleService.getMyapgeArticle(mypageUserNo,pageNum);
+		req.setAttribute("articlePage", articlePage);
 		
 		return "/view/mypage/mypageArticle.jsp";
 	}

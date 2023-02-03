@@ -14,6 +14,7 @@ import comment.service.UpdateCommentService;
 import comment.service.WriteCommentService;
 import freeboard.command.ReadBoardHandler;
 import freeboard.model.FreeBoard;
+import freeboard.model.FreePage;
 import freeboard.service.ReadBoardService;
 import freeboard.service.WriteBoardService;
 import mvc.command.CommandHandler;
@@ -35,14 +36,6 @@ public class CommentUpdateHandler implements CommandHandler {
 			processSubmit(request, response);
 			return null;
 		} else {
-			/*
-			 * 참고. 상태코드 => SC_OK 200(성공): 서버가 요청을 제대로 처리했다는 뜻이다. 이는 주로 서버가 요청한 페이지를 제공했다는
-			 * 의미로 쓰인다.
-			 * 
-			 * 상태코드 => SC_METHOD_NOT_ALLOWED 405(허용되지 않는 메소드): 요청에 지정된 방법을 사용할 수 없다. 예를 들어
-			 * POST 방식으로 요청을 받는 서버에 GET 요청을 보내는 경우, 또는 읽기 전용 리소스에 PUT 요청을 보내는 경우에 이 코드를
-			 * 제공한다.
-			 */
 			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 			return null;
 		}
@@ -50,40 +43,41 @@ public class CommentUpdateHandler implements CommandHandler {
 	
 		private String processForm(HttpServletRequest request, HttpServletResponse response) {
 			System.out.println("CommentUpdateHandler 진입");
-			String articleNo = request.getParameter("article_no");
+			String articleNo = request.getParameter("articleNo");
+			System.out.println("articleNo======="+articleNo);
 			int no = Integer.parseInt(articleNo);
-		 FreeBoard freeBoard = readBoardService.getBoardDetail(no);
-		 request.setAttribute("freeBoard", freeBoard);
+			
+		 FreePage freePage = readBoardService.getBoardDetail(no);
+		 request.setAttribute("freePage", freePage);
 		
 		
 		 
-		 
+		 request.setAttribute("articleNo",no);
 		 // 댓글 - 목록 코드
 		 String commnoVal = request.getParameter("comm_no");
 			int commno = Integer.parseInt(commnoVal);
 		 CommentList commentList = listCommentService.getCommentList(commno);
 		 request.setAttribute("commentList",commentList);
 		 
-		return "/view/freeboard/freeCommentRead.jsp";
+		return "/view/freeboard/freeCommentUpdate.jsp";
 	}
 	
 	
 	private void processSubmit(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		System.out.println("댓글 post 요청 진입");
-		String articleNoVal = request.getParameter("article_no");
+		String articleNoVal = request.getParameter("articleNo");
 		int articleNo = Integer.parseInt(articleNoVal);
 		
-		System.out.println("articleNoVal 해당 글번호===="+articleNoVal);
 		
-		String content = request.getParameter("comm_content");
-		String commnoVal = request.getParameter("comm_no");
-		System.out.println("댓글내용"+content);
-		System.out.println("댓글"+commnoVal);
+		String commContent = request.getParameter("commContent");
+		String commNo = request.getParameter("commNo");
+		System.out.println("commContent======"+commContent);
+		System.out.println("commNo====="+commNo);
 		
 		
-		int commno = Integer.parseInt(commnoVal);
+		int commno = Integer.parseInt(commNo);
 		
-		int cnt = updateCommentService.updateComment(commno,content);
+		int cnt = updateCommentService.updateComment(commno,commContent);
 		
 		//insert 되었다는 변수
 		request.setAttribute("cnt",cnt);

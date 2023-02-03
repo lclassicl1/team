@@ -1,20 +1,19 @@
-package article.model;
+package freeboard.model;
 
 import java.util.List;
 
-
-public class ArticlePage {
+public class FreePage {
 
 	private int total; 
 	private int currentPage;
-	private List<Article> articleList;
+	private List<FreeBoardList> freeBoardList;
 	private int totalPage;
 	private int startPage;
 	private int endPage;
-	public ArticlePage(int total, int currentPage, int size,List<Article> articleList) {
+	public FreePage(int total, int currentPage, int size,List<FreeBoardList> freeBoardList) {
 		this.total = total;
 		this.currentPage = currentPage;
-		this.articleList = articleList;
+		this.freeBoardList = freeBoardList;
 		
 		if(total == 0) {
 			totalPage = 0;
@@ -37,10 +36,14 @@ public class ArticlePage {
 		}
 	}
 	
-	public boolean hasNoArticle() {
+	public FreePage(List<FreeBoardList> freeBoardList) {
+		this.freeBoardList = freeBoardList;
+	}
+
+	public boolean hasNoFreeBoard() {
 		return total == 0;
 	}
-	public boolean hasArticle() {
+	public boolean hasFreeBoard() {
 		return total >0;
 	}
 	public int getTotal() {
@@ -49,8 +52,8 @@ public class ArticlePage {
 	public int getCurrentPage() {
 		return currentPage;
 	}
-	public List<Article> getArticleList() {
-		return articleList;
+	public List<FreeBoardList> getFreeBoardList() {
+		return freeBoardList;
 	}
 	public int getTotalPage() {
 		return totalPage;
@@ -64,7 +67,7 @@ public class ArticlePage {
 
 	@Override
 	public String toString() {
-		return "ArticlePage [total=" + total + ", currentPage=" + currentPage + ", articleList=" + articleList
+		return "FreePage [total=" + total + ", currentPage=" + currentPage + ", freeBoardList=" + freeBoardList
 				+ ", totalPage=" + totalPage + ", startPage=" + startPage + ", endPage=" + endPage + "]";
 	}
 	
