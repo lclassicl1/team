@@ -1,4 +1,4 @@
-package freeboard.command;
+package mypage.command;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -8,21 +8,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import auth.model.User;
 import freeboard.model.FreeBoard;
-import freeboard.service.DeleteBoardService;
-import freeboard.service.ListBoardService;
 import freeboard.service.ReadBoardService;
 import freeboard.service.UpdateBoardService;
 import mvc.command.CommandHandler;
 
-public class DeleteBoardHandler implements CommandHandler {
+public class MypageArticleUpdateHandler implements CommandHandler {
 
-	UpdateBoardService updateBoardService = new UpdateBoardService();
+	
 	ReadBoardService readBoardService = new ReadBoardService();
-	DeleteBoardService deleteBoardService = new DeleteBoardService();
+	UpdateBoardService updateBoardService = new UpdateBoardService();
+	
 	
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+
+
 		if(request.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(request,response);
 		} else if(request.getMethod().equalsIgnoreCase("POST")) {
@@ -34,47 +34,39 @@ public class DeleteBoardHandler implements CommandHandler {
 		
 		return null;
 	}
-	
+
 	private String processForm(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String noVal = request.getParameter("no");
 		int no = Integer.parseInt(noVal);
 		
-		FreeBoard freeBoard 
-	 	= readBoardService.getBoardDetail(no);
+		FreeBoard freeBoard = readBoardService.getBoardDetail(no);
 		System.out.println("freeBoard ="+freeBoard);
 		request.setAttribute("freeBoard", freeBoard);
 		
 		
 		int WriterNo = freeBoard.getList().get(0).getUserNo();
+		System.out.println("boardWriter======"+WriterNo);
 		
 		User user = (User)request.getSession(false).getAttribute("authUser");
-		String loginUserId = user.getUserId();
-		System.out.println("loginUserId===="+loginUserId);
-		
-		if(!canModify(WriterNo,user)) {
-			response.sendError(HttpServletResponse.SC_FORBIDDEN);
-			return null;
-		}
-		return "/view/freeboard/freeBoardDelete.jsp";
-	}
-
-	private String processSubmit(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String no = request.getParameter("no");
-		System.out.println("no2222="+no);
-		
-		
 	
-		int deleteresult = deleteBoardService.delete(no);
-		
-		
-		//insert 되었다는 변수
-		request.setAttribute("deleteresult",deleteresult);
-		
-		
-		return "/view/freeboard/freeBoardList.jsp";
+		return "/view/mypage/mypageArticleUpdate.jsp";
 	}
-	private boolean canModify(int WriterNo,User user) {
-			int loginUserNo = user.getUserNo();
-			return loginUserNo == WriterNo;
+	
+	private String processSubmit(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+		String no = request.getParameter("no");
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String freeCategory = request.getParameter("freeCategory");
+		int updateresult = updateBoardService.update(no, title, content, freeCategory);
+		
+
+		//수정 완료 되었을 경우 1, 실패시 0
+		request.setAttribute("result",updateresult);
+		
+		
+		return "/mypageArticleRead.do?no="+no;
 	}
+	
+	
+	
 }

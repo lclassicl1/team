@@ -52,7 +52,7 @@ public class CommentDAO {
 			return commentList;
 		}
 	
-		
+		// 댓글 리스트
 		public CommentList selectComment(int no) {
 			PreparedStatement stmt = null;
 			ResultSet rs = null;
@@ -153,7 +153,7 @@ public class CommentDAO {
 	
 	
 	//글 삭제하기
-	public int deleteComment(String comm_no) {
+	public int deleteComment(int commNo) {
 		System.out.println("dao-comment delete 진입");
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -170,7 +170,7 @@ public class CommentDAO {
 			conn.setAutoCommit(false);
 			
 			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, comm_no);
+			stmt.setInt(1, commNo);
 			result = stmt.executeUpdate();
 			
 			conn.commit();

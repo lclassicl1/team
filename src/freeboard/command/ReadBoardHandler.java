@@ -3,10 +3,12 @@ package freeboard.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import auth.model.User;
 import comment.model.Comment;
 import comment.service.ListCommentService;
 import comment.service.WriteCommentService;
 import freeboard.model.FreeBoard;
+import freeboard.model.FreeBoardList;
 import freeboard.service.ReadBoardService;
 import mvc.command.CommandHandler;
 
@@ -23,25 +25,23 @@ public class ReadBoardHandler implements CommandHandler {
 	public String process(HttpServletRequest request,
 					HttpServletResponse response) throws Exception {
 		System.out.println("ReadBoardHandler 진입");
-			String noVal = request.getParameter("no");
-			int no = Integer.parseInt(noVal);
-		 FreeBoard freeBoard = readBoardService.getBoardDetail(no);
-		 System.out.println("freeBoard ="+freeBoard);
-		 request.setAttribute("freeBoard", freeBoard);
+		String noVal = request.getParameter("no");
+		int no = Integer.parseInt(noVal);
+		FreeBoard freeBoard = readBoardService.getBoardDetail(no);
+		System.out.println("freeBoard ="+freeBoard);
+		request.setAttribute("freeBoard", freeBoard);
 		
+	
 		
-		 
-		 
 		 // 댓글 - 목록 코드
 		 Comment comment = listCommentService.getCommentAll(no);
 		 System.out.println("comment="+comment);
 		 request.setAttribute("comment",comment);
 		 
+		
 		 
 		
-
-		return FORM_VIEW;
-			
+			return FORM_VIEW;
 	}
 	
 	

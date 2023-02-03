@@ -23,6 +23,7 @@
 			    <option value='질문'>질문</option>
 			    <option value='팁'>팁</option>
   	</select>
+			    <input type="text" name="input"/>
 			    <input type="submit" value="검색"/>
  </form>
 <hr>
@@ -39,19 +40,20 @@
 		<th>카테고리</th>
 	</tr>
 </thead>
-	<tbody>
-				<c:forEach var="freeBoard" items="${freeBoard.list}">
-			<tr>
-					<td><c:out value="${freeBoard.article_no}"/></td>
-					<td><c:out value="${freeBoard.user_id}"/></td>
-					<td><a href="<%=request.getContextPath()%>/freeboard/read.do?no=${freeBoard.article_no}"><c:out value="${freeBoard.free_title}"/></a></td>
-					<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${freeBoard.free_createdate}"/></td>
-					<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${freeBoard.free_updatedate}"/></td>
-					<td><c:out value="${freeBoard.free_readcnt}"/></td>
-					<td><c:out value="${freeBoard.free_category}"/></td>
-			</tr>
-				</c:forEach>
-	</tbody>
-</table>
-</body>
+
+			<tbody>
+					<c:forEach var="freeBoard" items="${freeBoard.list}">
+						<tr>
+								<td><c:out value="${freeBoard.articleNo}"/></td>
+								<td><c:out value="${freeBoard.userName}"/></td>
+								<td><a href="<%=request.getContextPath()%>/freeboard/read.do?no=${freeBoard.articleNo}"><c:out value="${freeBoard.articleTitle}"/></a></td>
+								<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${freeBoard.articleCredate}"/></td>
+								<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${freeBoard.articleUpdate}"/></td>
+								<td><c:out value="${freeBoard.articleReadcnt}"/></td>
+								<td><c:out value="${freeBoard.freeCategory}"/></td>
+						</tr>
+					</c:forEach>
+			</tbody>
+		</table>
+	</body>
 </html>

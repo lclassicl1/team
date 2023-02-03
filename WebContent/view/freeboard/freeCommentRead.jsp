@@ -15,21 +15,20 @@
 
 
 <c:forEach var="board" items="${freeBoard.list}">
-			<p>글번호 : ${board.free_no}</p>
+			<p>글번호 : ${board.article_no}</p>
 			<p>제목: ${board.free_title}</p>
 			<p>내용: ${board.free_content}</p>
 			<p>작성일 : ${board.free_createdate}</p>
 			<p>수정일 : ${board.free_updatedate}</p>
 
 
-<a href="<%=request.getContextPath()%>/freeboard/update.do?no=${board.free_no}"><button>글 수정하기</button></a>
-<a href="<%=request.getContextPath()%>/freeboard/delete.do?no=${board.free_no}"><button>글 삭제하기</button></a>
+<a href="<%=request.getContextPath()%>/freeboard/update.do?no=${board.article_no}"><button>글 수정하기</button></a>
+<a href="<%=request.getContextPath()%>/freeboard/delete.do?no=${board.article_no}"><button>글 삭제하기</button></a>
 	</c:forEach>
 <hr>
 <hr>
-<form name="write" id="write" method="post"
-		action="<%=request.getContextPath()%>/freeboard/commentupdate.do?free_no=${freeBoard.list[0].free_no}&comm_no=${commentList.comm_no}">
-		<%-- ${commentList.comm_no} --%>
+<form method="post"
+		action="<%=request.getContextPath()%>/freeboard/commentupdate.do?article_no=${freeBoard.list[0].article_no}&comm_no=${commentList.comm_no}">
 	<table border="1">
 	<tr>
 		<th>댓글 내용</th>
