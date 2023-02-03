@@ -31,7 +31,7 @@ body {
 		<a href="<%=request.getContextPath()%>/notice/list.do">공지사항 게시글</a>
 		<a href="<%=request.getContextPath()%>/trade/list.do">트레이드 게시글</a>
 		<a href="<%=request.getContextPath()%>/freeboard/list.do">자유게시판</a>
-		<a href="#">리뷰</a>
+		<a href="<%=request.getContextPath()%>/review/list.do">리뷰</a>
 
 	</c:if>
 	<c:if test="${empty authUser }">
