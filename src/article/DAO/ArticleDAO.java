@@ -67,12 +67,32 @@ public class ArticleDAO {
 		}
 	}
 	
+	public int selectCountMy(Connection conn,int userNo)throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select count(*) from article where isshow='Y' and user_no=? ";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				return rs.getInt("count(*)");
+			}
+			return 0;
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	
 	public List<Article> select(Connection conn, int startRow,int size)throws SQLException{
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "SELECT * FROM article where isshow='Y' " +
 						"order by article_no desc limit ?,? " ;
-		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
@@ -92,6 +112,91 @@ public class ArticleDAO {
 		}
 		
 	}
+	
+	public List<Article> selectMy(Connection conn, int startRow,int size, int userNo) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM article where isshow='Y' and user_no=? " +
+						"order by article_no desc limit ?,? ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, size);
+			rs = pstmt.executeQuery();
+			List<Article> articleList = new ArrayList<>();
+			while(rs.next()) {
+				Article article = coverArticle(rs);
+				if(article != null) {
+					articleList.add(article);
+				}
+			}
+			return articleList;
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	
+	public List<Article> selectReadArticle(Connection conn, int startRow,int size, int myArticleNo) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM article where isshow='Y' and article_no=? " +
+						"order by article_no desc limit ?,? ";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, myArticleNo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, size);
+			rs = pstmt.executeQuery();
+			List<Article> articleList = new ArrayList<>();
+			while(rs.next()) {
+				Article article = coverArticle(rs);
+				if(article != null) {
+					articleList.add(article);
+				}
+			}
+			return articleList;
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		
+	}
+	
+	
+	// mypage 검색 기능
+	public List<Article> selectSearchMy(Connection conn, int startRow,int size, int userNo,String categorySearch,String input) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM article where isshow='Y' and user_no=? and article_category like ? and article_title like ? " +
+						"order by article_no desc limit ?,? ";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setString(2, "%"+categorySearch+"%");
+			pstmt.setString(3, "%"+input+"%");
+			pstmt.setInt(4, startRow);
+			pstmt.setInt(5, size);
+			rs = pstmt.executeQuery();
+			List<Article> articleList = new ArrayList<>();
+			while(rs.next()) {
+				Article article = coverArticle(rs);
+				if(article != null) {
+					articleList.add(article);
+				}
+			}
+			return articleList;
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		
+	}
+	
+	
 	public Article selectByNo(Connection conn,int articleNo)throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

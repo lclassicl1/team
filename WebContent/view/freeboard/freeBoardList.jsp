@@ -16,7 +16,7 @@
 <a href="<%=request.getContextPath()%>/freeboard/list.do"><button>전체 글 목록</button></a>
 <a href="<%=request.getContextPath()%>/freeboard/write.do"><button>글쓰기</button></a>
 <form name="categorySearch" id="categorySearch" method="get" 
-		action="<%=request.getContextPath()%>/freeboard/searchBoard.do">
+		action="<%=request.getContextPath()%>/item/searchBoard.do">
 		  <select name='categorySearch'>
 			    <option value='' selected>-- 선택 --</option>
 			    <option value='자유'>자유</option>
@@ -40,19 +40,35 @@
 		<th>카테고리</th>
 	</tr>
 </thead>
-
 			<tbody>
-					<c:forEach var="freeBoard" items="${freeBoard.list}">
+					<c:forEach var="item" items="${freePage.freeBoardList}">
 						<tr>
-								<td><c:out value="${freeBoard.articleNo}"/></td>
-								<td><c:out value="${freeBoard.userName}"/></td>
-								<td><a href="<%=request.getContextPath()%>/freeboard/read.do?no=${freeBoard.articleNo}"><c:out value="${freeBoard.articleTitle}"/></a></td>
-								<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${freeBoard.articleCredate}"/></td>
-								<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${freeBoard.articleUpdate}"/></td>
-								<td><c:out value="${freeBoard.articleReadcnt}"/></td>
-								<td><c:out value="${freeBoard.freeCategory}"/></td>
+								<td><c:out value="${item.articleNo}"/></td>
+								<td><c:out value="${item.userName}"/></td>
+								<td><a href="<%=request.getContextPath()%>/freeboard/read.do?no=${item.articleNo}"><c:out value="${item.articleTitle}"/></a></td>
+								<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${item.articleCredate}"/></td>
+								<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${item.articleUpdate}"/></td>
+								<td><c:out value="${item.articleReadcnt}"/></td>
+								<td><c:out value="${item.freeCategory}"/></td>
 						</tr>
 					</c:forEach>
+					
+					<%-- paging출력 부분 --%>
+				<c:if test="${freePage.hasFreeBoard()}">
+					   <tr>
+					  		<td colspan="5" style="text-align:center;">
+					  	<c:if test="${freePage.startPage >5 }">
+					  			<a href="<%=request.getContextPath()%>/freeboard/list.do?pageNo=${freePage.startPage -5}">pre</a>
+					  	</c:if>
+					  		 <c:forEach var="pNo" begin="${freePage.startPage }" end="${freePage.endPage}">
+					  			<a href="<%=request.getContextPath()%>/freeboard/list.do?pageNo=${pNo }">${pNo}</a>
+					  	</c:forEach>
+					  	<c:if test="${freePage.endPage < freePage.totalPage }">
+					  <a href="<%=request.getContextPath()%>/freeboard/list.do?pageNo=${freePage.endPage+5 }">next</a>
+	  		</c:if>
+	    </td>
+	   </tr>
+   </c:if> 
 			</tbody>
 		</table>
 	</body>

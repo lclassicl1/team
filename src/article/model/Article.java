@@ -59,5 +59,15 @@ public class Article {
 	public int getUserNo() {
 		return userNo;
 	}
+
+	@Override
+	public String toString() {
+		return "Article [articleNo=" + articleNo + ", articleCategory=" + articleCategory + ", articleTitle="
+				+ articleTitle + ", userName=" + userName + ", articleContent=" + articleContent + ", articleCredate="
+				+ articleCredate + ", articleUpdate=" + articleUpdate + ", articleReadCnt=" + articleReadCnt
+				+ ", isshow=" + isshow + ", userNo=" + userNo + "]";
+	}
+	
+	
 	
 }

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import auth.model.User;
 import freeboard.model.FreeBoard;
+import freeboard.model.FreePage;
 import freeboard.service.ListBoardService;
 import freeboard.service.ReadBoardService;
 import freeboard.service.UpdateBoardService;
@@ -42,12 +43,12 @@ public class UpdateBoardHandler implements CommandHandler {
 		String noVal = request.getParameter("no");
 		int no = Integer.parseInt(noVal);
 		
-		FreeBoard freeBoard = readBoardService.getBoardDetail(no);
-		System.out.println("freeBoard ="+freeBoard);
-		request.setAttribute("freeBoard", freeBoard);
+		FreePage freePage = readBoardService.getBoardDetail(no);
+		System.out.println("freeBoard ="+freePage);
+		request.setAttribute("freePage", freePage);
 		
 		
-		int WriterNo = freeBoard.getList().get(0).getUserNo();
+		int WriterNo = freePage.getFreeBoardList().get(0).getUserNo();
 		System.out.println("boardWriter======"+WriterNo);
 		
 		User user = (User)request.getSession(false).getAttribute("authUser");

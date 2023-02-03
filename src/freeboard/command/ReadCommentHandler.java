@@ -7,6 +7,7 @@ import comment.model.Comment;
 import comment.service.ListCommentService;
 import comment.service.WriteCommentService;
 import freeboard.model.FreeBoard;
+import freeboard.model.FreePage;
 import freeboard.service.ReadBoardService;
 import mvc.command.CommandHandler;
 
@@ -25,9 +26,9 @@ public class ReadCommentHandler implements CommandHandler {
 		System.out.println("ReadBoardHandler 진입");
 			String noVal = request.getParameter("no");
 			int no = Integer.parseInt(noVal);
-		 FreeBoard freeBoard = readBoardService.getBoardDetail(no);
-		 System.out.println("freeBoard ="+freeBoard);
-		 request.setAttribute("freeBoard", freeBoard);
+			FreePage freePage = readBoardService.getBoardDetail(no);
+		 System.out.println("freeBoard ="+freePage);
+		 request.setAttribute("freePage", freePage);
 		
 		
 		 
