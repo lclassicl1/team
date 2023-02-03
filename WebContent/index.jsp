@@ -28,7 +28,7 @@ body {
 
 /* 각각 태그들에 대한 속성 */
 form {
-  background-color: rgb(0 0 51);
+  background-color: #333;
   box-shadow: 0 0 10px #ddd;
   padding: 20px;
   border-radius: 10px;
