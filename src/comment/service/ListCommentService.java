@@ -15,15 +15,13 @@ public class ListCommentService {
 		
 		CommentList commentList 
 			= commentDAO.selectComment(no);
-		System.out.println("commentList gggg "+commentList);
 
 		return commentList;
 	}
 	public Comment getCommentAll(int no) {
 		
 		
-		List<CommentList> commentList
-			= commentDAO.selectAllComment(no);
+		List<CommentList> commentList= commentDAO.selectAllComment(no);
 		Comment comment = new Comment(commentList);
 
 		return comment;

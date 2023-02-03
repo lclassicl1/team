@@ -50,8 +50,8 @@ public class CommentUpdateHandler implements CommandHandler {
 	
 		private String processForm(HttpServletRequest request, HttpServletResponse response) {
 			System.out.println("CommentUpdateHandler 진입");
-			String noVal = request.getParameter("free_no");
-			int no = Integer.parseInt(noVal);
+			String articleNo = request.getParameter("article_no");
+			int no = Integer.parseInt(articleNo);
 		 FreeBoard freeBoard = readBoardService.getBoardDetail(no);
 		 request.setAttribute("freeBoard", freeBoard);
 		
@@ -69,11 +69,18 @@ public class CommentUpdateHandler implements CommandHandler {
 	
 	
 	private void processSubmit(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		request.setCharacterEncoding("UTF-8");
-		String free_noVal = request.getParameter("free_no");
-		int free_no = Integer.parseInt(free_noVal);
+		System.out.println("댓글 post 요청 진입");
+		String articleNoVal = request.getParameter("article_no");
+		int articleNo = Integer.parseInt(articleNoVal);
+		
+		System.out.println("articleNoVal 해당 글번호===="+articleNoVal);
+		
 		String content = request.getParameter("comm_content");
 		String commnoVal = request.getParameter("comm_no");
+		System.out.println("댓글내용"+content);
+		System.out.println("댓글"+commnoVal);
+		
+		
 		int commno = Integer.parseInt(commnoVal);
 		
 		int cnt = updateCommentService.updateComment(commno,content);
@@ -81,6 +88,6 @@ public class CommentUpdateHandler implements CommandHandler {
 		//insert 되었다는 변수
 		request.setAttribute("cnt",cnt);
 		
-		response.sendRedirect("read.do?no=" + free_no);
+		response.sendRedirect("read.do?no=" + articleNo);
 	}
 }

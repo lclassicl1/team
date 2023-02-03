@@ -10,13 +10,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <h2><a href="<%=request.getContextPath()%>/index.jsp">HOME</a></h2>
-<a href="<%=request.getContextPath()%>/freeboard/list.do">글 목록으로</a>
-
+<a href="<%=request.getContextPath()%>/mypageArticle.do">내가 쓴 글 목록으로</a>
 <body>
+
+
 <c:forEach var="board" items="${freeBoard.list}">
-	<c:if test="${authUser.userName==board.userName}">
-		<a href="<%=request.getContextPath()%>/mypageArticle.do">내가 쓴 글 목록으로</a>
-	</c:if>
 			<p>글번호 : ${board.articleNo}</p>
 			<p>글 작성자 : ${board.userName}</p>
 			<p>제목: ${board.articleTitle}</p>
@@ -24,8 +22,8 @@
 			<p>카테고리: ${board.freeCategory}</p>
 			<p>작성일 : ${board.articleCredate}</p>
 			<p>수정일 : ${board.articleUpdate}</p>
-<a href="<%=request.getContextPath()%>/freeboard/update.do?no=${board.articleNo}"><button>글 수정하기</button></a>
-<a href="<%=request.getContextPath()%>/freeboard/delete.do?no=${board.articleNo}"><button>글 삭제하기</button></a>
+<a href="<%=request.getContextPath()%>/mypageArticleUpdate.do?no=${board.articleNo}"><button>글 수정하기</button></a>
+<a href="<%=request.getContextPath()%>/mypageArticleDelete.do?no=${board.articleNo}"><button>글 삭제하기</button></a>
 	</c:forEach>
 <hr>
 <hr>

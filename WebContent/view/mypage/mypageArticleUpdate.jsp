@@ -14,13 +14,13 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 
 <body>
 <a href="<%=request.getContextPath()%>/index.jsp">HOME</a>
-<a href="<%=request.getContextPath()%>/freeboard/list.do">글 목록으로</a>
+<a href="<%=request.getContextPath()%>/mypageArticle.do">내가 쓴 글 목록으로</a>
 
 
 	
 	<c:forEach var="board" items="${freeBoard.list}">
-<form name="update" id="update" method="post" 
-		action="<%=request.getContextPath()%>/freeboard/update.do?no=${board.articleNo}">
+<form method="post" 
+		action="<%=request.getContextPath()%>/mypageArticleUpdate.do?no=${board.articleNo}">
 	<table border="1" >
 	<tr>
 		<th>글 번호</th>
