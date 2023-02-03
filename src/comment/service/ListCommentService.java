@@ -20,7 +20,6 @@ public class ListCommentService {
 	}
 	public Comment getCommentAll(int no) {
 		
-		
 		List<CommentList> commentList= commentDAO.selectAllComment(no);
 		Comment comment = new Comment(commentList);
 

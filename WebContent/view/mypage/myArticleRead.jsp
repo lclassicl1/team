@@ -14,16 +14,16 @@
 <body>
 
 
-<c:forEach var="board" items="${freeBoard.list}">
-			<p>글번호 : ${board.articleNo}</p>
-			<p>글 작성자 : ${board.userName}</p>
-			<p>제목: ${board.articleTitle}</p>
-			<p>내용: ${board.articleContent}</p>
-			<p>카테고리: ${board.freeCategory}</p>
-			<p>작성일 : ${board.articleCredate}</p>
-			<p>수정일 : ${board.articleUpdate}</p>
-<a href="<%=request.getContextPath()%>/mypageArticleUpdate.do?no=${board.articleNo}"><button>글 수정하기</button></a>
-<a href="<%=request.getContextPath()%>/mypageArticleDelete.do?no=${board.articleNo}"><button>글 삭제하기</button></a>
+<c:forEach var="item" items="${articlePage.articleList}">
+			<p>글번호 : ${item.articleNo}</p>
+			<p>글 작성자 : ${item.userName}</p>
+			<p>제목: ${item.articleTitle}</p>
+			<p>내용: ${item.articleContent}</p>
+			<p>카테고리: ${item.articleCategory}</p>
+			<p>작성일 : ${item.articleCredate}</p>
+			<p>수정일 : ${item.articleUpdate}</p>
+<a href="<%=request.getContextPath()%>/mypageArticleUpdate.do?no=${item.articleNo}"><button>글 수정하기</button></a>
+<a href="<%=request.getContextPath()%>/mypageArticleDelete.do?no=${item.articleNo}"><button>글 삭제하기</button></a>
 	</c:forEach>
 <hr>
 <hr>
@@ -41,18 +41,17 @@
 		<td>${comment.comm_content}</td>
 		<td>${comment.comm_credate}</td>
 		 <c:if test="${authUser.userId==comment.user_id}">
-		<td><a href="<%=request.getContextPath()%>/freeboard/commentdelete.do?article_no=${freeBoard.list[0].articleNo}&comm_no=${comment.comm_no}"><button>삭제</button></a></td>
-		<td><a href="<%=request.getContextPath()%>/freeboard/commentupdate.do?article_no=${freeBoard.list[0].articleNo}&comm_no=${comment.comm_no}"><button>수정</button></a></td>
+		<td><a href="<%=request.getContextPath()%>/freeboard/commentdelete.do?article_no=${articlePage.articleList[0].articleNo}&comm_no=${comment.comm_no}"><button>삭제</button></a></td>
+		<td><a href="<%=request.getContextPath()%>/freeboard/commentupdate.do?article_no=${articlePage.articleList[0].articleNo}&comm_no=${comment.comm_no}"><button>수정</button></a></td>
 		</c:if>
 	</tr>
 </c:forEach>
 </table>
 <hr>
-<%-- <c:forEach var="write" items="${comment.commentList}"> --%>
-<form name="write" id="write" method="post"
-		action="<%=request.getContextPath()%>/freeboard/commentwrite.do">
+<form method="post"
+		action="/freeboard/commentwrite.do">
 		
-		<input type="text" name="article_no" value="${freeBoard.list[0].articleNo}" hidden/>
+		<input type="text" name="article_no" value="${articlePage.articleList[0].articleNo}" hidden/>
 
 	<table border="1">
 	<tr>
@@ -64,6 +63,5 @@
 	</tr>
 	</table>
 </form>
-<%-- </c:forEach> --%>
 </body>
 </html>

@@ -18,13 +18,13 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 
 
 	
-	<c:forEach var="board" items="${freeBoard.list}">
-<form name="update" id="update" method="post" 
-		action="<%=request.getContextPath()%>/freeboard/update.do?no=${board.articleNo}">
+	<c:forEach var="item" items="${freePage.freeBoardList}">
+<form method="post" 
+		action="<%=request.getContextPath()%>/freeboard/update.do?no=${item.articleNo}">
 	<table border="1" >
 	<tr>
 		<th>글 번호</th>
-		<td>${board.articleNo}</td>
+		<td>${item.articleNo}</td>
 	</tr>
 	<tr>
 		<th>수정할 제목</th>

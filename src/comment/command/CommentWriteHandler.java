@@ -38,7 +38,6 @@ public class CommentWriteHandler implements CommandHandler {
 
 	
 	private void processSubmit(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		request.setCharacterEncoding("UTF-8");
 		String article_noVal = request.getParameter("article_no");
 		int article_no = Integer.parseInt(article_noVal);
 		String comm_content = request.getParameter("comm_content");
@@ -47,15 +46,13 @@ public class CommentWriteHandler implements CommandHandler {
 		String userid = user.getUserId();
 		
 		
-		int cnt = writeCommentService.writeComment(article_no, comm_content,userid);
+		int cnt = writeCommentService.writeComment(article_no,comm_content,userid);
 		
 		//insert 되었다는 변수
 		request.setAttribute("cnt",cnt);
 		
 		
-		
-//		return "redirect:" + FORM_VIEW+"?no=" + free_no;
-//		response.sendRedirect( FORM_VIEW +"?no=" + free_no );
-		response.sendRedirect("read.do?no=" + article_no);
+		//return "/mypageArticleRead.do?no="+article_no;
+		response.sendRedirect("/freeboard/read.do?no="+article_no);
 	}
 }

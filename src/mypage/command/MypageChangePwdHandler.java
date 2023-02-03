@@ -15,6 +15,7 @@ import mypage.service.MypageChangePwService;
 
 public class MypageChangePwdHandler implements CommandHandler {
 	
+	private static final String FORM_VIEW="/view/mypage/mypageChangePwd.jsp";
 	private MypageChangePwService mypageChangePwService = new MypageChangePwService();
 
 	@Override
@@ -55,21 +56,17 @@ public class MypageChangePwdHandler implements CommandHandler {
 		if(!newPwd.equals(newRePwd)) {
 			errors.put("newPwdRePwdMatch",Boolean.TRUE);
 		}
-		
 		if(!errors.isEmpty()) {
-			res.sendRedirect(req.getContextPath()+"/mypage.do");
+			return FORM_VIEW;
 		}
 		try{
 			mypageChangePwService.changePwd(changePwdReq);
-			//mypageChangePwdService
-			res.sendRedirect(req.getContextPath()+"/mypage.do");
+			return "/view/mypage/mypage.jsp";
 		}catch(PwdMatchFailException e) {
 			errors.put("pwdMatchFail",Boolean.TRUE);
 			e.printStackTrace();
-			
-			res.sendRedirect(req.getContextPath()+"/mypage.do");
+			return FORM_VIEW;
 		}
-		return null;
 	}
 
 	private void empty(Map<String ,Boolean> errors,String value,String fieldName) {

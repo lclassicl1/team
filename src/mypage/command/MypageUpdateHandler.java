@@ -18,7 +18,7 @@ import mypage.service.UpdateMypageService;
 public class MypageUpdateHandler implements CommandHandler {
 
 	UpdateMypageService updateMypageService  = new UpdateMypageService();
-	
+	private static final String FORM_VIEW="/view/mypage/mypageUpdate.jsp";
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -80,16 +80,13 @@ public class MypageUpdateHandler implements CommandHandler {
 			
 			
 			if(!errors.isEmpty()) {
-				res.sendRedirect(req.getContextPath()+"/view/mypage/mypage.jsp");
+				return FORM_VIEW;
 			}
-			
 			ModifyUserInfoRequest modiUserInfoReq = new ModifyUserInfoRequest(loginNo,userHp,userAddress,userEmail,userSkill,userSchool);
 			
 			updateMypageService.updateMypage(modiUserInfoReq);
 			
-			res.sendRedirect(req.getContextPath()+"/view/mypage/mypage.jsp");
-			return null;
-			
+			return "/view/loginboard/loginView.jsp";
 			}
 			private void empty(Map<String,Boolean> errors,String value,String fieldName) {
 				if(value==null||value.isEmpty()) {

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import auth.model.User;
 import freeboard.model.FreeBoard;
+import freeboard.model.FreePage;
 import freeboard.service.ListBoardService;
 import mvc.command.CommandHandler;
 
@@ -19,8 +20,14 @@ public class ListBoardHandler implements CommandHandler {
 						HttpServletResponse response) throws Exception {
 		System.out.println("ListBoardHandler 진입");
 		
-		 FreeBoard freeBoard = listWriteService.getBoardListAll();
-		 request.setAttribute("freeBoard", freeBoard);
+		String pageNoVal = request.getParameter("pageNo");
+		int pageNum=1;
+		if(pageNoVal!=null) {
+			pageNum= Integer.parseInt(pageNoVal);
+		}
+		
+		 FreePage freePage = listWriteService.getBoardListAll(pageNum);
+		 request.setAttribute("freePage", freePage);
 		
 		 User user = (User)request.getSession(false).getAttribute("authUser");
 		String writeId = user.getUserId();

@@ -16,8 +16,7 @@ public class FreeBoardDAO {
 	
 	
 	//게시판 글 목록 페이지 
-	public List<FreeBoardList> selectAll() {
-		System.out.println("FreeBoardDAO selectAll진입");
+	public List<FreeBoardList> selectAll(Connection conn,int startRow,int size) throws SQLException {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
@@ -25,15 +24,15 @@ public class FreeBoardDAO {
 				" from article as a inner join freeboard as f " + 
 				" on a.article_no=f.article_no" + 
 				" where isshow='Y'"+
-				" ORDER BY article_no DESC";
+				" order by a.article_no desc limit ?,?";
 		
-		List<FreeBoardList> freeBoardList = new ArrayList<FreeBoardList>();
-		Connection conn = null;
 		try {
-			conn=ConnectionProvider.getConnection();
 			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, startRow);
+			stmt.setInt(2, size);
 			rs = stmt.executeQuery();
 			
+			List<FreeBoardList> freeBoardList = new ArrayList<FreeBoardList>();
 			while(rs.next()) {
 				FreeBoardList list = new FreeBoardList(
 									rs.getInt("article_no"),
@@ -47,17 +46,15 @@ public class FreeBoardDAO {
 									rs.getString("isshow"),
 									rs.getInt("user_no"),
 									rs.getString("free_category"));
-							freeBoardList.add(list);
-							
-}
-		}catch(SQLException e) {
-			e.printStackTrace();
+							if(list!=null) {
+								freeBoardList.add(list);
+							}
+					}
+			return freeBoardList;
 		}finally {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(stmt);
-			JdbcUtil.close(conn);
 		}
-		return freeBoardList;
 	}
 	
 	
@@ -436,6 +433,25 @@ public class FreeBoardDAO {
 		}
 	
 		return result;
+	}
+	
+	public int selectCount(Connection conn)throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select count(*) from article where isshow='Y' and article_category='free' ";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				return rs.getInt("count(*)");
+			}
+			return 0;
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
 	}
 	
 	
