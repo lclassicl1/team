@@ -3,13 +3,13 @@ package master.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import master.model.UserPage;
-import master.service.ListUserService;
+import article.model.ArticlePage;
+import master.service.ListArticleMasterService;
 import mvc.command.CommandHandler;
 
-public class ListUserHandler implements CommandHandler {
+public class ListArticleMasterHandler implements CommandHandler {
 
-	ListUserService listUserService = new ListUserService();
+	ListArticleMasterService listArticle = new ListArticleMasterService();
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
@@ -18,11 +18,10 @@ public class ListUserHandler implements CommandHandler {
 		if(pageNoVal != null) {
 			pageNo = Integer.parseInt(pageNoVal);
 		}
-		UserPage userPage =listUserService.getUserPage(pageNo);
+		ArticlePage articlePage =listArticle.getArticlePage(pageNo);
+		req.setAttribute("articlePage", articlePage);
 		
-		req.setAttribute("userPage", userPage);
-		
-		return "/view/master/listUser.jsp";
+		return "/view/master/listArticleMaster.jsp";
 	}
 
 }

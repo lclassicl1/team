@@ -36,7 +36,22 @@
 	</tr>
 	<tr>
 		<td>회원 등급</td>
-		<td>${user.userGrade }</td>
+		<td>
+			 <c:choose> 
+			    <c:when test="${user.userGrade == 1}">
+			        <a>일반 회원</a>
+			    </c:when>
+			    <c:when test="${user.userGrade == 900}">
+			        <a>정지 회원</a>
+			    </c:when>
+			    <c:when test="${user.userGrade == 999}">
+			        <a>관리자</a>
+			    </c:when>
+			    <c:otherwise>
+			        <a>회원 등급 없음</a>
+			    </c:otherwise>
+			</c:choose>
+		</td>
 	</tr>
 	<tr>
 		<td>회원 이메일</td>
@@ -62,7 +77,7 @@
 		<td colspan="2">
 		<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo }" />
 			<a href="<%=request.getContextPath()%>/master/user/list.do?pageNo=${pageNo}">목록</a>
-			<a href="#">회원이 쓴 게시글 보기</a>
+			<a href="<%=request.getContextPath()%>/master/user/article.do?pageNo=${pageNo}&userNo=${user.userNo}">회원이 쓴 게시글 보기</a>
 			<a href="<%=request.getContextPath()%>/master/user/black.do?no=${user.userNo}">회원 정지</a>
 		</td>
 	</tr> 

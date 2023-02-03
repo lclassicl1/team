@@ -56,7 +56,22 @@
 		 	  </td>
 		 	  <td>${item.userName}</td>
 		 	  <td>${item.userRegdate}</td>
-		 	  <td>${item.userGrade}</td>
+		 	  <td>
+		 	  <c:choose> 
+				    <c:when test="${item.userGrade == 1}">
+				        <a>일반 회원</a>
+				    </c:when>
+				    <c:when test="${item.userGrade == 900}">
+				        <a>정지 회원</a>
+				    </c:when>
+				    <c:when test="${item.userGrade == 999}">
+				        <a>관리자</a>
+				    </c:when>
+				    <c:otherwise>
+				        <a>회원 등급 없음</a>
+				    </c:otherwise>
+				</c:choose>
+		 	  </td>
 		 	 </tr>
  	 </c:forEach> 
    <%-- 반복문이용하여 출력끝 --%>

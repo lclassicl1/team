@@ -57,7 +57,7 @@ public class User {
 		return userAddress;
 	}
 	public int getUserGrade() {
-		return userGrade;
+			return userGrade;
 	}
 	public String getUserEmail() {
 		return userEmail;
