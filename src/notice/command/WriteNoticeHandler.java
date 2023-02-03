@@ -29,11 +29,11 @@ public class WriteNoticeHandler implements CommandHandler {
 	}
 
 	private String processForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		
 		User user = (User)req.getSession(false).getAttribute("authUser");
 		int loginGrade = user.getUserGrade();
-		if(loginGrade!=999) {
-			res.sendError(HttpServletResponse.SC_NOT_ACCEPTABLE);
-			return null;
+		if(loginGrade != 999) {
+			return "/view/Exception/noticeCant.jsp";
 		}
 		return FORM_VIEW;
 	}

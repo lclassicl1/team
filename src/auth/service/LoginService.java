@@ -3,6 +3,7 @@ package auth.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import Exception.BlackUserException;
 import Exception.LoginFailException;
 import Exception.UserNotFoundException;
 import auth.DAO.UserDAO;
@@ -25,6 +26,9 @@ public class LoginService {
 			}
 			if(!matchPwd(loginPwd,user)) {
 				throw new LoginFailException();
+			}
+			if(user.getUserGrade()==900) {
+				throw new BlackUserException();
 			}
 			conn.commit();
 			return user;

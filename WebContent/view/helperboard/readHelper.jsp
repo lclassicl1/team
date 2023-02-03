@@ -53,6 +53,9 @@
 			<a href="<%=request.getContextPath()%>/helper/modify.do?no=${read.article.articleNo }">게시글 수정</a>
 			<a href="<%=request.getContextPath()%>/helper/delete.do?no=${read.article.articleNo }">게시글 삭제</a>
 		</c:if>
+		<c:if test="${authUser.userGrade == 999 }">
+		<a href="<%=request.getContextPath()%>/master/article/list.do?pageNo=${pageNo}">목록(관리자 권한)</a>
+		</c:if>
 		</td>
 	</tr> 
 			
