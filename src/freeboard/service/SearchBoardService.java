@@ -16,4 +16,11 @@ public class SearchBoardService {
 	
 		return new FreeBoard(list);
 	}
+	
+	public FreeBoard mypageSearch(String categorySearch,String input,String loginName) {
+		
+		List<FreeBoardList> list = freeBoardDAO.mypageSearchBoard(categorySearch,input,loginName);
+		
+			return new FreeBoard(list);
+		}
 }

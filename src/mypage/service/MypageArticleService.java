@@ -11,8 +11,8 @@ public class MypageArticleService {
 	private FreeBoardDAO freeBoardDAO = new FreeBoardDAO();	
 	
 	
-	public FreeBoard getMyapgeArticle(String mypageUserId,String input) {
-		List<FreeBoardList> list = freeBoardDAO.selectMypageArticle(mypageUserId,input);
+	public FreeBoard getMyapgeArticle(String mypageUserName) {
+		List<FreeBoardList> list = freeBoardDAO.selectMypageArticle(mypageUserName);
 		System.out.println("마이페이지 서비스 list====="+list);
 		return new FreeBoard(list);
 	}

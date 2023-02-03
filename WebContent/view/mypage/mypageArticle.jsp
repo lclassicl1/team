@@ -21,7 +21,7 @@
 <a href="<%=request.getContextPath()%>/mypage.do"><button>뒤로가기</button></a>
 <hr>
 <form name="categorySearch" id="categorySearch" method="get" 
-		action="<%=request.getContextPath()%>/freeboard/searchBoard.do">
+		action="<%=request.getContextPath()%>/mypageArticleSearch.do">
 		  <select name='categorySearch'>
 			    <option value='' selected>-- 선택 --</option>
 			    <option value='자유'>자유</option>
@@ -49,7 +49,7 @@
 			<tr>
 					<td><c:out value="${item.articleNo}"/></td>
 					<td><c:out value="${item.userName}"/></td>
-					<td><a href="<%=request.getContextPath()%>/freeboard/read.do?no=${item.articleNo}"><c:out value="${item.free_title}"/></a></td>
+					<td><a href="<%=request.getContextPath()%>/mypageArticleRead.do?no=${item.articleNo}"><c:out value="${item.articleTitle}"/></a></td>
 					<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${item.articleCredate}"/></td>
 					<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${item.articleUpdate}"/></td>
 					<td><c:out value="${item.articleReadcnt}"/></td>

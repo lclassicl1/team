@@ -17,15 +17,15 @@ public class MypageArticleHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
-		String input = req.getParameter("input");
 		User user =(User)req.getSession(false).getAttribute("authUser");
 		String mypageUserName = user.getUserName();
+		System.out.println("mypageUserName=========="+mypageUserName);
 		
-		FreeBoard freeBoard = mypageArticleService.getMyapgeArticle(mypageUserName,input);
+		FreeBoard freeBoard = mypageArticleService.getMyapgeArticle(mypageUserName);
 		System.out.println("freeBoard======"+freeBoard);
 		req.setAttribute("freeBoard", freeBoard);
 		
-		return "/view/mypage/mypageArticleSearch.jsp";
+		return "/view/mypage/mypageArticle.jsp";
 	}
 
 }
