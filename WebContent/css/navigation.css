@@ -1,0 +1,17 @@
+@charset "UTF-8";
+body {
+  font-family: Arial, sans-serif;
+  color: rgb(243 244 246);
+  background-color: rgb(31 41 55);
+}
+
+#mainicon {
+	width: 100px;
+	height: 50px;
+}	
+
+#myPageicon, #logouticon {
+	width: 30px;
+	height: 30px;
+}
+
