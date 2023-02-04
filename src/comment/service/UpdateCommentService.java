@@ -13,5 +13,15 @@ public class UpdateCommentService {
 
 		return result;
 	}
+	
+	public int likeComment(int articleNo, int commno) {
+		int result = commentDAO.updateLikeComment(articleNo, commno);
+		return result;
+	}
+	
+	public int articleCntDown(int articleNo) {
+		int result2 = commentDAO.articleCntDown(articleNo);
+		return result2;
+	}
 
 }

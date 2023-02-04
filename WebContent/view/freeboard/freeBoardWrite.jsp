@@ -10,8 +10,27 @@
 <script 
 src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 </script>
+<script type="text/javascript">
+	function sendit(){
+		if(document.writeFrm.title.value==""){
+			alert("제목을 입력해주세요.");
+			document.writeFrm.title.focus();
+			return false;
+			}
+		if(document.writeFrm.content.value==""){
+		alert("내용을 입력해주세요.");
+		document.writeFrm.content.focus();
+		return false;
+		}
+		if(document.writeFrm.categorySearch.value==""){
+			alert("카테고리를 골라주세요.");
+			document.writeFrm.categorySearch.focus();
+			return false;
+			}
+	}
+</script>
 <style>
-	textarea{width:500px; height:200px; 
+	content{width:500px; height:200px; 
 		resize:none;
 	 	resize: vertical;
 	}
@@ -24,15 +43,15 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 
 	
 
-<form method="post" action="<%=request.getContextPath()%>/freeboard/write.do">
+<form name="writeFrm" method="post" action="<%=request.getContextPath()%>/freeboard/write.do" onsubmit="return sendit();">
 	<table border="1">
 	<tr>
 		<th>제목</th>
-			<td><input type="text" name="title" id="title"/></td>
+			<td><input type="text" name="title" style="width:500px;"/></td>
 	</tr>
 	<tr>
 		<th>내용</th>
-			<td><textarea name="content" id="content" width:500px; height:200px; style="resize: none;"></textarea></td>
+			<td><input name="content" id="content" style="width:500px;height:200px;"></td>
 	</tr>
 	<tr>
 	<tr>

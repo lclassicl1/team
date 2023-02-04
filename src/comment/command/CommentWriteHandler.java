@@ -1,6 +1,8 @@
 package comment.command;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,21 +40,19 @@ public class CommentWriteHandler implements CommandHandler {
 
 	
 	private void processSubmit(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String article_noVal = request.getParameter("article_no");
-		int article_no = Integer.parseInt(article_noVal);
-		String comm_content = request.getParameter("comm_content");
+		String articleNoVal = request.getParameter("articleNo");
+		int articleNo = Integer.parseInt(articleNoVal);
+		String newComment = request.getParameter("newComment");
 	
 		User user = (User)request.getSession().getAttribute("authUser");
 		String userid = user.getUserId();
 		
-		
-		int cnt = writeCommentService.writeComment(article_no,comm_content,userid);
-		
-		//insert 되었다는 변수
-		request.setAttribute("cnt",cnt);
-		
-		
-		//return "/mypageArticleRead.do?no="+article_no;
-		response.sendRedirect("/freeboard/read.do?no="+article_no);
+		if(newComment!=null) {
+			int cnt = writeCommentService.writeComment(articleNo,newComment,userid);
+			response.sendRedirect("/freeboard/read.do?no="+articleNo);
+		} else {
+			response.sendRedirect("/freeboard/read.do?no="+articleNo);
+		}
+
 	}
 }
