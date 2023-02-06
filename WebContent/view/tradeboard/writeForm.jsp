@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel='stylesheet' type='text/css' href='../../css/main.css'/>
-<link rel='stylesheet' type='text/css' href='../../css/navigation.css'/>
+<link rel='stylesheet' type='text/css' href='../css/main.css'/>
+<link rel='stylesheet' type='text/css' href='../css/navigation.css'/>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <!-- Popper JS -->
