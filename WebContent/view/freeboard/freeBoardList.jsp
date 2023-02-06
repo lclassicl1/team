@@ -6,8 +6,8 @@
 <html lang="">
 <head>
 <meta charset="UTF-8">
-<link rel='stylesheet' type='text/css' href='../../css/main.css'/>
-<link rel='stylesheet' type='text/css' href='../../css/navigation.css'/>
+<link rel='stylesheet' type='text/css' href='../css/main.css'/>
+<link rel='stylesheet' type='text/css' href='../css/navigation.css'/>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <!-- Popper JS -->
@@ -18,7 +18,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <body>
-<header><jsp:include page="../../module/navBar.jsp"/></header>
+<header><jsp:include page="../../module/navBar.jsp"/></header> <!-- header 네비게이션바 --> 
 <h2><a href="<%=request.getContextPath()%>/index.jsp">HOME</a></h2>
 <hr>
 <a href="<%=request.getContextPath()%>/freeboard/list.do"><button>전체 글 목록</button></a>
@@ -35,7 +35,7 @@
 			    <input type="submit" value="검색"/>
  </form>
 <hr>
-<table border="1" class="table table-dark table-hover">
+<table border="1" class="table table-dark w-auto table-hover">
 <thead>
 	<tr>
 		<th>글 번호</th>
