@@ -34,11 +34,8 @@ public class CommentWriteHandler implements CommandHandler {
 	}
 	
 	private String processForm(HttpServletRequest request, HttpServletResponse response) {
-		
 		return "/view/freeboard/freeBoardRead.jsp";
 	}
-
-	
 	private void processSubmit(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String articleNoVal = request.getParameter("articleNo");
 		int articleNo = Integer.parseInt(articleNoVal);

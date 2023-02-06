@@ -24,7 +24,7 @@
 <a href="<%=request.getContextPath()%>/freeboard/list.do"><button>전체 글 목록</button></a>
 <a href="<%=request.getContextPath()%>/freeboard/write.do"><button>글쓰기</button></a>
 <form name="categorySearch" id="categorySearch" method="get" 
-		action="<%=request.getContextPath()%>/item/searchBoard.do">
+		action="<%=request.getContextPath()%>/freeboard/searchBoard.do">
 		  <select name='categorySearch'>
 			    <option value='' selected>-- 선택 --</option>
 			    <option value='자유'>자유</option>

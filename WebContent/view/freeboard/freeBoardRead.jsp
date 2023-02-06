@@ -35,6 +35,7 @@
 		<a href="<%=request.getContextPath()%>/mypageArticle.do">내가 쓴 글 목록으로</a>
 	</c:if>
 			<p>글번호 : ${item.articleNo}</p>
+			<p>조회수 : ${item.articleReadcnt}</p>
 			<p>글 작성자 : ${item.userName}</p>
 			<p>제목: ${item.articleTitle}</p>
 			<p>내용: ${item.articleContent}</p>
@@ -71,7 +72,7 @@
 </table>
 <hr>
 <form name="commentFrm" method="post"
-		action="/freeboard/commentwrite.do" onsubmit="return sendit();">
+		action="<%=request.getContextPath()%>/freeboard/commentwrite.do" onsubmit="return sendit();">
 		
 		<input type="text" name="articleNo" value="${freePage.freeBoardList[0].articleNo}" hidden/>
 
@@ -87,9 +88,6 @@
 	</tr>
 	</table>
 </form>
-                                                               
-<%-- </c:forEach> --%>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-
 </body>
 </html>

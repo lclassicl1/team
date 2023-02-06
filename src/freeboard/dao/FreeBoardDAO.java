@@ -400,9 +400,6 @@ public class FreeBoardDAO {
 	}
 	
 	
-	
-	
-	
 	// 조회수 증가
 	public int updateCnt(int no) {
 		PreparedStatement stmt = null;
