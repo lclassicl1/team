@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import mvc.command.CommandHandler;
 
 public class RegisterHandler implements CommandHandler {
-	private final static String REGISTERFORM = "/view/register/registerForm.jsp";
+	private final static String REGISTERFORM = "/view/loginboard/joinForm.jsp";
 	
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {

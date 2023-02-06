@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-댓글 작성 완료. 
-
+sasdfas
 </body>
 </html>
