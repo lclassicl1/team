@@ -42,9 +42,7 @@ public class CommentUpdateHandler implements CommandHandler {
 	}
 	
 		private String processForm(HttpServletRequest request, HttpServletResponse response) {
-			System.out.println("CommentUpdateHandler 진입");
 			String articleNo = request.getParameter("articleNo");
-			System.out.println("articleNo======="+articleNo);
 			int no = Integer.parseInt(articleNo);
 			
 		 FreePage freePage = readBoardService.getBoardDetail(no);

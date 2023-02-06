@@ -19,7 +19,15 @@
 </head>
 <h2><a href="<%=request.getContextPath()%>/index.jsp">HOME</a></h2>
 <a href="<%=request.getContextPath()%>/freeboard/list.do">글 목록으로</a>
-
+<script type="text/javascript">
+	function sendit(){
+		if(document.commentFrm.newComment.value==""){
+		alert("댓글 내용을 입력해주세요.");
+		document.commentFrm.newComment.focus();
+		return false;
+		} 
+	}
+</script>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
 <c:forEach var="item" items="${freePage.freeBoardList}">
@@ -45,37 +53,43 @@
 		<th>아이디</th>
 		<th>내용</th>
 		<th>등록일</th>
+		<th>추천수</th>
 	</tr>
 <c:forEach var="comment" items="${comment.commentList}">
 	<tr>
 		<td>${comment.user_id}</td>
-		<td>${comment.comm_content}</td>
+		<td style="width:500px;">${comment.comm_content}</td>
 		<td>${comment.comm_credate}</td>
+		<td>${comment.comm_volt}</td>
 		 <c:if test="${authUser.userId==comment.user_id}">
 		<td><a href="<%=request.getContextPath()%>/freeboard/commentdelete.do?articleNo=${freePage.freeBoardList[0].articleNo}&comm_no=${comment.comm_no}"><button>삭제</button></a></td>
 		<td><a href="<%=request.getContextPath()%>/freeboard/commentupdate.do?articleNo=${freePage.freeBoardList[0].articleNo}&comm_no=${comment.comm_no}"><button>수정</button></a></td>
 		</c:if>
+		<td><a href="<%=request.getContextPath()%>/freeboard/commentlike.do?articleNo=${freePage.freeBoardList[0].articleNo}&comm_no=${comment.comm_no}"><button>추천</button></a></td>
 	</tr>
 </c:forEach>
 </table>
 <hr>
-<%-- <c:forEach var="write" items="${comment.commentList}"> --%>
-<form name="write" id="write" method="post"
-		action="<%=request.getContextPath()%>/freeboard/commentwrite.do">
+<form name="commentFrm" method="post"
+		action="/freeboard/commentwrite.do" onsubmit="return sendit();">
 		
-		<input type="text" name="article_no" value="${freePage.freeBoardList[0].articleNo}" hidden/>
+		<input type="text" name="articleNo" value="${freePage.freeBoardList[0].articleNo}" hidden/>
 
 	<table border="1" class="table table-dark table-hover">
 	<tr>
 		<th>댓글 내용</th>
-			<td><textarea name="comm_content" id="comm_content" ></textarea></td>
+			<td>
+				<input type="text" name="newComment" style="width:500px;">
+			</td>
 	</tr>
 	<tr>
-		<td colspan="2" style="text-align:center;"><input type="submit" value="댓글 입력"/></td>
+		<td colspan="2" style="text-align:center;"><input type="submit" value="댓글 입력" /></td>
 	</tr>
 	</table>
 </form>
+                                                               
 <%-- </c:forEach> --%>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
 </body>
 </html>

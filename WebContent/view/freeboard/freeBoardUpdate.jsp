@@ -18,6 +18,25 @@
 <script 
 src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 </script>
+<script type="text/javascript">
+	function sendit(){
+		if(document.updateFrm.title.value==""){
+			alert("제목을 입력해주세요.");
+			document.updateFrm.title.focus();
+			return false;
+			}
+			if(document.updateFrm.content.value==""){
+				alert("내용을 입력해주세요.");
+				document.updateFrm.content.focus();
+				return false;
+			}
+			if(document.updateFrm.freeCategory.value==""){
+				alert("카테고리를 입력해주세요.");
+				document.updateFrm.freeCategory.focus();
+				return false;
+			}
+	}
+</script>
 </head>
 
 <body>
@@ -26,6 +45,9 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 <a href="<%=request.getContextPath()%>/freeboard/list.do">글 목록으로</a>
 
 
+	<form name="updateFrm" method="post" 
+		action="<%=request.getContextPath()%>/freeboard/update.do?no=${freePage.freeBoardList[0].articleNo}" onsubmit="return sendit();">
+	<table border="1" >
 	
 	<c:forEach var="item" items="${freePage.freeBoardList}">
 <form method="post" 
@@ -33,15 +55,15 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 	<table border="1" class="table table-dark table-hover" >
 	<tr>
 		<th>글 번호</th>
-		<td>${item.articleNo}</td>
+		<td>${freePage.freeBoardList[0].articleNo}</td>
 	</tr>
 	<tr>
 		<th>수정할 제목</th>
-			<td><input type="text" name="title" id="title"/></td>
+			<td><input type="text" name="title" style="width:500px;"/></td>
 	</tr>
 	<tr>
 		<th>수정할 내용</th>
-			<td><textarea name="content" id="content" ></textarea></td>
+			<td><input type="text" name="content" style="width:500px;height:200px;" ></td>
 	</tr>
 	<tr>
 		<th>카테고리</th>
@@ -58,7 +80,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 	</tr>
 	</table>
 </form>
-	</c:forEach>
+</c:forEach>
 <hr>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>

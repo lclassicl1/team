@@ -49,7 +49,6 @@ public class UpdateBoardHandler implements CommandHandler {
 		
 		
 		int WriterNo = freePage.getFreeBoardList().get(0).getUserNo();
-		System.out.println("boardWriter======"+WriterNo);
 		
 		User user = (User)request.getSession(false).getAttribute("authUser");
 	
