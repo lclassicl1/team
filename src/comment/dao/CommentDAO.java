@@ -90,7 +90,7 @@ public class CommentDAO {
 		}
 		
 	//댓글 쓰기
-	public int insertComment(int article_no, String comm_content, String userid) {
+	public int insertComment(int articleNo, String newComment, String userid) {
 		PreparedStatement stmt = null;
 		
 		String sql="INSERT INTO FREE_COMMENT (comm_content,user_id,article_no)" + 
@@ -104,9 +104,9 @@ public class CommentDAO {
 			conn.setAutoCommit(false);
 			
 			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, comm_content);
+			stmt.setString(1, newComment);
 			stmt.setString(2, userid);
-			stmt.setInt(3, article_no);
+			stmt.setInt(3, articleNo);
 			cnt = stmt.executeUpdate();
 			
 			conn.commit();
@@ -151,6 +151,69 @@ public class CommentDAO {
 	
 		return result;
 	}
+	
+	// 좋아요 
+		public int updateLikeComment(int articleNo, int commno) {
+			PreparedStatement stmt = null;
+			int result = 0;
+			
+			String sql="UPDATE free_comment" + 
+					" SET comm_volt=comm_volt+1" + 
+					" WHERE article_no=? and comm_no=?";
+			
+			Connection conn = null;
+			try {
+				conn=ConnectionProvider.getConnection();
+				conn.setAutoCommit(false);
+				
+				stmt = conn.prepareStatement(sql);
+				stmt.setInt(1, articleNo);
+				stmt.setInt(2, commno);
+				result = stmt.executeUpdate();
+					conn.commit();
+	
+			}catch(SQLException e) {
+				e.printStackTrace();
+				JdbcUtil.rollback(conn);
+			}finally {
+				JdbcUtil.close(stmt);
+				JdbcUtil.close(conn);
+			}
+			return result;
+		}
+		
+		public int articleCntDown(int articleNo) {
+			PreparedStatement stmt = null;
+			int result = -1;
+			
+			String sql="update article" + 
+						" set article_readcnt=article_readcnt-1" + 
+						" where article_no=?";
+			
+
+				Connection conn = null;
+			
+				try {
+				conn=ConnectionProvider.getConnection();
+				
+				conn.setAutoCommit(false);
+				
+				stmt = conn.prepareStatement(sql);
+				stmt.setInt(1, articleNo);
+				result = stmt.executeUpdate();
+				
+				conn.commit();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JdbcUtil.close(stmt);
+				JdbcUtil.close(conn);
+			}
+		
+			return result;
+		}
+		
+	
 	
 	
 	//글 삭제하기
