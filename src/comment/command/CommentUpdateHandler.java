@@ -62,15 +62,12 @@ public class CommentUpdateHandler implements CommandHandler {
 	
 	
 	private void processSubmit(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		System.out.println("댓글 post 요청 진입");
 		String articleNoVal = request.getParameter("articleNo");
 		int articleNo = Integer.parseInt(articleNoVal);
 		
 		
 		String commContent = request.getParameter("commContent");
 		String commNo = request.getParameter("commNo");
-		System.out.println("commContent======"+commContent);
-		System.out.println("commNo====="+commNo);
 		
 		
 		int commno = Integer.parseInt(commNo);

@@ -16,7 +16,6 @@ public class CharsetEncodingFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request,  ServletResponse response, FilterChain chain)
                throws IOException, ServletException {
-          System.out.println("doFilter=================진입");
           request.setCharacterEncoding(encoding);
           chain.doFilter(request, response);
     }
@@ -25,7 +24,6 @@ public class CharsetEncodingFilter implements Filter {
     @Override
     public void init(FilterConfig fConfig) throws  ServletException {
           encoding = fConfig.getInitParameter("encoding");
-          System.out.println("public void init(FilterConfig fConfig) throws  ServletException {");
           //인코딩을 따로 지정하지 않은 경우 기본값 세팅
           if(encoding == null) {
                encoding = "utf-8";
@@ -34,7 +32,6 @@ public class CharsetEncodingFilter implements Filter {
 
     @Override
     public void destroy() {
-    	System.out.println(" public void destroy() { public void destroy() {");
     }
 }
 

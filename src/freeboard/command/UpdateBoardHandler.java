@@ -44,7 +44,6 @@ public class UpdateBoardHandler implements CommandHandler {
 		int no = Integer.parseInt(noVal);
 		
 		FreePage freePage = readBoardService.getBoardDetail(no);
-		System.out.println("freeBoard ="+freePage);
 		request.setAttribute("freePage", freePage);
 		
 		

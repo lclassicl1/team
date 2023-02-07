@@ -218,7 +218,6 @@ public class CommentDAO {
 	
 	//글 삭제하기
 	public int deleteComment(int commNo) {
-		System.out.println("dao-comment delete 진입");
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		int result = -1;

@@ -24,7 +24,6 @@ public class WriteBoardHandler implements CommandHandler {
 	
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("WriteBoardHandler 진입");
 		if (request.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(request, response);
 		} else if (request.getMethod().equalsIgnoreCase("POST")) {
@@ -57,12 +56,12 @@ public class WriteBoardHandler implements CommandHandler {
 		String articleCategory = "free";
 		int articleNo = articleBoardService.freeArticleInsert(articleCategory,title,loginName,content,userNo);
 		
+		
 		int cnt = writeBoardService.writetBoard(articleNo,userNo,articleCategory,categorySearch);
-		 
-		//insert 되었다는 변수
-		request.setAttribute("cnt",cnt);
 		
-		
+		if(articleNo!=0) {
+			response.sendRedirect(request.getContextPath()+"/freeboard/read.do?no="+articleNo);
+		}
 		return "/view/freeboard/freeBoardList.jsp";
 	}
 

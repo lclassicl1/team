@@ -19,14 +19,18 @@
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header> <!-- header 네비게이션바 --> 
-<a href="<%=request.getContextPath()%>/freeboard/write.do"><button>글쓰기</button></a>
+<h3>자유게시판</h3>
+<a href="<%=request.getContextPath()%>/freeboard/write.do">게시글 작성하기</a>
+ <hr/>
 <form name="categorySearch" id="categorySearch" method="get" 
 		action="<%=request.getContextPath()%>/freeboard/searchBoard.do">
-		  <select name='categorySearch'>
-			    <option value='' selected>-- 선택 --</option>
+ 카테고리 : 
+			<select name='categorySearch'>
+			    <option value='' selected>전체</option>
 			    <option value='자유'>자유</option>
 			    <option value='질문'>질문</option>
 			    <option value='팁'>팁</option>
+
   	</select>
 			    <input type="text" name="input"/>
 			    <input type="submit" value="검색"/>
@@ -42,17 +46,18 @@
 		<th>카테고리</th>
 	</tr>
 </thead>
+
 			<tbody>
 				 <c:if test="${freePage.hasNoFreeBoard() }">
 				   <tr>
-				  	 <td colspan="5" style="text-align:center;">게시글이 없습니다.</td>
+				  	 	<td colspan="5" style="text-align:center;">게시글이 없습니다.</td>
 				   </tr>
-			     </c:if>
+			   </c:if>
 						
 					<c:forEach var="item" items="${freePage.freeBoardList}">
 						<tr>
-								<td><c:out value="${item.userName}"/></td>
 								<td><a href="<%=request.getContextPath()%>/freeboard/read.do?no=${item.articleNo}"><c:out value="${item.articleTitle}"/></a></td>
+								<td><c:out value="${item.userName}"/></td>
 								<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${item.articleCredate}"/></td>
 								<td><c:out value="${item.articleReadcnt}"/></td>
 								<td><c:out value="${item.freeCategory}"/></td>

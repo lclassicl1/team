@@ -50,11 +50,9 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 <a href="<%=request.getContextPath()%>/index.jsp">HOME</a>
 <a href="<%=request.getContextPath()%>/freeboard/list.do">글 목록으로</a>
 
-	
+
 
 <form name="writeFrm" method="post" action="<%=request.getContextPath()%>/freeboard/write.do" onsubmit="return sendit();">
-	<table border="1" class="table table-dark w-auto table-hover">
-<form method="post" action="<%=request.getContextPath()%>/freeboard/write.do">
 	<table border="1" class="table table-dark table-hover">
 	<tr>
 		<th>제목</th>
