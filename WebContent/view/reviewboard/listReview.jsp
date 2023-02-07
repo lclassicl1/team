@@ -23,10 +23,6 @@
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
 <h3>리뷰</h3>
- <%-- <a href="<%=request.getContextPath()%>/index.jsp">HOME</a>
- <a href="<%=request.getContextPath()%>/article/list.do">게시글 보러가기</a>
-<a href="<%=request.getContextPath()%>/article/write.do">게시글 작성하기</a>
-<a href="<%=request.getContextPath()%>/view/member/loginPage.jsp">MyPage</a> --%>
 <a href="<%=request.getContextPath()%>/review/write.do">게시글 작성하기</a>
  <hr/>
  <form action="<%=request.getContextPath()%>/review/search.do" method="post">
@@ -39,7 +35,6 @@
   	 <th>제목</th>
   	 <th>작성자</th>
   	 <th>작성일</th>
-  	 <th>카테고리</th>
   	 <th>조회수</th>
   	 <th>카테고리</th>
   	</tr>
@@ -62,7 +57,6 @@
 		 	  </td>
 		 	  <td>${item.userName}</td>
 		 	  <td>${item.articleCredate}</td>
-		 	  <td>${item.articleCategory }</td>
 		 	  <td>${item.articleReadCnt}</td>
 		 	  <td>${item.reviewCategory}</td>
 		 	 </tr>

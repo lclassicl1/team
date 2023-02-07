@@ -9,7 +9,6 @@ import java.util.List;
 
 import review.model.Review;
 import review.model.ReviewList;
-import article.model.ModifyRequest;
 import review.model.SearchReview;
 import review.model.WriterRequest;
 import jdbc.JdbcUtil;
@@ -125,20 +124,6 @@ public class ReviewDAO {
 			return 0;
 		}finally {
 			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-		}
-	}
-	public void update(Connection conn,ModifyRequest modReq,String modCategory)throws SQLException {
-		PreparedStatement pstmt = null;
-		String sql = "update reviewboard set review_category=? where article_no = ?";
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,modCategory);
-			pstmt.setInt(2, modReq.getArticleNo());
-			
-			pstmt.executeUpdate();
-		}finally {
 			JdbcUtil.close(pstmt);
 		}
 	}

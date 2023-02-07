@@ -10,12 +10,11 @@ import mvc.command.CommandHandler;
 
 public class SearchReviewHandler implements CommandHandler {
 	
-	private static final String FORM_VIEW = "/view/reviewboard/listreview.jsp";
+	private static final String FORM_VIEW = "/view/reviewboard/listReview.jsp";
 	private SearchReviewService searchReviewService = new SearchReviewService();
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		String category = req.getParameter("category");
 		String input = req.getParameter("input");
 		String pageNoVal = req.getParameter("pageNo");
 		int pageNo = 1;
@@ -23,8 +22,7 @@ public class SearchReviewHandler implements CommandHandler {
 			pageNo = Integer.parseInt(pageNoVal);
 		}
 		
-		System.out.println(category);
-		ReviewPage reviewPage =searchReviewService.search(pageNo, category, input);
+		ReviewPage reviewPage =searchReviewService.search(pageNo, input);
 		req.setAttribute("reviewPage", reviewPage);
 		
 		return FORM_VIEW;

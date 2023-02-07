@@ -64,7 +64,6 @@ public class ModifyReviewHandler implements CommandHandler {
 		
 		String title = req.getParameter("title").trim();
 		String content = req.getParameter("content").trim();
-		String category = req.getParameter("category");
 		
 		ModifyRequest modReq = new ModifyRequest(user.getUserNo(),no,title
 				  							,content);
@@ -85,8 +84,8 @@ public class ModifyReviewHandler implements CommandHandler {
 		}
 		
 		try {
-			modifyReviewService.modify(modReq,category);
-			return "/view/reviewboard/modifySuccess.jsp"; // 수정 성공 후 출력 페이지 
+			modifyReviewService.modify(modReq);
+			return "/review/read.do?no="+no;
 		}catch(HelperNotFoundException e) {
 			res.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return null;

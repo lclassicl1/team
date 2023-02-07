@@ -40,7 +40,6 @@ public class HelpDAO {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			//pstmt.setString(1, articleCategory);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, size);
 			rs = pstmt.executeQuery();

@@ -8,16 +8,19 @@
  <meta name="description" content="member board Web Application">
  <meta name="keywords" content="member, board, article, mvc">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel='stylesheet' type='text/css' href='../css/main.css'/>
+<link rel='stylesheet' type='text/css' href='../css/navigation.css'/>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
  <title>게시판목록</title>
  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
- <link rel='stylesheet' type='text/css' href='../../css/main.css'/>
- <link rel='stylesheet' type='text/css' href='../../css/navigation.css'/>
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <!-- Popper JS -->
- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
- <!-- Latest compiled JavaScript -->
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
- <style></style>
+ <style>
+
+ </style>
 </head>
 <body>
 <header>

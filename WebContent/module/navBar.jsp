@@ -16,6 +16,18 @@ body {
   background-color: rgb(31 41 55);
   
 }
+.links {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.links a {
+  color: cornflowerblue;
+  font-size: 14px;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
 </style>
 </head> 
 <body>
@@ -43,12 +55,15 @@ body {
       </li>  
       <li class="nav-item">
         <a class="nav-link" href="<%=request.getContextPath()%>/review/list.do">리뷰/후기게시판</a>
+      </li>
+      <li class="nav-item">
+      	
       </li> 
       </ul>
       <ul class='navbar-nav'>
       <li class="nav-item">
         <a class="nav-link text-light" href="<%=request.getContextPath()%>/mypage.do">
-        	<img src='<%=request.getContextPath()%>/image/mypageicon.png' alt='myPage' id='myPageicon'/>
+        	${authUser.userName}님
         </a>
       </li>  
       <li class="nav-item">

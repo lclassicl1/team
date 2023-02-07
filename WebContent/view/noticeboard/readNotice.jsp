@@ -21,10 +21,6 @@
 <!-- 게시글 정보  -->
 <table border="1" class="table table-dark w-auto table-hover">
 	<tr>
-		<td>번호</td>
-		<td>${read.article.articleNo }</td>
-	</tr>
-	<tr>
 		<td>조회수</td>
 		<td>${read.article.articleReadCnt }</td>
 	</tr>

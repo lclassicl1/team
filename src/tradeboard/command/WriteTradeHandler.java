@@ -52,8 +52,8 @@ public class WriteTradeHandler implements CommandHandler {
 			return FORM_VIEW;
 		}
 		
-		writeTradeService.writer(articleReq,tradeCategory);
-		return "/view/tradeboard/writeSuccess.jsp";
+		int articleNo = writeTradeService.writer(articleReq,tradeCategory);
+		return "/trade/read.do?no="+articleNo;
 	}
 	private ArticleRequest createWriterRequest(HttpServletRequest req,User user) {
 		String title = req.getParameter("title");

@@ -19,9 +19,6 @@
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header> <!-- header 네비게이션바 --> 
-<h2><a href="<%=request.getContextPath()%>/index.jsp">HOME</a></h2>
-<hr>
-<a href="<%=request.getContextPath()%>/article/list.do"><button>전체 글 목록</button></a>
 <a href="<%=request.getContextPath()%>/freeboard/write.do"><button>글쓰기</button></a>
 <form name="categorySearch" id="categorySearch" method="get" 
 		action="<%=request.getContextPath()%>/freeboard/searchBoard.do">
@@ -41,28 +38,26 @@
 		<th>작성자</th>
 		<th>제목</th>
 		<th>작성일</th>
-		<th>수정일</th>
 		<th>조회수</th>
 		<th>카테고리</th>
 	</tr>
 </thead>
 			<tbody>
-			<!-- 게시글 없음 -->
-			<c:if test="${freePage.hasNoFreeBoard()}">
-					<tr>
-						<td colspan="6" style="text-align:center;">게시글이 없습니다.</td>
-					</tr>
-			</c:if> 
-						<c:forEach var="item" items="${freePage.freeBoardList}">
-							<tr>
-									<td><c:out value="${item.userName}"/></td>
-									<td><a href="<%=request.getContextPath()%>/freeboard/read.do?no=${item.articleNo}"><c:out value="${item.articleTitle}"/></a></td>
-									<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${item.articleCredate}"/></td>
-									<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${item.articleUpdate}"/></td>
-									<td><c:out value="${item.articleReadcnt}"/></td>
-									<td><c:out value="${item.freeCategory}"/></td>
-							</tr>
-						</c:forEach>
+				 <c:if test="${freePage.hasNoFreeBoard() }">
+				   <tr>
+				  	 <td colspan="5" style="text-align:center;">게시글이 없습니다.</td>
+				   </tr>
+			     </c:if>
+						
+					<c:forEach var="item" items="${freePage.freeBoardList}">
+						<tr>
+								<td><c:out value="${item.userName}"/></td>
+								<td><a href="<%=request.getContextPath()%>/freeboard/read.do?no=${item.articleNo}"><c:out value="${item.articleTitle}"/></a></td>
+								<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${item.articleCredate}"/></td>
+								<td><c:out value="${item.articleReadcnt}"/></td>
+								<td><c:out value="${item.freeCategory}"/></td>
+						</tr>
+					</c:forEach>
 					<%-- paging출력 부분 --%>
 					<c:if test="${freePage.hasFreeBoard()}">
 					   <tr>
@@ -81,6 +76,6 @@
 				   </c:if>
 			</tbody>
 		</table>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>	
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>	
 	</body>
 </html>

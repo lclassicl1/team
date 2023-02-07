@@ -55,8 +55,7 @@ public class LoginHandler implements CommandHandler {
 	try {
 		User user = loginService.login(loginId, loginPwd);
 		req.getSession().setAttribute("authUser", user);
-		res.sendRedirect(req.getContextPath()+"/view/loginboard/loginView.jsp");
-		return null;
+		return "/article/list.do";
 	}catch(UserNotFoundException e) {
 		errors.put("userNotFound",Boolean.TRUE);
 		e.printStackTrace();

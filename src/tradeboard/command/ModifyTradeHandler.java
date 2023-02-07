@@ -85,7 +85,7 @@ public class ModifyTradeHandler implements CommandHandler {
 		
 		try {
 			modifyTradeService.modify(modReq,category);
-			return "/view/tradeboard/modifySuccess.jsp"; // 수정 성공 후 출력 페이지 
+			return "/trade/read.do?no="+no;
 		}catch(HelperNotFoundException e) {
 			res.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return null;

@@ -56,6 +56,8 @@ public class ModifyCommentHandler implements CommandHandler {
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		String commNoVal = req.getParameter("commNo");
 		int commNo = Integer.parseInt(commNoVal);
+		String noVal = req.getParameter("no");
+		int no = Integer.parseInt(noVal);
 		
 		String content = req.getParameter("content");
 		
@@ -70,7 +72,7 @@ public class ModifyCommentHandler implements CommandHandler {
 		ModifyCommRequest modifyCommRequest = new ModifyCommRequest(commNo,content,loginId);
 		try {
 			modifyCommentService.modifyComm(modifyCommRequest);
-			return "/view/helpboard/modifyCommSuccess.jsp";
+			return "/help/read.do?no="+no;
 		}catch(CommentNotFoundException e) {
 			res.sendError(HttpServletResponse.SC_FOUND);
 			return null;

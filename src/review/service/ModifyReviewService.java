@@ -17,7 +17,7 @@ public class ModifyReviewService {
 	ReviewDAO reviewDAO = new ReviewDAO();
 	ArticleDAO articleDAO = new ArticleDAO();
 	
-	public void modify(ModifyRequest modReq,String modCategory) {
+	public void modify(ModifyRequest modReq) {
 		Connection conn = null;
 		
 		try {
@@ -33,7 +33,6 @@ public class ModifyReviewService {
 			}
 			
 			articleDAO.update(conn,modReq);
-			reviewDAO.update(conn, modReq,modCategory);
 			
 			conn.commit();
 		}catch(SQLException e) {

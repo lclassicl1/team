@@ -18,7 +18,7 @@
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
 게시글 수정 
-<form action="<%=request.getContextPath()%>/help/comment/modify.do?commNo=${comment.commNo}" method="post">
+<form action="<%=request.getContextPath()%>/help/comment/modify.do?commNo=${comment.commNo}&no=${comment.articleNo}" method="post">
 	<p>
 	내용 : 
 	<textarea name ="content" id="content" rows="5" cols="30" >${comment.commContent }</textarea>

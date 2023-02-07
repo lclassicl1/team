@@ -22,10 +22,6 @@
 <!-- 게시글 정보  -->
 <table border="1" class="table table-dark w-auto table-hover">
 	<tr>
-		<td>번호</td>
-		<td>${read.article.articleNo }</td>
-	</tr>
-	<tr>
 		<td>조회수</td>
 		<td>${read.article.articleReadCnt }</td>
 	</tr>
@@ -70,37 +66,6 @@
 	</tr> 
 			
 </table>
- <!-- 글쓴이 정보  -->
-<table border="1">
-	<tr>
-		<td>이름</td>
-		<td>${read.user.userName }</td>
-	</tr>
-	<tr>
-		<td>전화번호</td>
-		<td>${read.user.userHp }</td>
-	</tr>
-	<tr>
-		<td>성별</td>
-		<td>${read.user.userGender }</td>
-	</tr>
-	<tr>
-		<td>주소</td>
-		<td>${read.user.userAddress }</td>
-	</tr>
-	<tr>
-		<td>이메일</td>
-		<td>${read.user.userEmail }</td>
-	</tr>
-	<tr>
-		<td>자격증</td>
-		<td>${read.user.userSkill }</td>
-	</tr>
-	<tr>
-		<td>최종학력</td>
-		<td>${read.user.userSchool }</td>
-	</tr>
-</table>
  <!-- 댓글 -->
  <table border="1" class="table table-dark w-auto table-hover">
 	<tr>
@@ -108,7 +73,6 @@
 		<th>내용</th>
 		<th>채택</th>
 		<th>작성시간</th>
-		<th>isshow</th>
 	</tr>
 	<c:forEach var="item" items="${commentList }">
 		<tr>
@@ -123,9 +87,6 @@
 		</td>
 		<td>
 			${item.commCreDate }
-		</td>
-		<td>
-			${item.isshow }
 		</td>
 		<c:if test="${authUser.userNo == read.article.userNo}">
 		<td>
