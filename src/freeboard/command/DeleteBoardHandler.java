@@ -41,7 +41,6 @@ public class DeleteBoardHandler implements CommandHandler {
 		int no = Integer.parseInt(noVal);
 		
 		FreePage freePage = readBoardService.getBoardDetail(no);
-		System.out.println("freePage ="+freePage);
 		request.setAttribute("freePage", freePage);
 		
 		
