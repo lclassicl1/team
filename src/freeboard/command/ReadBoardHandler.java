@@ -25,6 +25,8 @@ public class ReadBoardHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest request,
 					HttpServletResponse response) throws Exception {
+		String test = request.getParameter("test");
+		System.out.println("test======="+test);
 		System.out.println("ReadBoardHandler 진입");
 		String noVal = request.getParameter("no");
 		int no = Integer.parseInt(noVal);
