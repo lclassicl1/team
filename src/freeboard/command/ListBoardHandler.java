@@ -18,7 +18,6 @@ public class ListBoardHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest request, 
 						HttpServletResponse response) throws Exception {
-		System.out.println("ListBoardHandler 진입");
 		
 		String pageNoVal = request.getParameter("pageNo");
 		int pageNum=1;
@@ -29,13 +28,6 @@ public class ListBoardHandler implements CommandHandler {
 		 FreePage freePage = listWriteService.getBoardListAll(pageNum);
 		 request.setAttribute("freePage", freePage);
 		
-		 User user = (User)request.getSession(false).getAttribute("authUser");
-		String writeId = user.getUserId();
-		HttpSession ssesion=request.getSession();
-		ssesion.setAttribute("userInfo", user);//로그인한 유저 정보
-		 
-		 
-		 
 		return FORM_VIEW;
 	}
 

@@ -22,9 +22,10 @@ public class ListBoardService {
 			conn = ConnectionProvider.getConnection();
 			int total = freeBoardDAO.selectCount(conn);
 			
+				
+				List<FreeBoardList> freeBoardlist = freeBoardDAO.selectAll(conn,(pageNum-1)*size,size);
+				return new FreePage(total,pageNum,size,freeBoardlist);
 			
-			List<FreeBoardList> freeBoardlist = freeBoardDAO.selectAll(conn,(pageNum-1)*size,size);
-			return new FreePage(total,pageNum,size,freeBoardlist);
 			} catch (SQLException e) {
 				throw new RuntimeException();
 		}finally {

@@ -25,12 +25,12 @@ public class FreeBoardDAO {
 				" on a.article_no=f.article_no" + 
 				" where isshow='Y'"+
 				" order by a.article_no desc limit ?,?";
-		
 		try {
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, startRow);
 			stmt.setInt(2, size);
 			rs = stmt.executeQuery();
+			System.out.println(rs);
 			
 			List<FreeBoardList> freeBoardList = new ArrayList<FreeBoardList>();
 			while(rs.next()) {
@@ -56,7 +56,6 @@ public class FreeBoardDAO {
 			JdbcUtil.close(stmt);
 		}
 	}
-	
 	
 	
 	//게시글 상세조회
@@ -433,6 +432,7 @@ public class FreeBoardDAO {
 	}
 	
 	public int selectCount(Connection conn)throws SQLException {
+		System.out.println("public int selectCount");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select count(*) from article where isshow='Y' and article_category='free' ";

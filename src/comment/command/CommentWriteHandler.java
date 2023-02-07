@@ -46,9 +46,9 @@ public class CommentWriteHandler implements CommandHandler {
 		
 		if(newComment!=null) {
 			int cnt = writeCommentService.writeComment(articleNo,newComment,userid);
-			response.sendRedirect("/freeboard/read.do?no="+articleNo);
+			response.sendRedirect(request.getContextPath()+"/freeboard/read.do?no="+articleNo);
 		} else {
-			response.sendRedirect("/freeboard/read.do?no="+articleNo);
+			response.sendRedirect(request.getContextPath()+"/freeboard/read.do?no="+articleNo);
 		}
 
 	}
