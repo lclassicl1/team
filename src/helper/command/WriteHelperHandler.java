@@ -51,8 +51,8 @@ public class WriteHelperHandler implements CommandHandler {
 			return FORM_VIEW;
 		}
 		
-		writeHelperService.writer(articleReq,helperCategory);
-		return "/view/helperboard/writeSuccess.jsp";
+		int articleNo = writeHelperService.writer(articleReq,helperCategory);
+		return "/helper/read.do?no="+articleNo;
 	}
 	private ArticleRequest createWriterRequest(HttpServletRequest req,User user) {
 		String title = req.getParameter("title");

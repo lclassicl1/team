@@ -85,7 +85,7 @@ public class ModifyReviewHandler implements CommandHandler {
 		
 		try {
 			modifyReviewService.modify(modReq);
-			return "/view/reviewboard/modifySuccess.jsp"; // 수정 성공 후 출력 페이지 
+			return "/review/read.do?no="+no;
 		}catch(HelperNotFoundException e) {
 			res.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return null;

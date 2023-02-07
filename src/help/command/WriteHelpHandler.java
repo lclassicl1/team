@@ -53,7 +53,7 @@ public class WriteHelpHandler implements CommandHandler {
 			return FORM_VIEW;
 		}
 		int articleNo = writeHelpService.writer(articleReq,helpCategory);
-		return "/view/helpboard/writeSuccess.jsp";
+		return "/help/read.do?no="+articleNo;
 	}
 	private ArticleRequest createWriterRequest(HttpServletRequest req,User user) {
 		String title = req.getParameter("title");

@@ -86,7 +86,7 @@ public class ModifyHelperHandler implements CommandHandler {
 		
 		try {
 			modifyHelperService.modify(modReq,category);
-			return "/view/helperboard/modifySuccess.jsp"; // 수정 성공 후 출력 페이지 
+			return "/helper/read.do?no="+no;
 		}catch(HelperNotFoundException e) {
 			res.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return null;

@@ -52,8 +52,8 @@ public class WriteReviewHandler implements CommandHandler {
 		if(!errors.isEmpty()) {
 			return FORM_VIEW;
 		}
-		writeReviewService.writer(articleReq);
-		return "/view/reviewboard/writeSuccess.jsp";
+		int articleNo = writeReviewService.writer(articleReq);
+		return "/review/read.do?no="+articleNo;
 	}
 	private ArticleRequest createWriterRequest(HttpServletRequest req,User user) {
 		String title = req.getParameter("title");
