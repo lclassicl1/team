@@ -43,12 +43,15 @@ body {
       </li>  
       <li class="nav-item">
         <a class="nav-link" href="<%=request.getContextPath()%>/review/list.do">리뷰/후기게시판</a>
+      </li>
+      <li class="nav-item">
+      	
       </li> 
       </ul>
       <ul class='navbar-nav'>
       <li class="nav-item">
         <a class="nav-link text-light" href="<%=request.getContextPath()%>/mypage.do">
-        	<img src='<%=request.getContextPath()%>/image/mypageicon.png' alt='myPage' id='myPageicon'/>
+        	${authUser.userName}님
         </a>
       </li>  
       <li class="nav-item">
