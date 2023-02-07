@@ -9,7 +9,6 @@ import jdbc.conn.ConnectionProvider;
 public class ArticleBoardService {
 	FreeBoardDAO freeBoardDAO = new FreeBoardDAO();
 	public int freeArticleInsert(String articleCategory,String title,String loginName,String content,int userNo){
-		System.out.println("freeArticleInsert()진입");
 		try {
 			Connection conn = ConnectionProvider.getConnection();
 			int articleNo = freeBoardDAO.freeArticleCreate(conn,articleCategory,title,loginName,content,userNo);

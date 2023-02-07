@@ -23,11 +23,9 @@ public class ReadCommentHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest request,
 					HttpServletResponse response) throws Exception {
-		System.out.println("ReadBoardHandler 진입");
 			String noVal = request.getParameter("no");
 			int no = Integer.parseInt(noVal);
 			FreePage freePage = readBoardService.getBoardDetail(no);
-		 System.out.println("freeBoard ="+freePage);
 		 request.setAttribute("freePage", freePage);
 		
 		
@@ -35,7 +33,6 @@ public class ReadCommentHandler implements CommandHandler {
 		 
 		 // 댓글 - 목록 코드
 		 Comment comment = listCommentService.getCommentAll(no);
-		 System.out.println("comment="+comment);
 		 request.setAttribute("comment",comment);
 		 
 		 

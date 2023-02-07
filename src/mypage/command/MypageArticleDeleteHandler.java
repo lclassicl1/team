@@ -36,7 +36,6 @@ public class MypageArticleDeleteHandler implements CommandHandler {
 		int no = Integer.parseInt(noVal);
 		
 		FreePage freePage = readBoardService.getBoardDetail(no);
-		System.out.println("freeBoard ="+freePage);
 		request.setAttribute("freeBoard", freePage);
 		
 		
@@ -44,7 +43,6 @@ public class MypageArticleDeleteHandler implements CommandHandler {
 		
 		User user = (User)request.getSession(false).getAttribute("authUser");
 		String loginUserId = user.getUserId();
-		System.out.println("loginUserId===="+loginUserId);
 		
 		return "/view/mypage/mypageArticleDelete.jsp";
 	}

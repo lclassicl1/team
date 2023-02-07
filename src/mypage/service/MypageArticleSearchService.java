@@ -21,7 +21,6 @@ public class MypageArticleSearchService {
 				conn=ConnectionProvider.getConnection();
 				int total = articleDAO.selectCountMy(conn, loginNo);
 				List<Article> list = articleDAO.selectSearchMy(conn, size*(pageNum-1), size, loginNo, categorySearch,input);
-				System.out.println("마이페이지 서비스 list====="+list);
 				return new ArticlePage(total,pageNum,size,list);
 			}catch(SQLException e) {
 				e.printStackTrace();

@@ -30,7 +30,6 @@ public class CommentDeleteHandler implements CommandHandler {
 		
 		
 		int commNo = Integer.parseInt(request.getParameter("comm_no"));
-		System.out.println("commNo="+commNo);
 		
 		int cnt = deleteCommentService.deleteComment(commNo);
 		

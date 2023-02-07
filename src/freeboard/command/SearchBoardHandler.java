@@ -15,7 +15,6 @@ public class SearchBoardHandler implements CommandHandler {
 	
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("SearchBoardHandler-==========진입");
 		String categorySearch = request.getParameter("categorySearch");
 		String input = request.getParameter("input");
 		

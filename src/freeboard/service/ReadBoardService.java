@@ -14,12 +14,10 @@ public class ReadBoardService {
 	CommentDAO commantDAO = new CommentDAO();
 	
 	public FreePage getBoardDetail(int mypageNo) {
-		System.out.println("서비스 진입");
 	
 
 		freeBoardDAO.updateCnt(mypageNo);
 		List<FreeBoardList> list = freeBoardDAO.readDetail(mypageNo);
-		System.out.println("서비스 read"+list);
 		
 		
 		return new FreePage(list);
