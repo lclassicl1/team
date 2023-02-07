@@ -22,11 +22,9 @@ public class MypageArticleSearchHandler implements CommandHandler {
 		String categorySearch = request.getParameter("categorySearch");
 		String input = request.getParameter("input");
 		String pageNumVal = request.getParameter("pageNum");
-		System.out.println("categorySearch==========="+categorySearch);
 		
 		User user =(User)request.getSession(false).getAttribute("authUser");
 		int loginNo=user.getUserNo();
-		System.out.println("loginNo======"+loginNo);
 		int pageNum = 1;
 		
 		if(pageNumVal!=null) {

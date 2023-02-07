@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import freeboard.model.FreeBoardList;
+import freeboard.model.FreeSearch;
+import help.model.HelpList;
 import jdbc.JdbcUtil;
 import jdbc.conn.ConnectionProvider;
 
@@ -30,7 +32,6 @@ public class FreeBoardDAO {
 			stmt.setInt(1, startRow);
 			stmt.setInt(2, size);
 			rs = stmt.executeQuery();
-			System.out.println(rs);
 			
 			List<FreeBoardList> freeBoardList = new ArrayList<FreeBoardList>();
 			while(rs.next()) {
@@ -78,7 +79,6 @@ public class FreeBoardDAO {
 			stmt.setInt(1, no);
 			rs = stmt.executeQuery();
 			
-			System.out.println("dao1");
 			if(rs.next()) {
 				FreeBoardList list = new FreeBoardList(
 											rs.getInt("article_no"),
@@ -102,57 +102,40 @@ public class FreeBoardDAO {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(conn);
 		}
-		System.out.println("doa3"+freeBoardList);
 		return freeBoardList;
 	}
 	
 		// 카테고리로 글 검색 DAO
-		public List<FreeBoardList> searchBoard(String categorySearch, String input) {
+		public List<FreeBoardList> searchBoard(Connection conn, FreeSearch search) throws SQLException {
 			
-			System.out.println();
 			PreparedStatement stmt = null;
 			ResultSet rs = null;
 			
 			String sql="select a.*,f.free_category" + 
 					" from article as a inner join freeboard as f" + 
 					" on a.article_no=f.article_no" + 
-					" where a.isshow='Y' and f.free_category=? and a.article_title like ?" + 
-					" ORDER BY article_no DESC";
-			
-			List<FreeBoardList> freeBoardList = new ArrayList<FreeBoardList>();
-			Connection conn = null;
+					" where a.isshow='Y' and f.free_category like ? and a.article_title like ?" + 
+					" order by a.article_no desc limit ?,? ";
 			try {
-				conn=ConnectionProvider.getConnection();
 				stmt = conn.prepareStatement(sql);
-				stmt.setString(1, categorySearch);
-				stmt.setString(2, "%"+input+"%");
+				stmt.setString(1,"%"+search.getCategory()+"%");
+				stmt.setString(2, "%"+search.getInput()+"%");
+				stmt.setInt(3, search.getStartRow());
+				stmt.setInt(4, search.getSize());
 				
 				rs = stmt.executeQuery();
-				
+				List<FreeBoardList> freeBoardList = new ArrayList<>();
 				while(rs.next()) {
-					FreeBoardList list = new FreeBoardList(
-												rs.getInt("article_no"),
-												rs.getString("article_category"),
-												rs.getString("article_title"),
-												rs.getString("user_name"),
-												rs.getString("article_content"),
-												rs.getTimestamp("article_credate"),
-												rs.getTimestamp("article_update"),
-												rs.getInt("article_readcnt"),
-												rs.getString("isshow"),
-												rs.getInt("user_no"),
-												rs.getString("free_category"));
-										freeBoardList.add(list);
+					FreeBoardList freeBoardList1 = coverFreeBoardList(rs);
+						if(freeBoardList1 !=null ) {
+							freeBoardList.add(freeBoardList1);
+						}
 				}
-			}catch(SQLException e) {
-				e.printStackTrace();
+				return freeBoardList;
 			}finally {
-				JdbcUtil.close(stmt);
 				JdbcUtil.close(rs);
-				JdbcUtil.close(conn);
+				JdbcUtil.close(stmt);
 			}
-			System.out.println("doa3"+freeBoardList);
-			return freeBoardList;
 		}
 		
 		
@@ -160,7 +143,6 @@ public class FreeBoardDAO {
 		// 카테고리로 글 검색 DAO
 				public List<FreeBoardList> mypageSearchBoard(String categorySearch, String input,String loginName) {
 					
-					System.out.println();
 					PreparedStatement stmt = null;
 					ResultSet rs = null;
 					
@@ -203,7 +185,6 @@ public class FreeBoardDAO {
 						JdbcUtil.close(rs);
 						JdbcUtil.close(conn);
 					}
-					System.out.println("doa3"+freeBoardList);
 					return freeBoardList;
 				}
 	
@@ -267,7 +248,6 @@ public class FreeBoardDAO {
 			
 			conn.commit();
 			
-			System.out.println("dao-updateBoard 진입");
 		}catch(SQLException e) {
 			e.printStackTrace();
 			JdbcUtil.rollback(conn);
@@ -351,7 +331,6 @@ public class FreeBoardDAO {
 	//내가 쓴 글 보기 
 	public List<FreeBoardList> selectMypageArticle(String mypageUserName) {
 		
-		System.out.println();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
@@ -369,7 +348,6 @@ public class FreeBoardDAO {
 			stmt.setString(1, mypageUserName);
 			
 			rs = stmt.executeQuery();
-			
 			while(rs.next()) {
 				FreeBoardList list = new FreeBoardList(
 											rs.getInt("article_no"),
@@ -384,7 +362,6 @@ public class FreeBoardDAO {
 											rs.getInt("user_no"),
 											rs.getString("free_category")
 						);
-						System.out.println("list==="+list);
 						freeBoardList.add(list);
 			}
 		}catch(SQLException e) {
@@ -394,7 +371,6 @@ public class FreeBoardDAO {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(conn);
 		}
-		System.out.println("doa3"+freeBoardList);
 		return freeBoardList;
 	}
 	
@@ -432,7 +408,6 @@ public class FreeBoardDAO {
 	}
 	
 	public int selectCount(Connection conn)throws SQLException {
-		System.out.println("public int selectCount");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select count(*) from article where isshow='Y' and article_category='free' ";
@@ -451,7 +426,10 @@ public class FreeBoardDAO {
 		}
 	}
 	
-	
+	private FreeBoardList coverFreeBoardList(ResultSet rs)throws SQLException {
+		return new FreeBoardList(rs.getInt("article_no"),rs.getString("article_category"),rs.getString("article_title"),rs.getString("user_name"),rs.getString("article_content"),rs.getTimestamp("article_credate"),
+					rs.getTimestamp("article_update"),rs.getInt("article_readcnt"),rs.getString("isshow"),rs.getInt("user_no"),rs.getString("free_category"));
+	}
 }
 
 

@@ -28,6 +28,13 @@ public class ListBoardHandler implements CommandHandler {
 		 FreePage freePage = listWriteService.getBoardListAll(pageNum);
 		 request.setAttribute("freePage", freePage);
 		
+		 User user = (User)request.getSession(false).getAttribute("authUser");
+		String writeId = user.getUserId();
+		HttpSession ssesion=request.getSession();
+		ssesion.setAttribute("userInfo", user);//로그인한 유저 정보
+		 
+		 
+		 
 		return FORM_VIEW;
 	}
 

@@ -41,12 +41,10 @@ public class MypageArticleUpdateHandler implements CommandHandler {
 		int no = Integer.parseInt(noVal);
 		
 		FreePage freePage = readBoardService.getBoardDetail(no);
-		System.out.println("freeBoard ="+freePage);
 		request.setAttribute("freeBoard", freePage);
 		
 		
 		int WriterNo = freePage.getFreeBoardList().get(0).getUserNo();
-		System.out.println("boardWriter======"+WriterNo);
 		
 		User user = (User)request.getSession(false).getAttribute("authUser");
 	

@@ -48,7 +48,6 @@ public class DeleteBoardHandler implements CommandHandler {
 		
 		User user = (User)request.getSession(false).getAttribute("authUser");
 		String loginUserId = user.getUserId();
-		System.out.println("loginUserId===="+loginUserId);
 		
 		if(!canModify(WriterNo,user)) {
 			response.sendError(HttpServletResponse.SC_FORBIDDEN);
@@ -59,7 +58,6 @@ public class DeleteBoardHandler implements CommandHandler {
 
 	private String processSubmit(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String no = request.getParameter("no");
-		System.out.println("no2222="+no);
 		
 		
 	

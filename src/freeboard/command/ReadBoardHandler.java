@@ -26,20 +26,16 @@ public class ReadBoardHandler implements CommandHandler {
 	public String process(HttpServletRequest request,
 					HttpServletResponse response) throws Exception {
 		String test = request.getParameter("test");
-		System.out.println("test======="+test);
-		System.out.println("ReadBoardHandler 진입");
 		String noVal = request.getParameter("no");
 		int no = Integer.parseInt(noVal);
 		
 		FreePage freePage = readBoardService.getBoardDetail(no);
-		System.out.println("freePage====="+freePage.getFreeBoardList());
 		request.setAttribute("freePage", freePage);
 		
 	
 		
 		 // 댓글 - 목록 코드
 		 Comment comment = listCommentService.getCommentAll(no);
-		 System.out.println("comment="+comment);
 		 request.setAttribute("comment",comment);
 		 
 		
