@@ -16,6 +16,18 @@ body {
   background-color: rgb(31 41 55);
   
 }
+.links {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.links a {
+  color: cornflowerblue;
+  font-size: 14px;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
 </style>
 </head> 
 <body>

@@ -105,8 +105,8 @@ ${errors }
 			생년월일 : <input type="date" name="inputBirth">
 			 <c:if test="${errors.inputBirth}">생년월일을 입력하세요.</c:if> 
 		</p>
-		<input type="submit" value="확인">
-		<input type="reset" value="취소">
+		<button type="submit" value="확인">확인</button>
+		<button type="reset" value="취소">취소</button>
 	</form>
 </body>
 </html>
