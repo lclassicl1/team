@@ -29,13 +29,6 @@
 			<c:if test="${errors.contentEmpty}">내용을 입력하세요 </c:if>
 			
 		</p>
-		<p>
-			카테고리 :	
-			<select name="reviewCategory">
-				<option value="리뷰">리뷰</option>
-				<option value="후기">후기</option>
-			</select>
-		<p>
 		<input type="submit" value="등록">
 	</form>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>

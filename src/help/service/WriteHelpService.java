@@ -16,7 +16,7 @@ public class WriteHelpService {
 	private HelpDAO helpDAO = new HelpDAO();
 	private ArticleDAO articleDAO = new ArticleDAO();
 	
-	public void writer(ArticleRequest articleReq,String helpCategory) {
+	public int writer(ArticleRequest articleReq,String helpCategory) {
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
@@ -32,6 +32,7 @@ public class WriteHelpService {
 			
 			helpDAO.insert(conn, writerReq);
 			conn.commit();
+			return articleNo;
 		}catch(SQLException e){
 			JdbcUtil.rollback(conn);
 			throw new RuntimeException(e);

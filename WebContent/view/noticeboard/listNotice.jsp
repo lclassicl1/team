@@ -30,10 +30,6 @@ body {
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
 <h3>공지사항</h3>
- <%-- <a href="<%=request.getContextPath()%>/index.jsp">HOME</a>
- <a href="<%=request.getContextPath()%>/article/list.do">게시글 보러가기</a>
-<a href="<%=request.getContextPath()%>/article/write.do">게시글 작성하기</a>
-<a href="<%=request.getContextPath()%>/view/member/loginPage.jsp">MyPage</a> --%>
 <a href="<%=request.getContextPath()%>/notice/write.do">게시글 작성하기</a>
  <hr/>
  <form action="<%=request.getContextPath()%>/notice/search.do" method="post">

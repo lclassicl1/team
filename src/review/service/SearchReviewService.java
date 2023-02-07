@@ -16,14 +16,14 @@ public class SearchReviewService {
 	ReviewDAO reviewDAO = new ReviewDAO();
 	private int size = 10;
 	
-	public ReviewPage search(int pageNum, String category, String input){
+	public ReviewPage search(int pageNum, String input){
 		Connection conn = null;
 		
 		try {
 			conn = ConnectionProvider.getConnection();
 			
 			int total = reviewDAO.selectCount(conn);
-			
+			String category = "리뷰";
 			SearchReview search = new SearchReview((pageNum-1)*size,size,category,input);
 			
 			List<ReviewList> reviewList = reviewDAO.search(conn, search);

@@ -52,7 +52,7 @@ public class WriteHelpHandler implements CommandHandler {
 		if(!errors.isEmpty()) {
 			return FORM_VIEW;
 		}
-		writeHelpService.writer(articleReq,helpCategory);
+		int articleNo = writeHelpService.writer(articleReq,helpCategory);
 		return "/view/helpboard/writeSuccess.jsp";
 	}
 	private ArticleRequest createWriterRequest(HttpServletRequest req,User user) {

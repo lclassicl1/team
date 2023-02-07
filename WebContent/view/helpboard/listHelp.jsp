@@ -48,7 +48,6 @@
   	 <th>제목</th>
   	 <th>작성자</th>
   	 <th>작성일</th>
-  	 <th>카테고리</th>
   	 <th>조회수</th>
   	 <th>카테고리</th>
   	</tr>
@@ -71,7 +70,6 @@
 		 	  </td>
 		 	  <td>${item.userName}</td>
 		 	  <td>${item.articleCredate}</td>
-		 	  <td>${item.articleCategory }</td>
 		 	  <td>${item.articleReadCnt}</td>
 		 	  <td>${item.helpCategory}</td>
 		 	 </tr>

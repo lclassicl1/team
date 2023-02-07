@@ -34,14 +34,12 @@
 	<c:if test="${authUser.userName==item.userName}">
 		<a href="<%=request.getContextPath()%>/mypageArticle.do">내가 쓴 글 목록으로</a>
 	</c:if>
-			<p>글번호 : ${item.articleNo}</p>
 			<p>조회수 : ${item.articleReadcnt}</p>
 			<p>글 작성자 : ${item.userName}</p>
 			<p>제목: ${item.articleTitle}</p>
 			<p>내용: ${item.articleContent}</p>
 			<p>카테고리: ${item.freeCategory}</p>
 			<p>작성일 : ${item.articleCredate}</p>
-			<p>수정일 : ${item.articleUpdate}</p>
 <a href="<%=request.getContextPath()%>/freeboard/update.do?no=${item.articleNo}"><button>글 수정하기</button></a>
 <a href="<%=request.getContextPath()%>/freeboard/delete.do?no=${item.articleNo}"><button>글 삭제하기</button></a>
 	</c:forEach>
