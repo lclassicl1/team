@@ -38,9 +38,9 @@
 				<option value="sell">판매</option>
 			</select>
 검색 :  <input type="text" name="input">
- <input type="submit">
+ <input type="submit" class="btn btn-secondary" value="검색">
  </form>
- <table border="1" class="table table-dark w-auto table-hover">
+ <table border="1" class="table table-dark table-hover">
   <thead>
   	<tr>
   	 <th>제목</th>

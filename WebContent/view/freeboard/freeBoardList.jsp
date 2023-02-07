@@ -32,7 +32,7 @@
 			    <input type="submit" value="검색"/>
  </form>
 <hr>
-<table border="1" class="table table-dark w-auto table-hover">
+<table border="1" class="table table-dark table-hover">
 <thead>
 	<tr>
 		<th>작성자</th>

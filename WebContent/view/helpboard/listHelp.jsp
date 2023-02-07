@@ -39,10 +39,10 @@
 				<option value="database">database</option>
 				<option value="python">python</option>
 			</select>
-검색 :  <input type="text" name="input">
- <input type="submit">
+검색 :  <input type="text" name="input" >
+ <input type="submit" class="btn btn-secondary" value="검색">
  </form>
- <table border="1" class="table table-dark w-auto table-hover">
+ <table border="1" class="table table-dark table-hover">
   <thead>
   	<tr>
   	 <th>제목</th>

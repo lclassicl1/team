@@ -10,6 +10,12 @@
   <meta name="description" content="memberboard web app">
   <meta name="keywords" content="article, javascript, board, webProject">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>  
 	<title></title>
 	<style></style>
 	<script>
@@ -18,6 +24,7 @@
 	</script>
 </head>
 <body>
+<header><jsp:include page="../../module/navBar.jsp"/></header>
 <a href="<%=request.getContextPath()%>/view/loginboard/loginView.jsp">HOME</a>
 	<h2>마이페이지</h2>
 	<table border="1">
@@ -58,9 +65,9 @@
 			<td>${userInfo.userBirth}</td>
 		</tr>
 	</table>
-<a href="<%=request.getContextPath()%>/mypageUpdate.do?userId=${userInfo.userId}"><button>정보 수정하기</button></a>
-<a href="<%=request.getContextPath()%>/mypageChangePwd.do"><button>비밀번호 변경</button></a>
-<a href="<%=request.getContextPath()%>/mypageArticle.do"><button>내가 쓴 글</button></a>
+<a href="<%=request.getContextPath()%>/mypageUpdate.do?userId=${userInfo.userId}"><button class="btn btn-secondary">정보 수정하기</button></a>
+<a href="<%=request.getContextPath()%>/mypageChangePwd.do"><button class="btn btn-secondary">비밀번호 변경</button></a>
+<a href="<%=request.getContextPath()%>/mypageArticle.do"><button class="btn btn-secondary">내가 쓴 글</button></a>
 </body>
 </html>
 
