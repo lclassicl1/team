@@ -38,4 +38,24 @@
   	<servlet-name>ControllerUsingURI</servlet-name>
   	<url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  
+  <!-- 404에러 페이지  -->
+  <!-- <error-page>
+  	<error-code>404</error-code>
+  	<location>jsp 경로 </location>
+  </error-page> -->
+  
+  <!-- 로그인 필터  -->
+  <!--  <filter>
+  	<filter-name>LoginCheckFilter</filter-name>
+  	<filter-class>filter.LoginCheckFilter</filter-class>
+  </filter>
+  
+   <filter-mapping>
+   	<filter-name>LoginCheckFilter</filter-name>
+   	<url-pattern>/changePwd.do</url-pattern>
+   	<url-pattern>/article/write.do</url-pattern>
+   	<url-pattern>/article/modify.do</url-pattern>
+  </filter-mapping> -->
+  
 </web-app>
