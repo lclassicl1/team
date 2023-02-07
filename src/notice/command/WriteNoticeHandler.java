@@ -57,8 +57,8 @@ public class WriteNoticeHandler implements CommandHandler {
 		if(!errors.isEmpty()) {
 			return FORM_VIEW;
 		}
-		writeNoticeService.writer(articleReq);
-		return "/view/noticeboard/writeSuccess.jsp";
+		int articleNo = writeNoticeService.writer(articleReq);
+		return "/notice/read.do?no="+articleNo;
 	}
 	private ArticleRequest createWriterRequest(HttpServletRequest req,User user) {
 		String title = req.getParameter("title");

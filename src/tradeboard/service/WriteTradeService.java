@@ -16,7 +16,7 @@ public class WriteTradeService {
 	TradeDAO tradeDAO = new TradeDAO();
 	ArticleDAO articleDAO = new ArticleDAO();
 	
-	public void writer(ArticleRequest articleReq, String tradeCategory) {
+	public int writer(ArticleRequest articleReq, String tradeCategory) {
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
@@ -33,6 +33,7 @@ public class WriteTradeService {
 			tradeDAO.insert(conn, writerReq);
 			
 			conn.commit();
+			return articleNo;
 		}catch(SQLException e){
 			JdbcUtil.rollback(conn);
 			throw new RuntimeException(e);

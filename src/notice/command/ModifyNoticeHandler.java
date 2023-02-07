@@ -84,7 +84,7 @@ public class ModifyNoticeHandler implements CommandHandler {
 		
 		try {
 			modifyNoticeService.modify(modReq);
-			return "/view/noticeboard/modifySuccess.jsp"; // 수정 성공 후 출력 페이지 
+			return "/notice/read.do?no="+no;
 		}catch(HelperNotFoundException e) {
 			res.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return null;

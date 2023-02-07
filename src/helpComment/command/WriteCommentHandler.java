@@ -50,7 +50,7 @@ public class WriteCommentHandler implements CommandHandler {
 		WriteCommentRequest wirteCommReq = new WriteCommentRequest(no,loginId,content);
 		
 		writeCommentService.writeComm(wirteCommReq);
-		return "/view/helpboard/writeCommentSuccess.jsp";
+		return "/help/read.do?no="+no;
 	}
 
 }

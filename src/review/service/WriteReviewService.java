@@ -16,7 +16,7 @@ public class WriteReviewService {
 	private ReviewDAO reviewDAO = new ReviewDAO();
 	private ArticleDAO articleDAO = new ArticleDAO();
 	
-	public void writer(ArticleRequest articleReq) {
+	public int writer(ArticleRequest articleReq) {
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
@@ -32,6 +32,7 @@ public class WriteReviewService {
 			
 			reviewDAO.insert(conn, writerReq);
 			conn.commit();
+			return articleNo;
 		}catch(SQLException e){
 			JdbcUtil.rollback(conn);
 			throw new RuntimeException(e);
