@@ -16,7 +16,7 @@ public class WriteReviewService {
 	private ReviewDAO reviewDAO = new ReviewDAO();
 	private ArticleDAO articleDAO = new ArticleDAO();
 	
-	public void writer(ArticleRequest articleReq,String reviewCategory) {
+	public void writer(ArticleRequest articleReq) {
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
@@ -27,7 +27,7 @@ public class WriteReviewService {
 			if(articleNo==0) {
 				throw new ArticleNullException();
 			}
-			
+			String reviewCategory = "리뷰";
 			WriterRequest writerReq = new WriterRequest(articleNo,articleReq.getArticleCategory(),articleReq.getUserNo(),reviewCategory);
 			
 			reviewDAO.insert(conn, writerReq);

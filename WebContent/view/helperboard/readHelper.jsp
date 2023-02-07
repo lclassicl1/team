@@ -22,10 +22,6 @@
 <!-- 게시글 정보  -->
 <table border="1" class="table table-dark w-auto table-hover">
 	<tr>
-		<td>번호</td>
-		<td>${read.article.articleNo }</td>
-	</tr>
-	<tr>
 		<td>조회수</td>
 		<td>${read.article.articleReadCnt }</td>
 	</tr>
@@ -108,7 +104,6 @@
 		<th>내용</th>
 		<th>채택</th>
 		<th>작성시간</th>
-		<th>isshow</th>
 	</tr>
 	<c:forEach var="item" items="${commentList }">
 		<tr>
@@ -123,9 +118,6 @@
 		</td>
 		<td>
 			${item.commCreDate }
-		</td>
-		<td>
-			${item.isshow }
 		</td>
 		<c:if test="${authUser.userNo == helper.userNo}">
 		<td>

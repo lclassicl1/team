@@ -32,13 +32,6 @@
 	<textarea name ="content" id="content" rows="5" cols="30" >${review.article.articleContent }</textarea>
 	<c:if test="${errors.content }">내용을 입력해주세요.</c:if>
 	</p>
-	<p>
-	카테고리 : 
-	<select name="category" >
-				<option value="리뷰">리뷰</option>
-				<option value="후기">후기</option>
-			</select>
-	</p>
 	<input type="submit" value="수정">
 	<input type="reset" value="취소">
 </form>
