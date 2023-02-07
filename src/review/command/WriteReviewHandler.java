@@ -35,7 +35,6 @@ public class WriteReviewHandler implements CommandHandler {
 		Map<String,Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
 		req.setCharacterEncoding("UTF-8");
-		String reviewCategory=req.getParameter("reviewCategory");
 		
 		User user = (User)req.getSession(false).getAttribute("authUser");
 		
@@ -53,7 +52,7 @@ public class WriteReviewHandler implements CommandHandler {
 		if(!errors.isEmpty()) {
 			return FORM_VIEW;
 		}
-		writeReviewService.writer(articleReq,reviewCategory);
+		writeReviewService.writer(articleReq);
 		return "/view/reviewboard/writeSuccess.jsp";
 	}
 	private ArticleRequest createWriterRequest(HttpServletRequest req,User user) {

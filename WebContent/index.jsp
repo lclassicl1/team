@@ -128,7 +128,7 @@ button:hover {
 </head>
 <body>
 	 <form id='frm' action='<%=request.getContextPath()%>/login.do' method='post'>
-      <h1>코딩해줘</h1>
+      <h1>Gosu</h1>
       <div>
         <label for="user_id">아이디</label>
         <input type="text" id="user_id" name="user_id">

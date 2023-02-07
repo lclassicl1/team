@@ -6,8 +6,8 @@
 <html lang="">
 <head>
 <meta charset="UTF-8">
-<link rel='stylesheet' type='text/css' href='../../css/main.css'/>
-<link rel='stylesheet' type='text/css' href='../../css/navigation.css'/>
+<link rel='stylesheet' type='text/css' href='../css/main.css'/>
+<link rel='stylesheet' type='text/css' href='../css/navigation.css'/>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <!-- Popper JS -->
@@ -34,13 +34,12 @@
 	<c:if test="${authUser.userName==item.userName}">
 		<a href="<%=request.getContextPath()%>/mypageArticle.do">내가 쓴 글 목록으로</a>
 	</c:if>
-			<p>글번호 : ${item.articleNo}</p>
+			<p>조회수 : ${item.articleReadcnt}</p>
 			<p>글 작성자 : ${item.userName}</p>
 			<p>제목: ${item.articleTitle}</p>
 			<p>내용: ${item.articleContent}</p>
 			<p>카테고리: ${item.freeCategory}</p>
 			<p>작성일 : ${item.articleCredate}</p>
-			<p>수정일 : ${item.articleUpdate}</p>
 <a href="<%=request.getContextPath()%>/freeboard/update.do?no=${item.articleNo}"><button>글 수정하기</button></a>
 <a href="<%=request.getContextPath()%>/freeboard/delete.do?no=${item.articleNo}"><button>글 삭제하기</button></a>
 	</c:forEach>
@@ -71,7 +70,7 @@
 </table>
 <hr>
 <form name="commentFrm" method="post"
-		action="/freeboard/commentwrite.do" onsubmit="return sendit();">
+		action="<%=request.getContextPath()%>/freeboard/commentwrite.do" onsubmit="return sendit();">
 		
 		<input type="text" name="articleNo" value="${freePage.freeBoardList[0].articleNo}" hidden/>
 
@@ -87,9 +86,6 @@
 	</tr>
 	</table>
 </form>
-                                                               
-<%-- </c:forEach> --%>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-
 </body>
 </html>
