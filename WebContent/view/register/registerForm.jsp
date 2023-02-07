@@ -22,6 +22,7 @@
 	</script>
 </head>
 <body>
+<header><jsp:include page="../../module/navBar.jsp"/></header>
 	<div class="card-back">
                   <div class="center-wrap">
                     <div class="section text-center">
