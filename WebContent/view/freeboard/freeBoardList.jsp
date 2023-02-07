@@ -30,20 +30,23 @@
 			    <option value='자유'>자유</option>
 			    <option value='질문'>질문</option>
 			    <option value='팁'>팁</option>
-		  	</select>
-  검색 : <input type="text" name="input"/>
-	  <input type="submit">
-</form>
-<table border="1" class="table table-dark w-auto table-hover">
-		<thead>
-			<tr>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>작성일</th>
-				<th>조회수</th>
-				<th>카테고리</th>
-			</tr>
-			</thead>
+
+  	</select>
+			    <input type="text" name="input"/>
+			    <input type="submit" value="검색"/>
+ </form>
+<hr>
+<table border="1" class="table table-dark table-hover">
+<thead>
+	<tr>
+		<th>작성자</th>
+		<th>제목</th>
+		<th>작성일</th>
+		<th>조회수</th>
+		<th>카테고리</th>
+	</tr>
+</thead>
+
 			<tbody>
 				 <c:if test="${freePage.hasNoFreeBoard() }">
 				   <tr>

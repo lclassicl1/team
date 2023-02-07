@@ -25,7 +25,20 @@ body {
   height: 100vh;
   background-color: rgb(31 41 55);
   
-}</style>
+}
+.links {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.links a {
+  color: cornflowerblue;
+  font-size: 14px;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+</style>
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
@@ -34,9 +47,9 @@ body {
  <hr/>
  <form action="<%=request.getContextPath()%>/notice/search.do" method="post">
 검색 :  <input type="text" name="input">
- <input type="submit">
+ <input type="submit" class="btn btn-secondary" value="검색">
  </form>
- <table border="1" class="table table-dark w-auto table-hover">
+ <table border="1" class="table table-dark table-hover">
   <thead>
   	<tr>
   	 <th>제목</th>
