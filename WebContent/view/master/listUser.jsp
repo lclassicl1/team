@@ -34,7 +34,7 @@
 				<option value="900">정지</option>
 			</select>
 검색 :  <input type="text" name="input">
- <input type="submit">
+ <input type="submit" class="btn btn-secondary">
  </form>
  <table border="1" class="table table-dark w-auto table-hover">
   <thead>

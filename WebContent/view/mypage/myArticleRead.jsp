@@ -33,7 +33,7 @@
 <hr>
 
 <h3>댓글</h3> 댓글 작성 성공:<c:out value="${commentResult}"></c:out>
-<table border="1">
+<table border="1" class="table table-dark table-hover">
 	<tr>
 		<th>아이디</th>
 		<th>내용</th>
@@ -57,13 +57,13 @@
 		
 		<input type="text" name="article_no" value="${articlePage.articleList[0].articleNo}" hidden/>
 
-	<table border="1">
+	<table border="1" class="table table-dark table-hover">
 	<tr>
 		<th>댓글 내용</th>
 			<td><textarea name="comm_content" id="comm_content" ></textarea></td>
 	</tr>
 	<tr>
-		<td colspan="2" style="text-align:center;"><input type="submit" value="댓글 입력"/></td>
+		<td colspan="2" style="text-align:center;"><input type="submit" value="댓글 입력" class="btn btn-secondary"/></td>
 	</tr>
 	</table>
 </form>

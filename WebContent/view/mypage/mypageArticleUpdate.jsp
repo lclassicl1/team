@@ -26,8 +26,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 
 	
 	<c:forEach var="board" items="${freeBoard.list}">
-<form method="post" 
-		action="<%=request.getContextPath()%>/mypageArticleUpdate.do?no=${board.articleNo}">
+<form method="post" action="<%=request.getContextPath()%>/mypageArticleUpdate.do?no=${board.articleNo}">
 	<table border="1" class="table table-dark table-hover">
 	<tr>
 		<th>글 번호</th>
