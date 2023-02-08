@@ -14,12 +14,19 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+.input {
+	text-align: right;
+
+}
+</style>
 <title>Insert title here</title>
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
+<h3>공지사항</h3>
 <!-- 게시글 정보  -->
-<table border="1" class="table table-dark w-auto table-hover">
+<table border="1" class="table table-dark table-hover">
 	<tr>
 		<td>조회수</td>
 		<td>${read.article.articleReadCnt }</td>
@@ -46,15 +53,17 @@
 	</tr>
 	<tr> 
 		<td colspan="2">
-		<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo }" />
-			<a href="<%=request.getContextPath()%>/notice/list.do?pageNo=${pageNo}">목록</a>
-		<c:if test="${authUser.userNo == read.article.userNo }">
-			<a href="<%=request.getContextPath()%>/notice/modify.do?no=${read.article.articleNo }">게시글 수정</a>
-			<a href="<%=request.getContextPath()%>/notice/delete.do?no=${read.article.articleNo }">게시글 삭제</a>
-		</c:if>
-		<c:if test="${authUser.userGrade == 999 }">
-		<a href="<%=request.getContextPath()%>/master/article/list.do?pageNo=${pageNo}">목록(관리자 권한)</a>
-		</c:if>
+		<div class="input">
+			<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo }" />
+				<a href="<%=request.getContextPath()%>/notice/list.do?pageNo=${pageNo}" class="btn btn-secondary">목록</a>
+			<c:if test="${authUser.userNo == read.article.userNo }">
+				<a href="<%=request.getContextPath()%>/notice/modify.do?no=${read.article.articleNo }" class="btn btn-secondary">게시글 수정</a>
+				<a href="<%=request.getContextPath()%>/notice/delete.do?no=${read.article.articleNo }" class="btn btn-secondary">게시글 삭제</a>
+			</c:if>
+			<c:if test="${authUser.userGrade == 999 }">
+			<a href="<%=request.getContextPath()%>/master/article/list.do?pageNo=${pageNo}" class="btn btn-secondary">목록(관리자 권한)</a>
+			</c:if>
+		</div>
 		</td>
 	</tr> 
 			

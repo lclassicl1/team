@@ -56,6 +56,10 @@ body {
 }
 
 
+.input {
+	text-align: right;
+	margin-top: -20px;
+
 
 .center{
 	text-align: left;
@@ -65,14 +69,18 @@ body {
 .input{
 	text-align:right;
 	margin-top:-20px;
+
 	
 } 
-.formClass {
+
+.formClass{
 	text-align: center;
 }
+
 /* .formClass{
 	display:inline-block;
 } */
+
 </style>
 </head>
 <body>
@@ -80,6 +88,7 @@ body {
 <div class="center">
 	<h3>공지사항</h3>
 </div>
+
 	<div class="formClass">	
 		 <form action="<%=request.getContextPath()%>/notice/search.do" method="post">
 		검색 :  <input type="text" name="input">
