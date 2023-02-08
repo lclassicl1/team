@@ -67,7 +67,19 @@
 		 	  	${item.articleTitle}
 		 	  </a>
 		 	  </td>
-		 	  <td>${item.tradeCategory}</td>
+		 	    <td>
+		 	   <c:choose> 
+				    <c:when test="${item.tradeCategory == 'buy'}">
+				        <a>구매</a>
+				    </c:when>
+				    <c:when test="${item.tradeCategory == 'sell'}">
+				        <a>판매</a>
+			        </c:when>
+				    <c:otherwise>
+				        <a>없음</a>
+				    </c:otherwise>
+				</c:choose>
+		 	  </td>
 		 	  <td>${item.userName}</td>
 		 	  <td>${item.articleReadCnt}</td>
 		 	   <td><fmt:formatDate pattern="yyyy-MM-dd" value="${item.articleCredate}"/></td>

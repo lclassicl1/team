@@ -87,7 +87,12 @@
 		<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo }" />
 			<a href="<%=request.getContextPath()%>/master/user/list.do?pageNo=${pageNo}">목록</a>
 			<a href="<%=request.getContextPath()%>/master/user/article.do?pageNo=${pageNo}&userNo=${user.userNo}">회원이 쓴 게시글 보기</a>
+			<c:if test="${user.userGrade == 1 }">
 			<a href="<%=request.getContextPath()%>/master/user/black.do?no=${user.userNo}">회원 정지</a>
+			</c:if>
+			<c:if test="${user.userGrade == 900 }">
+			<a href="<%=request.getContextPath()%>/master/user/nomal.do?no=${user.userNo}">회원 정지 해제</a>
+			</c:if>
 		</td>
 	</tr> 
 			

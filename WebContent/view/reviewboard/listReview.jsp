@@ -34,7 +34,6 @@
   <thead>
   	<tr>
   	 <th>제목</th>
-  	 <th>카테고리</th>
   	 <th>작성자</th>
   	 <th>조회수</th>
   	 <th>작성일</th>
@@ -56,7 +55,6 @@
 		 	  	${item.articleTitle}
 		 	  </a>
 		 	  </td>
-		 	  <td>${item.reviewCategory}</td>
 		 	  <td>${item.userName}</td>
 		 	  <td>${item.articleReadCnt}</td>
 		 	   <td><fmt:formatDate pattern="yyyy-MM-dd" value="${item.articleCredate}"/></td>
