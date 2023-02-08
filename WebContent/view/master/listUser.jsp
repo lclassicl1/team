@@ -70,6 +70,9 @@
 				    <c:when test="${item.userGrade == 1}">
 				        <a>일반 회원</a>
 				    </c:when>
+				    <c:when test="${item.userGrade == 100}">
+				        <a>탈퇴 회원</a>
+				    </c:when>
 				    <c:when test="${item.userGrade == 900}">
 				        <a>정지 회원</a>
 				    </c:when>

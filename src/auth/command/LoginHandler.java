@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import Exception.BlackUserException;
 import Exception.LoginFailException;
+import Exception.UnRegisterException;
 import Exception.UserNotFoundException;
 import auth.model.User;
 import auth.service.LoginService;
@@ -66,6 +67,9 @@ public class LoginHandler implements CommandHandler {
 		return FORM_VIEW;
 	}catch(BlackUserException e) {
 		res.sendRedirect(req.getContextPath()+"/view/Exception/blackLogin.jsp");
+		return null;
+	}catch(UnRegisterException e) {
+		res.sendRedirect(req.getContextPath()+"/view/Exception/unRegisterLogin.jsp");
 		return null;
 	}
 }

@@ -133,6 +133,17 @@ public class UserDAO {
 			JdbcUtil.close(pstmt);
 		}
 	}
+	public void unregiseter(Connection conn,int userNo)throws SQLException {
+		PreparedStatement pstmt = null;
+		String sql = "update userinfo set user_grade=100 where user_no=?";
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.executeUpdate();
+		}finally {
+			JdbcUtil.close(pstmt);
+		}
+	}
 	private User coverUser(ResultSet rs) throws SQLException {
 		return new User(rs.getInt("user_no"),rs.getString("user_id"),rs.getString("user_pwd"),rs.getString("user_name"),rs.getString("user_hp")
 						,rs.getTimestamp("user_regdate"),rs.getString("user_address"),rs.getInt("user_grade"),rs.getString("user_email")

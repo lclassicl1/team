@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import Exception.BlackUserException;
 import Exception.LoginFailException;
+import Exception.UnRegisterException;
 import Exception.UserNotFoundException;
 import auth.DAO.UserDAO;
 import auth.model.User;
@@ -29,6 +30,9 @@ public class LoginService {
 			}
 			if(user.getUserGrade()==900) {
 				throw new BlackUserException();
+			}
+			if(user.getUserGrade()==100) {
+				throw new UnRegisterException();
 			}
 			conn.commit();
 			return user;

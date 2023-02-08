@@ -50,6 +50,9 @@
 			    <c:when test="${user.userGrade == 1}">
 			        <a>일반 회원</a>
 			    </c:when>
+			    <c:when test="${user.userGrade == 100}">
+			        <a>탈퇴 회원</a>
+			    </c:when>
 			    <c:when test="${user.userGrade == 900}">
 			        <a>정지 회원</a>
 			    </c:when>
@@ -72,11 +75,29 @@
 	</tr>
 	<tr>
 		<td>보유 자격증</td>
-		<td>${user.userSkill }</td>
+		<td>
+				 <c:choose> 
+				    <c:when test="${user.userSkill == null  || user.userSkill == ''}">
+				        <a>없음</a>
+				    </c:when>
+				    <c:otherwise>
+				        <a>${user.userSkill}</a>
+				    </c:otherwise>
+				</c:choose>
+			</td>
 	</tr>
 	<tr>
 		<td>최종학력</td>
-		<td>${user.userSchool }</td>
+		<td>
+				 <c:choose> 
+				    <c:when test="${user.userSchool == null || user.userSchool == ''}">
+				        <a>없음</a>
+				    </c:when>
+				    <c:otherwise>
+				        <a>${user.userSchool}</a>
+				    </c:otherwise>
+				</c:choose>
+			</td>
 	</tr>
 	<tr>
 		<td>생년월일</td>
