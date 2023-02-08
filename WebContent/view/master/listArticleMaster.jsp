@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>     
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -22,16 +23,16 @@
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
-<h3>전체게시글 목록(관리자 전용))</h3>
+<h3>전체게시글 목록(관리자 전용)</h3>
  <table border="1" class="table table-dark w-auto table-hover">
   <thead>
   	<tr>
   	 <th>제목</th>
   	 <th>카테고리</th>
   	 <th>작성자</th>
-  	 <th>노출여부</th>
+  	 <th>게시글 상태</th>
   	 <th>조회수</th>
-  	 <th>작성 시간</th>
+  	 <th>작성일</th>
   	</tr>
   </thead>
   <tbody>
@@ -49,11 +50,47 @@
 		 	  <a href="<%=request.getContextPath()%>/master/article/read.do?no=${item.articleNo}&category=${item.articleCategory}">
 		 	  	${item.articleTitle}
 		 	  </a></td>
-		 	  <td>${item.articleCategory}</td>
+		 	    <td>
+		 	   <c:choose> 
+				    <c:when test="${item.articleCategory == 'notice'}">
+				        <a>공지사항</a>
+				    </c:when>
+				    <c:when test="${item.articleCategory == 'free'}">
+				        <a>자유게시판</a>
+				    </c:when>
+				    <c:when test="${item.articleCategory == 'help'}">
+				        <a>고수님해주세요</a>
+				    </c:when>
+				    <c:when test="${item.articleCategory == 'helper'}">
+				        <a>고수가해줄게요</a>
+				    </c:when>
+				    <c:when test="${item.articleCategory == 'trade'}">
+				        <a>트레이드게시판</a>
+				    </c:when>
+				    <c:when test="${item.articleCategory == 'review'}">
+				        <a>리뷰/후기게시판</a>
+				    </c:when>
+				    <c:otherwise>
+				        <a>없음</a>
+				    </c:otherwise>
+				</c:choose>
+		 	  </td>
 		 	  <td>${item.userName }</td>
-		 	  <td>${item.isshow }</td>
+		 	    <td>
+		 	   <c:choose> 
+				    <c:when test="${item.isshow == 'Y'}">
+				        <a>정상</a>
+				    </c:when>
+				    <c:when test="${item.isshow == 'N'}">
+				        <a>삭제</a>
+				    </c:when>
+				    <c:otherwise>
+				        <a>없음</a>
+				    </c:otherwise>
+				</c:choose>
+		 	  </td>
 		 	  <td>${item.articleReadCnt }</td>
-		 	  <td>${item.articleCredate }</td>
+		 	   <td><fmt:formatDate pattern="yyyy-MM-dd" value="${item.articleCredate}"/></td>
 		 	 </tr>
  	 </c:forEach> 
    <%-- 반복문이용하여 출력끝 --%>

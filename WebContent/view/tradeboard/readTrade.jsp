@@ -101,7 +101,7 @@
 		<a href="<%=request.getContextPath()%>/trade/comment/volt.do?no=${read.article.articleNo }&commNo=${item.commNo}">추천</a>
 		<c:if test="${authUser.userId == item.userId}">
 			<a href="<%=request.getContextPath()%>/trade/comment/modify.do?commNo=${item.commNo}">댓글 수정</a>
-			<a href="<%=request.getContextPath()%>/trade/comment/delete.do?commNo=${item.commNo}">댓글 삭제</a>
+			<a href="<%=request.getContextPath()%>/trade/comment/delete.do?commNo=${item.commNo}&no=${read.article.articleNo}">댓글 삭제</a>
 		</c:if>
 		</td>
 		</tr>

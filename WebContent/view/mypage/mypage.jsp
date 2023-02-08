@@ -68,6 +68,12 @@
 <a href="<%=request.getContextPath()%>/mypageUpdate.do?userId=${userInfo.userId}"><button class="btn btn-secondary">정보 수정하기</button></a>
 <a href="<%=request.getContextPath()%>/mypageChangePwd.do"><button class="btn btn-secondary">비밀번호 변경</button></a>
 <a href="<%=request.getContextPath()%>/mypageArticle.do"><button class="btn btn-secondary">내가 쓴 글</button></a>
+<br>
+<c:if test="${authUser.userGrade == 999 }">
+관리자 모드<br>
+<a href="<%=request.getContextPath()%>/master/user/list.do">회원 목록 보기</a>
+<a href="<%=request.getContextPath()%>/master/article/list.do">전체글 관리자 모드로 보기</a>
+</c:if>
 </body>
 </html>
 

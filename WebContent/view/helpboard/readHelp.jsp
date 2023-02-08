@@ -97,7 +97,7 @@
 		<c:if test="${authUser.userId == item.userId}">
 		<td>
 			<a href="<%=request.getContextPath()%>/help/comment/modify.do?commNo=${item.commNo}">댓글 수정</a>
-			<a href="<%=request.getContextPath()%>/help/comment/delete.do?commNo=${item.commNo}">댓글 삭제</a>
+			<a href="<%=request.getContextPath()%>/help/comment/delete.do?commNo=${item.commNo}&no=${read.article.articleNo}">댓글 삭제</a>
 		</td>
 		</c:if>
 		</tr>

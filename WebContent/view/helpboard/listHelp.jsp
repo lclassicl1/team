@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -46,10 +47,10 @@
   <thead>
   	<tr>
   	 <th>제목</th>
-  	 <th>작성자</th>
-  	 <th>작성일</th>
-  	 <th>조회수</th>
   	 <th>카테고리</th>
+  	 <th>작성자</th>
+  	 <th>조회수</th>
+  	 <th>작성일</th>
   	</tr>
   </thead>
   <tbody>
@@ -68,10 +69,10 @@
 		 	  	${item.articleTitle}
 		 	  </a>
 		 	  </td>
-		 	  <td>${item.userName}</td>
-		 	  <td>${item.articleCredate}</td>
-		 	  <td>${item.articleReadCnt}</td>
 		 	  <td>${item.helpCategory}</td>
+		 	  <td>${item.userName}</td>
+		 	  <td>${item.articleReadCnt}</td>
+		 	  <td><fmt:formatDate pattern="yyyy-MM-dd" value="${item.articleCredate}"/></td>
 		 	 </tr>
  	 </c:forEach> 
    <%-- 반복문이용하여 출력끝 --%>
