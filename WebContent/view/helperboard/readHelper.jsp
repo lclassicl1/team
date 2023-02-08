@@ -32,7 +32,8 @@
 	</tr>
 	<tr>
 		<td>작성자</td>
-		<td>${read.article.userName }&nbsp;<a href="#" class="btn btn-secondary btn-sm" onclick="userinfo();">프로필보기</a></td>
+		<td>${read.article.userName }&nbsp;<a href="#" class="btn btn-secondary btn-sm" onclick="userinfo();">프로필보기</a>
+		<a href="<%=request.getContextPath()%>/helper/writerInfo.do?no=${read.user.userNo}">프로필보기(test)</a></td>
 	</tr>
 	<tr>
 		<td>제목</td>
@@ -70,37 +71,6 @@
 		</td>
 	</tr> 
 			
-</table>
- <!-- 글쓴이 정보  -->
-<table border="1">
-	<tr>
-		<td>이름</td>
-		<td>${read.user.userName }</td>
-	</tr>
-	<tr>
-		<td>전화번호</td>
-		<td>${read.user.userHp }</td>
-	</tr>
-	<tr>
-		<td>성별</td>
-		<td>${read.user.userGender }</td>
-	</tr>
-	<tr>
-		<td>주소</td>
-		<td>${read.user.userAddress }</td>
-	</tr>
-	<tr>
-		<td>이메일</td>
-		<td>${read.user.userEmail }</td>
-	</tr>
-	<tr>
-		<td>자격증</td>
-		<td>${read.user.userSkill }</td>
-	</tr>
-	<tr>
-		<td>최종학력</td>
-		<td>${read.user.userSchool }</td>
-	</tr>
 </table>
  <!-- 댓글 -->
  <table border="1" class="table table-dark w-auto table-hover">
