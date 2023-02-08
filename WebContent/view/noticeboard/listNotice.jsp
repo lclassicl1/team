@@ -39,32 +39,54 @@ body {
   text-decoration: none;
 }
 
-.center {
+#center {
 	text-align: center;
-	margin: auto;
 }
 
 .left {
 	text-align: left;
 }
 
+/* #submit, #write {
+	margin:10px;
+} */
+
+.blank {
+	margin:10px;
+}
+
+
+
+ .test{
+	text-align: center;
+
+
+} 
+
+.center {
+	text-align: center;
+	
+}
+.formClass{
+	display:inline-block;
+}
 </style>
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
-<div class="center"><h3>공지사항</h3></div>
-
 <div class="center">
- <hr/>
- <form action="<%=request.getContextPath()%>/notice/search.do" method="post">
-검색 :  <input type="text" name="input">
- <input type="submit" class="btn btn-secondary" value="검색">
- </form>
- </div>
-<div class="left"><c:if test="${authUser.userGrade == 999 }">
-<a href="<%=request.getContextPath()%>/notice/write.do" class="btn btn-secondary">게시글 작성하기</a>
-</c:if>
+	<h3>공지사항</h3>
 </div>
+<div class="test">
+	<c:if test="${authUser.userGrade == 999 }">
+	<a href="<%=request.getContextPath()%>/notice/write.do" class="btn btn-secondary blank">게시글 작성하기</a>
+	</c:if>
+	 <form action="<%=request.getContextPath()%>/notice/search.do" method="post" class="formClass">
+	검색 :  <input type="text" name="input">
+	 <input type="submit" class="btn btn-secondary blank" value="검색">
+ </form>
+</div>
+
  <table border="1" class="table table-dark table-hover">
   <thead>
   	<tr>

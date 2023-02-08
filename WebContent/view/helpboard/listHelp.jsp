@@ -48,6 +48,13 @@
 .left {
 	text-align: left;
 }
+.blank {
+	margin:10px;
+}
+
+.btn .btn-secondary .btn-sm .blank {
+	display:flex;
+}
  </style>
 </head>
 <body>
@@ -70,10 +77,10 @@
 				<option value="python">python</option>
 			</select>
 검색 :  <input type="text" name="input" >
- <input type="submit" class="btn btn-secondary btn-sm" value="검색">
+ <input type="submit" class="btn btn-secondary btn-sm blank" value="검색">
  </form>
  </div>
-<div class="left"><a href="<%=request.getContextPath()%>/help/write.do" class="btn btn-secondary">게시글 작성하기</a></div>
+<div class="left"><a href="<%=request.getContextPath()%>/help/write.do" class="btn btn-secondary blank">게시글 작성하기</a></div>
  <table border="1" class="table table-dark table-hover">
   <thead>
   	<tr>
