@@ -32,7 +32,9 @@ public class ReadBoardHandler implements CommandHandler {
 		FreePage freePage = readBoardService.getBoardDetail(no);
 		request.setAttribute("freePage", freePage);
 		
-	
+		User user = (User)request.getSession(false).getAttribute("authUser");
+		String userId = user.getUserId();
+		request.setAttribute("userId", userId);
 		
 		 // 댓글 - 목록 코드
 		 Comment comment = listCommentService.getCommentAll(no);

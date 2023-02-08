@@ -18,7 +18,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <h2><a href="<%=request.getContextPath()%>/index.jsp">HOME</a></h2>
-<a href="<%=request.getContextPath()%>/freeboard/list.do">글 목록으로</a>
 <script type="text/javascript">
 	function sendit(){
 		if(document.commentFrm.newComment.value==""){
@@ -29,25 +28,50 @@
 	}
 </script>
 <body>
+			<c:if test="${authUser.userName==item.userName}">
+						<a href="<%=request.getContextPath()%>/mypageArticle.do"><button>내가 쓴 글 목록으로</button></a>
+			</c:if>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
 <c:forEach var="item" items="${freePage.freeBoardList}">
-	<c:if test="${authUser.userName==item.userName}">
-		<a href="<%=request.getContextPath()%>/mypageArticle.do">내가 쓴 글 목록으로</a>
-	</c:if>
-			<p>조회수 : ${item.articleReadcnt}</p>
-			<p>글 작성자 : ${item.userName}</p>
-			<p>제목: ${item.articleTitle}</p>
-			<p>내용: ${item.articleContent}</p>
-			<p>카테고리: ${item.freeCategory}</p>
-			<p>작성일 : ${item.articleCredate}</p>
-<a href="<%=request.getContextPath()%>/freeboard/update.do?no=${item.articleNo}"><button>글 수정하기</button></a>
-<a href="<%=request.getContextPath()%>/freeboard/delete.do?no=${item.articleNo}"><button>글 삭제하기</button></a>
-	</c:forEach>
+	<table border="1" class="table table-dark w-auto table-hover">
+			<tr>
+					<td>조회수</td>
+					<td>${item.articleReadcnt}</td>
+			</tr>
+				<tr>
+					<td>글 작성자</td>
+					<td>${item.userName}</td>
+			</tr>
+				<tr>
+					<td>제목</td>
+					<td>${item.articleTitle}</td>
+			</tr>
+				<tr>
+					<td>내용</td>
+					<td>${item.articleContent}</td>
+			</tr>
+				<tr>
+					<td>카테고리</td>
+					<td>${item.freeCategory}</td>
+			</tr>
+				<tr>
+					<td>작성시간</td>
+					<td>${item.articleCredate}</td>
+			</tr>
+			<tr>
+				<th colspan="2" style="text-align:center;">
+						<a href="<%=request.getContextPath()%>/freeboard/list.do"><button>글 목록으로</button></a>
+						<a href="<%=request.getContextPath()%>/freeboard/update.do?no=${item.articleNo}"><button>글 수정하기</button></a>
+						<a href="<%=request.getContextPath()%>/freeboard/delete.do?no=${item.articleNo}"><button>글 삭제하기</button></a>
+				</th>
+			</tr>
+	</table>
+</c:forEach>
 <hr>
 <hr>
 
 <h3>댓글</h3> 댓글 작성 성공:<c:out value="${commentResult}"></c:out>
-<table border="1" class="table table-dark table-hover">
+<table border="1" class="table table-dark w-auto table-hover">
 	<tr>
 		<th>아이디</th>
 		<th>내용</th>
@@ -61,10 +85,10 @@
 		<td>${comment.comm_credate}</td>
 		<td>${comment.comm_volt}</td>
 		 <c:if test="${authUser.userId==comment.user_id}">
-		<td><a href="<%=request.getContextPath()%>/freeboard/commentdelete.do?articleNo=${freePage.freeBoardList[0].articleNo}&comm_no=${comment.comm_no}"><button>삭제</button></a></td>
-		<td><a href="<%=request.getContextPath()%>/freeboard/commentupdate.do?articleNo=${freePage.freeBoardList[0].articleNo}&comm_no=${comment.comm_no}"><button>수정</button></a></td>
+		<td><a href="<%=request.getContextPath()%>/freeboard/commentdelete.do?articleNo=${freePage.freeBoardList[0].articleNo}&commNo=${comment.comm_no}"><button>삭제</button></a></td>
+		<td><a href="<%=request.getContextPath()%>/freeboard/commentupdate.do?articleNo=${freePage.freeBoardList[0].articleNo}&commNo=${comment.comm_no}"><button>수정</button></a></td>
 		</c:if>
-		<td><a href="<%=request.getContextPath()%>/freeboard/commentlike.do?articleNo=${freePage.freeBoardList[0].articleNo}&comm_no=${comment.comm_no}"><button>추천</button></a></td>
+		<td><a href="<%=request.getContextPath()%>/freeboard/commentlike.do?articleNo=${freePage.freeBoardList[0].articleNo}&commNo=${comment.comm_no}"><button>추천</button></a></td>
 	</tr>
 </c:forEach>
 </table>
@@ -74,11 +98,13 @@
 		
 		<input type="text" name="articleNo" value="${freePage.freeBoardList[0].articleNo}" hidden/>
 
-	<table border="1" class="table table-dark table-hover">
+	<table border="1" class="table table-dark w-auto table-hover">
 	<tr>
-		<th>댓글 내용</th>
+		<td>${userId}</td>
+	</tr>
+	<tr>
 			<td>
-				<input type="text" name="newComment" style="width:500px;">
+				<input type="text" name="newComment" style="width:300px;height:100px;">
 			</td>
 	</tr>
 	<tr>

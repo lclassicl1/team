@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comment.model.CommentList;
+import comment.model.CommentUpdateList;
+import helpComment.model.Comment;
 import jdbc.JdbcUtil;
 import jdbc.conn.ConnectionProvider;
 
@@ -245,9 +247,35 @@ public class CommentDAO {
 			JdbcUtil.close(stmt);
 			JdbcUtil.close(conn);
 		}
-	
 		return result;
 	} 
+	
+	// update 데이터 가져오기
+	public CommentUpdateList updateList(Connection conn,int updateCommNo)throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql ="select * from free_comment where comm_no=? and isshow='Y'";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, updateCommNo);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				return coverComment(rs);
+			}
+			return null;
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		
+	}
+	
+	private CommentUpdateList coverComment(ResultSet rs) throws SQLException {
+		return new CommentUpdateList(rs.getInt("comm_no"),rs.getString("comm_content"),rs.getTimestamp("comm_credate"),rs.getString("user_id")
+							,rs.getString("isshow"),rs.getInt("comm_volt"),rs.getInt("article_no"));
+	}
 }
 
 
