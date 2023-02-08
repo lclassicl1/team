@@ -24,7 +24,7 @@ public class BlackUserHandler implements CommandHandler {
 		
 		blackUser.BlackUser(userNo);
 		
-		return "/view/master/blackUserSuccess.jsp";
+		return "/master/user/read.do?no="+userNo;
 	}
 
 }

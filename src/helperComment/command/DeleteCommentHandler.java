@@ -18,6 +18,8 @@ public class DeleteCommentHandler implements CommandHandler {
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		String commNoVal = req.getParameter("commNo");
 		int commNo = Integer.parseInt(commNoVal);
+		String noVal = req.getParameter("no");
+		int no = Integer.parseInt(noVal);
 		
 		User user = (User)req.getSession(false).getAttribute("authUser");
 		String loginId = user.getUserId();
@@ -25,7 +27,7 @@ public class DeleteCommentHandler implements CommandHandler {
 		try {
 			deleteCommentService.commDelete(commNo, loginId);
 			
-			return "/view/helperboard/deleteCommSuccess.jsp";
+			return "/helper/read.do?no="+no;
 		}catch(CommentNotFoundException e) {
 			res.sendError(HttpServletResponse.SC_FOUND);
 			return null;
