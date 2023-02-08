@@ -19,17 +19,49 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
  <title>게시판목록</title>
  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
- <style></style>
+ <style>
+ body {
+  font-family: Arial, sans-serif;
+  color: rgb(243 244 246);
+  align-items: center;
+  height: 100vh;
+  background-color: rgb(31 41 55);
+  
+}
+.links {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.links a {
+  color: cornflowerblue;
+  font-size: 14px;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+.center {
+	text-align: center;
+	margin: auto;
+}
+
+.left {
+	text-align: left;
+}
+ 
+ </style>
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
-<h3>리뷰</h3>
-<a href="<%=request.getContextPath()%>/review/write.do">게시글 작성하기</a>
+<div class="center"><h3>리뷰</h3></div>
  <hr/>
+ <div class="center">
  <form action="<%=request.getContextPath()%>/review/search.do" method="post">
 검색 :  <input type="text" name="input">
- <input type="submit" class="btn btn-secondary" value="검색">
+ <input type="submit" class="btn btn-secondary btn-sm" value="검색">
  </form>
+</div> 
+<div class="left"><a href="<%=request.getContextPath()%>/review/write.do" class="btn btn-secondary">게시글 작성하기</a></div>
  <table border="1" class="table table-dark table-hover">
   <thead>
   	<tr>

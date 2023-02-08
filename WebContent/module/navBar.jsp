@@ -2,10 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <head>
-<link rel='stylesheet' type='text/css' href='../../css/main.css'/>
-<link rel='stylesheet' type='text/css' href='../../css/navigation.css'/>
+<link rel='stylesheet' type='text/css' href='<%=request.getContextPath()%>/css/main.css'/>
+<link rel='stylesheet' type='text/css' href='<%=request.getContextPath()%>/css/navigation.css'/>
+<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<!-- Popper JS -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 body {
@@ -27,7 +30,15 @@ body {
   margin-right: 10px;
   text-decoration: none;
 }
+/* #mainicon {
+	width: 100px;
+	height: 50px;
+}	
 
+#myPageicon, #logouticon {
+	width: 30px;
+	height: 30px;
+} */
 </style>
 </head> 
 <body>

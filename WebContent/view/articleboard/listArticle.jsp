@@ -17,15 +17,13 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
- <title>게시판목록</title>
- <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
  <style>
  </style>
+ <title>게시판목록</title>
+ <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 </head>
 <body>
-<header>
-	<jsp:include page="../../module/navBar.jsp"></jsp:include>
-</header>
+<header><jsp:include page="../../module/navBar.jsp"/></header>
 <h3>전체게시글 목록</h3>
  <%-- <a href="<%=request.getContextPath()%>/index.jsp">HOME</a>
  <a href="<%=request.getContextPath()%>/article/list.do">게시글 보러가기</a>

@@ -14,8 +14,13 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
+<script>
+	function userinfo() {
+		window.open("","nw", "width=500,height=700");
+	}
+</script>
 <title>Insert title here</title>
+
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
@@ -27,7 +32,7 @@
 	</tr>
 	<tr>
 		<td>작성자</td>
-		<td>${read.article.userName }</td>
+		<td>${read.article.userName }&nbsp;<a href="#" class="btn btn-secondary btn-sm" onclick="userinfo();">프로필보기</a></td>
 	</tr>
 	<tr>
 		<td>제목</td>
