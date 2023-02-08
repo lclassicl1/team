@@ -18,13 +18,41 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
  <style>
+body {
+  font-family: Arial, sans-serif;
+  color: rgb(243 244 246);
+  align-items: center;
+  height: 100vh;
+  background-color: rgb(31 41 55);
+  
+}
+.links {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.links a {
+  color: cornflowerblue;
+  font-size: 14px;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+.center {
+	text-align: center;
+	margin: auto;
+}
+
+.left {
+	text-align: left;
+} 
  </style>
  <title>게시판목록</title>
  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
-<h3>전체게시글 목록</h3>
+<div class="center"><h3>전체게시글 목록</h3></div>
  <%-- <a href="<%=request.getContextPath()%>/index.jsp">HOME</a>
  <a href="<%=request.getContextPath()%>/article/list.do">게시글 보러가기</a>
 <a href="<%=request.getContextPath()%>/article/write.do">게시글 작성하기</a>
