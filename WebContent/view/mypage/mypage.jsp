@@ -27,7 +27,7 @@
 <header><jsp:include page="../../module/navBar.jsp"/></header>
 <a href="<%=request.getContextPath()%>/view/loginboard/loginView.jsp">HOME</a>
 	<h2>마이페이지</h2>
-	<table border="1">
+	<table border="1" class="table table-dark table-hover">
 		<tr>
 			<th>아이디</th>
 			<td>${userInfo.userId}</td>
@@ -74,6 +74,7 @@
 <a href="<%=request.getContextPath()%>/master/user/list.do">회원 목록 보기</a>
 <a href="<%=request.getContextPath()%>/master/article/list.do">전체글 관리자 모드로 보기</a>
 </c:if>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 </html>
 

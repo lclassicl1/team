@@ -42,7 +42,7 @@
   <!-- 404에러 페이지  -->
   <!-- <error-page>
   	<error-code>404</error-code>
-  	<location>jsp 경로 </location>
+  	<location>/errorpage/error.jsp </location>
   </error-page> -->
   
   <!-- 로그인 필터  -->
@@ -70,9 +70,4 @@
            <filter-name>encodingFilter</filter-name>
            <url-pattern>/*</url-pattern>
      </filter-mapping>
-
-
-
-
-
 </web-app>

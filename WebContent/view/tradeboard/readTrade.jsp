@@ -116,7 +116,7 @@
 		<p>
 			<c:if test="${errors.contentEmpty }">댓글 내용을 작성해주세요.</c:if>
 		</p>
-		<input type="submit" value="등록">
+		<input type="submit" value="등록" class="btn btn-secondary">
 	</form>
 	</td>
 	</tr>

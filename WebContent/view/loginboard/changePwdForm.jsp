@@ -97,7 +97,8 @@ button:hover {
 			<c:if test="${errors.newPwd }">변경할 비밀번호를 입력하세요.</c:if>
 			<c:if test="${errors.newPwdRePwdMatch }">변경 비밀번호와 일치하지 않습니다. </c:if>
 		</p>
-		<input type="submit" value="비밀번호 변경">
+		<input type="submit" value="비밀번호 변경" class="btn btn-secondary"
+		>
 	</form>	
 </body>
 </html>

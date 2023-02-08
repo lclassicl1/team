@@ -241,8 +241,8 @@ ${errors }
 				</tr>
 				<tr>
 					<td colspan="2" style="text-align:center;">
-						<input type ="submit" value="확인">
-						<input type ="reset" value="취소">
+						<input type ="submit" value="확인" class="btn btn-secondary">
+						<input type ="reset" value="취소" class="btn btn-secondary">
 					</td>
 				</tr>
 					

@@ -27,8 +27,7 @@
 <header><jsp:include page="../../module/navBar.jsp"/></header>
 <a href="<%=request.getContextPath()%>/mypage.do"><button>뒤로가기</button></a>
 <hr>
-<form method="get" 
-		action="<%=request.getContextPath()%>/mypageArticleSearch.do">
+<form method="get" action="<%=request.getContextPath()%>/mypageArticleSearch.do">
 		  <select name='categorySearch'>
 			    <option value='' selected>-- 선택 --</option>
 			    <option value='free'> 자유</option>
