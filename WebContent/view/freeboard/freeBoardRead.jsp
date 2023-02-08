@@ -61,8 +61,10 @@
 			<tr>
 				<th colspan="2" style="text-align:center;">
 						<a href="<%=request.getContextPath()%>/freeboard/list.do"><button>글 목록으로</button></a>
-						<a href="<%=request.getContextPath()%>/freeboard/update.do?no=${item.articleNo}"><button>글 수정하기</button></a>
-						<a href="<%=request.getContextPath()%>/freeboard/delete.do?no=${item.articleNo}"><button>글 삭제하기</button></a>
+					<c:if test="${authUser.userName==articleName}">
+								<a href="<%=request.getContextPath()%>/freeboard/update.do?no=${item.articleNo}"><button>글 수정하기</button></a>
+								<a href="<%=request.getContextPath()%>/freeboard/delete.do?no=${item.articleNo}"><button>글 삭제하기</button></a>
+					</c:if>
 				</th>
 			</tr>
 	</table>
