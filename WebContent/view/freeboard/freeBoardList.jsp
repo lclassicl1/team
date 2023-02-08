@@ -25,13 +25,29 @@
 .left {
 	text-align: left;
 }
+.center{
+	text-align: left;
+	margin:10px;
+}
+
+.input{
+	text-align:right;
+	margin-top:-20px;
+	
+} 
+.blank {
+	margin:10px;
+}
+.formClass {
+	text-align: center;
+}
 </style>
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header> <!-- header 네비게이션바 --> 
 <div class="center"><h3>자유게시판</h3></div>
  <hr/>
-<div class="center"><form name="categorySearch" id="categorySearch" method="get" 
+<div class="formClass"><form name="categorySearch" id="categorySearch" method="get" 
 		action="<%=request.getContextPath()%>/freeboard/searchBoard.do">
  카테고리 : 
 			<select name='categorySearch'>
@@ -42,10 +58,9 @@
 
   	</select>
 			    <input type="text" name="input"/>
-			    <input type="submit" value="검색" class="btn btn-secondary btn-sm"/>
+			    <input type="submit" value="검색" class="btn btn-secondary btn-sm blank"/>
  </form>
  </div>
-<div class="left"><a href="<%=request.getContextPath()%>/freeboard/write.do" class="btn btn-secondary">게시글 작성하기</a></div>
 <table border="1" class="table table-dark table-hover">
 <thead>
 	<tr>
@@ -91,6 +106,7 @@
 				   </c:if>
 			</tbody>
 		</table>
+		<div class="input"><a href="<%=request.getContextPath()%>/freeboard/write.do" class="btn btn-secondary blank">게시글 작성하기</a></div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>	
 	</body>
 </html>
