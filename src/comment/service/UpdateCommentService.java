@@ -29,13 +29,11 @@ public class UpdateCommentService {
 	}
 	
 	public CommentUpdateList updateList(int updateCommNo) {
-		System.out.println("updateCommNo"+updateCommNo);
 		Connection conn = null;
 		
 		try {
 			conn = ConnectionProvider.getConnection();
 			CommentUpdateList updateList = commentDAO.updateList(conn,updateCommNo);
-			System.out.println("updateList====="+updateList);
 			
 			return updateList;
 		}catch(Exception e) {

@@ -50,28 +50,20 @@ public class CommentUpdateHandler implements CommandHandler {
 			String commNoVal = request.getParameter("commNo");
 			int updateCommNo = Integer.parseInt(commNoVal);
 			CommentUpdateList updateList =updateCommentService.updateList(updateCommNo);
-			System.out.println("updateList============="+updateList);
 			request.setAttribute("updateList", updateList);
 			
 			
-		 FreePage freePage = readBoardService.getBoardDetail(no);
-		 request.setAttribute("freePage", freePage);
-		
-		User user = (User)request.getSession(false).getAttribute("authUser");
-		String userId = user.getUserId();
-		request.setAttribute("userId", userId);
-		request.setAttribute("articleNo",no);
-		 // 댓글 - 목록 코드
-			/*
-			 * String commnoVal = request.getParameter("commNo"); int commno =
-			 * Integer.parseInt(commnoVal); CommentList commentList =
-			 * listCommentService.getCommentList(commno);
-			 * request.setAttribute("commentList",commentList);
-			 */
-		
-		 Comment comment = listCommentService.getCommentAll(no);
-		 request.setAttribute("comment",comment);
-		 
+			FreePage freePage = readBoardService.getBoardDetail(no);
+			request.setAttribute("freePage", freePage);
+			
+			User user = (User)request.getSession(false).getAttribute("authUser");
+			String userId = user.getUserId();
+			request.setAttribute("userId", userId);
+			request.setAttribute("articleNo",no);
+			
+			Comment comment = listCommentService.getCommentAll(no);
+			request.setAttribute("comment",comment);
+			 
 			return "/view/freeboard/freeCommentUpdate.jsp";
 	}
 	

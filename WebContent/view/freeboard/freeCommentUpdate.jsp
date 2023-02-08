@@ -80,7 +80,7 @@
 		</table>
 <hr>
 	<form method="post"
-			action="<%=request.getContextPath()%>/freeboard/commentupdate.do?articleNo=${articleNo}&commNo=${commentList.comm_no}">
+			action="<%=request.getContextPath()%>/freeboard/commentupdate.do?articleNo=${articleNo}&commNo=${updateList.comm_no}">
 		<table border="1" class="table table-dark w-auto table-hover">
 				<tr>
 						<td>${updateList.user_id}</td>

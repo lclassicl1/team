@@ -252,14 +252,12 @@ public class CommentDAO {
 	
 	// update 데이터 가져오기
 	public CommentUpdateList updateList(Connection conn,int updateCommNo)throws SQLException {
-		System.out.println("updateCommNo======"+updateCommNo);
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql ="select * from free_comment where comm_no=? and isshow='Y'";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			System.out.println("pstmt=============="+pstmt);
 			pstmt.setInt(1, updateCommNo);
 			rs = pstmt.executeQuery();
 			
