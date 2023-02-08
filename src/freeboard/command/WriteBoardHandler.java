@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import article.model.ArticleRequest;
 import auth.model.User;
 import comment.service.WriteCommentService;
 import freeboard.service.ArticleBoardService;
@@ -21,6 +22,9 @@ public class WriteBoardHandler implements CommandHandler {
 	WriteBoardService writeBoardService = new WriteBoardService();
 	WriteCommentService writeCommentService = new WriteCommentService();
 	ArticleBoardService articleBoardService = new ArticleBoardService();
+	
+	
+	private static final String FORM_VIEW = "/view/freeboard/freeBoardWrite.jsp";
 	
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -35,34 +39,28 @@ public class WriteBoardHandler implements CommandHandler {
 	}
 	
 	private String processForm(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
-		
-		
-		return "/view/freeboard/freeBoardWrite.jsp";
+		return FORM_VIEW;
 	}
 
 	
 	private String processSubmit(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
 		
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
 		String categorySearch = request.getParameter("categorySearch");
 		
 		User user = (User)request.getSession(false).getAttribute("authUser");
-		String loginName=user.getUserName();
-		int userNo = user.getUserNo();
-		HttpSession ssesion=request.getSession();
-		ssesion.setAttribute("userInfo", user); //로그인한 유저 정보
 		
+		ArticleRequest articleReq = createWriterRequest(request,user);
+		
+		int articleNo = writeBoardService.writetBoard(articleReq,categorySearch);
+		System.out.println("articleNo======"+articleNo);
+		return "/freeboard/read.do?no="+articleNo;
+	}
+	
+	private ArticleRequest createWriterRequest(HttpServletRequest request,User user) {
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
 		String articleCategory = "free";
-		int articleNo = articleBoardService.freeArticleInsert(articleCategory,title,loginName,content,userNo);
-		
-		
-		int cnt = writeBoardService.writetBoard(articleNo,userNo,articleCategory,categorySearch);
-		
-		if(articleNo!=0) {
-			response.sendRedirect(request.getContextPath()+"/freeboard/read.do?no="+articleNo);
-		}
-		return "/view/freeboard/freeBoardList.jsp";
+		return new ArticleRequest(articleCategory,title,user.getUserName(),content,user.getUserNo());
 	}
 
 

@@ -10,7 +10,9 @@ import java.util.List;
 
 import freeboard.model.FreeBoardList;
 import freeboard.model.FreeSearch;
+import freeboard.model.FreeWriterRequest;
 import help.model.HelpList;
+import help.model.WriterRequest;
 import jdbc.JdbcUtil;
 import jdbc.conn.ConnectionProvider;
 
@@ -220,6 +222,24 @@ public class FreeBoardDAO {
 			JdbcUtil.close(conn);
 		}
 		return cnt;
+	}
+	
+	//글쓰기
+	public void insert(Connection conn,FreeWriterRequest freeWriterReq)throws SQLException {
+		PreparedStatement pstmt = null;
+		String sql = "insert into FREEBOARD(article_no,article_category,user_no,free_category) " + 
+				"value(?,?,?,?)";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, freeWriterReq.getArticleNo()); 
+			pstmt.setString(2, freeWriterReq.getArticleCategory());
+			pstmt.setInt(3, freeWriterReq.getUserNo());
+			pstmt.setString(4, freeWriterReq.getFreeCategory());
+			
+			pstmt.executeUpdate();
+		}finally {
+			JdbcUtil.close(pstmt);
+		}
 	}
 	
 	//게시글 수정하기

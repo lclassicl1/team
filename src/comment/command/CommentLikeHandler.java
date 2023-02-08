@@ -32,7 +32,7 @@ public class CommentLikeHandler implements CommandHandler {
 		String articleNoVal = request.getParameter("articleNo");
 		int articleNo = Integer.parseInt(articleNoVal);
 		
-		String commNoVal = request.getParameter("comm_no");
+		String commNoVal = request.getParameter("commNo");
 		
 		int commNo = Integer.parseInt(commNoVal);
 		

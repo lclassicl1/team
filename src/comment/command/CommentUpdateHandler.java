@@ -6,8 +6,10 @@ import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import auth.model.User;
 import comment.model.Comment;
 import comment.model.CommentList;
+import comment.model.CommentUpdateList;
 import comment.service.DeleteCommentService;
 import comment.service.ListCommentService;
 import comment.service.UpdateCommentService;
@@ -41,23 +43,36 @@ public class CommentUpdateHandler implements CommandHandler {
 		}
 	}
 	
-		private String processForm(HttpServletRequest request, HttpServletResponse response) {
+		private String processForm(HttpServletRequest request, HttpServletResponse response) throws IOException {
 			String articleNo = request.getParameter("articleNo");
 			int no = Integer.parseInt(articleNo);
+			
+			String commNoVal = request.getParameter("commNo");
+			int updateCommNo = Integer.parseInt(commNoVal);
+			CommentUpdateList updateList =updateCommentService.updateList(updateCommNo);
+			System.out.println("updateList============="+updateList);
+			request.setAttribute("updateList", updateList);
+			
 			
 		 FreePage freePage = readBoardService.getBoardDetail(no);
 		 request.setAttribute("freePage", freePage);
 		
-		
-		 
-		 request.setAttribute("articleNo",no);
+		User user = (User)request.getSession(false).getAttribute("authUser");
+		String userId = user.getUserId();
+		request.setAttribute("userId", userId);
+		request.setAttribute("articleNo",no);
 		 // 댓글 - 목록 코드
-		 String commnoVal = request.getParameter("comm_no");
-			int commno = Integer.parseInt(commnoVal);
-		 CommentList commentList = listCommentService.getCommentList(commno);
-		 request.setAttribute("commentList",commentList);
+			/*
+			 * String commnoVal = request.getParameter("commNo"); int commno =
+			 * Integer.parseInt(commnoVal); CommentList commentList =
+			 * listCommentService.getCommentList(commno);
+			 * request.setAttribute("commentList",commentList);
+			 */
+		
+		 Comment comment = listCommentService.getCommentAll(no);
+		 request.setAttribute("comment",comment);
 		 
-		return "/view/freeboard/freeCommentUpdate.jsp";
+			return "/view/freeboard/freeCommentUpdate.jsp";
 	}
 	
 	
@@ -67,10 +82,12 @@ public class CommentUpdateHandler implements CommandHandler {
 		
 		
 		String commContent = request.getParameter("commContent");
+		System.out.println("commContent====="+commContent);
 		String commNo = request.getParameter("commNo");
-		
+		System.out.println("commNo========="+commNo);
 		
 		int commno = Integer.parseInt(commNo);
+		System.out.println("commno======"+commno);
 		
 		int cnt = updateCommentService.updateComment(commno,commContent);
 		

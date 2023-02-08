@@ -13,32 +13,28 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 </head>
 
 <body>
-<a href="<%=request.getContextPath()%>/index.jsp">HOME</a>
-<a href="<%=request.getContextPath()%>/freeboard/list.do">글 목록으로</a>
-
-
-	
+<a href="<%=request.getContextPath()%>/freeboard/read.do?no=${freePage.freeBoardList[0].articleNo}"><button>뒤로가기</button></a>
 	<c:forEach var="item" items="${freePage.freeBoardList}">
-<form name="update" id="update" method="post" 
-		action="<%=request.getContextPath()%>/freeboard/delete.do?no=${item.articleNo}">
-	<table border="1" >
-	<tr>
-		<th>글 번호</th>
-		<td>${item.articleNo}</td>
-	</tr>
-	<tr>
-		<th>삭제할  글 제목</th>
-			<td>${item.articleTitle}</td>
-	</tr>
-	<tr>
-		<th>삭제할 글 내용</th>
-			<td>${item.articleContent}</td>
-	</tr>
-	<tr>
-		<td colspan="2" style="text-align:center;"><input type="submit" value="삭제하기"/></td>
-	</tr>
-	</table>
-</form>
+			<form name="update" id="update" method="post" 
+					action="<%=request.getContextPath()%>/freeboard/delete.do?no=${item.articleNo}">
+					<table border="1" >
+						<tr>
+								<th>글 번호</th>
+								<td>${item.articleNo}</td>
+						</tr>
+						<tr>
+								<th>삭제할  글 제목</th>
+								<td>${item.articleTitle}</td>
+						</tr>
+						<tr>
+								<th>삭제할 글 내용</th>
+								<td>${item.articleContent}</td>
+						</tr>
+						<tr>
+							<td colspan="2" style="text-align:center;"><input type="submit" value="삭제하기"/></td>
+						</tr>
+					</table>
+			</form>
 	</c:forEach>
 <hr>
 </body>

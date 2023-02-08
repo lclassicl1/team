@@ -29,7 +29,7 @@ public class CommentDeleteHandler implements CommandHandler {
 		User user = (User)request.getSession(false).getAttribute("authUser");
 		
 		
-		int commNo = Integer.parseInt(request.getParameter("comm_no"));
+		int commNo = Integer.parseInt(request.getParameter("commNo"));
 		
 		int cnt = deleteCommentService.deleteComment(commNo);
 		
