@@ -8,8 +8,8 @@
  <meta charset="UTF-8">
  <meta name="keywords" content="member, board, article, mvc">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel='stylesheet' type='text/css' href='../css/main.css'/>
-<link rel='stylesheet' type='text/css' href='../css/navigation.css'/>
+<link rel='stylesheet' type='text/css' href='<%=request.getContextPath()%>/css/main.css'/>
+<link rel='stylesheet' type='text/css' href='<%=request.getContextPath()%>/css/navigation.css'/>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <!-- Popper JS -->
@@ -39,20 +39,32 @@ body {
   text-decoration: none;
 }
 
+.center {
+	text-align: center;
+	margin: auto;
+}
+
+.left {
+	text-align: left;
+}
+
 </style>
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
-<h3>공지사항</h3>
+<div class="center"><h3>공지사항</h3></div>
 
-<c:if test="${authUser.userGrade == 999 }">
-<a href="<%=request.getContextPath()%>/notice/write.do">게시글 작성하기</a>
-</c:if>
+<div class="center">
  <hr/>
  <form action="<%=request.getContextPath()%>/notice/search.do" method="post">
 검색 :  <input type="text" name="input">
  <input type="submit" class="btn btn-secondary" value="검색">
  </form>
+ </div>
+<div class="left"><c:if test="${authUser.userGrade == 999 }">
+<a href="<%=request.getContextPath()%>/notice/write.do" class="btn btn-secondary">게시글 작성하기</a>
+</c:if>
+</div>
  <table border="1" class="table table-dark table-hover">
   <thead>
   	<tr>
