@@ -16,7 +16,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 	function userinfo() {
-		window.open("","nw", "width=500,height=700");
+		window.open('<%=request.getContextPath()%>/helper/writerInfo.do?no=${read.user.userNo}',"nw", "width=400,height=500");
 	}
 </script>
 <title>Insert title here</title>
@@ -33,7 +33,6 @@
 	<tr>
 		<td>작성자</td>
 		<td>${read.article.userName }&nbsp;<a href="#" class="btn btn-secondary btn-sm" onclick="userinfo();">프로필보기</a>
-		<a href="<%=request.getContextPath()%>/helper/writerInfo.do?no=${read.user.userNo}">프로필보기(test)</a></td>
 	</tr>
 	<tr>
 		<td>제목</td>
