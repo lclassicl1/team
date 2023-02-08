@@ -41,7 +41,6 @@
 	<a href="<%=request.getContextPath()%>/mypage.do"><button>뒤로가기</button></a>
 	<form action="<%=request.getContextPath()%>/mypageUpdate.do?userId=${userInfo.userId}" method="post">
 		<table class="table table-dark table-hover">
-			<caption>회원 정보 수정</caption>
 			<tbody>
 				<tr>
 					<th class="c1">

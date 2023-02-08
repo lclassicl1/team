@@ -74,12 +74,9 @@ public class CommentUpdateHandler implements CommandHandler {
 		
 		
 		String commContent = request.getParameter("commContent");
-		System.out.println("commContent====="+commContent);
 		String commNo = request.getParameter("commNo");
-		System.out.println("commNo========="+commNo);
 		
 		int commno = Integer.parseInt(commNo);
-		System.out.println("commno======"+commno);
 		
 		int cnt = updateCommentService.updateComment(commno,commContent);
 		
