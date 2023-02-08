@@ -39,11 +39,11 @@
 <table border="1" class="table table-dark table-hover">
 <thead>
 	<tr>
-		<th>작성자</th>
 		<th>제목</th>
-		<th>작성일</th>
-		<th>조회수</th>
 		<th>카테고리</th>
+		<th>작성자</th>
+		<th>조회수</th>
+		<th>작성일</th>
 	</tr>
 </thead>
 
@@ -57,10 +57,10 @@
 					<c:forEach var="item" items="${freePage.freeBoardList}">
 						<tr>
 								<td><a href="<%=request.getContextPath()%>/freeboard/read.do?no=${item.articleNo}"><c:out value="${item.articleTitle}"/></a></td>
-								<td><c:out value="${item.userName}"/></td>
-								<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${item.articleCredate}"/></td>
-								<td><c:out value="${item.articleReadcnt}"/></td>
 								<td><c:out value="${item.freeCategory}"/></td>
+								<td><c:out value="${item.userName}"/></td>
+								<td><c:out value="${item.articleReadcnt}"/></td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd" value="${item.articleCredate}"/></td>
 						</tr>
 					</c:forEach>
 					<%-- paging출력 부분 --%>

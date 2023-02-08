@@ -31,12 +31,12 @@
 		action="<%=request.getContextPath()%>/mypageArticleSearch.do">
 		  <select name='categorySearch'>
 			    <option value='' selected>-- 선택 --</option>
-			    <option value='free'> 자유</option>
-			    <option value='help'>해주세요</option>
-			    <option value='helper'>해줄게요</option>
-			    <option value='trade'>거래</option>
-			    <option value='review'>리뷰/후기</option>
 			    <option value='notice'>공지사항</option>
+			    <option value='free'> 자유게시판</option>
+			    <option value='help'>고수님해주세요</option>
+			    <option value='helper'>고수가해줄게요</option>
+			    <option value='trade'>트레이드게시판</option>
+			    <option value='review'>리뷰/후기게시판</option>
   	</select>
   					<input type="text" name="input"/>
 			    <input type="submit" value="검색" class="btn btn-secondary"/>
@@ -45,25 +45,45 @@
 		<table border="1" class="table table-dark table-hover">
 		<thead>
 			<tr>
-				<th>글 번호</th>
-				<th>작성자</th>
 				<th>제목</th>
-				<th>작성일</th>
-				<th>수정일</th>
+				<th>게시판 종류</th>
+				<th>작성자</th>
 				<th>조회수</th>
-				<th>카테고리</th>
+				<th>작성일</th>
 			</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="item" items="${articlePage.articleList}">
 			<tr>
-					<td><c:out value="${item.articleNo}"/></td>
-					<td><c:out value="${item.userName}"/></td>
 					<td><a href="<%=request.getContextPath()%>/mypageArticleRead.do?no=${item.articleNo}&category=${item.articleCategory}"><c:out value="${item.articleTitle}"/></a></td>
-					<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${item.articleCredate}"/></td>
-					<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${item.articleUpdate}"/></td>
+					<td>
+						  <c:choose> 
+							    <c:when test="${item.articleCategory == 'notice'}">
+							        <a>공지사항</a>
+							    </c:when>
+							    <c:when test="${item.articleCategory == 'free'}">
+							        <a>자유게시판</a>
+							    </c:when>
+							    <c:when test="${item.articleCategory == 'help'}">
+							        <a>고수님해주세요</a>
+							    </c:when>
+							    <c:when test="${item.articleCategory == 'helper'}">
+							        <a>고수가해줄게요</a>
+							    </c:when>
+							    <c:when test="${item.articleCategory == 'trade'}">
+							        <a>트레이드게시판</a>
+							    </c:when>
+							    <c:when test="${item.articleCategory == 'review'}">
+							        <a>리뷰/후기게시판</a>
+							    </c:when>
+							    <c:otherwise>
+							        <a>없음</a>
+							    </c:otherwise>
+							</c:choose>
+					</td>
+					<td><c:out value="${item.userName}"/></td>
 					<td><c:out value="${item.articleReadCnt}"/></td>
-					<td><c:out value="${item.articleCategory}"/></td>
+					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${item.articleCredate}"/></td>
 			</tr>
 		</c:forEach>
 		
