@@ -108,6 +108,18 @@ public class MasterDAO {
 		}
 		
 	}
+	public void nomalUser(Connection conn, int userNo)throws SQLException {
+		PreparedStatement pstmt = null;
+		String sql = "update userinfo set user_grade=1 where user_no=?";
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.executeUpdate();
+		}finally {
+			JdbcUtil.close(pstmt);
+		}
+		
+	}
 	//-----------------게시글 관리 ----------------------
 	public List<Article> select(Connection conn, int startRow,int size)throws SQLException{
 		PreparedStatement pstmt = null;

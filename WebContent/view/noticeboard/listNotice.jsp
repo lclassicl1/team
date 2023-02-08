@@ -44,7 +44,10 @@ body {
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
 <h3>공지사항</h3>
+
+<c:if test="${authUser.userGrade == 999 }">
 <a href="<%=request.getContextPath()%>/notice/write.do">게시글 작성하기</a>
+</c:if>
  <hr/>
  <form action="<%=request.getContextPath()%>/notice/search.do" method="post">
 검색 :  <input type="text" name="input">
