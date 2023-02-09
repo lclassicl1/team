@@ -46,6 +46,10 @@ body {
 .left {
 	text-align: left;
 }	
+
+.right {
+	text-align: right;
+}
 	</style>
 	<script>
 		$(function(){
@@ -120,10 +124,12 @@ body {
 			<td>${userInfo.userBirth}</td>
 		</tr>
 	</table>
-<a href="javascript:void(0)"><button class="btn btn-secondary" id="confirm">회원 탈퇴</button></a>
-<a href="<%=request.getContextPath()%>/mypageUpdate.do?userId=${userInfo.userId}"><button class="btn btn-secondary">정보 수정하기</button></a>
-<a href="<%=request.getContextPath()%>/mypageChangePwd.do"><button class="btn btn-secondary">비밀번호 변경</button></a>
-<a href="<%=request.getContextPath()%>/mypageArticle.do"><button class="btn btn-secondary">내가 쓴 글</button></a>
+<div class="right">
+	<a href="javascript:void(0)"><button class="btn btn-secondary" id="confirm">회원 탈퇴</button></a>
+	<a href="<%=request.getContextPath()%>/mypageUpdate.do?userId=${userInfo.userId}"><button class="btn btn-secondary">정보 수정하기</button></a>
+	<a href="<%=request.getContextPath()%>/mypageChangePwd.do"><button class="btn btn-secondary">비밀번호 변경</button></a>
+	<a href="<%=request.getContextPath()%>/mypageArticle.do"><button class="btn btn-secondary">내가 쓴 글</button></a>
+</div>
 
 <br>
 <c:if test="${authUser.userGrade == 999 }">

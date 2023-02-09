@@ -135,7 +135,7 @@ button:hover {
                       </div>  
                       <div class="form-group mt-2">
                        		보유자격증:<select name='user_skill' class="form-select">
-                        	<option value="">선택</option>
+                        	<option value="">없음</option>
                         	<option value='정보처리산업기사'>정보처리산업기사</option>
                         	<option value='정보처리기사'>정보처리기사</option>
                         	<option value='OCJP'>OCJP</option>
@@ -145,7 +145,7 @@ button:hover {
                       </div>
                       <div class="form-group mt-2">
                        		학력:<select name='user_school'>
-                        	<option value="">선택</option>
+                        	<option value="">없음</option>
                         	<option value='고등학교졸업'>고등학교졸업</option>
                         	<option value='전문대졸업'>전문대졸업</option>
                         	<option value='4년대학졸업'>4년대학졸업</option>

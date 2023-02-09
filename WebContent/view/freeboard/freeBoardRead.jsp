@@ -16,8 +16,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <title>게시글 상세보기</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<style>
+.right {
+	text-align: right;
+}
+</style>
 </head>
-<h2><a href="<%=request.getContextPath()%>/index.jsp">HOME</a></h2>
 <script type="text/javascript">
 	function sendit(){
 		if(document.commentFrm.newComment.value==""){
@@ -61,10 +65,10 @@
 			</tr>
 			<tr>
 				<th colspan="2" style="text-align:center;">
-						<a href="<%=request.getContextPath()%>/freeboard/list.do"><button class="btn btn-secondary btn-sm blank">글 목록으로</button></a>
+						<div class="right"><a href="<%=request.getContextPath()%>/freeboard/list.do"><button class="btn btn-secondary btn-sm blank">글 목록으로</button></a>
 					<c:if test="${authUser.userName==articleName}">
 								<a href="<%=request.getContextPath()%>/freeboard/update.do?no=${item.articleNo}"><button class="btn btn-secondary btn-sm blank">글 수정하기</button></a>
-								<a href="<%=request.getContextPath()%>/freeboard/delete.do?no=${item.articleNo}"><button class="btn btn-secondary btn-sm blank">글 삭제하기</button></a>
+								<a href="<%=request.getContextPath()%>/freeboard/delete.do?no=${item.articleNo}"><button class="btn btn-secondary btn-sm blank">글 삭제하기</button></a></div>
 					</c:if>
 				</th>
 			</tr>

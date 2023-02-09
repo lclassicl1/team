@@ -15,7 +15,7 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <title>게시판 목록</title>
-<script 
+<script
 src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 </script>
 <script type="text/javascript">
@@ -47,8 +47,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
-<a href="<%=request.getContextPath()%>/index.jsp">HOME</a>
-<a href="<%=request.getContextPath()%>/freeboard/list.do">글 목록으로</a>
+<h3>자유게시판</h3>
 	<form name="writeFrm" method="post" action="<%=request.getContextPath()%>/freeboard/write.do" onsubmit="return sendit();">
 			<table border="1" class="table table-dark table-hover">
 				<tr>
