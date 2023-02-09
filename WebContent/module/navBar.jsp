@@ -40,6 +40,16 @@ body {
 	height: 30px;
 } */
 </style>
+<script>
+	$(function(){
+		$('#logouticon').click(function(){
+			if(confirm('로그아웃 하시겠습니까?')) {
+				location.href="<%=request.getContextPath()%>/logout.do";
+			}
+		});
+	});
+
+</script>
 </head> 
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -78,7 +88,7 @@ body {
         </a>
       </li>  
       <li class="nav-item">
-        <a class="nav-link text-light" href="<%=request.getContextPath()%>/logout.do">
+        <a class="nav-link text-light">
         	<img src='<%=request.getContextPath()%>/image/logouticon.png' alt='Logout' id='logouticon'/>
         </a>
       </li>  
