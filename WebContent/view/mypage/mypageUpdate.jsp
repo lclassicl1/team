@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel='stylesheet' type='text/css' href='../css/main.css'/>
+<link rel='stylesheet' type='text/css' href='../css/navigation.css'/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -37,8 +39,9 @@
 </script>
 </head>
 <body>
+	<header><jsp:include page="../../module/navBar.jsp"/></header>
 	<h2>정보 수정</h2>
-	<a href="<%=request.getContextPath()%>/mypage.do"><button>뒤로가기</button></a>
+	
 	<form action="<%=request.getContextPath()%>/mypageUpdate.do?userId=${userInfo.userId}" method="post">
 		<table class="table table-dark table-hover">
 			<tbody>
@@ -139,7 +142,7 @@
 				</tr>
 				<tr>
 					<td colspan="2" style="text-align:center;">
-						<input type ="submit" value="정보 수정" class="btn btn-secondary">
+						<input type ="submit" value="정보 수정" class="btn btn-secondary">&nbsp;<a href="<%=request.getContextPath()%>/mypage.do"><button class="btn btn-secondary">뒤로가기</button></a>
 					</td>
 				</tr>
 			</tbody>

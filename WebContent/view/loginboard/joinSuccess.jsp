@@ -76,6 +76,11 @@ button:hover {
   margin-right: 10px;
   text-decoration: none;
 }
+
+div{
+	text-align: center;
+	margin:auto;
+}
 	
 </style>
 <script>
@@ -90,7 +95,12 @@ setInterval(function() {
 </script>
 </head>
 <body>
-<div><h2>회원가입 성공!
-<span id="countdown">3</span>초뒤에 로그인페이지로 이동됩니다</h2></div>
+<div>
+	<h1>회원가입에 성공했습니다</h1>
+	<%-- <a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-secondary">로그인 페이지로 가기</a> --%>
+	<a href="javascript:void(0)" class="btn btn-secondary">
+		<span id="countdown">3</span>초뒤에 메인페이지로 이동됩니다
+	</a>
+</div> 
 </body>
 </html>

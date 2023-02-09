@@ -30,8 +30,10 @@
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
 <!-- 게시글 정보  -->
+
 <div class="center"><h3>고수가해줄게요</h3></div>
 <table border="1" class="table table-dark w-auto table-hover">
+
 	<tr>
 		<td>제목</td>
 		<td><c:out value="${read.article.articleTitle }"></c:out></td>
@@ -78,7 +80,7 @@
 			
 </table>
  <!-- 댓글 -->
- <table border="1" class="table table-dark w-auto table-hover">
+ <table border="1" class="table table-dark table-hover">
 	<tr>
 		<th style="background-color: #1F2937; border: 1px solid rgb(31 41 55);">     </th>
 		<th>작성자</th>
