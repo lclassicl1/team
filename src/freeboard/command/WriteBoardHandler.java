@@ -39,6 +39,12 @@ public class WriteBoardHandler implements CommandHandler {
 	}
 	
 	private String processForm(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+		User user = (User)request.getSession(false).getAttribute("authUser");
+		String userId = user.getUserId();
+		System.out.println("userId===="+userId);
+		request.setAttribute("userId", userId);
+		
+		
 		return FORM_VIEW;
 	}
 

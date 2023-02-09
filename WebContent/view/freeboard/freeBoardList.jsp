@@ -57,8 +57,8 @@
 			    <option value='팁'>팁</option>
 
   	</select>
-			    <input type="text" name="input"/>
-			    <input type="submit" value="검색" class="btn btn-secondary btn-sm blank"/>
+			   검색: <input type="text" name="input"/>
+			  		  <input type="submit" value="검색" class="btn btn-secondary btn-sm blank"/>
  </form>
  </div>
 <table border="1" class="table table-dark table-hover">

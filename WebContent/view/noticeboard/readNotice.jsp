@@ -55,13 +55,13 @@
 		<td colspan="2">
 		<div class="input">
 			<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo }" />
-				<a href="<%=request.getContextPath()%>/notice/list.do?pageNo=${pageNo}" class="btn btn-secondary">목록</a>
+				<a href="<%=request.getContextPath()%>/notice/list.do?pageNo=${pageNo}" class="btn btn-secondary"><button class="btn btn-secondary btn-sm blank">목록</button></a>
 			<c:if test="${authUser.userNo == read.article.userNo }">
-				<a href="<%=request.getContextPath()%>/notice/modify.do?no=${read.article.articleNo }" class="btn btn-secondary">게시글 수정</a>
-				<a href="<%=request.getContextPath()%>/notice/delete.do?no=${read.article.articleNo }" class="btn btn-secondary">게시글 삭제</a>
+				<a href="<%=request.getContextPath()%>/notice/modify.do?no=${read.article.articleNo }" class="btn btn-secondary"><button class="btn btn-secondary btn-sm blank">게시글 수정</button></a>
+				<a href="<%=request.getContextPath()%>/notice/delete.do?no=${read.article.articleNo }" class="btn btn-secondary"><button class="btn btn-secondary btn-sm blank">게시글 삭제</button></a>
 			</c:if>
 			<c:if test="${authUser.userGrade == 999 }">
-			<a href="<%=request.getContextPath()%>/master/article/list.do?pageNo=${pageNo}" class="btn btn-secondary">목록(관리자 권한)</a>
+			<a href="<%=request.getContextPath()%>/master/article/list.do?pageNo=${pageNo}" class="btn btn-secondary"><button class="btn btn-secondary btn-sm blank">목록(관리자 권한)</button></a>
 			</c:if>
 		</div>
 		</td>

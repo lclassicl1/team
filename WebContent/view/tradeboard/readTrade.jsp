@@ -18,25 +18,26 @@
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
+<div class="center"><h3>트레이드 게시판</h3></div>
 <!-- 게시글 정보  -->
 <table border="1" class="table table-dark table-hover">
 	<tr>
-		<td>조회수</td>
-		<td>${read.article.articleReadCnt }</td>
+		<td>제목</td>
+		<td><c:out value="${read.article.articleTitle }"></c:out></td>
 	</tr>
 	<tr>
 		<td>작성자</td>
 		<td>${read.article.userName }</td>
 	</tr>
 	<tr>
-		<td>제목</td>
-		<td><c:out value="${read.article.articleTitle }"></c:out></td>
-	</tr>
-	<tr>
 		<td>내용</td>
 		<td>
 		${read.article.articleContent }
 		</td>
+	</tr>
+	<tr>
+		<td>조회수</td>
+		<td>${read.article.articleReadCnt }</td>
 	</tr>
 	<tr>
 		<td>작성시간</td>
@@ -47,10 +48,10 @@
 	<tr> 
 		<td colspan="2">
 		<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo }" />
-			<a href="<%=request.getContextPath()%>/trade/list.do?pageNo=${pageNo}">목록</a>
+			<a href="<%=request.getContextPath()%>/trade/list.do?pageNo=${pageNo}"><button class="btn btn-secondary btn-sm blank">목록</button></a>
 		<c:if test="${authUser.userNo == read.article.userNo }">
-			<a href="<%=request.getContextPath()%>/trade/modify.do?no=${read.article.articleNo }">게시글 수정</a>
-			<a href="<%=request.getContextPath()%>/trade/delete.do?no=${read.article.articleNo }">게시글 삭제</a>
+			<a href="<%=request.getContextPath()%>/trade/modify.do?no=${read.article.articleNo }"><button class="btn btn-secondary btn-sm blank">게시글 수정</button></a>
+			<a href="<%=request.getContextPath()%>/trade/delete.do?no=${read.article.articleNo }"><button class="btn btn-secondary btn-sm blank">게시글 삭제</button></a>
 		</c:if>
 		<c:if test="${authUser.userGrade == 999 }">
 		<a href="<%=request.getContextPath()%>/master/article/list.do?pageNo=${pageNo}">목록(관리자 권한)</a>
