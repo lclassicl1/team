@@ -49,10 +49,14 @@ public class JoinHandler implements CommandHandler {
 		String userSchool = req.getParameter("userSchool");
 		String userBirth = req.getParameter("userBirth");
 		
+		String agree = req.getParameter("agree");
+		
 		if(userGender.equals("없음")) {
 			errors.put("userGender",Boolean.TRUE);
 		}
-		
+		if(agree==null) {
+			errors.put("agree",Boolean.TRUE);
+		}
 		JoinRequest joinReq = new JoinRequest(userId,userPwd,userRePwd,userName,userHp,userAddress,userEmail,userGender,userSkill,userSchool,userBirth);
 		
 		

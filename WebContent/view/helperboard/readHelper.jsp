@@ -19,6 +19,11 @@
 		window.open('<%=request.getContextPath()%>/helper/writerInfo.do?no=${read.user.userNo}',"nw", "width=400,height=500");
 	}
 </script>
+<style>
+.check{
+	width: 25px;
+}
+</style>
 <title>Insert title here</title>
 
 </head>
@@ -74,13 +79,23 @@
  <!-- 댓글 -->
  <table border="1" class="table table-dark w-auto table-hover">
 	<tr>
+		<th style="background-color: #1F2937; border: 1px solid rgb(31 41 55);">     </th>
 		<th>작성자</th>
 		<th>내용</th>
-		<th>채택</th>
 		<th>작성시간</th>
 	</tr>
 	<c:forEach var="item" items="${commentList }">
 		<tr>
+		<td style="background-color: rgb(31 41 55); border: 1px solid rgb(31 41 55);">
+		  <c:choose> 
+			    <c:when test="${item.commConn == 'Y'}">
+			        <a><img alt="채택" src="../../image/check.png" class="check"></a>
+			    </c:when>
+			    <c:otherwise>
+			        <a></a>
+			    </c:otherwise>
+			</c:choose>
+		</td>
 		<td>
 			${item.userId }
 		</td>
@@ -88,12 +103,9 @@
 			${item.commContent }
 		</td>
 		<td>
-			${item.commConn }
-		</td>
-		<td>
 			${item.commCreDate }
 		</td>
-		<c:if test="${authUser.userNo == helper.userNo}">
+		<c:if test="${authUser.userNo == read.article.userNo}">
 		<td>
 			<a href="<%=request.getContextPath()%>/helper/comment/conn.do?commNo=${item.commNo}&no=${read.article.articleNo}">채택</a>
 		</td>
@@ -108,11 +120,12 @@
 		</tr>
 	</c:forEach>
 	<tr>
-	<td colspan="4">
+	<td style="background-color: rgb(31 41 55); border: 1px solid rgb(31 41 55);"></td>
+	<td colspan="3">
 	<form action="<%=request.getContextPath()%>/helper/comment/write.do?no=${read.article.articleNo }" method="post">
 		작성자 :<c:if test="${!empty authUser }">${authUser.userId }</c:if><br>
 		<p>
-			<textarea rows="5" cols="30" name="content"></textarea>
+			<input type="text" name="content" style="width: 300px; height: 50px;">
 		</p>
 		<p>
 			<c:if test="${errors.contentEmpty }">댓글 내용을 작성해주세요.</c:if>
