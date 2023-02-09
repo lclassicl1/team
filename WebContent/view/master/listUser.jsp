@@ -36,7 +36,7 @@
 검색 :  <input type="text" name="input">
  <input type="submit" class="btn btn-secondary">
  </form>
- <table border="1" class="table table-dark w-auto table-hover">
+ <table border="1" class="table table-dark table-hover">
   <thead>
   	<tr>
   	 <th>회원 번호</th>

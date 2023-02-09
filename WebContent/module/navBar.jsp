@@ -43,7 +43,7 @@ body {
 </head> 
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-  <a class="navbar-brand" href="<%=request.getContextPath()%>/index.do"><img src='<%=request.getContextPath()%>/image/navlogo.png' id='mainicon'></a>
+  <a class="navbar-brand" href="<%=request.getContextPath()%>/article/list.do"><img src='<%=request.getContextPath()%>/image/navlogo.png' id='mainicon'></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -65,7 +65,7 @@ body {
         <a class="nav-link" href="<%=request.getContextPath()%>/trade/list.do">트레이드게시판</a>
       </li>  
       <li class="nav-item">
-        <a class="nav-link" href="<%=request.getContextPath()%>/review/list.do">리뷰/후기게시판</a>
+        <a class="nav-link" href="<%=request.getContextPath()%>/review/list.do">리뷰게시판</a>
       </li>
       <li class="nav-item">
       	

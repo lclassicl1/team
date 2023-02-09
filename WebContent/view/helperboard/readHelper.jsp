@@ -32,7 +32,7 @@
 <!-- 게시글 정보  -->
 
 <div class="center"><h3>고수가해줄게요</h3></div>
-<table border="1" class="table table-dark w-auto table-hover">
+<table border="1" class="table table-dark table-hover">
 
 	<tr>
 		<td>제목</td>
