@@ -71,7 +71,6 @@
 		<th>작성일</th>
 	</tr>
 </thead>
-
 			<tbody>
 				 <c:if test="${freePage.hasNoFreeBoard() }">
 				   <tr>
