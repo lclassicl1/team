@@ -23,6 +23,10 @@
 .check{
 	width: 25px;
 }
+
+.right {
+	text-align: right;
+}
 </style>
 <title>Insert title here</title>
 
@@ -67,6 +71,7 @@
 	<tr> 
 		<td colspan="2">
 		<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo }" />
+			<div class="right">
 			<a href="<%=request.getContextPath()%>/helper/list.do?pageNo=${pageNo}"><button class="btn btn-secondary btn-sm blank">목록</button></a>
 		<c:if test="${authUser.userNo == read.article.userNo }">
 			<a href="<%=request.getContextPath()%>/helper/modify.do?no=${read.article.articleNo }"><button class="btn btn-secondary btn-sm blank">게시글 수정</button></a>
@@ -75,6 +80,7 @@
 		<c:if test="${authUser.userGrade == 999 }">
 		<a href="<%=request.getContextPath()%>/master/article/list.do?pageNo=${pageNo}"><button class="btn btn-secondary btn-sm blank">목록(관리자 권한)</button></a>
 		</c:if>
+		</div>
 		</td>
 	</tr> 
 </table>
@@ -119,7 +125,6 @@
 			</c:if>
 		</td>
 		</c:if>
-		
 		</tr>
 	</c:forEach>
 	</table>

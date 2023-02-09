@@ -15,6 +15,13 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <title>Insert title here</title>
+<style>
+.right {
+	text-align: right;
+	
+}
+
+</style>
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
@@ -48,13 +55,13 @@
 	<tr> 
 		<td colspan="2">
 		<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo }" />
-			<a href="<%=request.getContextPath()%>/trade/list.do?pageNo=${pageNo}"><button class="btn btn-secondary btn-sm blank">목록</button></a>
+			<a href="<%=request.getContextPath()%>/trade/list.do?pageNo=${pageNo}"><div class="right"><button class="btn btn-secondary btn-sm blank" id="list">목록</button></a>
 		<c:if test="${authUser.userNo == read.article.userNo }">
 			<a href="<%=request.getContextPath()%>/trade/modify.do?no=${read.article.articleNo }"><button class="btn btn-secondary btn-sm blank">게시글 수정</button></a>
-			<a href="<%=request.getContextPath()%>/trade/delete.do?no=${read.article.articleNo }"><button class="btn btn-secondary btn-sm blank">게시글 삭제</button></a>
+			<a href="<%=request.getContextPath()%>/trade/delete.do?no=${read.article.articleNo }"><button class="btn btn-secondary btn-sm blank">게시글 삭제</button></a></div>
 		</c:if>
 		<c:if test="${authUser.userGrade == 999 }">
-		<a href="<%=request.getContextPath()%>/master/article/list.do?pageNo=${pageNo}">목록(관리자 권한)</a>
+		<a href="<%=request.getContextPath()%>/master/article/list.do?pageNo=${pageNo}" id='list_admin'>목록(관리자 권한)</a>
 		</c:if>
 		</td>
 	</tr> 
@@ -102,10 +109,10 @@
 			${item.commVolt }
 		</td>
 		<td>
-		<a href="<%=request.getContextPath()%>/trade/comment/volt.do?no=${read.article.articleNo }&commNo=${item.commNo}">추천</a>
+		<a href="<%=request.getContextPath()%>/trade/comment/volt.do?no=${read.article.articleNo }&commNo=${item.commNo}" class="btn btn-secondary">추천</a>
 		<c:if test="${authUser.userId == item.userId}">
-			<a href="<%=request.getContextPath()%>/trade/comment/modify.do?commNo=${item.commNo}">댓글 수정</a>
-			<a href="<%=request.getContextPath()%>/trade/comment/delete.do?commNo=${item.commNo}&no=${read.article.articleNo}">댓글 삭제</a>
+			<a href="<%=request.getContextPath()%>/trade/comment/modify.do?commNo=${item.commNo}" class="btn btn-secondary">댓글 수정</a>
+			<a href="<%=request.getContextPath()%>/trade/comment/delete.do?commNo=${item.commNo}&no=${read.article.articleNo}" class="btn btn-secondary">댓글 삭제</a>
 		</c:if>
 		</td>
 		</tr>
