@@ -59,7 +59,7 @@ body {
 .input {
 	text-align: right;
 	margin-top: -20px;
-
+}
 
 .center{
 	text-align: left;

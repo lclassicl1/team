@@ -34,7 +34,7 @@
 <header><jsp:include page="../../module/navBar.jsp"/></header>
 <div class="center"><h3>자유게시판</h3></div>
 <c:forEach var="item" items="${freePage.freeBoardList}">
-	<table border="1" class="table table-dark w-auto table-hover">
+	<table border="1" class="table table-dark table-hover">
 				<tr>
 					<td>제목</td>
 					<td>${item.articleTitle}</td>
@@ -72,9 +72,8 @@
 </c:forEach>
 <hr>
 <hr>
-
 <h3>댓글</h3>
-<table border="1" class="table table-dark w-auto table-hover">
+<table border="1" class="table table-dark table-hover">
 	<tr>
 		<th>작성자</th>
 		<th>내용</th>
@@ -101,7 +100,7 @@
 		
 		<input type="text" name="articleNo" value="${freePage.freeBoardList[0].articleNo}" hidden/>
 
-	<table border="1" class="table table-dark w-auto table-hover">
+	<table border="1" class="table table-dark table-hover">
 	<tr>
 		<td>${userId}</td>
 	</tr>

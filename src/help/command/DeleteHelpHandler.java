@@ -29,7 +29,7 @@ public class DeleteHelpHandler implements CommandHandler {
 		
 		try {
 			deletehelpService.delete(articleNo,userNo);
-			return "/view/helpboard/deleteSuccess.jsp";
+			return "/help/list.do";
 		}catch(PermissionDeniedException e) {
 			errors.put("cantDelete",Boolean.TRUE);
 			res.sendError(HttpServletResponse.SC_FORBIDDEN);

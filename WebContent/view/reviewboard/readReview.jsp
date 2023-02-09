@@ -20,7 +20,7 @@
 <header><jsp:include page="../../module/navBar.jsp"/></header>
 <div class="center"><h3>리뷰/후기 게시판</h3></div>
 <!-- 게시글 정보  -->
-<table border="1" class="table table-dark w-auto table-hover">
+<table border="1" class="table table-dark table-hover">
 	<tr>
 		<td>제목</td>
 		<td><c:out value="${read.article.articleTitle }"></c:out></td>
@@ -62,7 +62,7 @@
 <h3>댓글</h3>
 </table>
  <!-- 댓글 -->
- <table border="1" class="table table-dark w-auto table-hover">
+ <table border="1" class="table table-dark table-hover">
 	<tr>
 		<th>작성자</th>
 		<th>내용</th>

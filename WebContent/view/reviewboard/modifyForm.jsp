@@ -17,8 +17,9 @@
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
+
 <div class="center"><h3>리뷰/후기 게시판</h3></div>
-게시글 수정 
+<h3>게시글 수정</h3> 
 <form action="<%=request.getContextPath() %>/review/modify.do?no=${review.article.articleNo }" method="post">
 		<table border="1" class="table table-dark table-hover">
 			<tr>
