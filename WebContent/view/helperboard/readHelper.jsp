@@ -25,7 +25,7 @@
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
 <!-- 게시글 정보  -->
-<table border="1" class="table table-dark w-auto table-hover">
+<table border="1" class="table table-dark table-hover">
 	<tr>
 		<td>조회수</td>
 		<td>${read.article.articleReadCnt }</td>
@@ -72,7 +72,7 @@
 			
 </table>
  <!-- 댓글 -->
- <table border="1" class="table table-dark w-auto table-hover">
+ <table border="1" class="table table-dark table-hover">
 	<tr>
 		<th>작성자</th>
 		<th>내용</th>
