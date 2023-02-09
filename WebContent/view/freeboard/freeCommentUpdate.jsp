@@ -17,11 +17,18 @@
 <title>게시글 상세보기</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
+<script type="text/javascript">
+	function sendit(){
+		if(document.commentFrm.commContent.value==""){
+		alert("댓글 내용을 입력해주세요.");
+		document.commentFrm.commContent.focus();
+		return false;
+		} 
+	}
+</script>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
 <div class="center"><h3>자유게시판</h3></div>
-<h2><a href="<%=request.getContextPath()%>/index.jsp">HOME</a></h2>
-<a href="<%=request.getContextPath()%>/freeboard/list.do">글 목록으로</a>
 <c:forEach var="item" items="${freePage.freeBoardList}">
 	<table border="1" class="table table-dark w-auto table-hover">
 			<tr>
@@ -56,8 +63,8 @@
 				</th>
 			</tr>
 	</table>
+<h3>댓글</h3> 
 	</c:forEach>
-<hr>
 		<table border="1" class="table table-dark w-auto table-hover">
 			<tr>
 				<th>아이디</th>
@@ -79,20 +86,22 @@
 			</tr>
 		</c:forEach>
 		</table>
-<hr>
-	<form method="post"
-			action="<%=request.getContextPath()%>/freeboard/commentupdate.do?articleNo=${articleNo}&commNo=${updateList.comm_no}">
+<h3>댓글 작성</h3>
+	<form name="commentFrm" method="post"
+			action="<%=request.getContextPath()%>/freeboard/commentupdate.do?articleNo=${articleNo}&commNo=${updateList.comm_no}" onsubmit="return sendit();">
 		<table border="1" class="table table-dark w-auto table-hover">
 				<tr>
-						<td>${updateList.user_id}</td>
-				</tr>
-				<tr>
 						<td>
-							<input type="text" name="commContent" style="width:300px;height:100px;" value="${updateList.comm_content}">
+							<h5>작성자:${updateList.user_id}</h5>
 						</td>
 				</tr>
 				<tr>
-						<td colspan="2" style="text-align:center;"><input type="submit" value="댓글 수정"/></td>
+						<td>
+							<input type="text" name="commContent" style="width: 500px; height:50px;" value="${updateList.comm_content}">
+							<input type="submit" value="등록" class="btn btn-secondary btn-sm blank"/>
+						</td>
+				</tr>
+				<tr>
 				</tr>
 		</table>
 	</form>

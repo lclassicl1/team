@@ -116,11 +116,9 @@
 	</tr>
 	<tr>
 			<td>
-				<input type="text" name="newComment" style="width: 300px; height:50px;">
+				<input type="text" name="newComment" style="width: 500px; height:50px;">
+				<input type="submit" value="등록"  class="btn btn-secondary btn-sm blank"/>
 			</td>
-	</tr>
-	<tr>
-		<td colspan="2" style="text-align:center;"><input type="submit" value="댓글 입력"  class="btn btn-secondary btn-sm blank"/></td>
 	</tr>
 	</table>
 </form>

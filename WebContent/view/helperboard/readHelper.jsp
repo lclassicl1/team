@@ -120,7 +120,7 @@
 		<td>
 			<a href="<%=request.getContextPath()%>/helper/comment/conn.do?commNo=${item.commNo}&no=${read.article.articleNo}"><button class="btn btn-secondary btn-sm blank">채택</button></a>
 			<c:if test="${authUser.userId == item.userId}">
-				<a href="<%=request.getContextPath()%>/helper/comment/modify.do?commNo=${item.commNo}">댓글 수정</a>
+				<a href="<%=request.getContextPath()%>/helper/comment/modify.do?commNo=${item.commNo}"><button class="btn btn-secondary btn-sm blank">댓글 수정</button></a>
 				<a href="<%=request.getContextPath()%>/helper/comment/delete.do?commNo=${item.commNo}&no=${read.article.articleNo}"><button class="btn btn-secondary btn-sm blank">댓글 삭제</button></a>
 			</c:if>
 		</td>

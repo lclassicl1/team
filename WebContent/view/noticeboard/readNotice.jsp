@@ -28,16 +28,12 @@
 <!-- 게시글 정보  -->
 <table border="1" class="table table-dark table-hover">
 	<tr>
-		<td>조회수</td>
-		<td>${read.article.articleReadCnt }</td>
+		<td>제목</td>
+		<td><c:out value="${read.article.articleTitle }"></c:out></td>
 	</tr>
 	<tr>
 		<td>작성자</td>
 		<td>${read.article.userName }</td>
-	</tr>
-	<tr>
-		<td>제목</td>
-		<td><c:out value="${read.article.articleTitle }"></c:out></td>
 	</tr>
 	<tr>
 		<td>내용</td>
@@ -46,7 +42,11 @@
 		</td>
 	</tr>
 	<tr>
-		<td>작성시간</td>
+		<td>조회수</td>
+		<td>${read.article.articleReadCnt }</td>
+	</tr>
+	<tr>
+		<td>작성일</td>
 		<td>
 		${read.article.articleCredate }
 		</td>

@@ -36,7 +36,7 @@
 			</tr>
 			<tr>
 				<td>제목</td>
-				<td> <input type="text" name = "title" id="title"><c:if test="${errors.titleEmpty}">제목을 입력하세요 </c:if></td>
+				<td> <input type="text" name = "title" id="title" style="width:500px;"><c:if test="${errors.titleEmpty}">제목을 입력하세요 </c:if></td>
 			</tr>
 			<tr>
 				<td>작성자</td>
@@ -44,7 +44,7 @@
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><textarea rows="5" cols="30" name="content"></textarea><c:if test="${errors.contentEmpty}">내용을 입력하세요 </c:if></td>
+				<td><input name="content" style="width:500px;height:200px;"><c:if test="${errors.contentEmpty}">내용을 입력하세요 </c:if></td>
 			</tr>
 		</table>
 		<div class="right"><input type="submit" value="등록" class="btn btn-secondary"></div>
