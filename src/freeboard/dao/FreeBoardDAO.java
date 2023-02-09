@@ -107,6 +107,49 @@ public class FreeBoardDAO {
 		return freeBoardList;
 	}
 	
+	public FreeBoardList getArticleNo(int no) {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		String sql="select a.*,f.free_category" + 
+				" from article as a inner join freeboard as f" + 
+				" on a.article_no=f.article_no" + 
+				" where a.article_no=? and isshow='Y'" + 
+				" ORDER BY article_no DESC";
+		
+		
+		Connection conn = null;
+		FreeBoardList list = null;
+		try {
+			conn=ConnectionProvider.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, no);
+			rs = stmt.executeQuery();
+			if(rs.next()) {
+			list = new FreeBoardList(
+									rs.getInt("article_no"),
+									rs.getString("article_category"),
+									rs.getString("article_title"),
+									rs.getString("user_name"),
+									rs.getString("article_content"),
+									rs.getTimestamp("article_credate"),
+									rs.getTimestamp("article_update"),
+									rs.getInt("article_readcnt"),
+									rs.getString("isshow"),
+									rs.getInt("user_no"),
+									rs.getString("free_category"));
+							
+}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(stmt);
+			JdbcUtil.close(rs);
+			JdbcUtil.close(conn);
+		}
+		return list;
+	}
+	
 		// 카테고리로 글 검색 DAO
 		public List<FreeBoardList> searchBoard(Connection conn, FreeSearch search) throws SQLException {
 			
@@ -281,9 +324,8 @@ public class FreeBoardDAO {
 	
 	
 	//글 삭제하기
-	public int deleteBoard(String no) {
+	public void deleteBoard(int no) {
 		PreparedStatement stmt = null;
-		int result = -1;
 		
 		String sql="update article as a " + 
 				" inner join freeboard as f on (f.article_no= a.article_no)" + 
@@ -298,8 +340,8 @@ public class FreeBoardDAO {
 			conn.setAutoCommit(false);
 			
 			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, no);
-			result = stmt.executeUpdate();
+			stmt.setInt(1, no);
+			stmt.executeUpdate();
 			
 			conn.commit();
 			
@@ -309,8 +351,6 @@ public class FreeBoardDAO {
 			JdbcUtil.close(stmt);
 			JdbcUtil.close(conn);
 		}
-	
-		return result;
 	}
 	
 

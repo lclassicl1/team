@@ -92,7 +92,7 @@ button:hover {
   			let pwtxt = $('#user_pwd').val();
   			
   			if(idtxt=='') {
-  				alert('아이디값을 입력해주세요');
+  				alert('아이디를 입력해주세요');
   				$('#user_id').focus();
   				return false;
   			}

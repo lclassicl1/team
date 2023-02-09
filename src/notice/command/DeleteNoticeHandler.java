@@ -29,7 +29,7 @@ public class DeleteNoticeHandler implements CommandHandler {
 		
 		try {
 			deleteNoticeService.delete(articleNo,userNo);
-			return "/view/noticeboard/deleteSuccess.jsp";
+			return "/notice/list.do";
 		}catch(PermissionDeniedException e) {
 			errors.put("cantDelete",Boolean.TRUE);
 			res.sendError(HttpServletResponse.SC_FORBIDDEN);

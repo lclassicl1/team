@@ -29,7 +29,7 @@ public class DeleteTradeHandler implements CommandHandler {
 		
 		try {
 			deleteTradeService.delete(articleNo,userNo);
-			return "/view/tradeboard/deleteSuccess.jsp";
+			return "/trade/list.do";
 		}catch(PermissionDeniedException e) {
 			errors.put("cantDelete",Boolean.TRUE);
 			res.sendError(HttpServletResponse.SC_FORBIDDEN);

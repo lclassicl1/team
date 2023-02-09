@@ -29,7 +29,7 @@ public class DeleteReviewHandler implements CommandHandler {
 		
 		try {
 			deleteReviewService.delete(articleNo,userNo);
-			return "/view/reviewboard/deleteSuccess.jsp";
+			return "/review/list.do";
 		}catch(PermissionDeniedException e) {
 			errors.put("cantDelete",Boolean.TRUE);
 			res.sendError(HttpServletResponse.SC_FORBIDDEN);

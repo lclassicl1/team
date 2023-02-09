@@ -39,8 +39,8 @@ body {
 }
 
 .center {
-	text-align: center;
-	margin: auto;
+	text-align: left;
+	margin: 10px;
 }
 
 .left {
