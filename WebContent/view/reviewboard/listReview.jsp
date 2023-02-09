@@ -68,7 +68,7 @@
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
-<div class="center"><h3>리뷰/후기 게시판</h3></div>
+<div class="center"><h3>리뷰 게시판</h3></div>
  <hr/>
  <div class="formClass">
  <form action="<%=request.getContextPath()%>/review/search.do" method="post">
