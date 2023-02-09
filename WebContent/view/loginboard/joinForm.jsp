@@ -120,7 +120,7 @@ input{
 </script>
 </head>
 <body>
-<h1 style="text-align: center; margin-top:300px; margin-bottom:-30px;">GOSU 회원가입</h1>
+<h1 style="text-align: center; margin-top:300px; margin-bottom:-30px;">Gosu 회원가입</h1>
 	<form name = "memberFrm" id="memberFrm" method="post"  action="<%=request.getContextPath()%>/join.do">
 		<table class="table">
 			<tbody>

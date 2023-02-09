@@ -74,14 +74,14 @@
  <!-- 댓글 -->
  <table border="1" class="table table-dark w-auto table-hover">
 	<tr>
-		<th style="background-color: #1F2937; border: 1px solid rgb(31 41 55);">     </th>
+		<th></th>
 		<th>작성자</th>
 		<th>내용</th>
 		<th>작성시간</th>
 	</tr>
 	<c:forEach var="item" items="${commentList }">
 		<tr>
-		<td style="background-color: rgb(31 41 55); border: 1px solid rgb(31 41 55);">
+		<td>
 		  <c:choose> 
 			    <c:when test="${item.commConn == 'Y'}">
 			        <a><img alt="채택" src="../../image/check.png" class="check"></a>
@@ -115,8 +115,7 @@
 		</tr>
 	</c:forEach>
 	<tr>
-	<td style="background-color: rgb(31 41 55); border: 1px solid rgb(31 41 55);"></td>
-	<td colspan="3">
+	<td colspan="4">
 	<form action="<%=request.getContextPath()%>/help/comment/write.do?no=${read.article.articleNo }" method="post">
 		작성자 :<c:if test="${!empty authUser }">${authUser.userId }</c:if><br>
 		<p>

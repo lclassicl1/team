@@ -68,7 +68,7 @@ body {
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
-<div class="center"><h3>해줄게요</h3></div>
+<div class="center"><h3>고수가해줄게요</h3></div>
  <%-- <a href="<%=request.getContextPath()%>/index.jsp">HOME</a>
  <a href="<%=request.getContextPath()%>/article/list.do">게시글 보러가기</a>
 <a href="<%=request.getContextPath()%>/article/write.do">게시글 작성하기</a>
