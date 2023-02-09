@@ -37,6 +37,7 @@ body, table {
 </script>
 </head>
 <body>
+<div class="center"><h3>고수가해줄게요</h3></div>
 <table border="1" class="table table-dark w-auto table-hover" id='table'>
 	<tr>
 		<td>이름</td>

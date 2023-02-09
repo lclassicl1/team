@@ -75,6 +75,7 @@
 		<td>${read.user.userAddress }</td>
 	</tr>
 </table>
+<h3>댓글</h3>
  <!-- 댓글 -->
  <table border="1" class="table table-dark table-hover">
 	<tr>
@@ -97,7 +98,6 @@
 		<td>
 			${item.commVolt }
 		</td>
-		
 		<td>
 		<a href="<%=request.getContextPath()%>/trade/comment/volt.do?no=${read.article.articleNo }&commNo=${item.commNo}">추천</a>
 		<c:if test="${authUser.userId == item.userId}">
@@ -112,7 +112,7 @@
 	<form action="<%=request.getContextPath()%>/trade/comment/write.do?no=${read.article.articleNo }" method="post">
 		작성자 :<c:if test="${!empty authUser }">${authUser.userId }</c:if><br>
 		<p>
-			<textarea rows="5" cols="30" name="content"></textarea>
+			<input type="text" name="content" style="width: 300px; height: 50px;">
 		</p>
 		<p>
 			<c:if test="${errors.contentEmpty }">댓글 내용을 작성해주세요.</c:if>

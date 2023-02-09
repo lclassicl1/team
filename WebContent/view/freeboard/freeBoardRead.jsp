@@ -73,7 +73,7 @@
 <hr>
 <hr>
 
-<h3>댓글</h3> 댓글 작성 성공:<c:out value="${commentResult}"></c:out>
+<h3>댓글</h3>
 <table border="1" class="table table-dark w-auto table-hover">
 	<tr>
 		<th>작성자</th>
@@ -107,7 +107,7 @@
 	</tr>
 	<tr>
 			<td>
-				<input type="text" name="newComment" style="width:300px;height:100px;">
+				<input type="text" name="newComment" style="width: 300px; height:50px;">
 			</td>
 	</tr>
 	<tr>

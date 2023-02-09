@@ -17,7 +17,7 @@
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
-게시글 수정 
+<div class="center"><h3>트레이드 게시판  게시글 수정 </h3></div>
 <form action="<%=request.getContextPath() %>/trade/modify.do?no=${trade.article.articleNo }" method="post">
 		<table border="1">
 			<tr>

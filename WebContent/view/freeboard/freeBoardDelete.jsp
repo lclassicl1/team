@@ -26,12 +26,13 @@
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
-<a href="<%=request.getContextPath()%>/freeboard/read.do?no=${freePage.freeBoardList[0].articleNo}"><button class="table table-dark table-hover blank">뒤로가기</button></a>
+<div class="center"><h3>자유게시판</h3></div>
+<a href="<%=request.getContextPath()%>/freeboard/read.do?no=${freePage.freeBoardList[0].articleNo}"><button class="btn btn-secondary blank">뒤로가기</button></a>
 	<c:forEach var="item" items="${freePage.freeBoardList}">
 			<form name="update" id="update" method="post" 
 					action="<%=request.getContextPath()%>/freeboard/delete.do?no=${item.articleNo}">
 					<table border="1" class="table table-dark table-hover">
-						<tr>
+						<tr hidden>
 								<th>글 번호</th>
 								<td>${item.articleNo}</td>
 						</tr>

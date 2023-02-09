@@ -17,6 +17,7 @@
 </head>
 <body>
 	<header><jsp:include page="../../module/navBar.jsp"/></header>
+	<div class="center"><h3>고수님해주세요</h3></div>
 	<form action="<%=request.getContextPath() %>/help/write.do" method="post">
 		<table border="1" class="table table-dark table-hover">
 			<tr>
