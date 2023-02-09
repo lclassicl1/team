@@ -82,20 +82,40 @@ body {
 		</tr>
 		<tr>
 			<th>자격증</th>
-			<td>${userInfo.userSkill}</td>
+			<td>
+				 <c:choose> 
+				    <c:when test="${userInfo.userSkill == null || userInfo.userSkill == ''}">
+				        <a>없음</a>
+				    </c:when>
+				    <c:otherwise>
+				        <a>${userInfo.userSkill}</a>
+				    </c:otherwise>
+				</c:choose>
+			</td>
 		</tr>
 			<tr>
 			<th>학력사항</th>
-			<td>${userInfo.userSchool}</td>
+			<td>
+				 <c:choose> 
+				    <c:when test="${userInfo.userSchool == null || userInfo.userSchool == ''}">
+				        <a>없음</a>
+				    </c:when>
+				    <c:otherwise>
+				        <a>${userInfo.userSchool}</a>
+				    </c:otherwise>
+				</c:choose>
+			</td>
 		</tr>
 			<tr>
 			<th>생년월일</th>
 			<td>${userInfo.userBirth}</td>
 		</tr>
 	</table>
+<a href="<%=request.getContextPath()%>/unRegister.do?userNo=${userInfo.userNo}"><button class="btn btn-secondary">회원 탈퇴</button></a>
 <a href="<%=request.getContextPath()%>/mypageUpdate.do?userId=${userInfo.userId}"><button class="btn btn-secondary">정보 수정하기</button></a>
 <a href="<%=request.getContextPath()%>/mypageChangePwd.do"><button class="btn btn-secondary">비밀번호 변경</button></a>
 <a href="<%=request.getContextPath()%>/mypageArticle.do"><button class="btn btn-secondary">내가 쓴 글</button></a>
+
 <br>
 <c:if test="${authUser.userGrade == 999 }">
 관리자 모드<br>
