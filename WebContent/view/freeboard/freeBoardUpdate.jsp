@@ -41,7 +41,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
-	<a href="<%=request.getContextPath()%>/freeboard/read.do?no=${freePage.freeBoardList[0].articleNo}"><button>뒤로가기</button></a>
+	<a href="<%=request.getContextPath()%>/freeboard/read.do?no=${freePage.freeBoardList[0].articleNo}"><button class="btn btn-secondary btn-sm blank">뒤로가기</button></a>
 		<form name="updateFrm" method="post" 
 			action="<%=request.getContextPath()%>/freeboard/update.do?no=${freePage.freeBoardList[0].articleNo}" onsubmit="return sendit();">
 				<c:forEach var="item" items="${freePage.freeBoardList}">
@@ -69,7 +69,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 							  			</select>
 									</td>
 							<tr>
-									<td colspan="2" style="text-align:center;"><input type="submit" value="수정하기"/>
+									<td colspan="2" style="text-align:center;"><input type="submit" value="수정하기" class="btn btn-secondary btn-sm blank"/>
 									</td>
 							</tr>
 					</table>

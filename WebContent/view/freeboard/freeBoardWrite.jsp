@@ -52,14 +52,6 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 	<form name="writeFrm" method="post" action="<%=request.getContextPath()%>/freeboard/write.do" onsubmit="return sendit();">
 			<table border="1" class="table table-dark table-hover">
 				<tr>
-						<th>제목</th>
-						<td><input type="text" name="title" style="width:500px;"/></td>
-				</tr>
-				<tr>
-						<th>내용</th>
-						<td><input name="content" id="content" style="width:500px;height:200px;"></td>
-				</tr>
-				<tr>
 						<th>카테고리</th>
 						<td>
 						   	<select name='categorySearch'>
@@ -70,6 +62,18 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 				  			</select>
 						</td>
 					</tr>
+				<tr>
+						<th>제목</th>
+						<td><input type="text" name="title" style="width:500px;"/></td>
+				</tr>
+					<tr>
+						<td>작성자</td>
+						<td>${userId}</td>
+					</tr>
+				<tr>
+						<th>내용</th>
+						<td><input name="content" id="content" style="width:500px;height:200px;"></td>
+				</tr>
 				<tr>
 					<td colspan="2" style="text-align:center;"><input type="submit" value="글쓰기" class="btn btn-dark"></td>
 				</tr>

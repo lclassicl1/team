@@ -49,9 +49,9 @@
 			</tr>
 			<tr>
 				<th colspan="2" style="text-align:center;">
-						<a href="<%=request.getContextPath()%>/freeboard/list.do"><button>글 목록으로</button></a>
-						<a href="<%=request.getContextPath()%>/freeboard/update.do?no=${item.articleNo}"><button>글 수정하기</button></a>
-						<a href="<%=request.getContextPath()%>/freeboard/delete.do?no=${item.articleNo}"><button>글 삭제하기</button></a>
+						<a href="<%=request.getContextPath()%>/freeboard/list.do"><button class="btn btn-secondary btn-sm blank">글 목록으로</button></a>
+						<a href="<%=request.getContextPath()%>/freeboard/update.do?no=${item.articleNo}"><button class="btn btn-secondary btn-sm blank">글 수정하기</button></a>
+						<a href="<%=request.getContextPath()%>/freeboard/delete.do?no=${item.articleNo}"><button class="btn btn-secondary btn-sm blank">글 삭제하기</button></a>
 				</th>
 			</tr>
 	</table>
@@ -71,10 +71,10 @@
 				<td>${comment.comm_credate}</td>
 				<td>${comment.comm_volt}</td>
 				 <c:if test="${authUser.userId==comment.user_id}">
-				<td><a href="<%=request.getContextPath()%>/freeboard/commentdelete.do?articleNo=${freePage.freeBoardList[0].articleNo}&commNo=${comment.comm_no}"><button>삭제</button></a></td>
-				<td><a href="<%=request.getContextPath()%>/freeboard/commentupdate.do?articleNo=${freePage.freeBoardList[0].articleNo}&commNo=${comment.comm_no}"><button>수정</button></a></td>
+				<td><a href="<%=request.getContextPath()%>/freeboard/commentdelete.do?articleNo=${freePage.freeBoardList[0].articleNo}&commNo=${comment.comm_no}"><button class="btn btn-secondary btn-sm blank">삭제</button></a></td>
+				<td><a href="<%=request.getContextPath()%>/freeboard/commentupdate.do?articleNo=${freePage.freeBoardList[0].articleNo}&commNo=${comment.comm_no}"><button class="btn btn-secondary btn-sm blank">수정</button></a></td>
 				</c:if>
-				<td><a href="<%=request.getContextPath()%>/freeboard/commentlike.do?articleNo=${freePage.freeBoardList[0].articleNo}&commNo=${comment.comm_no}"><button>추천</button></a></td>
+				<td><a href="<%=request.getContextPath()%>/freeboard/commentlike.do?articleNo=${freePage.freeBoardList[0].articleNo}&commNo=${comment.comm_no}"><button class="btn btn-secondary btn-sm blank">추천</button></a></td>
 			</tr>
 		</c:forEach>
 		</table>

@@ -29,22 +29,19 @@
 </script>
 <body>
 			<c:if test="${authUser.userName==item.userName}">
-						<a href="<%=request.getContextPath()%>/mypageArticle.do"><button>내가 쓴 글 목록으로</button></a>
+						<a href="<%=request.getContextPath()%>/mypageArticle.do"><button class="btn btn-secondary btn-sm blank">내가 쓴 글 목록으로</button></a>
 			</c:if>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
+<div class="center"><h3>자유게시판</h3></div>
 <c:forEach var="item" items="${freePage.freeBoardList}">
 	<table border="1" class="table table-dark w-auto table-hover">
-			<tr>
-					<td>조회수</td>
-					<td>${item.articleReadcnt}</td>
-			</tr>
-				<tr>
-					<td>글 작성자</td>
-					<td>${item.userName}</td>
-			</tr>
 				<tr>
 					<td>제목</td>
 					<td>${item.articleTitle}</td>
+				</tr>
+				<tr>
+					<td>작성자</td>
+					<td>${item.userName}</td>
 			</tr>
 				<tr>
 					<td>내용</td>
@@ -54,16 +51,20 @@
 					<td>카테고리</td>
 					<td>${item.freeCategory}</td>
 			</tr>
+			<tr>
+					<td>조회수</td>
+					<td>${item.articleReadcnt}</td>
+			</tr>
 				<tr>
-					<td>작성시간</td>
+					<td>작성일</td>
 					<td>${item.articleCredate}</td>
 			</tr>
 			<tr>
 				<th colspan="2" style="text-align:center;">
-						<a href="<%=request.getContextPath()%>/freeboard/list.do"><button>글 목록으로</button></a>
+						<a href="<%=request.getContextPath()%>/freeboard/list.do"><button class="btn btn-secondary btn-sm blank">글 목록으로</button></a>
 					<c:if test="${authUser.userName==articleName}">
-								<a href="<%=request.getContextPath()%>/freeboard/update.do?no=${item.articleNo}"><button>글 수정하기</button></a>
-								<a href="<%=request.getContextPath()%>/freeboard/delete.do?no=${item.articleNo}"><button>글 삭제하기</button></a>
+								<a href="<%=request.getContextPath()%>/freeboard/update.do?no=${item.articleNo}"><button class="btn btn-secondary btn-sm blank">글 수정하기</button></a>
+								<a href="<%=request.getContextPath()%>/freeboard/delete.do?no=${item.articleNo}"><button class="btn btn-secondary btn-sm blank">글 삭제하기</button></a>
 					</c:if>
 				</th>
 			</tr>
@@ -75,10 +76,10 @@
 <h3>댓글</h3> 댓글 작성 성공:<c:out value="${commentResult}"></c:out>
 <table border="1" class="table table-dark w-auto table-hover">
 	<tr>
-		<th>아이디</th>
+		<th>작성자</th>
 		<th>내용</th>
-		<th>등록일</th>
-		<th>추천수</th>
+		<th>작성시간</th>
+		<th>추천</th>
 	</tr>
 <c:forEach var="comment" items="${comment.commentList}">
 	<tr>
@@ -87,10 +88,10 @@
 		<td>${comment.comm_credate}</td>
 		<td>${comment.comm_volt}</td>
 		 <c:if test="${authUser.userId==comment.user_id}">
-		<td><a href="<%=request.getContextPath()%>/freeboard/commentdelete.do?articleNo=${freePage.freeBoardList[0].articleNo}&commNo=${comment.comm_no}"><button>삭제</button></a></td>
-		<td><a href="<%=request.getContextPath()%>/freeboard/commentupdate.do?articleNo=${freePage.freeBoardList[0].articleNo}&commNo=${comment.comm_no}"><button>수정</button></a></td>
+		<td><a href="<%=request.getContextPath()%>/freeboard/commentdelete.do?articleNo=${freePage.freeBoardList[0].articleNo}&commNo=${comment.comm_no}"><button class="btn btn-secondary btn-sm blank">삭제</button></a></td>
+		<td><a href="<%=request.getContextPath()%>/freeboard/commentupdate.do?articleNo=${freePage.freeBoardList[0].articleNo}&commNo=${comment.comm_no}"><button class="btn btn-secondary btn-sm blank">수정</button></a></td>
 		</c:if>
-		<td><a href="<%=request.getContextPath()%>/freeboard/commentlike.do?articleNo=${freePage.freeBoardList[0].articleNo}&commNo=${comment.comm_no}"><button>추천</button></a></td>
+		<td><a href="<%=request.getContextPath()%>/freeboard/commentlike.do?articleNo=${freePage.freeBoardList[0].articleNo}&commNo=${comment.comm_no}"><button class="btn btn-secondary btn-sm blank">추천</button></a></td>
 	</tr>
 </c:forEach>
 </table>
@@ -110,7 +111,7 @@
 			</td>
 	</tr>
 	<tr>
-		<td colspan="2" style="text-align:center;"><input type="submit" value="댓글 입력" /></td>
+		<td colspan="2" style="text-align:center;"><input type="submit" value="댓글 입력"  class="btn btn-secondary btn-sm blank"/></td>
 	</tr>
 	</table>
 </form>
