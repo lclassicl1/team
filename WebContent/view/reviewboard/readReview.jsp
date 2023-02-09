@@ -61,16 +61,20 @@
 	</tr> 
 			
 </table>
+<h3>댓글</h3>
  <!-- 댓글 -->
  <table border="1" class="table table-dark table-hover">
 	<tr>
+		<th></th>
 		<th>작성자</th>
 		<th>내용</th>
 		<th>작성시간</th>
 		<th>추천</th>
+		<th></th>
 	</tr>
 	<c:forEach var="item" items="${commentList }">
 		<tr>
+		<td></td>
 		<td>
 			${item.userId }
 		</td>
@@ -85,31 +89,32 @@
 		</td>
 		<td>
 			<a href="<%=request.getContextPath()%>/review/comment/volt.do?commNo=${item.commNo}&no=${read.article.articleNo}"><button class="btn btn-secondary btn-sm blank">추천</button></a>
+			<c:if test="${authUser.userId == item.userId}">
+				<a href="<%=request.getContextPath()%>/review/comment/modify.do?commNo=${item.commNo}">댓글 수정</a>
+				<a href="<%=request.getContextPath()%>/review/comment/delete.do?commNo=${item.commNo}&no=${read.article.articleNo}"><button class="btn btn-secondary btn-sm blank">댓글 삭제</button></a>
+			</c:if>
 		</td>
 		
-		<c:if test="${authUser.userId == item.userId}">
-		<td>
-			<a href="<%=request.getContextPath()%>/review/comment/modify.do?commNo=${item.commNo}">댓글 수정</a>
-			<a href="<%=request.getContextPath()%>/review/comment/delete.do?commNo=${item.commNo}&no=${read.article.articleNo}"><button class="btn btn-secondary btn-sm blank">댓글 삭제</button></a>
-		</td>
-		</c:if>
 		</tr>
 	</c:forEach>
+</table>
+	<h3>댓글 작성</h3>
+	<table border="1" class="table table-dark table-hover">
 	<tr>
-	<td colspan="4">
-	<form action="<%=request.getContextPath()%>/review/comment/write.do?no=${read.article.articleNo }" method="post">
-		작성자 :<c:if test="${!empty authUser }">${authUser.userId }</c:if><br>
-		<p>
-			<textarea rows="5" cols="30" name="content"></textarea>
-		</p>
-		<p>
-			<c:if test="${errors.contentEmpty }">댓글 내용을 작성해주세요.</c:if>
-		</p>
-		<input type="submit" value="등록" class="btn btn-secondary">
-	</form>
+	<td>
+		<h5>작성자 :<c:if test="${!empty authUser }">${authUser.userId }</c:if></h5>
 	</td>
 	</tr>
-</table>
+	<tr>
+	<td>
+	<form action="<%=request.getContextPath()%>/review/comment/write.do?no=${read.article.articleNo }" method="post">
+			<input type="text" name="content" style="width: 300px; height: 50px;">
+			<c:if test="${errors.contentEmpty }">댓글 내용을 작성해주세요.</c:if>
+		<input type="submit" value="등록" class="btn btn-secondary">
+		</form>
+	</td>
+	</tr>
+	</table>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 </html>

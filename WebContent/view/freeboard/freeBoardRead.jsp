@@ -73,9 +73,10 @@
 <hr>
 <hr>
 
-<h3>댓글</h3> 댓글 작성 성공:<c:out value="${commentResult}"></c:out>
+<h3>댓글</h3> 
 <table border="1" class="table table-dark table-hover">
 	<tr>
+		<th></th>
 		<th>작성자</th>
 		<th>내용</th>
 		<th>작성시간</th>
@@ -83,19 +84,22 @@
 	</tr>
 <c:forEach var="comment" items="${comment.commentList}">
 	<tr>
+		<td></td>
 		<td>${comment.user_id}</td>
 		<td style="width:500px;">${comment.comm_content}</td>
 		<td>${comment.comm_credate}</td>
 		<td>${comment.comm_volt}</td>
+		<td>
+		<a href="<%=request.getContextPath()%>/freeboard/commentlike.do?articleNo=${freePage.freeBoardList[0].articleNo}&commNo=${comment.comm_no}"><button class="btn btn-secondary btn-sm blank">추천</button></a>
 		 <c:if test="${authUser.userId==comment.user_id}">
-		<td><a href="<%=request.getContextPath()%>/freeboard/commentdelete.do?articleNo=${freePage.freeBoardList[0].articleNo}&commNo=${comment.comm_no}"><button class="btn btn-secondary btn-sm blank">삭제</button></a></td>
-		<td><a href="<%=request.getContextPath()%>/freeboard/commentupdate.do?articleNo=${freePage.freeBoardList[0].articleNo}&commNo=${comment.comm_no}"><button class="btn btn-secondary btn-sm blank">수정</button></a></td>
+		<a href="<%=request.getContextPath()%>/freeboard/commentupdate.do?articleNo=${freePage.freeBoardList[0].articleNo}&commNo=${comment.comm_no}"><button class="btn btn-secondary btn-sm blank">댓글 수정</button></a>
+		<a href="<%=request.getContextPath()%>/freeboard/commentdelete.do?articleNo=${freePage.freeBoardList[0].articleNo}&commNo=${comment.comm_no}"><button class="btn btn-secondary btn-sm blank">댓글 삭제</button></a>
 		</c:if>
-		<td><a href="<%=request.getContextPath()%>/freeboard/commentlike.do?articleNo=${freePage.freeBoardList[0].articleNo}&commNo=${comment.comm_no}"><button class="btn btn-secondary btn-sm blank">추천</button></a></td>
+		</td>
 	</tr>
 </c:forEach>
 </table>
-<hr>
+<h3>댓글 작성</h3>
 <form name="commentFrm" method="post"
 		action="<%=request.getContextPath()%>/freeboard/commentwrite.do" onsubmit="return sendit();">
 		
@@ -103,7 +107,9 @@
 
 	<table border="1" class="table table-dark table-hover">
 	<tr>
-		<td>${userId}</td>
+		<td>
+		<h5>작성자 :${userId}</h5>
+		</td>
 	</tr>
 	<tr>
 			<td>
