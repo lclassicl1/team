@@ -72,7 +72,7 @@
 			
 </table>
  <!-- 댓글 -->
- <table border="1" class="table table-dark w-auto table-hover">
+ <table border="1" class="table table-dark table-hover">
 	<tr>
 		<th style="background-color: #1F2937; border: 1px solid rgb(31 41 55);">     </th>
 		<th>작성자</th>

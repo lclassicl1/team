@@ -24,7 +24,7 @@
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
 <h3>전체게시글 목록(관리자 전용)</h3>
- <table border="1" class="table table-dark w-auto table-hover">
+ <table border="1" class="table table-dark table-hover">
   <thead>
   	<tr>
   	 <th>제목</th>

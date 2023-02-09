@@ -18,7 +18,7 @@
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
-<table border="1" class="table table-dark w-auto table-hover">
+<table border="1" class="table table-dark table-hover">
 	<tr>
 		<td>회원 번호</td>
 		<td>${user.userNo }</td>
