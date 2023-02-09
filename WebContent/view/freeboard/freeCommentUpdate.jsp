@@ -19,6 +19,7 @@
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
+<div class="center"><h3>자유게시판</h3></div>
 <h2><a href="<%=request.getContextPath()%>/index.jsp">HOME</a></h2>
 <a href="<%=request.getContextPath()%>/freeboard/list.do">글 목록으로</a>
 <c:forEach var="item" items="${freePage.freeBoardList}">

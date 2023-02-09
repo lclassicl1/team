@@ -17,7 +17,7 @@
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
-게시글 수정 
+<div class="center"><h3>고수님해주세요</h3></div>
 <form action="<%=request.getContextPath() %>/help/comment/modify.do?commNo=${comment.commNo}&no=${comment.articleNo}" method="post">
 		<table border="1">
 			<tr>

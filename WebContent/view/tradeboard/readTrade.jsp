@@ -101,7 +101,6 @@
 		<td>
 			${item.commVolt }
 		</td>
-		
 		<td>
 		<a href="<%=request.getContextPath()%>/trade/comment/volt.do?no=${read.article.articleNo }&commNo=${item.commNo}">추천</a>
 		<c:if test="${authUser.userId == item.userId}">

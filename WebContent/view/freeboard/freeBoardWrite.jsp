@@ -47,6 +47,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
+<div class="center"><h3>자유게시판</h3></div>
 <a href="<%=request.getContextPath()%>/index.jsp">HOME</a>
 <a href="<%=request.getContextPath()%>/freeboard/list.do">글 목록으로</a>
 	<form name="writeFrm" method="post" action="<%=request.getContextPath()%>/freeboard/write.do" onsubmit="return sendit();">

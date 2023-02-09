@@ -72,7 +72,6 @@
 </c:forEach>
 <hr>
 <hr>
-
 <h3>댓글</h3> 
 <table border="1" class="table table-dark table-hover">
 	<tr>
@@ -113,7 +112,7 @@
 	</tr>
 	<tr>
 			<td>
-				<input type="text" name="newComment" style="width:300px;height:100px;">
+				<input type="text" name="newComment" style="width: 300px; height:50px;">
 			</td>
 	</tr>
 	<tr>

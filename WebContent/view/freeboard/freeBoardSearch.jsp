@@ -21,7 +21,7 @@
 <body>
 ${freePage}
 <header><jsp:include page="../../module/navBar.jsp"/></header>
-<h3>자유게시판</h3>
+<div class="center"><h3>자유게시판</h3></div>
 <a href="<%=request.getContextPath()%>/freeboard/write.do"><button>게시글 작성하기</button></a>
  <hr/>
 <%-- <a href="<%=request.getContextPath()%>/freeboard/list.do"><button>글 목록으로</button></a> --%>

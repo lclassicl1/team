@@ -24,7 +24,7 @@
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
-<h3>공지사항</h3>
+<div class="center"><h3>공지사항</h3></div>
 <!-- 게시글 정보  -->
 <table border="1" class="table table-dark table-hover">
 	<tr>
