@@ -13,23 +13,26 @@
 <style>
 	.c1{width:150px;}
 	#memberFrm td, #memberFrm th{
-		border: 1px solid;
+		border: 1px solid white;
+		
 		padding:5px;
 	}
 	#memberFrm th{
-	text-align:right;
+	text-align:center;
 	}
-	table{border:solid 1px;}
 	
 /* 백그라운드 배경색 및 기본 body 속성들 */
 body {
   font-family: Arial, sans-serif;
   color: rgb(243 244 246);
-  display: flex;
+  /* display: flex; */
   align-items: center;
   height: 100vh;
   background-color: rgb(31 41 55);
   
+}
+label {
+	color:rgb(243 244 246);
 }
 
 /* 각각 태그들에 대한 속성 */
@@ -38,8 +41,10 @@ form {
   box-shadow: 0 0 10px #ddd;
   padding: 20px;
   border-radius: 10px;
-  width: 400px;
-  margin: auto;
+  width: 540px;
+  margin:auto;
+  margin-top:100px;
+  
 }
 
 h1 {
@@ -88,7 +93,20 @@ button:hover {
   margin-right: 10px;
   text-decoration: none;
 }
-		
+.table {
+ 	width: 500px;
+ 	vertical-align:middle;
+ 	color: rgb(243 244 246);
+}
+input{
+	margin:auto;
+}
+.error{
+	color:red;
+}
+.textClass{
+	height: 30px;
+}
 </style>
 <script>
  $(document).ready(function(){
@@ -102,95 +120,105 @@ button:hover {
 </script>
 </head>
 <body>
-${errors }
-<hr>
-
+<h1 style="text-align: center; margin-top:300px; margin-bottom:-30px;">GOSU 회원가입</h1>
 	<form name = "memberFrm" id="memberFrm" method="post"  action="<%=request.getContextPath()%>/join.do">
-		<table>
-			<caption>회원가입</caption>
+		<table class="table">
 			<tbody>
 				<tr>
-					<th class="c1">
-						<label for="memberid">아이디</label><br>
+					<th colspan="2" class="c1">
+						아이디 
 					</th>
-					<td>
-						<input type = "text" name="userId" autofocus>
-						<c:if test="${errors.userId}">ID를 입력하세요.  </c:if>
-						<c:if test="${errors.duplicateId}">이미 사용중인 ID입니다. </c:if>
+					<td colspan="2">
+						<input type = "text" name="userId" autofocus class="textClass">
+						<div class="error"><c:if test="${errors.userId}">* ID를 입력하세요.  </c:if></div>
+						<div class="error"><c:if test="${errors.duplicateId}">* 이미 사용중인 ID입니다. </c:if></div>
 	 				</td>
 				</tr>
 				<tr>
-					<th class="c1">
-						<label for="password">비밀번호</label><br>
+					<th colspan="2" class="c1">
+						비밀번호
 					</th>
-					<td>
-						<input type = "password" name="userPwd">
-						<c:if test="${errors.userPwd}">비밀번호를 입력하세요. </c:if>
+					<td colspan="2">
+						<input type = "password" name="userPwd" class="textClass">
+					<div class="error">	<c:if test="${errors.userPwd}">* 비밀번호를 입력하세요. </c:if></div>
 					</td>
 				</tr>
 				<tr>
-					<th class="c1">
-						<label for="re_password">비밀번호 확인</label><br>
+					<th colspan="2" class="c1">
+						비밀번호 확인
 					</th>
-					<td>
-						<input type = "password"name="userRePwd">
-						<c:if test="${errors.userRePwd}">비밀번호확인을 입력하세요. </c:if>
-						<c:if test="${errors.notMatch}">비밀번호와 비밀번호확인이 일치하지 않습니다.</c:if>
+					<td colspan="2">
+						<input type = "password"name="userRePwd" class="textClass">
+					<div class="error">	<c:if test="${errors.userRePwd}">* 비밀번호확인을 입력하세요. </c:if></div>
+					<div class="error">	<c:if test="${errors.notMatch}">* 비밀번호와 비밀번호확인이 일치하지 않습니다.</c:if></div>
 						
 					</td>
 				</tr>
 				<tr>
 					<th class="c1">
-						<label for="name">이름</label><br>
+						이름
 					</th>
 					<td>
-						<input type = "text"name="userName">
-						<c:if test="${errors.userName}">이름을 입력하세요.</c:if>
+						<input type = "text"name="userName" class="textClass">
+						<div class="error"><c:if test="${errors.userName}">* 이름을 입력하세요.</c:if></div>
+					</td>
+					<th class="c1">
+						생년월일
+					</th>
+					<td>
+						<input type ="date" name="userBirth"  class="textClass">
+						<div class="error"><c:if test="${errors.userBirth}">* 생년월일을 입력하세요.</c:if></div>
 					</td>
 				</tr>
 				<tr>
 					<th class="c1">
-						<label for="birth">생년월일</label><br>
+						전화번호
 					</th>
 					<td>
-						<input type ="date" name="userBirth" >
-						<c:if test="${errors.userBirth}">생년월일을 입력하세요.</c:if>
+						<input type = "text"name="userHp" class="textClass">
+					<div class="error">	<c:if test="${errors.userHp}">* 전화번호를 입력하세요.</c:if></div>
 					</td>
-				</tr>
-				<tr>
 					<th class="c1">
-						<label for="hp">전화번호</label><br>
+						성별
 					</th>
-					<td>
-						<input type = "text"name="userHp">
-						<c:if test="${errors.userHp}">전화번호를 입력하세요.</c:if>
-					</td>
-				</tr>
-				<tr>
-					<th class="c1">
-						<label for="address">주소</label><br>
-					</th>
-					<td>
-						<input type = "text"name="userAddress">
-						<c:if test="${errors.userAddress}">주소를 입력하세요.</c:if>
-					</td>
-				</tr>
-				<tr>
-					<th class="c1">
-						<label for="gender">성별</label><br>
-					</th>
-					<td>
-						<select name="userGender">
+					<td style="text-align: center;">
+						<select name="userGender" style="width: 100px;">
 							<option value="없음">선택</option>
 							<option value="M">남자</option>
 							<option value="F">여자</option>
+						</select><br>
+					<div class="error">	<c:if test="${errors.userGender}">* 성별을 선택해주세요.</c:if></div>
+					</td>
+				</tr>
+				<tr>
+					<th colspan="2" class="c1">
+						주소
+					</th>
+					<td colspan="2">
+						<input type = "text"name="userAddress" class="textClass">
+						<div class="error"><c:if test="${errors.userAddress}">* 주소를 입력하세요.</c:if></div>
+					</td>
+				</tr>
+				<tr>
+					<th colspan="1" class="c1">
+						이메일
+					</th>
+					<td colspan="3">
+						<input type ="text" name="emailId" required="required" style="width:130px; float:left; margin-right:15px;" class="textClass"> 
+						<b style="float: left;margin-right:15px;">@</b>
+						<input type ="text" name="emailAddress" id="emailAddress" required="required" style="width:110px; float:left;margin-right:5px;" class="textClass">
+						<select name="email_dd" id="email_dd"  onchange="selectEmail(this);" style="float:left; bottom: 20px;">
+							<option value="">직접입력</option>
+							<option value="naver.com">naver.com</option>
+							<option value="daum.com">daum.com</option>
+							<option value="gmail.com">gmail.com</option>
+							<option value="nate.com">nate.com</option>
 						</select>
-						<c:if test="${errors.userGender}">성별을 선택해주세요.</c:if>
 					</td>
 				</tr>
 				<tr>
 					<th class="c1">
-						<label for="skill">자격증</label><br>
+						자격증
 					</th>
 					<td>
 						<select name="userSkill">
@@ -201,10 +229,8 @@ ${errors }
 							<option value="OCJD">OCJD</option>
 						</select>
 					</td>
-				</tr>
-				<tr>
 					<th class="c1">
-						<label for="school">최종학력</label><br>
+						최종학력
 					</th>
 					<td>
 						<select name="userSchool">
@@ -218,31 +244,18 @@ ${errors }
 					</td>
 				</tr>
 				<tr>
-					<th class="c1">
-						<label for="email">이메일</label><br>
-					</th>
-					<td>
-						<input type ="text" name="emailId" required="required"> @
-						<input type ="text" name="emailAddress" id="emailAddress" required="required">
-						<select name="email_dd" id="email_dd"  onchange="selectEmail(this);">
-							<option value="">직접입력</option>
-							<option value="naver.com">naver.com</option>
-							<option value="daum.com">daum.com</option>
-							<option value="gmail.com">gmail.com</option>
-							<option value="nate.com">nate.com</option>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" style="text-align:center;">
+					<td colspan="4" style="text-align:center;">
 					 <input type ="checkbox" name="agree" id="agree">
-					 <label for="agree">약관에 동의</label>
+						회원가입 동의<br>		  
+					<div class="error">	<c:if test="${errors.agree}">* 회원가입 동의를 체크해주세요.</c:if></div>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2" style="text-align:center;">
+					<td colspan="2" style="text-align:center; border: 1px solid #333;">
 						<input type ="submit" value="확인" class="btn btn-secondary">
-						<input type ="reset" value="취소" class="btn btn-secondary">
+					</td>
+					<td colspan="2" style="text-align:center; border: 1px solid #333;">
+						<input type ="reset" value="취소" class="btn btn-secondary" >
 					</td>
 				</tr>
 					
