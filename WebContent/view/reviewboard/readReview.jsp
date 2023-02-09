@@ -65,7 +65,7 @@
 		</td>
 		
 	</tr> 
-			
+<h3>댓글</h3>
 </table>
  <!-- 댓글 -->
  <table border="1" class="table table-dark table-hover">
@@ -106,7 +106,7 @@
 	<form action="<%=request.getContextPath()%>/review/comment/write.do?no=${read.article.articleNo }" method="post">
 		작성자 :<c:if test="${!empty authUser }">${authUser.userId }</c:if><br>
 		<p>
-			<textarea rows="5" cols="30" name="content"></textarea>
+			<input type="text" name="content" style="width: 300px; height: 50px;">
 		</p>
 		<p>
 			<c:if test="${errors.contentEmpty }">댓글 내용을 작성해주세요.</c:if>

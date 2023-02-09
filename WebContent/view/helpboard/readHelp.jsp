@@ -77,6 +77,7 @@
 	</tr> 
 			
 </table>
+<h3>댓글</h3>
  <!-- 댓글 -->
  <table border="1" class="table table-dark table-hover">
 	<tr>

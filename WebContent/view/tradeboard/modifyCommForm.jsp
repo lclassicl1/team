@@ -17,7 +17,7 @@
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
-게시글 수정 
+<div class="center"><h3>트레이드 게시판 댓글 수정</h3></div>
 	<form action="<%=request.getContextPath() %>/trade/comment/modify.do?commNo=${comment.commNo}&no=${comment.articleNo}" method="post">
 		<table border="1" class="table table-dark table-hover">
 			<tr>

@@ -53,8 +53,8 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 			action="<%=request.getContextPath()%>/freeboard/update.do?no=${freePage.freeBoardList[0].articleNo}" onsubmit="return sendit();">
 				<c:forEach var="item" items="${freePage.freeBoardList}">
 					<table border="1" class="table table-dark table-hover">
-							<tr>
-									<th>글 번호</th>
+							<tr hidden>
+									<th >글 번호</th>
 									<td>${freePage.freeBoardList[0].articleNo}</td>
 							</tr>
 							<tr>

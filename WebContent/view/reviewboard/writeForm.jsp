@@ -17,6 +17,7 @@
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
+<div class="center"><h3>리뷰/후기 게시판</h3></div>
 <form action="<%=request.getContextPath() %>/review/write.do" method="post">
 		<table border="1" class="table table-dark table-hover">
 			<tr>
