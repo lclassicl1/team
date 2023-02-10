@@ -82,7 +82,9 @@ button:hover {
   margin-right: 10px;
   text-decoration: none;
 }
-	
+.errors{
+	color: red;
+}
 </style>
 	<script>
 	$(function(){
@@ -136,6 +138,10 @@ button:hover {
       <div>
         <label for="user_pwd">비밀번호</label>
         <input type="password" id="user_pwd" name="user_pwd">
+       <div class="errors"> <c:if test="${errors.userNotFound }"><b>*  아이디(로그인 전용 아이디) 또는 비밀번호를 잘못 입력했습니다.
+			입력하신 내용을 다시 확인해주세요.</b></c:if></div>
+        <div class="errors"><c:if test="${errors.idPwdNotMatch }"><b>*  아이디(로그인 전용 아이디) 또는 비밀번호를 잘못 입력했습니다.
+			입력하신 내용을 다시 확인해주세요.</b></c:if></div><br>
       </div>
       <button type="button" id='submitBtn'>로그인</button>
       <div class="links">
