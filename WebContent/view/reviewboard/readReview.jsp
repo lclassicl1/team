@@ -96,7 +96,7 @@
 		<td>
 			<a href="<%=request.getContextPath()%>/review/comment/volt.do?commNo=${item.commNo}&no=${read.article.articleNo}"><button class="btn btn-secondary btn-sm blank">추천</button></a>
 			<c:if test="${authUser.userId == item.userId}">
-				<a href="<%=request.getContextPath()%>/review/comment/modify.do?commNo=${item.commNo}">댓글 수정</a>
+				<a href="<%=request.getContextPath()%>/review/comment/modify.do?commNo=${item.commNo}"><button class="btn btn-secondary btn-sm blank">댓글 수정</button></a>
 				<a href="<%=request.getContextPath()%>/review/comment/delete.do?commNo=${item.commNo}&no=${read.article.articleNo}"><button class="btn btn-secondary btn-sm blank">댓글 삭제</button></a>
 			</c:if>
 		</td>
@@ -114,7 +114,7 @@
 	<tr>
 	<td>
 	<form action="<%=request.getContextPath()%>/review/comment/write.do?no=${read.article.articleNo }" method="post">
-			<input type="text" name="content" style="width: 300px; height: 50px;">
+			<input type="text" name="content" style="width: 500px; height:50px;">
 			<c:if test="${errors.contentEmpty }">댓글 내용을 작성해주세요.</c:if>
 		<input type="submit" value="등록" class="btn btn-secondary">
 		</form>
