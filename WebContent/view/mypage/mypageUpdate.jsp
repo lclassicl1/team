@@ -40,8 +40,7 @@
 </head>
 <body>
 	<header><jsp:include page="../../module/navBar.jsp"/></header>
-	<h2>정보 수정</h2>
-	
+	<h3>정보 수정</h3>
 	<form action="<%=request.getContextPath()%>/mypageUpdate.do?userId=${userInfo.userId}" method="post">
 		<table class="table table-dark table-hover">
 			<tbody>
@@ -142,7 +141,7 @@
 				</tr>
 				<tr>
 					<td colspan="2" style="text-align:center;">
-						<input type ="submit" value="정보 수정" class="btn btn-secondary">&nbsp;<a href="<%=request.getContextPath()%>/mypage.do"><button class="btn btn-secondary">뒤로가기</button></a>
+						<input type ="submit" value="정보 수정" class="btn btn-secondary">&nbsp;<a href="<%=request.getContextPath()%>/mypage.do"><button type="button" class="btn btn-secondary">뒤로가기</button></a>
 					</td>
 				</tr>
 			</tbody>

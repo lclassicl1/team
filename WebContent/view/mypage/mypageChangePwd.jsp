@@ -12,13 +12,18 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <title>Insert title here</title>
+<style>
+.right {
+	text-align: right;
+}
+</style>
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
-<a href="<%=request.getContextPath()%>/mypage.do"><button>뒤로가기</button></a>
-	<form action="/mypageChangePwd.do" method="post">
+<h3>비밀번호 변경</h3>
+	<form action="<%=request.getContextPath()%>/mypageChangePwd.do" method="post">
 	<table border="1" class="table table-dark table-hover">
-	<caption>비밀번호 변경</caption>
+	<%-- <caption>비밀번호 변경</caption> --%>
 		<tr>
 			<th>현재 비밀번호</th>
 			<td>
@@ -43,7 +48,14 @@
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center"><button type="submit" class="btn btn-secondary">확인</button></td>
+			
+			<td colspan="2" align="center">
+			<div class="right">	
+				<button type="submit" class="btn btn-secondary">확인</button>
+				<a href="<%=request.getContextPath()%>/mypage.do"><button type="button" class="btn btn-secondary">뒤로가기</button></a>
+			</div>
+			</td>
+			
 		</tr>
 	</table>
 	</form>
