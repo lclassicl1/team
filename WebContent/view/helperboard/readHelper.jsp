@@ -27,6 +27,11 @@
 .right {
 	text-align: right;
 }
+.center{
+	text-align: left;
+	margin: 10px;
+	margin-bottom:79px;
+}
 </style>
 <title>Insert title here</title>
 
@@ -85,9 +90,9 @@
 	</tr> 
 </table>
 <c:if test="${commentTotal.hasComm() }">
-<h3>댓글</h3>		
+<h3 style="margin:10px;">댓글</h3>		
  <!-- 댓글 -->
- <table style="border-top:1px solid white;border-bottom:1px solid white" class="table table-dark table-hover">
+ <table class="table table-dark table-hover">
  
 	<tr>
 		<th></th>
@@ -117,20 +122,21 @@
 		<td>
 			${item.commCreDate }
 		</td>
-		<c:if test="${authUser.userNo == read.article.userNo}">
 		<td>
+		<c:if test="${authUser.userNo == read.article.userNo}">
 			<a href="<%=request.getContextPath()%>/helper/comment/conn.do?commNo=${item.commNo}&no=${read.article.articleNo}"><button class="btn btn-secondary btn-sm blank">채택</button></a>
+		</c:if>
 			<c:if test="${authUser.userId == item.userId}">
 				<a href="<%=request.getContextPath()%>/helper/comment/modify.do?commNo=${item.commNo}"><button class="btn btn-secondary btn-sm blank">댓글 수정</button></a>
 				<a href="<%=request.getContextPath()%>/helper/comment/delete.do?commNo=${item.commNo}&no=${read.article.articleNo}"><button class="btn btn-secondary btn-sm blank">댓글 삭제</button></a>
 			</c:if>
 		</td>
-		</c:if>
+		
 		</tr>
 	</c:forEach>
 	</table>
 	</c:if>
-	<h3>댓글 작성</h3>
+	<h3 style="margin:10px;">댓글 작성</h3>
 	<table class="table table-dark table-hover" >
 	<tr>
 	<td>

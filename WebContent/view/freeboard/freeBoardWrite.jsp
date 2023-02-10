@@ -45,12 +45,18 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 .right {
 	text-align: right;
 }
+.center {
+	text-align: left;
+	margin: 10px;
+	margin-bottom:79px;
+	
+}
 </style>
 </head>
 
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
-<h3>자유게시판</h3>
+<div class="center"><h3>자유게시판</h3></div>
 	<form name="writeFrm" method="post" action="<%=request.getContextPath()%>/freeboard/write.do" onsubmit="return sendit();">
 			<table border="1" class="table table-dark table-hover">
 				<tr>

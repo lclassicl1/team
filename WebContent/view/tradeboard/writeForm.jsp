@@ -18,11 +18,17 @@
 .right {
 	text-align: right;
 }
+.center {
+	text-align: left;
+	margin: 10px;
+	margin-bottom:79px;
+	
+}
 </style>
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
-<div class="center"><h3>트레이드</h3></div>
+<div class="center"><h3>트레이드 게시판</h3></div>
 	<form action="<%=request.getContextPath() %>/trade/write.do" method="post">
 		<table border="1" class="table table-dark table-hover">
 			<tr>

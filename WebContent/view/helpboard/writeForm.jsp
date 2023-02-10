@@ -22,6 +22,12 @@
 		resize:none;
 	 	resize: vertical;
 	}
+.center {
+	text-align: left;
+	margin: 10px;
+	margin-bottom:79px;
+	
+}
 </style>
 </head>
 <body>
