@@ -18,7 +18,7 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
  <title>게시판목록</title>
- <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
  <style>
  body {
   font-family: Arial, sans-serif;
