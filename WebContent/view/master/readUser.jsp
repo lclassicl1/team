@@ -14,10 +14,16 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+.right {
+	text-align: right;
+}
+</style>
 <title>회원 정보</title>
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
+<h3>회원관리페이지</h3>
 <table border="1" class="table table-dark table-hover">
 	<tr>
 		<td>회원 번호</td>
@@ -105,15 +111,17 @@
 	</tr>
 	<tr> 
 		<td colspan="2">
+		<div class="right">
 		<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo }" />
-			<a href="<%=request.getContextPath()%>/master/user/list.do?pageNo=${pageNo}">목록</a>
-			<a href="<%=request.getContextPath()%>/master/user/article.do?pageNo=${pageNo}&userNo=${user.userNo}">회원이 쓴 게시글 보기</a>
+			<a href="<%=request.getContextPath()%>/master/user/list.do?pageNo=${pageNo}" class="btn btn-secondary">목록</a>
+			<a href="<%=request.getContextPath()%>/master/user/article.do?pageNo=${pageNo}&userNo=${user.userNo}" class="btn btn-secondary">회원이 쓴 게시글 보기</a>
 			<c:if test="${user.userGrade == 1 }">
-			<a href="<%=request.getContextPath()%>/master/user/black.do?no=${user.userNo}">회원 정지</a>
+			<a href="<%=request.getContextPath()%>/master/user/black.do?no=${user.userNo}" class="btn btn-secondary">회원 정지</a>
 			</c:if>
 			<c:if test="${user.userGrade == 900 }">
-			<a href="<%=request.getContextPath()%>/master/user/nomal.do?no=${user.userNo}">회원 정지 해제</a>
+			<a href="<%=request.getContextPath()%>/master/user/nomal.do?no=${user.userNo}" class="btn btn-secondary">회원 정지 해제</a>
 			</c:if>
+		</div>	
 		</td>
 	</tr> 
 			
