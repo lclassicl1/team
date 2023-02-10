@@ -63,7 +63,7 @@ public class MypageArticleUpdateHandler implements CommandHandler {
 		request.setAttribute("result",updateresult);
 		
 		
-		return "/mypageArticleRead.do?no="+no;
+		return "/mypage.do?no="+no;
 	}
 	
 	
