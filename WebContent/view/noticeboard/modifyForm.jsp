@@ -20,11 +20,17 @@
 	margin-top: -10px;
 
 }
+.center {
+	text-align: left;
+	margin: 10px;
+	margin-bottom:79px;
+	
+}
 </style>
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
-<h3>공지사항</h3> 
+<div class="center"><h3>공지사항</h3></div> 
 <form action="<%=request.getContextPath() %>/notice/modify.do?no=${notice.article.articleNo }" method="post">
 		<table border="1" class="table table-dark table-hover">
 			<tr>

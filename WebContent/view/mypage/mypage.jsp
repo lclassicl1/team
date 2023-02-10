@@ -98,7 +98,19 @@ body {
 		</tr>
 			<tr>
 			<th>성별</th>
-			<td>${userInfo.userGender}</td>
+			<td>
+				  <c:choose> 
+			    <c:when test="${userInfo.userGender == 'M'}">
+			        <a>남자</a>
+			    </c:when>
+			    <c:when test="${userInfo.userGender == 'F'}">
+			        <a>여자</a>
+			    </c:when>
+			    <c:otherwise>
+			        <a>없음</a>
+			    </c:otherwise>
+			</c:choose>
+			</td>
 		</tr>
 		<tr>
 			<th>자격증</th>

@@ -17,6 +17,12 @@
 .right {
 	text-align: right;
 }
+.center {
+	text-align: left;
+	margin: 10px;
+	margin-bottom:79px;
+	
+}
 </style>
 <title>Insert title here</title>
 </head>

@@ -20,7 +20,11 @@
 	text-align: right;
 	
 }
-
+.center{
+	text-align: left;
+	margin: 10px;
+	margin-bottom:79px;
+}
 </style>
 </head>
 <body>
@@ -69,13 +73,27 @@
 </table>
  <!-- 글쓴이 정보  -->
 <table border="1" class="table table-dark table-hover"> 
+<h3 style="margin:10px;">판매자 정보</h3>
 	<tr>
 		<td>판매자 전화번호</td>
 		<td>${read.user.userHp }</td>
 	</tr>
 	<tr>
 		<td>판매자 성별</td>
-		<td>${read.user.userGender }</td>
+		<td>
+		  <c:choose> 
+			    <c:when test="${read.user.userGender == 'M'}">
+			        <a>남자</a>
+			    </c:when>
+			    <c:when test="${read.user.userGender == 'F'}">
+			        <a>여자</a>
+			    </c:when>
+			    <c:otherwise>
+			        <a>없음</a>
+			    </c:otherwise>
+			</c:choose>		
+		</td>
+		
 	</tr>
 	<tr>
 		<td>판매자 주소</td>
@@ -83,7 +101,7 @@
 	</tr>
 </table>
 <c:if test="${commentTotal.hasComm() }">
-<h3>댓글</h3>
+<h3 style="margin:10px;">댓글</h3>
  <!-- 댓글 -->
  <table border="1" class="table table-dark table-hover">
 	<tr>
@@ -120,7 +138,7 @@
 	</c:forEach>
 </table>
 </c:if>
-<h3>댓글 작성</h3>
+<h3 style="margin:10px;">댓글 작성</h3>
 	<table border="1" class="table table-dark table-hover">
 	<tr>
 	<td>

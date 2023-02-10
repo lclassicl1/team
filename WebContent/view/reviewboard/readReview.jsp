@@ -19,7 +19,11 @@
 .right {
 	text-align: right;
 }
-
+.center{
+	text-align: left;
+	margin: 10px;
+	margin-bottom:79px;
+}
 </style>
 </head>
 <body>
@@ -67,7 +71,7 @@
 	</tr> 
 </table>
 <c:if test="${commentTotal.hasComm() }">
-<h3>댓글</h3>
+<h3 style="margin:10px;">댓글</h3>
  <!-- 댓글 -->
  <table border="1" class="table table-dark table-hover">
 	<tr>
@@ -104,7 +108,7 @@
 	</c:forEach>
 </table>
 </c:if>
-	<h3>댓글 작성</h3>
+	<h3 style="margin:10px;">댓글 작성</h3>
 	<table border="1" class="table table-dark table-hover">
 	<tr>
 	<td>

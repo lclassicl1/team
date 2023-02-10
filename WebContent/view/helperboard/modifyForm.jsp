@@ -17,13 +17,18 @@
 .right {
 	text-align: right;
 }
+.center {
+	text-align: left;
+	margin: 10px;
+	margin-bottom:79px;
+	
+}
 </style>
 <title>Insert title here</title>
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
 <div class="center"><h3>고수가해줄게요</h3></div>
-게시글 수정 
 <form action="<%=request.getContextPath() %>/helper/modify.do?no=${helper.article.articleNo }" method="post">
 		<table border="1" class="table table-dark table-hover">
 			<tr>

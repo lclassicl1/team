@@ -20,6 +20,11 @@
 .right {
 	text-align: right;
 }
+.center{
+	text-align: left;
+	margin: 10px;
+	margin-bottom:79px;
+}
 </style>
 </head>
 <script type="text/javascript">
@@ -75,7 +80,7 @@
 	</table>
 </c:forEach>
 <c:if test="${commentTotal.hasComm() }">
-<h3>댓글</h3> 
+<h3 style="margin:10px;">댓글</h3> 
 <table border="1" class="table table-dark table-hover">
 	<tr>
 		<th></th>
@@ -102,7 +107,7 @@
 </c:forEach>
 </table>
 </c:if>
-<h3>댓글 작성</h3>
+<h3 style="margin:10px;">댓글 작성</h3>
 <form name="commentFrm" method="post"
 		action="<%=request.getContextPath()%>/freeboard/commentwrite.do" onsubmit="return sendit();">
 		
