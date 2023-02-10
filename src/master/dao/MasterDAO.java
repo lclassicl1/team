@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import article.model.Article;
+import article.model.SearchArticle;
 import auth.model.User;
 import master.model.SearchUser;
 import jdbc.JdbcUtil;
@@ -140,6 +141,32 @@ public class MasterDAO {
 				}
 			}
 			return articleList;
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		
+	}
+	public List<Article> search(Connection conn,SearchArticle search)throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM article where article_title like ? " + 
+						 "order by article_no desc limit ?,? " ;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+search.getInput()+"%");
+			pstmt.setInt(2, search.getStartRow());
+			pstmt.setInt(3, search.getSize());
+			rs = pstmt.executeQuery();
+			List<Article> noticeList = new ArrayList<>();
+			while(rs.next()) {
+				Article notice = coverArticle(rs);
+				if(notice != null) {
+					noticeList.add(notice);
+				}
+			}
+			return noticeList;
 		}finally {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(pstmt);

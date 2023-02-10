@@ -77,7 +77,8 @@ body {
  <hr/>
  <div class="formClass">
  <form action="<%=request.getContextPath()%>/trade/search.do" method="post">
- <select name="category">
+ 카테고리 : 
+ <select name="category" style="width: 100px;">
  				<option value="">전체</option>
 				<option value="buy">구매</option>
 				<option value="sell">판매</option>

@@ -11,7 +11,9 @@ import java.util.List;
 import article.model.Article;
 import article.model.ArticleRequest;
 import article.model.ModifyRequest;
+import article.model.SearchArticle;
 import jdbc.JdbcUtil;
+import notice.model.SearchNotice;
 
 public class ArticleDAO {
 	
@@ -165,7 +167,32 @@ public class ArticleDAO {
 		
 	}
 	
-	
+	public List<Article> search(Connection conn,SearchArticle search)throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM article where isshow='Y' and article_title like ? " + 
+						 "order by article_no desc limit ?,? " ;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+search.getInput()+"%");
+			pstmt.setInt(2, search.getStartRow());
+			pstmt.setInt(3, search.getSize());
+			rs = pstmt.executeQuery();
+			List<Article> noticeList = new ArrayList<>();
+			while(rs.next()) {
+				Article notice = coverArticle(rs);
+				if(notice != null) {
+					noticeList.add(notice);
+				}
+			}
+			return noticeList;
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		
+	}
 	// mypage 검색 기능
 	public List<Article> selectSearchMy(Connection conn, int startRow,int size, int userNo,String categorySearch,String input) throws SQLException{
 		PreparedStatement pstmt = null;

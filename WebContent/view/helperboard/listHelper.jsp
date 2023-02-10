@@ -77,7 +77,7 @@ body {
  <div class="formClass">
  <form action="<%=request.getContextPath()%>/helper/search.do" method="post">
  카테고리 : 
- <select name="category">
+ <select name="category" style="width: 100px;">
  				<option value="">전체</option>
 				<option value="java">java</option>
 				<option value="javascript">javascript</option>

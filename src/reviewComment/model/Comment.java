@@ -11,8 +11,8 @@ public class Comment {
 	private String isshow;
 	private int commVolt;
 	private int articleNo;
-	public Comment(int commNo, String commContent, Date commCreDate, String userId, String isshow, int commVolt,
-			int articleNo) {
+	public Comment(int commNo, String commContent, Date commCreDate, String userId, String isshow,
+			int commVolt, int articleNo) {
 		this.commNo = commNo;
 		this.commContent = commContent;
 		this.commCreDate = commCreDate;
@@ -42,5 +42,6 @@ public class Comment {
 	public int getArticleNo() {
 		return articleNo;
 	}
+	
 	
 }

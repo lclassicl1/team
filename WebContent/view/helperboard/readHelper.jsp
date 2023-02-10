@@ -84,6 +84,7 @@
 		</td>
 	</tr> 
 </table>
+<c:if test="${commentTotal.hasComm() }">
 <h3>댓글</h3>		
  <!-- 댓글 -->
  <table style="border-top:1px solid white;border-bottom:1px solid white" class="table table-dark table-hover">
@@ -95,7 +96,7 @@
 		<th>작성시간</th>
 		<th></th>
 	</tr>
-	<c:forEach var="item" items="${commentList }">
+	<c:forEach var="item" items="${commentTotal.commentList }">
 		<tr>
 		<td>
 		  <c:choose> 
@@ -128,6 +129,7 @@
 		</tr>
 	</c:forEach>
 	</table>
+	</c:if>
 	<h3>댓글 작성</h3>
 	<table class="table table-dark table-hover" >
 	<tr>

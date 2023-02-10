@@ -73,15 +73,11 @@
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
 <div class="center"><h3>고수님해주세요</h3></div>
- <%-- <a href="<%=request.getContextPath()%>/index.jsp">HOME</a>
- <a href="<%=request.getContextPath()%>/article/list.do">게시글 보러가기</a>
-<a href="<%=request.getContextPath()%>/article/write.do">게시글 작성하기</a>
-<a href="<%=request.getContextPath()%>/view/member/loginPage.jsp">MyPage</a> --%>
  <hr/>
  <div class="formClass">
  <form action="<%=request.getContextPath()%>/help/search.do" method="post">
  카테고리 : 
- <select name="category">
+ <select name="category" style="width: 100px;">
  				<option value="">전체</option>
 				<option value="java">java</option>
 				<option value="javascript">javascript</option>

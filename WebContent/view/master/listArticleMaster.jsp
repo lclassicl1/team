@@ -19,11 +19,27 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
  <title>게시판목록(관리자 전용)</title>
  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
- <style></style>
+ <style>
+ .center{
+ 	text-align: left;
+ 	margin:10px;
+ 	margin-bottom: 41px;
+ }
+ .formClass{
+ 	text-align: center;
+ 	margin:5px;
+ }
+ </style>
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
-<h3>전체게시글 목록(관리자 전용)</h3>
+<div class="center"><h3>전체게시글 목록(관리자 전용)</h3></div>
+<div class="formClass">	
+		 <form action="<%=request.getContextPath()%>/master/article/search.do" method="post">
+		검색 :  <input type="text" name="input">
+		 <input type="submit" class="btn btn-secondary blank" value="검색">
+	 </form>
+</div>
  <table border="1" class="table table-dark table-hover">
   <thead>
   	<tr>

@@ -1,6 +1,5 @@
 package help.command;
 
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,7 +8,7 @@ import Exception.HelperContentNotFoundException;
 import Exception.HelperNotFoundException;
 import help.model.UserInfoHelpInfo;
 import help.service.ReadHelpService;
-import helpComment.model.Comment;
+import helpComment.model.CommentTotal;
 import helpComment.service.ListCommentService;
 import mvc.command.CommandHandler;
 
@@ -29,8 +28,8 @@ public class ReadHelpHandler implements CommandHandler {
 			
 			req.setAttribute("read", userHelp); 
 			
-			List<Comment> commentList =listCommentService.getCommentList(no);
-			req.setAttribute("commentList", commentList);
+			CommentTotal commentTotal =listCommentService.getCommentList(no);
+			req.setAttribute("commentTotal", commentTotal);
 			return "/view/helpboard/readHelp.jsp";
 		}catch(HelperNotFoundException | HelperContentNotFoundException e) {
 			req.getServletContext().log("no help", e);
