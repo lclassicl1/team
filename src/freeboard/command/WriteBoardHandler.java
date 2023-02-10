@@ -41,7 +41,6 @@ public class WriteBoardHandler implements CommandHandler {
 	private String processForm(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
 		User user = (User)request.getSession(false).getAttribute("authUser");
 		String userId = user.getUserId();
-		System.out.println("userId===="+userId);
 		request.setAttribute("userId", userId);
 		
 		
@@ -58,7 +57,6 @@ public class WriteBoardHandler implements CommandHandler {
 		ArticleRequest articleReq = createWriterRequest(request,user);
 		
 		int articleNo = writeBoardService.writetBoard(articleReq,categorySearch);
-		System.out.println("articleNo======"+articleNo);
 		return "/freeboard/read.do?no="+articleNo;
 	}
 	
