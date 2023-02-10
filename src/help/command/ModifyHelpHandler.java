@@ -63,7 +63,7 @@ public class ModifyHelpHandler implements CommandHandler {
 		
 		String title = req.getParameter("title").trim();
 		String content = req.getParameter("content").trim();
-		String category = req.getParameter("category");
+		String category = req.getParameter("helpCategory");
 		
 		ModifyRequest modReq = new ModifyRequest(user.getUserNo(),no,title
 				  							,content);

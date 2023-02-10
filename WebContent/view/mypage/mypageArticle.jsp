@@ -40,6 +40,7 @@
 <div class="formClass">
 <form method="get" 
 		action="<%=request.getContextPath()%>/mypageArticleSearch.do">
+		 카테고리 : 
 		  <select name='categorySearch'>
 			    <option value='' selected>-- 선택 --</option>
 			    <option value='notice'>공지사항</option>
@@ -49,6 +50,7 @@
 			    <option value='trade'>트레이드게시판</option>
 			    <option value='review'>리뷰/후기게시판</option>
   	</select>
+  			 검색 :
   					<input type="text" name="input"/>
 			    <input type="submit" value="검색" class="btn btn-secondary"/>
  </form>
