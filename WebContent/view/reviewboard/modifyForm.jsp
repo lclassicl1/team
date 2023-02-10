@@ -23,12 +23,11 @@
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
 <div class="center"><h3>리뷰/후기 게시판</h3></div>
-<h3>게시글 수정</h3> 
 <form action="<%=request.getContextPath() %>/review/modify.do?no=${review.article.articleNo }" method="post">
 		<table border="1" class="table table-dark table-hover">
 			<tr>
 				<td>제목</td>
-				<td> <input type="text" name = "title" id="title" value="${review.article.articleTitle }"><c:if test="${errors.title}">제목을 입력하세요 </c:if></td>
+				<td> <input type="text" name = "title" id="title" value="${review.article.articleTitle }" style="width:500px;"><c:if test="${errors.title}">제목을 입력하세요 </c:if></td>
 			</tr>
 			<tr>
 				<td>작성자</td>
@@ -36,7 +35,7 @@
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><textarea rows="5" cols="30" name="content">${review.article.articleTitle }</textarea><c:if test="${errors.content}">내용을 입력하세요 </c:if></td>
+				<td><input name="content" value="${review.article.articleTitle }" style="width:500px;height:200px;"><c:if test="${errors.content}">내용을 입력하세요 </c:if></td>
 			</tr>
 		</table>
 				<div class="right">

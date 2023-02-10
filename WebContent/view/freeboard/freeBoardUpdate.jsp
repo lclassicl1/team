@@ -58,14 +58,6 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 									<td>${freePage.freeBoardList[0].articleNo}</td>
 							</tr>
 							<tr>
-									<th>수정할 제목</th>
-									<td><input type="text" name="title" style="width:500px;"/></td>
-							</tr>
-							<tr>
-									<th>수정할 내용</th>
-									<td><input type="text" name="content" style="width:500px;height:200px;" ></td>
-							</tr>
-							<tr>
 									<th>카테고리</th>
 									<td>
 									   	<select name='freeCategory'>
@@ -76,11 +68,19 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 							  			</select>
 									</td>
 							<tr>
-									<td colspan="2" style="text-align:center;"><div class="right"><input type="submit" value="수정하기" class="btn btn-secondary btn-sm blank"/>
-																				<a href="<%=request.getContextPath()%>/freeboard/read.do?no=${freePage.freeBoardList[0].articleNo}"><button class="btn btn-secondary btn-sm blank">뒤로가기</button></a></div>
-									</td>
+							<tr>
+									<th>제목</th>
+									<td><input type="text" name="title" style="width:500px;" value="${freePage.freeBoardList[0].articleTitle}"/></td>
+							</tr>
+							<tr>
+									<th>내용</th>
+									<td><input type="text" name="content" style="width:500px;height:200px;" value="${freePage.freeBoardList[0].articleContent}"></td>
 							</tr>
 					</table>
+							<div class="right">
+								<input type="submit" value="등록" class="btn btn-secondary btn-sm blank"/>
+								<input type="reset" value="취소" class="btn btn-secondary btn-sm blank">
+							</div>
 			</c:forEach>
 	</form>
 <hr>

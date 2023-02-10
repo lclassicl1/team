@@ -22,7 +22,7 @@
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
-<div class="center"><h3>트레이드 게시판  게시글 수정 </h3></div>
+<div class="center"><h3>트레이드 게시판  </h3></div>
 <form action="<%=request.getContextPath() %>/trade/modify.do?no=${trade.article.articleNo }" method="post">
 		<table border="1" class="table table-dark table-hover">
 			<tr>
@@ -36,7 +36,7 @@
 			</tr>
 			<tr>
 				<td>제목</td>
-				<td> <input type="text" name = "title" id="title" value="${trade.article.articleTitle }"><c:if test="${errors.title}">제목을 입력하세요 </c:if></td>
+				<td> <input type="text" name = "title" id="title" value="${trade.article.articleTitle }" style="width:500px;"><c:if test="${errors.title}">제목을 입력하세요 </c:if></td>
 			</tr>
 			<tr>
 				<td>작성자</td>
@@ -44,7 +44,7 @@
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><textarea rows="5" cols="30" name="content">${trade.article.articleTitle }</textarea><c:if test="${errors.content}">내용을 입력하세요 </c:if></td>
+				<td><input name="content" style="width:500px;height:200px;"value="${trade.article.articleTitle }"><c:if test="${errors.content}">내용을 입력하세요 </c:if></td>
 			</tr>
 		</table>
 				<div class="right">
