@@ -29,7 +29,7 @@ public class ReadReviewHandler implements CommandHandler {
 			req.setAttribute("read", userreview); 
 			
 			CommentTotal commentTotal =listCommentService.getCommentList(no);
-			req.setAttribute("commenTotal", commentTotal);
+			req.setAttribute("commentTotal", commentTotal);
 			return "/view/reviewboard/readReview.jsp";
 		}catch(HelperNotFoundException | HelperContentNotFoundException e) {
 			req.getServletContext().log("no review", e);

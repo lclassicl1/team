@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import auth.model.ModifyUserInfoRequest;
 import auth.model.User;
+import auth.service.LoginService;
 import mvc.command.CommandHandler;
 import mypage.service.UpdateMypageService;
 
@@ -19,7 +20,7 @@ public class MypageUpdateHandler implements CommandHandler {
 
 	UpdateMypageService updateMypageService  = new UpdateMypageService();
 	private static final String FORM_VIEW="/view/mypage/mypageUpdate.jsp";
-	
+	private LoginService loginService = new LoginService();
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
@@ -71,6 +72,8 @@ public class MypageUpdateHandler implements CommandHandler {
 			User user = (User)req.getSession(false).getAttribute("authUser");
 			int loginNo = user.getUserNo();
 			
+			String id = user.getUserId();
+			String pwd = user.getUserPwd();
 			
 			Map<String,Boolean> errors = new HashMap<>();
 			req.setAttribute("errors", errors);
@@ -82,12 +85,23 @@ public class MypageUpdateHandler implements CommandHandler {
 			if(!errors.isEmpty()) {
 				return FORM_VIEW;
 			}
+			
+			
 			ModifyUserInfoRequest modiUserInfoReq = new ModifyUserInfoRequest(loginNo,userHp,userAddress,userEmail,userSkill,userSchool);
 			
 			updateMypageService.updateMypage(modiUserInfoReq);
 			
-			return "/view/loginboard/loginView.jsp";
+			HttpSession session = req.getSession(false);
+			if(session!=null) {
+				session.invalidate();
 			}
+			
+			User modiUser = loginService.login(id, pwd);
+			req.getSession().setAttribute("authUser",modiUser);
+			
+			return "/mypage.do";
+			}
+		
 			private void empty(Map<String,Boolean> errors,String value,String fieldName) {
 				if(value==null||value.isEmpty()) {
 					errors.put(fieldName, Boolean.TRUE);
