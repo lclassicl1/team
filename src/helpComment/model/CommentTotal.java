@@ -6,23 +6,26 @@ public class CommentTotal {
 
 	private List<Comment> commentList;
 	private int total;
+	
 	public CommentTotal(List<Comment> commentList, int total) {
 		this.commentList = commentList;
 		this.total = total;
 	}
-
+	
 	public boolean hasNoComm() {
 		return total==0;
 	}
 	public boolean hasComm() {
 		return total>0;
 	}
-	public List<Comment> getComment() {
+	public List<Comment> getCommentList() {
 		return commentList;
 	}
 	public int getTotal() {
 		return total;
 	}
+	
+	
 	
 	
 }

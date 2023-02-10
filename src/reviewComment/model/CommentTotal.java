@@ -17,7 +17,7 @@ public class CommentTotal {
 	public boolean hasComm() {
 		return total>0;
 	}
-	public List<Comment> getComment() {
+	public List<Comment> getCommentList() {
 		return commentList;
 	}
 	public int getTotal() {

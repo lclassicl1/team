@@ -40,14 +40,14 @@
   </servlet-mapping>
   
   <!-- 404에러 페이지  -->
-  <error-page>
+ <!--  <error-page>
   	<error-code>404</error-code>
   	<location>/errorpage/error.jsp </location>
   </error-page>
    <error-page>
   	<exception-type>java.lang.Throwable</exception-type>
   	<location>/errorpage/error.jsp</location>
-  </error-page>
+  </error-page> -->
   
   <!-- 로그인 필터  -->
   <!--  <filter>
