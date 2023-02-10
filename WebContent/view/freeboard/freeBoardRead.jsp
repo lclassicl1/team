@@ -74,8 +74,7 @@
 			</tr>
 	</table>
 </c:forEach>
-<hr>
-<hr>
+<c:if test="${commentTotal.hasComm() }">
 <h3>댓글</h3> 
 <table border="1" class="table table-dark table-hover">
 	<tr>
@@ -85,7 +84,7 @@
 		<th>작성시간</th>
 		<th>추천</th>
 	</tr>
-<c:forEach var="comment" items="${comment.commentList}">
+<c:forEach var="comment" items="${commentTotal.comment.commentList}">
 	<tr>
 		<td></td>
 		<td>${comment.user_id}</td>
@@ -102,6 +101,7 @@
 	</tr>
 </c:forEach>
 </table>
+</c:if>
 <h3>댓글 작성</h3>
 <form name="commentFrm" method="post"
 		action="<%=request.getContextPath()%>/freeboard/commentwrite.do" onsubmit="return sendit();">

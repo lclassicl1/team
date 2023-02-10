@@ -50,14 +50,14 @@
 <div class="formClass"><form name="categorySearch" id="categorySearch" method="get" 
 		action="<%=request.getContextPath()%>/freeboard/searchBoard.do">
  카테고리 : 
-			<select name='categorySearch'>
+			<select name='categorySearch' style="width: 100px;">
 			    <option value='' selected>전체</option>
 			    <option value='자유'>자유</option>
 			    <option value='질문'>질문</option>
 			    <option value='팁'>팁</option>
 
   	</select>
-			   검색: <input type="text" name="input"/>
+			   검색 : <input type="text" name="input"/>
 			  		  <input type="submit" value="검색" class="btn btn-secondary btn-sm blank"/>
  </form>
  </div>

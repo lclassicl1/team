@@ -64,6 +64,7 @@ body {
 .center{
 	text-align: left;
 	margin:10px;
+	margin-bottom:29px;
 }
 
 .input{
@@ -89,7 +90,7 @@ body {
 	<h3>공지사항</h3>
 </div>
 
-	<div class="formClass">	
+<div class="formClass">	
 		 <form action="<%=request.getContextPath()%>/notice/search.do" method="post">
 		검색 :  <input type="text" name="input">
 		 <input type="submit" class="btn btn-secondary blank" value="검색">

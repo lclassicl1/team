@@ -1,6 +1,5 @@
 package tradeboard.command;
 
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,7 +8,7 @@ import Exception.HelperContentNotFoundException;
 import Exception.HelperNotFoundException;
 import tradeboard.model.UserInfoTradeInfo;
 import tradeboard.service.ReadTradeService;
-import tradecomment.model.Comment;
+import tradecomment.model.CommentTotal;
 import tradecomment.service.ListCommentService;
 import mvc.command.CommandHandler;
 
@@ -29,8 +28,8 @@ public class ReadTradeHandler implements CommandHandler {
 
 			req.setAttribute("read", usertrade);
 			
-			List<Comment> commentList =listCommentService.getCommentList(no);
-			req.setAttribute("commentList", commentList);
+			CommentTotal commentTotal =listCommentService.getCommentList(no);
+			req.setAttribute("commentTotal", commentTotal);
 			return "/view/tradeboard/readTrade.jsp";
 		}catch(HelperNotFoundException | HelperContentNotFoundException e) {
 			req.getServletContext().log("no trade", e);

@@ -18,24 +18,32 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
- <style></style>
+ <style>
+ .center{
+ 	text-align: left;
+ 	margin:10px;
+ 	margin-bottom:41px;
+ }
+ .formClass{
+ 	text-align: center;
+ 	margin:5px;
+ }
+ </style>
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
-<h3>유저 목록</h3>
- <%-- <a href="<%=request.getContextPath()%>/index.jsp">HOME</a>
- <a href="<%=request.getContextPath()%>/article/list.do">게시글 보러가기</a>
-<a href="<%=request.getContextPath()%>/article/write.do">게시글 작성하기</a>
-<a href="<%=request.getContextPath()%>/view/member/loginPage.jsp">MyPage</a> --%>
+<div class="center"><h3>유저 목록</h3></div>
+<div class="formClass">
  <form action="<%=request.getContextPath()%>/master/user/search.do" method="post">
- 유저 상태 :<select name="grade">
+ 유저 상태 :<select name="grade" style="width: 100px">
  				<option value="0">전체</option>
 				<option value="1">일반</option>
 				<option value="900">정지</option>
 			</select>
 검색 :  <input type="text" name="input">
- <input type="submit" class="btn btn-secondary">
+ <input type="submit" class="btn btn-secondary" value="검색">
  </form>
+ </div>
  <table border="1" class="table table-dark table-hover">
   <thead>
   	<tr>

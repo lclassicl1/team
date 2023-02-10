@@ -9,7 +9,6 @@ import java.util.List;
 
 import comment.model.CommentList;
 import comment.model.CommentUpdateList;
-import helpComment.model.Comment;
 import jdbc.JdbcUtil;
 import jdbc.conn.ConnectionProvider;
 
@@ -88,6 +87,25 @@ public class CommentDAO {
 				JdbcUtil.close(rs);
 				JdbcUtil.close(stmt);
 				JdbcUtil.close(conn);
+			}
+		}
+		public int commentCount(Connection conn,int no)throws SQLException {
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = "select count(*) from free_comment where isshow='Y' and article_no=? ";
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, no);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					return rs.getInt("count(*)");
+				}
+				return 0;
+			}finally {
+				JdbcUtil.close(rs);
+				JdbcUtil.close(pstmt);
 			}
 		}
 		

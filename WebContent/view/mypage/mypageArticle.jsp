@@ -22,11 +22,22 @@
 		$(function(){
 		});
 	</script>
+	<style>
+	.center{
+		text-align: left;
+		margin:10px;
+		margin-bottom: 43px;
+	}
+	.formClass {
+		text-align: center;
+		margin: 5px;
+	}
+	</style>
 </head>
 <body>
 <header><jsp:include page="../../module/navBar.jsp"/></header>
-<a href="<%=request.getContextPath()%>/mypage.do"><button>뒤로가기</button></a>
-<hr>
+<div class="center"><h3>내가 쓴 글</h3></div>
+<div class="formClass">
 <form method="get" 
 		action="<%=request.getContextPath()%>/mypageArticleSearch.do">
 		  <select name='categorySearch'>
@@ -41,7 +52,7 @@
   					<input type="text" name="input"/>
 			    <input type="submit" value="검색" class="btn btn-secondary"/>
  </form>
-<hr>
+ </div>
 		<table border="1" class="table table-dark table-hover">
 		<thead>
 			<tr>

@@ -56,6 +56,25 @@ public class CommentDAO {
 		}
 		
 	}
+	public int commentCount(Connection conn,int no)throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select count(*) from help_comment where isshow='Y' and article_no=? ";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				return rs.getInt("count(*)");
+			}
+			return 0;
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
 	public void insert(Connection conn, WriteCommentRequest writeCommReq)throws SQLException {
 		PreparedStatement pstmt = null;
 		String sql = "insert into help_COMMENT(comm_content,user_id,comm_conn,article_no) " + 
