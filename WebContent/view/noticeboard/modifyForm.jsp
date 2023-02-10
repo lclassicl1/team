@@ -37,7 +37,7 @@
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><textarea rows="5" cols="30" name="content">${notice.article.articleTitle }</textarea><c:if test="${errors.content}">내용을 입력하세요 </c:if></td>
+				<td><input name="content" style="width:500px;height:200px;" value="${notice.article.articleTitle }"><c:if test="${errors.content}">내용을 입력하세요 </c:if></td>
 			</tr>
 		</table>
 			<div class="input">

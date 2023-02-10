@@ -130,7 +130,7 @@
 	<tr>
 	<td>
 	<form action="<%=request.getContextPath()%>/trade/comment/write.do?no=${read.article.articleNo }" method="post">
-			<input type="text" name="content" style="width: 300px; height: 50px;">
+			<input type="text" name="content" style="width: 500px; height:50px;">
 			<c:if test="${errors.contentEmpty }">댓글 내용을 작성해주세요.</c:if>
 		<input type="submit" value="등록" class="btn btn-secondary">
 		</form>

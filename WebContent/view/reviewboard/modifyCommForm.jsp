@@ -28,7 +28,7 @@
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><textarea rows="5" cols="30" name="content">${comment.commContent }</textarea><c:if test="${content}">내용을 입력하세요 </c:if></td>
+				<td><input name="content" style="width: 500px; height:50px;" value="${comment.commContent }"><c:if test="${content}">내용을 입력하세요 </c:if></td>
 			</tr>
 		</table>
 				<input type="submit" value="등록" class="btn btn-secondary">
